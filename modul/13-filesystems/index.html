@@ -775,10 +775,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-membuat-filesystem" class="md-nav__link">
+  <a href="#3-membuat-partisi-mbr-gpt" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Membuat Filesystem
+        3. Membuat Partisi (MBR / GPT)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-membuat-filesystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Membuat Filesystem
       
     </span>
   </a>
@@ -1377,10 +1388,43 @@
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>df<span class="w"> </span>-h<span class="w">                 </span><span class="c1"># pemakaian filesystem ter-mount</span>
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>du<span class="w"> </span>-sh<span class="w"> </span>/var/log<span class="w">       </span><span class="c1"># ukuran direktori</span>
 </code></pre></div>
-<h2 id="3-membuat-filesystem">3. Membuat Filesystem<a class="headerlink" href="#3-membuat-filesystem" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>mkfs.xfs<span class="w"> </span>/dev/sdb1<span class="w">        </span><span class="c1"># format partisi jadi XFS</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>sudo<span class="w"> </span>mkfs.ext4<span class="w"> </span>/dev/sdb2<span class="w">       </span><span class="c1"># atau ext4</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>sudo<span class="w"> </span>mkfs.vfat<span class="w"> </span>-F<span class="w"> </span><span class="m">32</span><span class="w"> </span>/dev/sdc1<span class="w"> </span><span class="c1"># FAT32 (VFAT) — objektif EX200</span>
+<h2 id="3-membuat-partisi-mbr-gpt">3. Membuat Partisi (MBR / GPT)<a class="headerlink" href="#3-membuat-partisi-mbr-gpt" title="Permanent link">&para;</a></h2>
+<p>Objektif EX200: <em>"create and configure file systems"</em> sering berarti <strong>mulai dari
+disk kosong</strong> — kamu harus membagi (partisi) disk dulu sebelum <code>mkfs</code>.
+RHEL 9/10 default pakai tabel <strong>GPT</strong> (bukan MBR) agar bisa disk &gt; 2 TB dan
+lebih dari 4 partisi.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Lihat disk yang tersedia (mis. /dev/vdb masih kosong)</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>lsblk<span class="w"> </span>/dev/vdb
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># ── Opsi 1: parted (GPT, direkomendasikan EX200) ──</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>sudo<span class="w"> </span>parted<span class="w"> </span>-s<span class="w"> </span>/dev/vdb<span class="w"> </span>mklabel<span class="w"> </span>gpt<span class="w">                       </span><span class="c1"># buat tabel partisi GPT</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>sudo<span class="w"> </span>parted<span class="w"> </span>-s<span class="w"> </span>/dev/vdb<span class="w"> </span>mkpart<span class="w"> </span>primary<span class="w"> </span>xfs<span class="w"> </span>1MiB<span class="w"> </span>501MiB<span class="w">    </span><span class="c1"># partisi 500M pertama</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>sudo<span class="w"> </span>parted<span class="w"> </span>-s<span class="w"> </span>/dev/vdb<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="m">1</span><span class="w"> </span>lvm<span class="w"> </span>on<span class="w">                      </span><span class="c1"># (opsional) flag LVM</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>partprobe<span class="w"> </span>/dev/vdb<span class="w">                                       </span><span class="c1"># beri tahu kernel (jgn reboot)</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>lsblk<span class="w"> </span>/dev/vdb<span class="w">                                           </span><span class="c1"># cek: muncul /dev/vdb1</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="c1"># ── Opsi 2: gdisk (GPT interaktif) ──</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>sudo<span class="w"> </span>gdisk<span class="w"> </span>/dev/vdb
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="c1">#   n  → new partition</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="c1">#   ↵  → default partnum 1</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="c1">#   ↵  → default first sector</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="c1">#   +500M → ukuran 500 MiB</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="c1">#   8300 → Linux filesystem (atau 8e00 untuk LVM)</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="c1">#   w  → write &amp; quit</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>partprobe<span class="w"> </span>/dev/vdb
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="c1"># ── Opsi 3: fdisk (MBR, legacy) ──</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>sudo<span class="w"> </span>fdisk<span class="w"> </span>/dev/vdb<span class="w">      </span><span class="c1"># n → p → 1 → ↵ → +500M → w</span>
+</code></pre></div>
+<blockquote>
+<p><strong>Verifikasi:</strong> <code>lsblk /dev/vdb</code> harus menampilkan <code>vdb1</code>. Setelah ini baru
+di-format: <code>sudo mkfs.xfs /dev/vdb1</code>. Jangan lupa <code>partprobe</code> — tanpa itu
+kernel tidak melihat partisi baru dan <code>mkfs</code> gagal dengan "No such file".</p>
+</blockquote>
+<h2 id="4-membuat-filesystem">4. Membuat Filesystem<a class="headerlink" href="#4-membuat-filesystem" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo<span class="w"> </span>mkfs.xfs<span class="w"> </span>/dev/sdb1<span class="w">        </span><span class="c1"># format partisi jadi XFS</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>sudo<span class="w"> </span>mkfs.ext4<span class="w"> </span>/dev/sdb2<span class="w">       </span><span class="c1"># atau ext4</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>sudo<span class="w"> </span>mkfs.vfat<span class="w"> </span>-F<span class="w"> </span><span class="m">32</span><span class="w"> </span>/dev/sdc1<span class="w"> </span><span class="c1"># FAT32 (VFAT) — objektif EX200</span>
 </code></pre></div>
 <blockquote>
 <p><strong>VFAT (FAT32)</strong> muncul di objektif EX200 ("mount, unmount, and use VFAT").
@@ -1388,46 +1432,46 @@ Cocok untuk USB flash disk / share dengan Windows. Tanpa journal, tanpa
 permission Unix (semua file 0777), batas file 4 GB.</p>
 </blockquote>
 <h2 id="4-mount-unmount">4. Mount &amp; Unmount<a class="headerlink" href="#4-mount-unmount" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo<span class="w"> </span>mkdir<span class="w"> </span>/data
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>sudo<span class="w"> </span>mount<span class="w"> </span>/dev/sdb1<span class="w"> </span>/data<span class="w">     </span><span class="c1"># mount manual (hilang setelah reboot)</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>mount<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>data<span class="w">              </span><span class="c1"># verifikasi</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>sudo<span class="w"> </span>umount<span class="w"> </span>/data<span class="w">              </span><span class="c1"># lepas</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>sudo<span class="w"> </span>mkdir<span class="w"> </span>/data
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>sudo<span class="w"> </span>mount<span class="w"> </span>/dev/sdb1<span class="w"> </span>/data<span class="w">     </span><span class="c1"># mount manual (hilang setelah reboot)</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>mount<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>data<span class="w">              </span><span class="c1"># verifikasi</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>sudo<span class="w"> </span>umount<span class="w"> </span>/data<span class="w">              </span><span class="c1"># lepas</span>
 </code></pre></div>
 <h2 id="5-mount-permanen-etcfstab">5. Mount Permanen (<code>/etc/fstab</code>)<a class="headerlink" href="#5-mount-permanen-etcfstab" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Dapatkan UUID</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>blkid<span class="w"> </span>/dev/sdb1
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># Tambahkan ke /etc/fstab (contoh XFS):</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="nv">UUID</span><span class="o">=</span>xxxx-xxxx<span class="w">  </span>/data<span class="w">  </span>xfs<span class="w">  </span>defaults<span class="w">  </span><span class="m">0</span><span class="w"> </span><span class="m">0</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># Uji tanpa reboot:</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>sudo<span class="w"> </span>mount<span class="w"> </span>-a
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Dapatkan UUID</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>blkid<span class="w"> </span>/dev/sdb1
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># Tambahkan ke /etc/fstab (contoh XFS):</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="nv">UUID</span><span class="o">=</span>xxxx-xxxx<span class="w">  </span>/data<span class="w">  </span>xfs<span class="w">  </span>defaults<span class="w">  </span><span class="m">0</span><span class="w"> </span><span class="m">0</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1"># Uji tanpa reboot:</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>sudo<span class="w"> </span>mount<span class="w"> </span>-a
 </code></pre></div>
 <p>Format fstab: <code>device  mountpoint  fstype  options  dump  fsck</code></p>
 <p>Untuk VFAT, opsi umum: <code>UUID=xxxx  /mnt/usb  vfat  defaults,uid=1000,gid=1000  0 0</code>
 (pakai <code>uid/gid</code> agar pemiliknya user biasa, bukan root).</p>
 <h2 id="6-lvm-logical-volume-manager">6. LVM (Logical Volume Manager)<a class="headerlink" href="#6-lvm-logical-volume-manager" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># 1. Tandai partisi sebagai PV</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>sudo<span class="w"> </span>pvcreate<span class="w"> </span>/dev/sdb1
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="c1"># 2. Gabung ke VG</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>sudo<span class="w"> </span>vgcreate<span class="w"> </span>vgdata<span class="w"> </span>/dev/sdb1
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="c1"># 3. Buat LV</span>
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>sudo<span class="w"> </span>lvcreate<span class="w"> </span>-n<span class="w"> </span>lvdata<span class="w"> </span>-L<span class="w"> </span>5G<span class="w"> </span>vgdata
-<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1"># 4. Format &amp; mount</span>
-<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>sudo<span class="w"> </span>mkfs.xfs<span class="w"> </span>/dev/vgdata/lvdata
-<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>sudo<span class="w"> </span>mount<span class="w"> </span>/dev/vgdata/lvdata<span class="w"> </span>/data
-<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>
-<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="c1"># Perbesar LV (LVM unggul di sini):</span>
-<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>sudo<span class="w"> </span>lvextend<span class="w"> </span>-L<span class="w"> </span>+2G<span class="w"> </span>/dev/vgdata/lvdata
-<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>sudo<span class="w"> </span>xfs_growfs<span class="w"> </span>/data<span class="w">        </span><span class="c1"># untuk XFS</span>
-<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="c1"># (ext4: resize2fs /dev/vgdata/lvdata)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># 1. Tandai partisi sebagai PV</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>sudo<span class="w"> </span>pvcreate<span class="w"> </span>/dev/sdb1
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="c1"># 2. Gabung ke VG</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>sudo<span class="w"> </span>vgcreate<span class="w"> </span>vgdata<span class="w"> </span>/dev/sdb1
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="c1"># 3. Buat LV</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>sudo<span class="w"> </span>lvcreate<span class="w"> </span>-n<span class="w"> </span>lvdata<span class="w"> </span>-L<span class="w"> </span>5G<span class="w"> </span>vgdata
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="c1"># 4. Format &amp; mount</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>sudo<span class="w"> </span>mkfs.xfs<span class="w"> </span>/dev/vgdata/lvdata
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>sudo<span class="w"> </span>mount<span class="w"> </span>/dev/vgdata/lvdata<span class="w"> </span>/data
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="c1"># Perbesar LV (LVM unggul di sini):</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>sudo<span class="w"> </span>lvextend<span class="w"> </span>-L<span class="w"> </span>+2G<span class="w"> </span>/dev/vgdata/lvdata
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>sudo<span class="w"> </span>xfs_growfs<span class="w"> </span>/data<span class="w">        </span><span class="c1"># untuk XFS</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="c1"># (ext4: resize2fs /dev/vgdata/lvdata)</span>
 </code></pre></div>
 <h2 id="7-swap">7. Swap<a class="headerlink" href="#7-swap" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sudo<span class="w"> </span>mkswap<span class="w"> </span>/dev/sdc1
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>sudo<span class="w"> </span>swapon<span class="w"> </span>/dev/sdc1
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>swapon<span class="w"> </span>--show<span class="w">                 </span><span class="c1"># verifikasi</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># permanen: tambahkan ke /etc/fstab:</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="c1"># /dev/sdc1  swap  swap  defaults  0 0</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sudo<span class="w"> </span>mkswap<span class="w"> </span>/dev/sdc1
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>sudo<span class="w"> </span>swapon<span class="w"> </span>/dev/sdc1
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>swapon<span class="w"> </span>--show<span class="w">                 </span><span class="c1"># verifikasi</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1"># permanen: tambahkan ke /etc/fstab:</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="c1"># /dev/sdc1  swap  swap  defaults  0 0</span>
 </code></pre></div>
 <h2 id="8-label-uuid">8. Label &amp; UUID<a class="headerlink" href="#8-label-uuid" title="Permanent link">&para;</a></h2>
 <p>Gunakan UUID di fstab (lebih stabil dari nama device <code>/dev/sdX</code> yang bisa
@@ -1438,24 +1482,24 @@ untuk memberi label.</p>
 otomatis saat idle. Sangat dipakai untuk NFS di client (tidak perlu entri
 fstab statis, tidak hang saat server NFS mati saat boot).</p>
 <p><strong>Langkah di client:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># 1. Pasang &amp; aktifkan</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>autofs
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>autofs
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="c1"># 2. Master map: arahkan /mnt/nfs ke map file</span>
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;/mnt/nfs  /etc/auto.nfs&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span>/etc/auto.master.d/nfs.autofs
-<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>
-<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="c1"># 3. Map file: direktori tujuan -&gt; sumber NFS</span>
-<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="c1">#    sintaks:  &lt;subdir&gt;  &lt;opts&gt;  &lt;server&gt;:&lt;export&gt;</span>
-<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;share  -fstype=nfs,rw,soft,intr  server1.lab.local:/srv/nfs/share&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">  </span>sudo<span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span>/etc/auto.nfs
-<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>
-<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>autofs
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># 1. Pasang &amp; aktifkan</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>autofs
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>autofs
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="c1"># 2. Master map: arahkan /mnt/nfs ke map file</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;/mnt/nfs  /etc/auto.nfs&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span>/etc/auto.master.d/nfs.autofs
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="c1"># 3. Map file: direktori tujuan -&gt; sumber NFS</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="c1">#    sintaks:  &lt;subdir&gt;  &lt;opts&gt;  &lt;server&gt;:&lt;export&gt;</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;share  -fstype=nfs,rw,soft,intr  server1.lab.local:/srv/nfs/share&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">  </span>sudo<span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span>/etc/auto.nfs
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>autofs
 </code></pre></div></p>
 <p><strong>Cara membuktikan (verifikasi):</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nb">cd</span><span class="w"> </span>/mnt/nfs/share<span class="w">          </span><span class="c1"># akses -&gt; autofs otomatis mount!</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>mount<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>auto.nfs<span class="w">      </span><span class="c1"># terlihat entry automount</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="c1"># setelah idle (default ~300 dtk), autofs me-lepas sendiri</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nb">cd</span><span class="w"> </span>/mnt/nfs/share<span class="w">          </span><span class="c1"># akses -&gt; autofs otomatis mount!</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>mount<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>auto.nfs<span class="w">      </span><span class="c1"># terlihat entry automount</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="c1"># setelah idle (default ~300 dtk), autofs me-lepas sendiri</span>
 </code></pre></div></p>
 <blockquote>
 <p>⚠️ Bedanya dengan fstab statis: autofs <strong>tidak</strong> mem-block boot bila server
@@ -1467,34 +1511,34 @@ pool) di atas LVM/XFS dengan satu perintah. Objektif EX200 RHEL 9/10:
 <em>"Configure and manage storage using the Stratis"</em> (sic) — jadi <strong>wajib diuji</strong>.</p>
 <p><strong>Konsep:</strong> <code>blockdev</code> (disk) → <code>pool</code> (kumpulan storage) → <code>filesystem</code>
 (XFS di atas pool, thin-provision).</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># 1. Pasang &amp; aktifkan layanan stratis</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>stratis-cli<span class="w"> </span>stratisd
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>stratisd
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
-<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="c1"># 2. Buat pool dari satu/lebih block device</span>
-<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>sudo<span class="w"> </span>stratis<span class="w"> </span>pool<span class="w"> </span>create<span class="w"> </span>mypool<span class="w"> </span>/dev/sdb<span class="w"> </span>/dev/sdc
-<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>stratis<span class="w"> </span>pool<span class="w"> </span>list
-<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>
-<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="c1"># 3. Buat filesystem (thin-provision, otomatis XFS)</span>
-<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>sudo<span class="w"> </span>stratis<span class="w"> </span>filesystem<span class="w"> </span>create<span class="w"> </span>mypool<span class="w"> </span>data1
-<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>stratis<span class="w"> </span>filesystem<span class="w"> </span>list<span class="w"> </span>mypool
-<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>
-<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="c1"># 4. Mount (pakai device mapper Stratis)</span>
-<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>sudo<span class="w"> </span>mkdir<span class="w"> </span>/mnt/stratis-data
-<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>sudo<span class="w"> </span>mount<span class="w"> </span>/dev/stratis/mypool/data1<span class="w"> </span>/mnt/stratis-data
-<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>
-<a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="c1"># 5. Mount permanen via /etc/fstab (gunakan _netdev + x-systemd)</span>
-<a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;/dev/stratis/mypool/data1  /mnt/stratis-data  xfs  defaults,x-systemd.requires=stratisd.service  0 0&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span>/etc/fstab
-<a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a>sudo<span class="w"> </span>mount<span class="w"> </span>-a
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># 1. Pasang &amp; aktifkan layanan stratis</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>stratis-cli<span class="w"> </span>stratisd
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>stratisd
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="c1"># 2. Buat pool dari satu/lebih block device</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>sudo<span class="w"> </span>stratis<span class="w"> </span>pool<span class="w"> </span>create<span class="w"> </span>mypool<span class="w"> </span>/dev/sdb<span class="w"> </span>/dev/sdc
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>stratis<span class="w"> </span>pool<span class="w"> </span>list
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="c1"># 3. Buat filesystem (thin-provision, otomatis XFS)</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>sudo<span class="w"> </span>stratis<span class="w"> </span>filesystem<span class="w"> </span>create<span class="w"> </span>mypool<span class="w"> </span>data1
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>stratis<span class="w"> </span>filesystem<span class="w"> </span>list<span class="w"> </span>mypool
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="c1"># 4. Mount (pakai device mapper Stratis)</span>
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>sudo<span class="w"> </span>mkdir<span class="w"> </span>/mnt/stratis-data
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>sudo<span class="w"> </span>mount<span class="w"> </span>/dev/stratis/mypool/data1<span class="w"> </span>/mnt/stratis-data
+<a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>
+<a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a><span class="c1"># 5. Mount permanen via /etc/fstab (gunakan _netdev + x-systemd)</span>
+<a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;/dev/stratis/mypool/data1  /mnt/stratis-data  xfs  defaults,x-systemd.requires=stratisd.service  0 0&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span>/etc/fstab
+<a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a>sudo<span class="w"> </span>mount<span class="w"> </span>-a
 </code></pre></div>
 <p><strong>Snapshot &amp; recovered (sering muncul di soal):</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Snapshot filesystem (readonly awal, bisa di-clone jadi RW)</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>sudo<span class="w"> </span>stratis<span class="w"> </span>filesystem<span class="w"> </span>snapshot<span class="w"> </span>mypool<span class="w"> </span>data1<span class="w"> </span>snap1
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="c1"># Clone snapshot jadi filesystem kerja</span>
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>sudo<span class="w"> </span>stratis<span class="w"> </span>filesystem<span class="w"> </span>clone<span class="w"> </span>mypool<span class="w"> </span>snap1<span class="w"> </span>data1-restored
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="c1"># Hapus filesystem/pool</span>
-<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>sudo<span class="w"> </span>stratis<span class="w"> </span>filesystem<span class="w"> </span>destroy<span class="w"> </span>mypool<span class="w"> </span>data1-restored
-<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>sudo<span class="w"> </span>stratis<span class="w"> </span>pool<span class="w"> </span>destroy<span class="w"> </span>mypool
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Snapshot filesystem (readonly awal, bisa di-clone jadi RW)</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>sudo<span class="w"> </span>stratis<span class="w"> </span>filesystem<span class="w"> </span>snapshot<span class="w"> </span>mypool<span class="w"> </span>data1<span class="w"> </span>snap1
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="c1"># Clone snapshot jadi filesystem kerja</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>sudo<span class="w"> </span>stratis<span class="w"> </span>filesystem<span class="w"> </span>clone<span class="w"> </span>mypool<span class="w"> </span>snap1<span class="w"> </span>data1-restored
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="c1"># Hapus filesystem/pool</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>sudo<span class="w"> </span>stratis<span class="w"> </span>filesystem<span class="w"> </span>destroy<span class="w"> </span>mypool<span class="w"> </span>data1-restored
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>sudo<span class="w"> </span>stratis<span class="w"> </span>pool<span class="w"> </span>destroy<span class="w"> </span>mypool
 </code></pre></div></p>
 <blockquote>
 <p>⚠️ Jangan format device yang SUDAH masuk pool Stratis dengan <code>mkfs</code>.
@@ -1504,25 +1548,25 @@ Stratis mengelola XFS di dalamnya sendiri.</p>
 <p>VDO (Virtual Data Optimizer) memberikan deduplikasi + kompresi di atas block
 device, sehingga ruang fisik lebih efisien untuk data berulang (backup,
 image). Objektif EX200: <em>"Configure and manage storage using VDO"</em>.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># 1. Pasang &amp; aktifkan</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>vdo<span class="w"> </span>kmod-kvdo
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>vdo
-<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>
-<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="c1"># 2. Buat volume VDO (logical size BISA &gt; physical size = thin)</span>
-<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>sudo<span class="w"> </span>vdo<span class="w"> </span>create<span class="w"> </span>--name<span class="o">=</span>myvdo<span class="w"> </span>--device<span class="o">=</span>/dev/sdb<span class="w"> </span>--vdoLogicalSize<span class="o">=</span>50G
-<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="c1">#    tunggu sampai &#39;Operating&#39; (lihat status):</span>
-<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>vdo<span class="w"> </span>status<span class="w"> </span>--name<span class="o">=</span>myvdo
-<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>
-<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="c1"># 3. Format &amp; mount seperti block device biasa</span>
-<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>sudo<span class="w"> </span>mkfs.xfs<span class="w"> </span>-K<span class="w"> </span>/dev/mapper/myvdo
-<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>sudo<span class="w"> </span>mkdir<span class="w"> </span>/mnt/vdo
-<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>sudo<span class="w"> </span>mount<span class="w"> </span>/dev/mapper/myvdo<span class="w"> </span>/mnt/vdo
-<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>
-<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a><span class="c1"># 4. Mount permanen (penting: _netdev + noauto agar tidak hang boot)</span>
-<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;/dev/mapper/myvdo  /mnt/vdo  xfs  defaults,x-systemd.requires=vdo.service,_netdev  0 0&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span>/etc/fstab
-<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>
-<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a><span class="c1"># 5. Cek efisiensi (dedup ratio)</span>
-<a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a>vdostats<span class="w"> </span>--human-readable
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># 1. Pasang &amp; aktifkan</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>vdo<span class="w"> </span>kmod-kvdo
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>vdo
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="c1"># 2. Buat volume VDO (logical size BISA &gt; physical size = thin)</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>sudo<span class="w"> </span>vdo<span class="w"> </span>create<span class="w"> </span>--name<span class="o">=</span>myvdo<span class="w"> </span>--device<span class="o">=</span>/dev/sdb<span class="w"> </span>--vdoLogicalSize<span class="o">=</span>50G
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="c1">#    tunggu sampai &#39;Operating&#39; (lihat status):</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>vdo<span class="w"> </span>status<span class="w"> </span>--name<span class="o">=</span>myvdo
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="c1"># 3. Format &amp; mount seperti block device biasa</span>
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>sudo<span class="w"> </span>mkfs.xfs<span class="w"> </span>-K<span class="w"> </span>/dev/mapper/myvdo
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>sudo<span class="w"> </span>mkdir<span class="w"> </span>/mnt/vdo
+<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>sudo<span class="w"> </span>mount<span class="w"> </span>/dev/mapper/myvdo<span class="w"> </span>/mnt/vdo
+<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>
+<a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a><span class="c1"># 4. Mount permanen (penting: _netdev + noauto agar tidak hang boot)</span>
+<a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;/dev/mapper/myvdo  /mnt/vdo  xfs  defaults,x-systemd.requires=vdo.service,_netdev  0 0&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span>/etc/fstab
+<a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a>
+<a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a><span class="c1"># 5. Cek efisiensi (dedup ratio)</span>
+<a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a>vdostats<span class="w"> </span>--human-readable
 </code></pre></div>
 <blockquote>
 <p>⚠️ VDO butuh device <strong>kosong</strong> (belum ada filesystem/partition table).
@@ -1531,26 +1575,26 @@ Gunakan <code>vdo remove --name=myvdo</code> untuk membongkar.</p>
 <h2 id="12-disk-quota-batasi-pemakaian-usergroup-wajib-ex200">12. Disk Quota — Batasi Pemakaian User/Group (Wajib EX200)<a class="headerlink" href="#12-disk-quota-batasi-pemakaian-usergroup-wajib-ex200" title="Permanent link">&para;</a></h2>
 <p>Objektif EX200: <em>"Implement disk quotas"</em>. Batasi berapa banyak ruang/  jumlah
 file yang boleh dipakai tiap user atau group pada suatu filesystem.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># 1. Mount FS dengan opsi quota (userquota,grpquota)</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="c1">#    di /etc/fstab:  UUID=xxxx  /home  xfs  defaults,usrquota,grpquota  0 0</span>
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>sudo<span class="w"> </span>mount<span class="w"> </span>-o<span class="w"> </span>remount,usrquota,grpquota<span class="w"> </span>/home
-<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>
-<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="c1"># 2. XFS: bangun ulang database quota (langsung aktif, tanpa quotacheck)</span>
-<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>sudo<span class="w"> </span>xfs_quota<span class="w"> </span>-x<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;report -h&#39;</span><span class="w"> </span>/home<span class="w">      </span><span class="c1"># lihat status</span>
-<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>sudo<span class="w"> </span>xfs_quota<span class="w"> </span>-x<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;state&#39;</span><span class="w"> </span>/home<span class="w">           </span><span class="c1"># pastikan quota ON</span>
-<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>
-<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="c1"># 3. Set batas (block soft/hard + inode soft/hard) untuk user</span>
-<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>sudo<span class="w"> </span>xfs_quota<span class="w"> </span>-x<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;limit bsoft=100M bhard=120M isoft=1000 ihard=1200 user1&#39;</span><span class="w"> </span>/home
-<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>
-<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="c1"># 4. Verifikasi</span>
-<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>sudo<span class="w"> </span>xfs_quota<span class="w"> </span>-x<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;report -h -u&#39;</span><span class="w"> </span>/home
-<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a><span class="c1">#    bhard/bsoft = batas block (ruang), ihard/isoft = batas inode (jumlah file)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># 1. Mount FS dengan opsi quota (userquota,grpquota)</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="c1">#    di /etc/fstab:  UUID=xxxx  /home  xfs  defaults,usrquota,grpquota  0 0</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>sudo<span class="w"> </span>mount<span class="w"> </span>-o<span class="w"> </span>remount,usrquota,grpquota<span class="w"> </span>/home
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="c1"># 2. XFS: bangun ulang database quota (langsung aktif, tanpa quotacheck)</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>sudo<span class="w"> </span>xfs_quota<span class="w"> </span>-x<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;report -h&#39;</span><span class="w"> </span>/home<span class="w">      </span><span class="c1"># lihat status</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>sudo<span class="w"> </span>xfs_quota<span class="w"> </span>-x<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;state&#39;</span><span class="w"> </span>/home<span class="w">           </span><span class="c1"># pastikan quota ON</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="c1"># 3. Set batas (block soft/hard + inode soft/hard) untuk user</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>sudo<span class="w"> </span>xfs_quota<span class="w"> </span>-x<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;limit bsoft=100M bhard=120M isoft=1000 ihard=1200 user1&#39;</span><span class="w"> </span>/home
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="c1"># 4. Verifikasi</span>
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>sudo<span class="w"> </span>xfs_quota<span class="w"> </span>-x<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;report -h -u&#39;</span><span class="w"> </span>/home
+<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span class="c1">#    bhard/bsoft = batas block (ruang), ihard/isoft = batas inode (jumlah file)</span>
 </code></pre></div>
 <p>Untuk <strong>ext4</strong> (berbeda alat):
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>sudo<span class="w"> </span>quotacheck<span class="w"> </span>-cugm<span class="w"> </span>/home<span class="w">     </span><span class="c1"># bangun aquota.user/aquota.group</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>sudo<span class="w"> </span>quotaon<span class="w"> </span>-v<span class="w"> </span>/home
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>sudo<span class="w"> </span>edquota<span class="w"> </span>-u<span class="w"> </span>user1<span class="w">           </span><span class="c1"># edit interaktif (mirip crontab)</span>
-<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>repquota<span class="w"> </span>-a<span class="w">                     </span><span class="c1"># laporan</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>sudo<span class="w"> </span>quotacheck<span class="w"> </span>-cugm<span class="w"> </span>/home<span class="w">     </span><span class="c1"># bangun aquota.user/aquota.group</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>sudo<span class="w"> </span>quotaon<span class="w"> </span>-v<span class="w"> </span>/home
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>sudo<span class="w"> </span>edquota<span class="w"> </span>-u<span class="w"> </span>user1<span class="w">           </span><span class="c1"># edit interaktif (mirip crontab)</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>repquota<span class="w"> </span>-a<span class="w">                     </span><span class="c1"># laporan</span>
 </code></pre></div></p>
 <blockquote>
 <p>⚠️ <code>bhard</code> = batas keras (tulis ditolak setelah lewat). <code>bsoft</code> = batas lunak
@@ -1665,7 +1709,7 @@ Atau: "Batasi user <code>user1</code> maks 120M &amp; 1200 file di <code>/home</
   </nav>
 
   <div class="rh-footcta">
-    <a class="rh-btn rh-btn-primary" href="../../referensi/SIMULASI-UJIAN/">⏱️ Uji diri: Simulasi Ujian 2 Jam</a>
+    <a class="rh-btn rh-btn-primary" href="../../referensi/SIMULASI-UJIAN/">⏱️ Uji diri: Simulasi Ujian 3 Jam</a>
     <a class="rh-btn rh-btn-ghost" href="../../pusat-belajar/">🗺️ Pusat Belajar</a>
   </div>
 

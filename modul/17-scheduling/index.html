@@ -1374,9 +1374,52 @@ Soal EX200: "konfigurasi client waktu ke NTP server X" → edit
 <code>/etc/chrony.conf</code>, ganti/ tambah <code>server X iburst</code>, lalu <code>restart chronyd</code>.</p>
 </blockquote>
 <h2 id="4-systemd-timer-modern">4. <code>systemd</code> Timer (Modern)<a class="headerlink" href="#4-systemd-timer-modern" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>systemctl<span class="w"> </span>list-timers<span class="w">      </span><span class="c1"># lihat timer aktif</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="c1"># Timer menggantikan cron di banyak kasus (lihat /usr/lib/systemd/system/*.timer)</span>
+<p>Timer adalah pengganti cron di many kasus; diujikan di EX200 ("schedule tasks
+using systemd timer units"). Timer membutuhkan <strong>dua</strong> unit: <code>.service</code> (apa yang
+dikerjakan) dan <code>.timer</code> (kapan dijalankan).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># 1) Unit SERVICE — tugas yang dijalankan</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/systemd/system/backup-etc.service<span class="w"> </span>&gt;<span class="w"> </span>/dev/null<span class="w"> </span><span class="s">&lt;&lt;&#39;EOF&#39;</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="s">[Unit]</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="s">Description=Backup /etc ke /backup/etc.tar.gz</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="s">[Service]</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="s">Type=oneshot</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="s">ExecStart=/bin/tar czf /backup/etc.tar.gz /etc</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="s">EOF</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="c1"># 2) Unit TIMER — jadwal (OnCalendar, bukan cron 5-kolom)</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/systemd/system/backup-etc.timer<span class="w"> </span>&gt;<span class="w"> </span>/dev/null<span class="w"> </span><span class="s">&lt;&lt;&#39;EOF&#39;</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="s">[Unit]</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="s">Description=Backup /etc setiap hari 02:00</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="s">[Timer]</span>
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="s">OnCalendar=*-*-* 02:00:00     # format: Tahun-Bulan-Hari Jam:Menit:Detik</span>
+<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="s">Persistent=true               # jika VM mati saat jadwal, jalankan saat nyala</span>
+<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="s">Unit=backup-etc.service</span>
+<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>
+<a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a><span class="s">[Install]</span>
+<a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a><span class="s">WantedBy=timers.target</span>
+<a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a><span class="s">EOF</span>
+<a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a>
+<a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a><span class="c1"># 3) Aktifkan &amp; verifikasi</span>
+<a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>daemon-reload
+<a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>backup-etc.timer
+<a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a>systemctl<span class="w"> </span>list-timers<span class="w"> </span>--all<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>backup-etc<span class="w">     </span><span class="c1"># lihat next run</span>
+<a id="__codelineno-6-29" name="__codelineno-6-29" href="#__codelineno-6-29"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>backup-etc.service<span class="w">           </span><span class="c1"># jalankan manual (tes)</span>
 </code></pre></div>
+<p>Format <code>OnCalendar</code> berguna:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>*-*-* 02:00:00     # tiap hari 02:00
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>*-*-* 02,14:00:00  # 02:00 dan 14:00 tiap hari
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>Mon *-*-* 09:00:00 # tiap Senin 09:00
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>*:0/15             # tiap 15 menit
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>daily              # kata kunci (juga: hourly, weekly, monthly)
+</code></pre></div></p>
+<blockquote>
+<p><strong>Bedanya dengan cron:</strong> timer dijalankan oleh systemd (bukan <code>crond</code>),
+mendukung <code>Persistent=true</code> (mengejar jadwal terlewat), dan lognya langsung
+masuk <code>journalctl -u backup-etc.service</code>. Soal EX200 kadang explicit minta
+"systemd timer", bukan cron.</p>
+</blockquote>
 <h2 id="5-jebakan-umum-ex200">5. Jebakan Umum (EX200)<a class="headerlink" href="#5-jebakan-umum-ex200" title="Permanent link">&para;</a></h2>
 <div class="admonition danger">
 <p class="admonition-title">Jebakan</p>
@@ -1392,9 +1435,9 @@ Soal EX200: "konfigurasi client waktu ke NTP server X" → edit
 <div class="admonition success">
 <p class="admonition-title">EX200</p>
 <p>Soal: "Buat tugas yang membackup <code>/etc</code> tiap hari 02:00 ke <code>/backup/etc.tar.gz</code>."
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/backup
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="o">(</span>sudo<span class="w"> </span>crontab<span class="w"> </span>-l<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="p">;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;0 2 * * * tar czf /backup/etc.tar.gz /etc&quot;</span><span class="o">)</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>crontab<span class="w"> </span>-
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>sudo<span class="w"> </span>crontab<span class="w"> </span>-l
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/backup
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="o">(</span>sudo<span class="w"> </span>crontab<span class="w"> </span>-l<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="p">;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;0 2 * * * tar czf /backup/etc.tar.gz /etc&quot;</span><span class="o">)</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>crontab<span class="w"> </span>-
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>sudo<span class="w"> </span>crontab<span class="w"> </span>-l
 </code></pre></div></p>
 </div>
 <h2 id="kuis-cepat">Kuis Cepat<a class="headerlink" href="#kuis-cepat" title="Permanent link">&para;</a></h2>
@@ -1472,7 +1515,7 @@ Soal EX200: "konfigurasi client waktu ke NTP server X" → edit
   </nav>
 
   <div class="rh-footcta">
-    <a class="rh-btn rh-btn-primary" href="../../referensi/SIMULASI-UJIAN/">⏱️ Uji diri: Simulasi Ujian 2 Jam</a>
+    <a class="rh-btn rh-btn-primary" href="../../referensi/SIMULASI-UJIAN/">⏱️ Uji diri: Simulasi Ujian 3 Jam</a>
     <a class="rh-btn rh-btn-ghost" href="../../pusat-belajar/">🗺️ Pusat Belajar</a>
   </div>
 
