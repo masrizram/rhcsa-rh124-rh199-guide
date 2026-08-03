@@ -1036,6 +1036,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#tugas-11-nfs-share-10-pt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧪 Tugas 11 — NFS Share (10 pt)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#score-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1411,6 +1422,25 @@ ke <code>/backup/etc-$(date +\%F).tar.gz</code>.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>timedatectl<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;Asia/Jakarta&quot;</span>
 <a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>sudo<span class="w"> </span>crontab<span class="w"> </span>-l<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;tar czf /backup/etc&quot;</span>
 </code></pre></div></p>
+<h2 id="tugas-11-nfs-share-10-pt">🧪 Tugas 11 — NFS Share (10 pt)<a class="headerlink" href="#tugas-11-nfs-share-10-pt" title="Permanent link">&para;</a></h2>
+<p>Konfigurasi berbagi <strong>NFS</strong> (objective EX200 2.3). Di sisi <strong>server</strong>: pasang
+<code>nfs-utils</code>, aktifkan <code>nfs-server</code>, buat <code>/srv/nfs/share</code> (beri izin <code>777</code>),
+ekspor ke subnet lab <code>192.168.100.0/24(rw,sync,no_root_squash)</code> lalu muat
+dengan <code>exportfs -r</code>, dan buka service <code>nfs</code> di firewalld. Di sisi <strong>klien</strong>:
+pasang <code>nfs-utils</code>, mount <code>server:/srv/nfs/share</code> ke <code>/mnt/nfs</code> secara
+<strong>permanen di fstab</strong> dengan opsi <code>_netdev</code>, lalu uji <code>mount -a</code>.</p>
+<blockquote>
+<p>Untuk latihan di 1 VM, jadikan host sendiri sebagai server sekaligus klien:
+ganti <code>server</code> dengan <code>localhost</code> (atau <code>$(hostname)</code>).</p>
+</blockquote>
+<p><strong>Verifikasi:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># server</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>exportfs<span class="w"> </span>-v<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;srv/nfs&quot;</span><span class="w">      </span><span class="c1"># ekspor aktif</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>firewall-cmd<span class="w"> </span>--list-services<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>nfs
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="c1"># klien</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>df<span class="w"> </span>-hT<span class="w"> </span>/mnt/nfs<span class="w">                   </span><span class="c1"># ter-mount</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>grep<span class="w"> </span><span class="s2">&quot;nfs&quot;</span><span class="w"> </span>/etc/fstab<span class="w">             </span><span class="c1"># entri dengan _netdev</span>
+</code></pre></div></p>
 <hr />
 <h2 id="score-sheet">📊 Score Sheet<a class="headerlink" href="#score-sheet" title="Permanent link">&para;</a></h2>
 <table>
@@ -1480,12 +1510,18 @@ ke <code>/backup/etc-$(date +\%F).tar.gz</code>.</p>
 <tr>
 <td>10</td>
 <td>Cron &amp; TZ</td>
-<td>-----</td>
+<td>10</td>
+<td></td>
+</tr>
+<tr>
+<td>11</td>
+<td>NFS share</td>
+<td>10</td>
 <td></td>
 </tr>
 </tbody>
 </table>
-<p><strong>Total:</strong> _____ / 100</p>
+<p><strong>Total:</strong> _____ / 110</p>
 <ul>
 <li><strong>≥ 80</strong> → siap ujian.</li>
 <li><strong>60–79</strong> → ulangi modul yang lemah.</li>
