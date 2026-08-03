@@ -1,0 +1,87 @@
+site_name: Panduan Lengkap RHCSA (RH124 / RH199) - RHEL 9 & 10
+site_description: Persiapan Sertifikasi Red Hat Certified System Administrator (EX200)
+site_author: masrizram
+repo_name: masrizram/rhcsa-rh124-rh199-guide
+repo_url: https://github.com/masrizram/rhcsa-rh124-rh199-guide
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  language: id
+  palette:
+    - scheme: default
+      primary: red
+      accent: red
+      toggle:
+        icon: material/weather-night
+        name: Mode Gelap
+    - scheme: slate
+      primary: red
+      accent: red
+      toggle:
+        icon: material/weather-sunny
+        name: Mode Terang
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - toc.follow
+    - content.code.copy
+    - content.code.annotate
+    - search.suggest
+    - search.highlight
+    - search.share
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.details
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - toc:
+      permalink: true
+
+extra_javascript:
+  - https://unpkg.com/mermaid@10/dist/mermaid.min.js
+  - js/mermaid-init.js
+
+nav:
+  - Beranda: index.md
+  - "🗺️ Pusat Belajar": pusat-belajar.md
+  - "📦 Modul 0 — Pengantar & Roadmap": modul/00-pengantar-dan-roadmap.md
+  - "📦 Modul 1 — Get Started with RHEL": modul/01-get-started-rhel.md
+  - "📦 Modul 2 — Access the Command Line": modul/02-access-command-line.md
+  - "📦 Modul 3 — Manage Files": modul/03-manage-files.md
+  - "📦 Modul 4 — Get Help in RHEL": modul/04-get-help.md
+  - "📦 Modul 5 — Text Files (vim)": modul/05-text-files.md
+  - "📦 Modul 6 — Users & Groups": modul/06-users-groups.md
+  - "📦 Modul 7 — Permissions & ACL": modul/07-file-permissions.md
+  - "📦 Modul 8 — Processes": modul/08-processes.md
+  - "📦 Modul 9 — systemd Services": modul/09-services-daemons.md
+  - "📦 Modul 10 — SSH & Security": modul/10-ssh.md
+  - "📦 Modul 11 — Networking": modul/11-networking.md
+  - "📦 Modul 12 — Software (DNF)": modul/12-software-dnf.md
+  - "📦 Modul 13 — File Systems & LVM": modul/13-filesystems.md
+  - "📦 Modul 14 — Support & Logs": modul/14-support.md
+  - "🐳 Modul 15 — Podman & Containers": modul/15-podman-containers.md
+  - "🎓 Modul 16 — EX200 (RHCSA) Prep": modul/15-ex200-prep.md
+  - "🛠️ Latihan (LAB)": lab/LAB.md
+  - "⌨️ Cheat Sheet": referensi/CHEATSHEET.md
+  - "🎯 Persiapan EX200": referensi/EX200-prep.md

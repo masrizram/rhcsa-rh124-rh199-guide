@@ -1,10 +1,11 @@
 # GitHub Pages configuration
-# Site Title & Subtitle (ditampilkan di header saat GitHub Pages aktif)
+# Arahkan root ke folder docs/ (MkDocs Material)
 title: Panduan Lengkap RHCSA (RH124 / RH199) - RHEL 9 & 10
 description: Persiapan Sertifikasi Red Hat Certified System Administrator (EX200)
 
-# Tema Jekyll bawaan GitHub Pages (render header + tagline otomatis)
-theme: jekyll-theme-cayman
+# Redirect dari beranda Jekyll ke situs MkDocs (docs/index.html)
+redirect_from:
+  - /
 
-# Opsi tampilan
+theme: jekyll-theme-cayman
 show_downloads: false

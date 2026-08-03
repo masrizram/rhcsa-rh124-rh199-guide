@@ -80,36 +80,14 @@ dan penambahan latihan.
 
 > 🌐 **Versi web (GitHub Pages):** https://masrizram.github.io/rhcsa-rh124-rh199-guide/
 
-## ⚠️ Catatan Sumber & Status Transkrip
+## ⚠️ Catatan Sumber
 
 Panduan ini disusun berdasarkan kurikulum resmi **RH124** yang diajarkan di
-playlist referensi. **Transkrip ke-19 video belum diambil secara lengkap** —
-YouTube memblokir akses transkrip dari IP lingkungan ekstraksi (rate-limit 429 /
-IP-ban). Penyusunan mengikuti struktur bab RH124 standar yang dipetakan dari
-judul & deskripsi playlist, diperkuat dengan latihan, "Jebakan Umum", "Koneksi
-EX200", dan kuis di tiap modul.
-
-> Jika Anda punya transkrip resmi video, silakan kirimkan — saya akan perkaya
-> tiap modul dengan contoh kontekstual dari video.
-
-## 🛠️ Struktur Repo (Dua Lapisan)
-
-- **`modul/`, `lab/`, `referensi/` (root)** — sumber Markdown mentah (cocok
-  dibaca langsung di GitHub).
-- **`docs/` + `mkdocs.yml`** — sumber untuk **situs web dokumentasi** (MkDocs
-  Material) dengan navigasi, pencarian, mode gelap, diagram, dan kuis.
-- **`requirements.txt`** — dependensi build MkDocs.
-
-### Build & Deploy Lokal (opsional)
-
-```bash
-pip install -r requirements.txt
-mkdocs build          # hasil di site/
-mkdocs serve           # preview lokal di http://127.0.0.1:8000
-# Deploy ke GitHub Pages:
-mkdocs gh-deploy --force
-```
-
+playlist referensi. Transkrip otomatis video tidak diambil secara otomatis
+(keterbatasan akses API YouTube pada lingkungan ekstraksi), sehingga penyusunan
+mengikuti struktur bab RH124 standar yang dipetakan dari judul & deskripsi
+playlist. Jika kamu punya transkrip resmi, silakan tambahkan ke folder
+`transkrip/` untuk memperkaya contoh kontekstual.
 
 **Playlist referensi:**
 https://www.youtube.com/watch?v=pnHqii1Oq8Y&list=PLZkuninm20jDUT_jArQrkfCImbbi2jWns
