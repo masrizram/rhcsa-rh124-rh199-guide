@@ -148,6 +148,43 @@ grep "nfs" /etc/fstab             # entri dengan _netdev
 
 ---
 
+## 🧪 Tugas 12 — autofs + tuned + chrony (10 pt)
+
+Gabungan 3 objektif yang sering muncul bersama di EX200: *mount otomatis*,
+*profil tuning*, dan *client time service*. Kerjakan di **satu VM** (host sendiri
+sebagai server NFS sekaligus klien autofs).
+
+1. **NFS server lokal** (sumber autofs): pasang `nfs-utils`, aktifkan
+   `nfs-server`, buat `/srv/share/ops` (izin `777`), ekspor ke
+   `localhost(rw,sync)` via `exportfs -r`, buka service `nfs` di firewalld.
+2. **autofs on-demand**: pasang `autofs`, set master map `/mnt/ops`
+   → `/etc/auto.ops`, map `/etc/auto.ops` isi `data -fstype=nfs,rw localhost:/srv/share/ops`.
+   Aktifkan & jalankan `autofs`. Bukti: akses `/mnt/ops/data` otomatis ter-mount.
+3. **tuned**: aktifkan profil `throughput-performance` dan pastikan persisten.
+4. **chrony**: set client waktu ke pool NTP `0.id.pool.ntp.org iburst`
+   (edit `/etc/chrony.conf`), aktifkan & jalankan `chronyd`, paksa sinkron.
+
+**Verifikasi:**
+```bash
+# autofs
+systemctl is-active autofs           # active
+cd /mnt/ops/data && touch ok && echo MOUNTED   # akses -> mount otomatis
+mount | grep auto.ops                 # entry automount muncul
+
+# tuned
+tuned-adm active                      # throughput-performance
+
+# chrony
+systemctl is-active chronyd          # active
+chronyc tracking | grep -i "Leap status"   # Normal
+timedatectl | grep "System clock synchronized"   # yes
+```
+
+> 💡 Tiga layanan (`autofs`, `tuned`, `chronyd`) harus `enable --now` agar
+> bertahan reboot — di EX200, konfigurasi yang tidak persisten = 0 poin.
+
+---
+
 ## 📊 Score Sheet
 
 | # | Tugas | Poin | ✅ |
@@ -163,12 +200,13 @@ grep "nfs" /etc/fstab             # entri dengan _netdev
 | 9 | SELinux | 10 | |
 | 10 | Cron & TZ | 10 | |
 | 11 | NFS share | 10 | |
+| 12 | autofs + tuned + chrony | 10 | |
 
-**Total:** _____ / 110
+**Total:** _____ / 120
 
-- **≥ 80** → siap ujian.
-- **60–79** → ulangi modul yang lemah.
-- **< 60** → kerjakan ulang LAB per modul dulu.
+- **≥ 96** (80%) → siap ujian.
+- **72–95** → ulangi modul yang lemah.
+- **< 72** → kerjakan ulang LAB per modul dulu.
 
 ## 💡 Tips Lulus
 - Selalu **verifikasi** (pakai poin cek di atas) — di EX200, tugas yang tidak
