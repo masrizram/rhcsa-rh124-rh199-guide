@@ -1047,6 +1047,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#tugas-12-autofs-tuned-chrony-10-pt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧪 Tugas 12 — autofs + tuned + chrony (10 pt)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#score-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1442,6 +1453,40 @@ ganti <code>server</code> dengan <code>localhost</code> (atau <code>$(hostname)<
 <a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>grep<span class="w"> </span><span class="s2">&quot;nfs&quot;</span><span class="w"> </span>/etc/fstab<span class="w">             </span><span class="c1"># entri dengan _netdev</span>
 </code></pre></div></p>
 <hr />
+<h2 id="tugas-12-autofs-tuned-chrony-10-pt">🧪 Tugas 12 — autofs + tuned + chrony (10 pt)<a class="headerlink" href="#tugas-12-autofs-tuned-chrony-10-pt" title="Permanent link">&para;</a></h2>
+<p>Gabungan 3 objektif yang sering muncul bersama di EX200: <em>mount otomatis</em>,
+<em>profil tuning</em>, dan <em>client time service</em>. Kerjakan di <strong>satu VM</strong> (host sendiri
+sebagai server NFS sekaligus klien autofs).</p>
+<ol>
+<li><strong>NFS server lokal</strong> (sumber autofs): pasang <code>nfs-utils</code>, aktifkan
+   <code>nfs-server</code>, buat <code>/srv/share/ops</code> (izin <code>777</code>), ekspor ke
+   <code>localhost(rw,sync)</code> via <code>exportfs -r</code>, buka service <code>nfs</code> di firewalld.</li>
+<li><strong>autofs on-demand</strong>: pasang <code>autofs</code>, set master map <code>/mnt/ops</code>
+   → <code>/etc/auto.ops</code>, map <code>/etc/auto.ops</code> isi <code>data -fstype=nfs,rw localhost:/srv/share/ops</code>.
+   Aktifkan &amp; jalankan <code>autofs</code>. Bukti: akses <code>/mnt/ops/data</code> otomatis ter-mount.</li>
+<li><strong>tuned</strong>: aktifkan profil <code>throughput-performance</code> dan pastikan persisten.</li>
+<li><strong>chrony</strong>: set client waktu ke pool NTP <code>0.id.pool.ntp.org iburst</code>
+   (edit <code>/etc/chrony.conf</code>), aktifkan &amp; jalankan <code>chronyd</code>, paksa sinkron.</li>
+</ol>
+<p><strong>Verifikasi:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># autofs</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>systemctl<span class="w"> </span>is-active<span class="w"> </span>autofs<span class="w">           </span><span class="c1"># active</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="nb">cd</span><span class="w"> </span>/mnt/ops/data<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>touch<span class="w"> </span>ok<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span>MOUNTED<span class="w">   </span><span class="c1"># akses -&gt; mount otomatis</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>mount<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>auto.ops<span class="w">                 </span><span class="c1"># entry automount muncul</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="c1"># tuned</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>tuned-adm<span class="w"> </span>active<span class="w">                      </span><span class="c1"># throughput-performance</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="c1"># chrony</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>systemctl<span class="w"> </span>is-active<span class="w"> </span>chronyd<span class="w">          </span><span class="c1"># active</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>chronyc<span class="w"> </span>tracking<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;Leap status&quot;</span><span class="w">   </span><span class="c1"># Normal</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>timedatectl<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;System clock synchronized&quot;</span><span class="w">   </span><span class="c1"># yes</span>
+</code></pre></div></p>
+<blockquote>
+<p>💡 Tiga layanan (<code>autofs</code>, <code>tuned</code>, <code>chronyd</code>) harus <code>enable --now</code> agar
+bertahan reboot — di EX200, konfigurasi yang tidak persisten = 0 poin.</p>
+</blockquote>
+<hr />
 <h2 id="score-sheet">📊 Score Sheet<a class="headerlink" href="#score-sheet" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -1519,13 +1564,19 @@ ganti <code>server</code> dengan <code>localhost</code> (atau <code>$(hostname)<
 <td>10</td>
 <td></td>
 </tr>
+<tr>
+<td>12</td>
+<td>autofs + tuned + chrony</td>
+<td>10</td>
+<td></td>
+</tr>
 </tbody>
 </table>
-<p><strong>Total:</strong> _____ / 110</p>
+<p><strong>Total:</strong> _____ / 120</p>
 <ul>
-<li><strong>≥ 80</strong> → siap ujian.</li>
-<li><strong>60–79</strong> → ulangi modul yang lemah.</li>
-<li><strong>&lt; 60</strong> → kerjakan ulang LAB per modul dulu.</li>
+<li><strong>≥ 96</strong> (80%) → siap ujian.</li>
+<li><strong>72–95</strong> → ulangi modul yang lemah.</li>
+<li><strong>&lt; 72</strong> → kerjakan ulang LAB per modul dulu.</li>
 </ul>
 <h2 id="tips-lulus">💡 Tips Lulus<a class="headerlink" href="#tips-lulus" title="Permanent link">&para;</a></h2>
 <ul>
