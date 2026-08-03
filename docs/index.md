@@ -1,99 +1,70 @@
-# 📘 Panduan Lengkap Red Hat System Administration I (RH124 / RH199) → EX200 (RHCSA)
+# 📘 Panduan Lengkap RHCSA (RH124 / RH199) — RHEL 9 & 10
 
-Repo ini berisi panduan belajar **Red Hat Enterprise Linux (RHEL)** secara lengkap,
-berdasarkan kurikulum **Red Hat System Administration I (RH124 / RH199)** yang
-diajarkan di playlist YouTube *"RH124 RH199 - Red Hat System Administration I - Complete Training"*
-(Ozzoy Bits), ditambah persiapan sertifikasi **EX200 (RHCSA)**.
+Selamat datang di panduan langkah-demi-langkah menuju sertifikasi
+**Red Hat Certified System Administrator (EX200)**, berbasis kurikulum
+**Red Hat System Administration I (RH124 / RH199)**.
 
 > **Basis materi:** RHEL 9.3 (berlaku juga untuk RHEL 10.x). Semua perintah diuji
 > pada lingkungan RHEL / Rocky Linux / AlmaLinux / Fedora yang setara.
 
----
+## 🧭 Mulai dari Mana?
 
-## 🎯 Tujuan Panduan
+1. Buka **[🗺️ Pusat Belajar](pusat-belajar.md)** — peta jalan 16 minggu & cara pakai.
+2. Ikuti **Modul 0 → 16** di panel navigasi kiri.
+3. Kerjakan **[🛠️ Latihan (LAB)](lab/LAB.md)** di tiap modul.
+4. Gunakan **[⌨️ Cheat Sheet](referensi/CHEATSHEET.md)** sebagai referensi cepat.
+5. Persiapan ujian: **[🎯 Persiapan EX200](referensi/EX200-prep.md)**.
 
-Setelah menyelesaikan panduan ini, kamu diharapkan mampu:
+## 🎯 Yang Akan Kamu Kuasai
 
-- Mengakses dan menjalankan perintah di RHEL melalui shell & web console.
-- Mengelola berkas, direktori, teks, pengguna, grup, dan hak akses.
-- Memantau proses, mengelola *service* `systemd`, dan mengamankan akses SSH.
-- Mengonfigurasi jaringan, memasang pembaruan perangkat lunak (DNF), dan
-  memasang sistem berkas.
-- Memahami alur sertifikasi **RHCSA (EX200)** dan siap mengikuti ujian.
+- Akses & perintah RHEL via shell & web console (Cockpit).
+- Kelola berkas, teks (`vim`), user/grup, dan hak akses (incl. ACL).
+- Pantau proses, kelola `systemd`, amankan SSH.
+- Konfigurasi jaringan, DNF, dan file system (incl. LVM).
+- Jalankan **container Podman** sebagai systemd service.
+- Siap menghadapi ujian **EX200 (RHCSA)**.
 
----
+## 📚 Daftar Modul
 
-## 📚 Struktur Modul (Sesuai Playlist)
+| # | Modul |
+|---|-------|
+| 00 | [Pengantar & Roadmap](modul/00-pengantar-dan-roadmap.md) |
+| 01 | [Get Started with RHEL](modul/01-get-started-rhel.md) |
+| 02 | [Access the Command Line](modul/02-access-command-line.md) |
+| 03 | [Manage Files](modul/03-manage-files.md) |
+| 04 | [Get Help in RHEL](modul/04-get-help.md) |
+| 05 | [Text Files (vim)](modul/05-text-files.md) |
+| 06 | [Users & Groups](modul/06-users-groups.md) |
+| 07 | [Permissions & ACL](modul/07-file-permissions.md) |
+| 08 | [Processes](modul/08-processes.md) |
+| 09 | [systemd Services](modul/09-services-daemons.md) |
+| 10 | [SSH & Security](modul/10-ssh.md) |
+| 11 | [Networking](modul/11-networking.md) |
+| 12 | [Software (DNF)](modul/12-software-dnf.md) |
+| 13 | [File Systems & LVM](modul/13-filesystems.md) |
+| 14 | [Support & Logs](modul/14-support.md) |
+| 15 | [Podman & Containers](modul/15-podman-containers.md) |
+| 16 | [EX200 (RHCSA) Prep](modul/15-ex200-prep.md) |
 
-| # | Modul | Topik Inti | Video Referensi |
-|---|-------|-----------|-----------------|
-| 00 | Pengantar & Roadmap Sertifikasi | Ekosistem RHEL, RHCSA/EX200, lab lokal | `pnHqii1Oq8Y`, `O58uDdztjGU`, `2n2P0Awz3U4` |
-| 01 | Get Started with RHEL | Akses RHEL, web console, terminal, shell | `i4oSjt2nYhk` |
-| 02 | Access the Command Line | Shell, BASH, perintah dasar, sejarah | `aYTFiUhNN7E` |
-| 03 | Manage Files from the Command Line | `pwd`, `ls`, `cp`, `mv`, `rm`, globbing, wildcard | `__5fjNolVtU` |
-| 04 | Get Help in RHEL | `man`, `info`, `--help`, `pinfo`, dokumentasi | `UC_V5af1Ah0` |
-| 05 | Create, View, and Edit Text Files | `vim`, `cat`, `head`, `tail`, redireksi, pipe | `-gARZ98HUL4` |
-| 06 | Manage Local Users and Groups | `/etc/passwd`, `/etc/group`, `useradd`, `usermod`, `passwd` | `yg1IdxH38OA` |
-| 07 | Access to Files (Permissions) | `chmod`, `chown`, `umask`, ACL, `setfacl` | `FmyIyp73bGM` |
-| 08 | Monitor and Manage Linux Processes | `ps`, `top`, `kill`, `jobs`, prioritas | `xeN2_R7W7so` |
-| 09 | Control Services and Daemons | `systemd`, `systemctl`, target, journal | `RESDzgTwqYk` |
-| 10 | Configure and Secure SSH | `sshd`, kunci, `ssh-copy-id`, hardening | `jGzIZZrdEpE` |
-| 11 | Manage Networking | `ip`, `nmcli`, `hostnamectl`, DNS | `sm2LR26JERA` |
-| 12 | Install and Update Software | DNF, repo, `rpm`, grup paket | `CDpa7ZpNNEE` |
-| 13 | Access Linux File Systems | Partisi, LVM, `mount`, `fstab`, swap | `tuN89JVWjCs` |
-| 14 | Analyze Servers and Get Support | Log, `cockpit`, Red Hat Insights, subscription | `44ObsKHr0IA` |
-| 15 | EX200 (RHCSA) Exam Prep | Strategi, lingkup ujian, simulasi soal | `eGbNXqPdUa4`, `2n2P0Awz3U4` |
-
-Materi lengkap tiap modul ada di folder [`modul/`](modul/).
-
----
-
-## 🧪 Lab & Referensi
-
-- 🛠️ **[Latihan Praktik (LAB)](lab/LAB.md)** — tugas tangan langsung per modul.
-- ⌨️ **[Cheat Sheet Perintah](referensi/CHEATSHEET.md)** — ringkasan cepat semua perintah.
-- 🎓 **[Persiapan EX200](referensi/EX200-prep.md)** — roadmap sertifikasi & tips ujian.
-
----
-
-## 🖥️ Menyiapkan Lab Lokal (Rekomendasi)
-
-Kamu tidak butuh langganan berbayar untuk belajar. Gunakan salah satu:
-
-1. **VirtualBox + Rocky Linux / AlmaLinux** (clone RHEL, gratis & biner-kompatibel).
-2. **WSL2** di Windows: `wsl --install -d FedoraLinux-42` (atau RHEL jika punya subscription).
-3. **Podman Container** sebagai "mini-VM" untuk latihan perintah.
+## 🖥️ Siapkan Lab (Gratis)
 
 ```bash
-# Contoh: jalankan shell RHEL-like di container (butuh podman/docker)
+# Opsi container (tanpa install OS):
 podman run -it --name lab-rhel rockylinux:9 bash
+# Atau VirtualBox + Rocky Linux 9, atau WSL2: wsl --install -d FedoraLinux-42
 ```
 
----
+## ⚠️ Catatan Sumber & Status Transkrip
 
-## 🤝 Kontribusi
-
-Lihat [CONTRIBUTING.md](CONTRIBUTING.md). Panduan ini terbuka untuk perbaikan
-dan penambahan latihan.
-
----
-
-> 🌐 **Versi web (GitHub Pages):** https://masrizram.github.io/rhcsa-rh124-rh199-guide/
-
-## ⚠️ Catatan Sumber
-
-Panduan ini disusun berdasarkan kurikulum resmi **RH124** yang diajarkan di
-playlist referensi. Transkrip otomatis video tidak diambil secara otomatis
-(keterbatasan akses API YouTube pada lingkungan ekstraksi), sehingga penyusunan
-mengikuti struktur bab RH124 standar yang dipetakan dari judul & deskripsi
-playlist. Jika kamu punya transkrip resmi, silakan tambahkan ke folder
-`transkrip/` untuk memperkaya contoh kontekstual.
+Panduan ini mengikuti kurikulum resmi **RH124** dari playlist referensi.
+**Transkrip ke-19 video belum diambil seluruhnya** (YouTube memblokir akses
+transkrip dari IP ekstraksi). Materi diperkuat dengan latihan, *Jebakan Umum*,
+*Koneksi EX200*, dan kuis di tiap modul. Jika Anda punya transkrip resmi,
+kirimkan agar tiap modul bisa diperkaya dengan contoh video.
 
 **Playlist referensi:**
 https://www.youtube.com/watch?v=pnHqii1Oq8Y&list=PLZkuninm20jDUT_jArQrkfCImbbi2jWns
 
----
-
 ## 📄 Lisensi
 
-MIT — bebas digunakan dan disebarluaskan dengan mencantumkan atribusi. Lihat [LICENSE](LICENSE).
+MIT — bebas digunakan & disebarluaskan dengan atribusi.
