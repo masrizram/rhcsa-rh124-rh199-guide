@@ -77,9 +77,12 @@ echo hai\ dunia       # backslash menghubungkan spasi
 ## Kunci Jawaban (klik untuk lihat)
 
 ??? note "Kunci Jawaban Latihan"
-    1. `sudo` menjalankan sebagai root (audit trail).
-    2. `ls -l` kolom: izin, link, owner, group, size, tgl, nama.
-    3. TTY virtual: Ctrl+Alt+F2 s/d F6.
+    1. `history` menampilkan daftar perintah bernomor; `!nomor` (mis. `!123`)
+       menjalankan ulang baris ke-123 dari riwayat.
+    2. `ls -la` kolom pertama = izin (mis. `-rw-r--r--`); opsi `-a` menampilkan
+       berkas tersembunyi (diawali titik), `-l` format panjang.
+    3. `export LATIHAN=RH124` membuat variabel lingkungan; `echo $LATIHAN`
+       menampilkan nilainya → `RH124`.
 
 ## Kuis
 

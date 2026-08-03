@@ -76,9 +76,13 @@ clear         # bersihkan layar (juga Ctrl+L)
 ## Kunci Jawaban (klik untuk lihat)
 
 ??? note "Kunci Jawaban Latihan"
-    1. `pwd` → /home/user (lokasi home).
-    2. `su -` membuka login shell root (env lengkap).
-    3. bash ada di /bin/bash (default).
+    1. Cockpit dijalankan lewat `systemctl status cockpit.socket` (atau buka
+       `https://<host>:9090` di browser, login pakai user lokal).
+    2. `whoami` → nama user aktif; `pwd` → direktori home (mis. `/home/user`);
+       `hostname` → nama host; `date` → tanggal & waktu sistem.
+    3. `Ctrl+L` dan perintah `clear` sama-sama membersihkan layar — `Ctrl+L`
+       bekerja langsung di shell interaktif (tanpa mengetik perintah),
+       sedangkan `clear` adalah perintah eksternal.
 
 ## Kuis
 

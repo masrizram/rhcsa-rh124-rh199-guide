@@ -115,7 +115,11 @@ sudo xfs_growfs /data
 - [ ] `journalctl -p err -b`, `journalctl -u sshd -f`.
 - [ ] Pastikan `cockpit.socket` aktif.
 
-## Modul 15 — EX200 Simulasi (Waktu: 90 menit)
+## Modul 15 — Drill Cepat EX200 (target < 90 menit, tanpa batas waktu)
+
+> Ini **drill latihan cepat**, bukan simulasi ujian berjadwal. Simulasi ujian
+> berdurasi penuh ada di **[Simulasi Ujian 3 Jam/180 mnt](../referensi/SIMULASI-UJIAN.md)**
+> dan **[Modul 19 — Skenario EX200 (120 mnt)](../modul/19-skenario-ex200.md)**.
 1. User `operator` UID 2000, group `ops` GID 3000, shell bash.
    ```bash
    sudo groupadd -g 3000 ops
@@ -153,4 +157,5 @@ sudo xfs_growfs /data
    sudo setsebool -P httpd_can_network_connect on
    ```
 
-> Kerjakan berulang hingga semua langkah bisa diselesaikan < 90 menit.
+> Kerjakan berulang hingga semua langkah lancar (target < 90 menit), lalu
+> lanjut ke simulasi berdurasi penuh di SIMULASI-UJIAN (180 mnt) / Modul 19 (120 mnt).

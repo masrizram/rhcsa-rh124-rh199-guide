@@ -44,6 +44,18 @@ Daftar istilah yang sering muncul di panduan & ujian EX200.
 | **target** | "Runlevel" systemd (`multi-user`, `graphical`, `rescue`) |
 | **EX200** | Kode ujian RHCSA (performance-based, 3 jam) |
 | **performance-based** | Ujian praktik (bukan pilihan ganda) |
+| **Stratis** | Manajemen storage modern (pool/filesystem thin-provision + snapshot) |
+| **VDO** | Virtual Data Optimizer — deduplikasi & kompresi block storage |
+| **disk quota** | Batas pemakaian ruang/inode per user/group pada filesystem |
+| **autofs** | Mount otomatis on-demand (sering untuk NFS client) |
+| **nmstate** | Konfigurasi jaringan deklaratif via state file YAML (RHEL 10) |
+| **chrony** | Client/server NTP (time service) bawaan RHEL |
+| **tuned** | Profil penyesuaian performa/daya sistem |
+| **Flatpak** | Format paket aplikasi terisolasi (sandbox) |
+| **bootc** | Image mode / bootable container (RHEL 10) |
+| **rd.break** | Interupsi boot untuk reset password root (lewat GRUB) |
+| **grub2** | Bootloader RHEL (bisa diubah via `grubby`/`grub2-mkconfig`) |
+| **IPv6** | Alamat jaringan versi 6 (wajib dikonfig di EX200 selain IPv4) |
 
 ### Padanan KBBI (kata Indonesia)
 
