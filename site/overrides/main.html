@@ -12,21 +12,30 @@
    + CTA "Uji diri" (Simulasi Ujian). #}
 {% block footer %}
   <nav class="rh-prevnext" aria-label="Navigasi modul">
-    {% if page.previous_page %}
-      <a class="rh-prev" href="{{ page.previous_page.url | url }}">
-        <span class="rh-dir">← Sebelumnya</span>
-        <span class="rh-t">{{ page.previous_page.title }}</span>
-      </a>
-    {% else %}
+    {% if page.is_homepage %}
+      {# Beranda: prev disembunyikan, next langsung ke Modul 0 (Lewati ke isi) #}
       <span class="rh-prev rh-disabled"></span>
-    {% endif %}
-    {% if page.next_page %}
-      <a class="rh-next" href="{{ page.next_page.url | url }}">
-        <span class="rh-dir">Berikutnya →</span>
-        <span class="rh-t">{{ page.next_page.title }}</span>
+      <a class="rh-next" href="{{ base_url }}/modul/00-pengantar-dan-roadmap/">
+        <span class="rh-dir">Mulai Belajar →</span>
+        <span class="rh-t">📦 Modul 0 — Pengantar &amp; Roadmap</span>
       </a>
     {% else %}
-      <span class="rh-next rh-disabled"></span>
+      {% if page.previous_page %}
+        <a class="rh-prev" href="{{ page.previous_page.url | url }}">
+          <span class="rh-dir">← Sebelumnya</span>
+          <span class="rh-t">{{ page.previous_page.title }}</span>
+        </a>
+      {% else %}
+        <span class="rh-prev rh-disabled"></span>
+      {% endif %}
+      {% if page.next_page %}
+        <a class="rh-next" href="{{ page.next_page.url | url }}">
+          <span class="rh-dir">Berikutnya →</span>
+          <span class="rh-t">{{ page.next_page.title }}</span>
+        </a>
+      {% else %}
+        <span class="rh-next rh-disabled"></span>
+      {% endif %}
     {% endif %}
   </nav>
 
