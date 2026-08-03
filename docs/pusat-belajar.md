@@ -13,7 +13,7 @@ flowchart TD
     D --> E[Modul 10-12: SSH, Jaringan, DNF]
     E --> F[Modul 13-14: Storage & Support]
     F --> G[Modul 15: Podman Containers]
-    G --> H[Modul 16: EX200 Prep + Simulasi]
+    G --> H[Modul 18: EX200 Prep + Modul 19: Skenario]
     H --> I[Ujian EX200 RHCSA]
 ```
 
@@ -25,7 +25,7 @@ flowchart TD
 | 7–8 | SSH hardening, jaringan, DNF | 10, 11, 12 |
 | 9–10 | File system, LVM, support/log | 13, 14 |
 | 11 | Containers (Podman) | 15 |
-| 12–16 | Ulangi LAB + Simulasi EX200 | 16 + LAB |
+| 12–16 | Ulangi LAB + Simulasi EX200 | 18 (EX200 Prep) + 19 (Skenario) + LAB |
 
 ## 🎯 Cara Pakai Panduan Ini
 
@@ -54,7 +54,8 @@ podman run -it --name lab-rhel rockylinux:9 bash
 
 - **Modul 0–14**: materi inti RH124.
 - **Modul 15**: Podman & Containers (muncul di EX200 RHEL 9).
-- **Modul 16**: Persiapan ujian EX200 + simulasi soal.
+- **Modul 16**: SELinux (keamanan wajib EX200).
+- **Modul 18**: Persiapan ujian EX200 + simulasi soal.
 - **LAB**: kumpulan tugas praktik & jawaban.
 - **Cheat Sheet**: ringkasan perintah cepat.
 - **Persiapan EX200**: taktik & jebakan ujian.

@@ -81,12 +81,59 @@ podman system prune           # bersihkan semua tak terpakai
 
 ## 7. Jebakan Umum (EX200)
 
+
 !!! danger "Jebakan"
     - Lupa `loginctl enable-linger` → container rootless mati setelah logout.
     - Menjalankan `podman` dengan `sudo` lalu mengharapkan container user muncul
       di session user (berbeda *storage*). Konsisten root vs rootless.
     - Firewall host blokir port 8080 → tetap `firewall-cmd --add-port=8080/tcp`.
     - SELinux blocks read/write volume → `z`/`Z` flag: `-v /data:/data:Z`.
+
+## 8. Quadlet — Container sebagai systemd Unit (Wajib EX200 RHEL 9)
+
+Cara **modern & direkomendasikan** di EX200 RHEL 9 untuk menjadikan container
+auto-start saat boot adalah **quadlet**: cukup tulis file unit `.container`
+(semacam systemd unit), lalu `systemctl` yang mengelolanya — tanpa perlu
+`podman generate systemd` lagi.
+
+```bash
+# 1. Buat file unit quadlet (rootless: ~/.config/containers/systemd/)
+mkdir -p ~/.config/containers/systemd
+cat > ~/.config/containers/systemd/web.container <<'EOF'
+[Unit]
+Description=Web server nginx via quadlet
+After=network-online.target
+Wants=network-online.target
+
+[Container]
+Image=docker.io/library/nginx:latest
+ContainerName=web
+PublishPorts=8080:80
+Volume=/srv/html:/usr/share/nginx/html:Z
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target
+EOF
+
+# 2. Muat & jalankan (systemd membaca quadlet otomatis)
+systemctl --user daemon-reload
+systemctl --user enable --now web.container
+loginctl enable-linger $USER          # agar jalan walau user logout (rootless)
+```
+
+Verifikasi:
+```bash
+systemctl --user is-active web.service   # quadlet otomatis jadi *.service
+podman ps | grep web
+curl -s localhost:8080 | head -1
+```
+> Quadlet mendeteksi file `*.container`/`*.volume`/`*.network` di direktori
+> systemd dan membangun unit systemd-nya saat `daemon-reload`. Di SOAL EX200
+> yang explicit minta "quadlet" atau "systemd-managed container", gunakan cara
+> ini (lebih bersih daripada `podman generate systemd --new`).
 
 ## 9. skopeo & buildah — Inspeksi, Salin, & Bangun Image (Wajib EX200)
 

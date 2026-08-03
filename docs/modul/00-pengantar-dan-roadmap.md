@@ -61,7 +61,7 @@ cat /etc/redhat-release
 | 7–8 | Modul 10–12 (SSH, jaringan, DNF) |
 | 9–10 | Modul 13–14 (filesystem, support) |
 | 11–12 | Ulangi semua LAB |
-| 13–16 | Modul 15 + simulasi EX200 |
+| 13–16 | Modul 18 (EX200 Prep) + 19 (Skenario) + simulasi EX200 |
 
 ## Latihan
 1. Tentukan distro yang akan kamu pakai untuk lab dan catat alasannya.
