@@ -12,6 +12,8 @@
         <meta name="author" content="masrizram">
       
       
+        <link rel="canonical" href="https://masrizram.github.io/rhcsa-rh124-rh199-guide/modul/11-networking/">
+      
       
         <link rel="prev" href="../10-ssh/">
       
@@ -774,6 +776,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#7b-nfs-network-file-system-wajib-ex200" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7b. NFS (Network File System) — Wajib EX200
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#8-jebakan-umum-ex200" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1358,6 +1371,38 @@
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c1"># verifikasi</span>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>hostnamectl
 </code></pre></div>
+<h2 id="7b-nfs-network-file-system-wajib-ex200">7b. NFS (Network File System) — Wajib EX200<a class="headerlink" href="#7b-nfs-network-file-system-wajib-ex200" title="Permanent link">&para;</a></h2>
+<p>NFS dipakai untuk berbagi direktori antar host di jaringan yang sama.</p>
+<p><strong>Sisi server (ekspor):</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># pasang &amp; aktifkan</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>nfs-utils
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>nfs-server
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="c1"># buat direktori ekspor &amp; beri izin</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/srv/nfs/share
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>/srv/nfs/share
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="c1"># deklarasikan ekspor (contoh: hanya subnet lab)</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;/srv/nfs/share 192.168.100.0/24(rw,sync,no_root_squash)&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span>/etc/exports
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>sudo<span class="w"> </span>exportfs<span class="w"> </span>-r<span class="w">            </span><span class="c1"># muat ulang tanpa restart</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>sudo<span class="w"> </span>exportfs<span class="w"> </span>-v<span class="w">            </span><span class="c1"># verifikasi ekspor aktif</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="c1"># buka firewall agar klien bisa akses:</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>sudo<span class="w"> </span>firewall-cmd<span class="w"> </span>--add-service<span class="o">=</span>nfs<span class="w"> </span>--permanent<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>firewall-cmd<span class="w"> </span>--reload
+</code></pre></div></p>
+<p><strong>Sisi klien (mount):</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>nfs-utils
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/mnt/nfs
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="c1"># mount manual:</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>sudo<span class="w"> </span>mount<span class="w"> </span>-t<span class="w"> </span>nfs<span class="w"> </span>server1.lab.local:/srv/nfs/share<span class="w"> </span>/mnt/nfs
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="c1"># mount permanen via /etc/fstab (pakai opsi netdev agar aman saat boot):</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;server1.lab.local:/srv/nfs/share  /mnt/nfs  nfs  defaults,_netdev  0 0&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span>/etc/fstab
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>sudo<span class="w"> </span>mount<span class="w"> </span>-a<span class="w">               </span><span class="c1"># uji tanpa reboot</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>df<span class="w"> </span>-hT<span class="w"> </span>/mnt/nfs<span class="w">             </span><span class="c1"># verifikasi ter-mount</span>
+</code></pre></div></p>
+<blockquote>
+<p>⚠️ Jangan lupa <code>firewall-cmd --add-service=nfs</code> di server, dan opsi <code>_netdev</code>
+di fstab klien — tanpa itu mount gagal saat boot (VM hang di emergency).</p>
+</blockquote>
 <h2 id="8-jebakan-umum-ex200">8. Jebakan Umum (EX200)<a class="headerlink" href="#8-jebakan-umum-ex200" title="Permanent link">&para;</a></h2>
 <div class="admonition danger">
 <p class="admonition-title">Jebakan</p>
@@ -1376,10 +1421,10 @@
 <p class="admonition-title">EX200</p>
 <p>Soal: "Set IP statis 192.168.1.50/24, gateway .1, DNS 8.8.8.8, pastikan
 persisten &amp; bisa ping gateway." Kunci:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sudo<span class="w"> </span>nmcli<span class="w"> </span>connection<span class="w"> </span>modify<span class="w"> </span><span class="s2">&quot;eth0&quot;</span><span class="w"> </span>ipv4.addresses<span class="w"> </span><span class="m">192</span>.168.1.50/24<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span>ipv4.gateway<span class="w"> </span><span class="m">192</span>.168.1.1<span class="w"> </span>ipv4.dns<span class="w"> </span><span class="m">8</span>.8.8.8<span class="w"> </span>ipv4.method<span class="w"> </span>manual
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>sudo<span class="w"> </span>nmcli<span class="w"> </span>connection<span class="w"> </span>down<span class="w"> </span><span class="s2">&quot;eth0&quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>nmcli<span class="w"> </span>connection<span class="w"> </span>up<span class="w"> </span><span class="s2">&quot;eth0&quot;</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>ip<span class="w"> </span>-br<span class="w"> </span>addr<span class="p">;</span><span class="w"> </span>ping<span class="w"> </span>-c2<span class="w"> </span><span class="m">192</span>.168.1.1
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>sudo<span class="w"> </span>nmcli<span class="w"> </span>connection<span class="w"> </span>modify<span class="w"> </span><span class="s2">&quot;eth0&quot;</span><span class="w"> </span>ipv4.addresses<span class="w"> </span><span class="m">192</span>.168.1.50/24<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span>ipv4.gateway<span class="w"> </span><span class="m">192</span>.168.1.1<span class="w"> </span>ipv4.dns<span class="w"> </span><span class="m">8</span>.8.8.8<span class="w"> </span>ipv4.method<span class="w"> </span>manual
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>sudo<span class="w"> </span>nmcli<span class="w"> </span>connection<span class="w"> </span>down<span class="w"> </span><span class="s2">&quot;eth0&quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>nmcli<span class="w"> </span>connection<span class="w"> </span>up<span class="w"> </span><span class="s2">&quot;eth0&quot;</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>ip<span class="w"> </span>-br<span class="w"> </span>addr<span class="p">;</span><span class="w"> </span>ping<span class="w"> </span>-c2<span class="w"> </span><span class="m">192</span>.168.1.1
 </code></pre></div></p>
 </div>
 <h2 id="kunci-jawaban-klik-untuk-lihat">Kunci Jawaban (klik untuk lihat)<a class="headerlink" href="#kunci-jawaban-klik-untuk-lihat" title="Permanent link">&para;</a></h2>

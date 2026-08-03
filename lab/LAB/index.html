@@ -12,6 +12,8 @@
         <meta name="author" content="masrizram">
       
       
+        <link rel="canonical" href="https://masrizram.github.io/rhcsa-rh124-rh199-guide/lab/LAB/">
+      
       
         <link rel="prev" href="../../modul/20-shell-scripting/">
       
@@ -1353,8 +1355,8 @@
 <p>Ingin memastikan perintah di panduan <strong>benar-benar jalan</strong>, bukan cuma
 teori? Jalankan skrip verifikasi di komputer Anda (butuh <code>podman</code>):</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># dari root repo</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>chmod<span class="w"> </span>+x<span class="w"> </span>lab/verify/verify-lab.sh
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>./lab/verify/verify-lab.sh
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>chmod<span class="w"> </span>+x<span class="w"> </span>docs/lab/verify/verify-lab.sh
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>./docs/lab/verify/verify-lab.sh
 </code></pre></div>
 <p>Skrip akan menarik <code>rockylinux:9</code>, lalu mengeksekusi perintah kunci dari
 tiap modul (user/grup, ACL, proses, SSH key, DNF, LVM tools, journald,
@@ -1362,7 +1364,7 @@ Podman, SELinux, cron) di dalam container <strong>ephemeral</strong> — tidak m
 sistem Anda. Hasil tiap cek ditampilkan <code>✓ PASS / ✗ FAIL / ⊘ SKIP</code>.
 <code>SKIP</code> wajar di container (systemd/SELinux/LVM butuh VM nyata, bukan container).</p>
 <blockquote>
-<p>File: <a href="https://github.com/masrizram/rhcsa-rh124-rh199-guide/blob/main/lab/verify/verify-lab.sh"><code>lab/verify/verify-lab.sh</code></a></p>
+<p>File: <a href="https://github.com/masrizram/rhcsa-rh124-rh199-guide/blob/main/docs/lab/verify/verify-lab.sh"><code>docs/lab/verify/verify-lab.sh</code></a></p>
 </blockquote>
 <hr />
 <h2 id="modul-01-get-started">Modul 01 — Get Started<a class="headerlink" href="#modul-01-get-started" title="Permanent link">&para;</a></h2>
