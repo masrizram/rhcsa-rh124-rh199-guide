@@ -8,7 +8,8 @@
   </div>
 {% endblock %}
 
-{# Footer navigation cards (Mintlify-style) #}
+{# Footer: ganti seluruh footer default dgn card nav + copyright sendiri
+   (tanpa {{ super() }} agar tidak dobel dgn footer Material) #}
 {% block footer %}
   <div class="rh-footnav">
     <a href="pusat-belajar/">
@@ -20,5 +21,7 @@
       <div class="rh-t">📝 Skenario EX200 Terukur →</div>
     </a>
   </div>
-  {{ super() }}
+  <div class="rh-copyright">
+    © 2026 masrizram · Panduan RHCSA (RH124/RH199) → EX200 · Lisensi MIT
+  </div>
 {% endblock %}

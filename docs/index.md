@@ -101,6 +101,3 @@ kirimkan agar tiap modul bisa diperkaya dengan contoh video.
 **Playlist referensi:**
 https://www.youtube.com/watch?v=pnHqii1Oq8Y&list=PLZkuninm20jDUT_jArQrkfCImbbi2jWns
 
-## 📄 Lisensi
-
-MIT — bebas digunakan & disebarluaskan dengan atribusi.

@@ -96,6 +96,11 @@
 .rh-footnav .rh-dir { font-size: 0.75rem; color: var(--rh-red); font-weight: 600; text-transform: uppercase; }
 .rh-footnav .rh-t { font-weight: 600; color: var(--rh-text); margin-top: 0.2rem; }
 .rh-footnav .rh-next { text-align: right; }
+.rh-copyright {
+  text-align: center; font-size: 0.8rem; color: var(--rh-muted);
+  padding: 1.5rem 1rem 2rem; border-top: 1px solid var(--rh-border); margin-top: 1rem;
+}
+[data-md-color-scheme="slate"] .rh-copyright { color: var(--rh-muted); }
 
 /* ---- Command palette (Cmd+K) hint ---- */
 .md-search__form { border-radius: 10px; }
