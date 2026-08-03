@@ -1,0 +1,97 @@
+# 📘 Panduan Lengkap Red Hat System Administration I (RH124 / RH199) → EX200 (RHCSA)
+
+Repo ini berisi panduan belajar **Red Hat Enterprise Linux (RHEL)** secara lengkap,
+berdasarkan kurikulum **Red Hat System Administration I (RH124 / RH199)** yang
+diajarkan di playlist YouTube *"RH124 RH199 - Red Hat System Administration I - Complete Training"*
+(Ozzoy Bits), ditambah persiapan sertifikasi **EX200 (RHCSA)**.
+
+> **Basis materi:** RHEL 9.3 (berlaku juga untuk RHEL 10.x). Semua perintah diuji
+> pada lingkungan RHEL / Rocky Linux / AlmaLinux / Fedora yang setara.
+
+---
+
+## 🎯 Tujuan Panduan
+
+Setelah menyelesaikan panduan ini, kamu diharapkan mampu:
+
+- Mengakses dan menjalankan perintah di RHEL melalui shell & web console.
+- Mengelola berkas, direktori, teks, pengguna, grup, dan hak akses.
+- Memantau proses, mengelola *service* `systemd`, dan mengamankan akses SSH.
+- Mengonfigurasi jaringan, memasang pembaruan perangkat lunak (DNF), dan
+  memasang sistem berkas.
+- Memahami alur sertifikasi **RHCSA (EX200)** dan siap mengikuti ujian.
+
+---
+
+## 📚 Struktur Modul (Sesuai Playlist)
+
+| # | Modul | Topik Inti | Video Referensi |
+|---|-------|-----------|-----------------|
+| 00 | Pengantar & Roadmap Sertifikasi | Ekosistem RHEL, RHCSA/EX200, lab lokal | `pnHqii1Oq8Y`, `O58uDdztjGU`, `2n2P0Awz3U4` |
+| 01 | Get Started with RHEL | Akses RHEL, web console, terminal, shell | `i4oSjt2nYhk` |
+| 02 | Access the Command Line | Shell, BASH, perintah dasar, sejarah | `aYTFiUhNN7E` |
+| 03 | Manage Files from the Command Line | `pwd`, `ls`, `cp`, `mv`, `rm`, globbing, wildcard | `__5fjNolVtU` |
+| 04 | Get Help in RHEL | `man`, `info`, `--help`, `pinfo`, dokumentasi | `UC_V5af1Ah0` |
+| 05 | Create, View, and Edit Text Files | `vim`, `cat`, `head`, `tail`, redireksi, pipe | `-gARZ98HUL4` |
+| 06 | Manage Local Users and Groups | `/etc/passwd`, `/etc/group`, `useradd`, `usermod`, `passwd` | `yg1IdxH38OA` |
+| 07 | Access to Files (Permissions) | `chmod`, `chown`, `umask`, ACL, `setfacl` | `FmyIyp73bGM` |
+| 08 | Monitor and Manage Linux Processes | `ps`, `top`, `kill`, `jobs`, prioritas | `xeN2_R7W7so` |
+| 09 | Control Services and Daemons | `systemd`, `systemctl`, target, journal | `RESDzgTwqYk` |
+| 10 | Configure and Secure SSH | `sshd`, kunci, `ssh-copy-id`, hardening | `jGzIZZrdEpE` |
+| 11 | Manage Networking | `ip`, `nmcli`, `hostnamectl`, DNS | `sm2LR26JERA` |
+| 12 | Install and Update Software | DNF, repo, `rpm`, grup paket | `CDpa7ZpNNEE` |
+| 13 | Access Linux File Systems | Partisi, LVM, `mount`, `fstab`, swap | `tuN89JVWjCs` |
+| 14 | Analyze Servers and Get Support | Log, `cockpit`, Red Hat Insights, subscription | `44ObsKHr0IA` |
+| 15 | EX200 (RHCSA) Exam Prep | Strategi, lingkup ujian, simulasi soal | `eGbNXqPdUa4`, `2n2P0Awz3U4` |
+
+Materi lengkap tiap modul ada di folder [`modul/`](modul/).
+
+---
+
+## 🧪 Lab & Referensi
+
+- 🛠️ **[Latihan Praktik (LAB)](lab/LAB.md)** — tugas tangan langsung per modul.
+- ⌨️ **[Cheat Sheet Perintah](referensi/CHEATSHEET.md)** — ringkasan cepat semua perintah.
+- 🎓 **[Persiapan EX200](referensi/EX200-prep.md)** — roadmap sertifikasi & tips ujian.
+
+---
+
+## 🖥️ Menyiapkan Lab Lokal (Rekomendasi)
+
+Kamu tidak butuh langganan berbayar untuk belajar. Gunakan salah satu:
+
+1. **VirtualBox + Rocky Linux / AlmaLinux** (clone RHEL, gratis & biner-kompatibel).
+2. **WSL2** di Windows: `wsl --install -d FedoraLinux-42` (atau RHEL jika punya subscription).
+3. **Podman Container** sebagai "mini-VM" untuk latihan perintah.
+
+```bash
+# Contoh: jalankan shell RHEL-like di container (butuh podman/docker)
+podman run -it --name lab-rhel rockylinux:9 bash
+```
+
+---
+
+## 🤝 Kontribusi
+
+Lihat [CONTRIBUTING.md](CONTRIBUTING.md). Panduan ini terbuka untuk perbaikan
+dan penambahan latihan.
+
+---
+
+## ⚠️ Catatan Sumber
+
+Panduan ini disusun berdasarkan kurikulum resmi **RH124** yang diajarkan di
+playlist referensi. Transkrip otomatis video tidak diambil secara otomatis
+(keterbatasan akses API YouTube pada lingkungan ekstraksi), sehingga penyusunan
+mengikuti struktur bab RH124 standar yang dipetakan dari judul & deskripsi
+playlist. Jika kamu punya transkrip resmi, silakan tambahkan ke folder
+`transkrip/` untuk memperkaya contoh kontekstual.
+
+**Playlist referensi:**
+https://www.youtube.com/watch?v=pnHqii1Oq8Y&list=PLZkuninm20jDUT_jArQrkfCImbbi2jWns
+
+---
+
+## 📄 Lisensi
+
+MIT — bebas digunakan dan disebarluaskan dengan mencantumkan atribusi. Lihat [LICENSE](LICENSE).

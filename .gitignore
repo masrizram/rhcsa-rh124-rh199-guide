@@ -1,0 +1,10 @@
+# Transkrip mentah / file kerja
+transcripts/
+*.tmp
+.DS_Store
+Thumbs.db
+
+# File rahasia (jangan di-commit)
+*.key
+secrets/
+.env
