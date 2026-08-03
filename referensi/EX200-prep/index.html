@@ -880,6 +880,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../modul/20-shell-scripting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🖥️ Modul 20 — Shell Scripting Dasar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../lab/LAB/" class="md-nav__link">
         
   
@@ -1274,7 +1301,7 @@ sebelum lanjut.</p>
 <tr>
 <td><code>bootc</code></td>
 <td>tidak ada</td>
-<td><code>bootc</code> untuk sistem berbasis image (imilar ke Container OS)</td>
+<td><code>bootc</code> untuk sistem berbasis image (mirip Container OS)</td>
 </tr>
 <tr>
 <td>Default FS</td>
@@ -1295,7 +1322,13 @@ Podman) — <code>bootc</code> muncul sebagai topik baru tapi bobotnya kecil. Pe
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>bootc<span class="w"> </span>status<span class="w">          </span><span class="c1"># lihat status image/rollback</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>bootc<span class="w"> </span>upgrade<span class="w">         </span><span class="c1"># upgrade ke image baru</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>bootc<span class="w"> </span>rollback<span class="w">        </span><span class="c1"># kembalikan ke image sebelumnya</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>bootc<span class="w"> </span>switch<span class="w"> </span>&lt;image&gt;<span class="w">  </span><span class="c1"># ganti ke image/repo berbeda</span>
 </code></pre></div></p>
+<blockquote>
+<p>Catatan: pada RHEL 9 (yang paling umum diuji saat ini), <code>bootc</code> <strong>tidak ada</strong>.
+Jangan panik jika perintah ini tidak ditemukan di lab RHEL 9 — fokus ke
+<code>dnf</code> seperti biasa. Untuk RHEL 10, cukup pahami konsep image-mode di atas.</p>
+</blockquote>
 <h2 id="2-bobot-topik-rhel-9">2. Bobot &amp; Topik (RHEL 9)<a class="headerlink" href="#2-bobot-topik-rhel-9" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Essential tools (shell, vim, pipe, <code>tar</code>, <code>grep</code>, <code>ssh</code>) — 10–15%</li>
