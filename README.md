@@ -78,6 +78,8 @@ dan penambahan latihan.
 
 ---
 
+> 🌐 **Versi web (GitHub Pages):** https://masrizram.github.io/rhcsa-rh124-rh199-guide/
+
 ## ⚠️ Catatan Sumber
 
 Panduan ini disusun berdasarkan kurikulum resmi **RH124** yang diajarkan di
