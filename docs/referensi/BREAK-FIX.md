@@ -102,4 +102,4 @@ mount /dev/vg0/lv0 /mnt
 > Latih skenario ini di VM (bukan container) — container tidak punya GRUB/
 > systemd init, jadi `rd.break` tidak bisa diuji di podman.
 
-**Link:** [Persiapan EX200](EX200-prep.md) · [Skenario Terukur](/modul/19-skenario-ex200/) · [LAB](/lab/LAB/)
+**Link:** [Persiapan EX200](EX200-prep.md) · [Skenario Terukur](../modul/19-skenario-ex200.md) · [LAB](../lab/LAB.md)

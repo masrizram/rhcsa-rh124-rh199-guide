@@ -12,8 +12,8 @@ teori? Jalankan skrip verifikasi di komputer Anda (butuh `podman`):
 
 ```bash
 # dari root repo
-chmod +x lab/verify/verify-lab.sh
-./lab/verify/verify-lab.sh
+chmod +x docs/lab/verify/verify-lab.sh
+./docs/lab/verify/verify-lab.sh
 ```
 
 Skrip akan menarik `rockylinux:9`, lalu mengeksekusi perintah kunci dari
@@ -22,7 +22,7 @@ Podman, SELinux, cron) di dalam container **ephemeral** — tidak mengubah
 sistem Anda. Hasil tiap cek ditampilkan `✓ PASS / ✗ FAIL / ⊘ SKIP`.
 `SKIP` wajar di container (systemd/SELinux/LVM butuh VM nyata, bukan container).
 
-> File: [`lab/verify/verify-lab.sh`](https://github.com/masrizram/rhcsa-rh124-rh199-guide/blob/main/lab/verify/verify-lab.sh)
+> File: [`docs/lab/verify/verify-lab.sh`](https://github.com/masrizram/rhcsa-rh124-rh199-guide/blob/main/docs/lab/verify/verify-lab.sh)
 
 ---
 

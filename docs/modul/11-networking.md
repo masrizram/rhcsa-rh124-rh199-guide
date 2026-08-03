@@ -75,6 +75,43 @@ sudo hostnamectl set-hostname server1.lab.local
 hostnamectl
 ```
 
+## 7b. NFS (Network File System) — Wajib EX200
+
+NFS dipakai untuk berbagi direktori antar host di jaringan yang sama.
+
+**Sisi server (ekspor):**
+```bash
+# pasang & aktifkan
+sudo dnf install -y nfs-utils
+sudo systemctl enable --now nfs-server
+
+# buat direktori ekspor & beri izin
+sudo mkdir -p /srv/nfs/share
+sudo chmod 777 /srv/nfs/share
+
+# deklarasikan ekspor (contoh: hanya subnet lab)
+echo '/srv/nfs/share 192.168.100.0/24(rw,sync,no_root_squash)' | sudo tee -a /etc/exports
+sudo exportfs -r            # muat ulang tanpa restart
+sudo exportfs -v            # verifikasi ekspor aktif
+# buka firewall agar klien bisa akses:
+sudo firewall-cmd --add-service=nfs --permanent && sudo firewall-cmd --reload
+```
+
+**Sisi klien (mount):**
+```bash
+sudo dnf install -y nfs-utils
+sudo mkdir -p /mnt/nfs
+# mount manual:
+sudo mount -t nfs server1.lab.local:/srv/nfs/share /mnt/nfs
+# mount permanen via /etc/fstab (pakai opsi netdev agar aman saat boot):
+echo 'server1.lab.local:/srv/nfs/share  /mnt/nfs  nfs  defaults,_netdev  0 0' | sudo tee -a /etc/fstab
+sudo mount -a               # uji tanpa reboot
+df -hT /mnt/nfs             # verifikasi ter-mount
+```
+
+> ⚠️ Jangan lupa `firewall-cmd --add-service=nfs` di server, dan opsi `_netdev`
+> di fstab klien — tanpa itu mount gagal saat boot (VM hang di emergency).
+
 ## 8. Jebakan Umum (EX200)
 
 !!! danger "Jebakan"

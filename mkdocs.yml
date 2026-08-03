@@ -1,4 +1,5 @@
 site_name: Panduan Lengkap RHCSA (RH124 / RH199) - RHEL 9 & 10
+site_url: https://masrizram.github.io/rhcsa-rh124-rh199-guide/
 site_description: Persiapan Sertifikasi Red Hat Certified System Administrator (EX200)
 site_author: masrizram
 repo_name: masrizram/rhcsa-rh124-rh199-guide

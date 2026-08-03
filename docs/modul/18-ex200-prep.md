@@ -51,8 +51,8 @@
 6. Buat cron job: backup `/etc` ke `/backup/etc.tar.gz` setiap jam 02:00.
 7. Set ELinux boolean `httpd_can_network_connect` on.
 
-(Jawaban & langkah ada di `lab/LAB.md` dan `referensi/EX200-prep.md`.
-Untuk perbaikan sistem rusak, baca **[Break & Fix / Troubleshooting](/referensi/BREAK-FIX/)** — ~40% soal EX200 adalah troubleshooting.)
+(Jawaban & langkah ada di `../lab/LAB.md` dan `../referensi/EX200-prep.md`.
+Untuk perbaikan sistem rusak, baca **[Break & Fix / Troubleshooting](../referensi/BREAK-FIX.md)** — ~40% soal EX200 adalah troubleshooting.)
 
 ## 5. Sumber Belajar Tambahan
 

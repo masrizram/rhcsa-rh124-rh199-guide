@@ -2,7 +2,7 @@
 # =============================================================================
 # verify-lab.sh — Verifikasi lab RHCSA di container Podman (Rocky/Alma Linux 9)
 # Jalankan di KOMPUTER ANDA (bukan di cloud):
-#   ./lab/verify/verify-lab.sh
+#   ./docs/lab/verify/verify-lab.sh
 # Prasyarat: podman (Linux/Mac/WSL2). Windows: jalankan di WSL2/Git Bash.
 # Container ephemeral (--rm); tidak mengubah sistem host.
 # =============================================================================

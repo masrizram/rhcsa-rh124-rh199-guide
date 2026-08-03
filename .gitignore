@@ -1,3 +1,6 @@
+# Build output MkDocs (jangan di-commit)
+site/
+
 # Transkrip mentah / file kerja
 transcripts/
 *.tmp
