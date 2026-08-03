@@ -1022,6 +1022,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📖 Glosarium
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1038,6 +1056,36 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Daftar isi">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Daftar isi
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#padanan-kbbi-kata-indonesia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Padanan KBBI (kata Indonesia)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1078,6 +1126,14 @@
 
 <h1 id="glosarium-istilah-rhcsa">📖 Glosarium — Istilah RHCSA<a class="headerlink" href="#glosarium-istilah-rhcsa" title="Permanent link">&para;</a></h1>
 <p>Daftar istilah yang sering muncul di panduan &amp; ujian EX200.</p>
+<blockquote>
+<p><strong>Catatan bahasa (KBBI):</strong> Istilah teknis Linux/Red Hat (mis. <code>systemd</code>,
+<code>podman</code>, <code>SELinux</code>, <code>dnf</code>) <strong>tidak terdapat di Kamus Besar Bahasa Indonesia</strong>
+karena merupakan nama perangkat lunak — padanannya mengikuti dokumentasi
+resmi Red Hat. Untuk kata Indonesia di penjelasan, panduan ini menggunakan
+padanan <strong>KBBI</strong>, mis. <em>berkas</em> (bukan "file"), <em>direktori</em> (bukan "folder"),
+<em>penyunting teks</em> (bukan "text editor"), <em>perangkat</em> (bukan "device").</p>
+</blockquote>
 <table>
 <thead>
 <tr>
@@ -1092,7 +1148,7 @@
 </tr>
 <tr>
 <td><strong>RH124 / RH199</strong></td>
-<td>Kursus System Administration I (beginner / accelerated)</td>
+<td>Kursus System Administration I (pemula / akselerasi)</td>
 </tr>
 <tr>
 <td><strong>RHEL</strong></td>
@@ -1104,11 +1160,11 @@
 </tr>
 <tr>
 <td><strong>unit</strong></td>
-<td>Objek yang dikelola systemd (service, target, socket, dll)</td>
+<td>Objek yang dikelola systemd (layanan, target, soket, dll)</td>
 </tr>
 <tr>
 <td><strong>DAC</strong></td>
-<td>Discretionary Access Control (permission biasa: rwx)</td>
+<td>Discretionary Access Control (izin biasa: rwx)</td>
 </tr>
 <tr>
 <td><strong>MAC</strong></td>
@@ -1128,7 +1184,7 @@
 </tr>
 <tr>
 <td><strong>restorecon</strong></td>
-<td>Mengembalikan context berkas ke default</td>
+<td>Mengembalikan context berkas ke bawaan</td>
 </tr>
 <tr>
 <td><strong>LVM</strong></td>
@@ -1140,11 +1196,11 @@
 </tr>
 <tr>
 <td><strong>XFS</strong></td>
-<td>File system default RHEL (bisa di-grow online)</td>
+<td>Sistem berkas bawaan RHEL (bisa di-grow online)</td>
 </tr>
 <tr>
 <td><strong>fstab</strong></td>
-<td>File konfigurasi mount permanen (<code>/etc/fstab</code>)</td>
+<td>Berkas konfigurasi kait permanen (<code>/etc/fstab</code>)</td>
 </tr>
 <tr>
 <td><strong>UUID</strong></td>
@@ -1160,7 +1216,7 @@
 </tr>
 <tr>
 <td><strong>firewalld</strong></td>
-<td>Firewall dinamis RHEL (zone &amp; service/port)</td>
+<td>Firewall dinamis RHEL (zona &amp; layanan/port)</td>
 </tr>
 <tr>
 <td><strong>DNF</strong></td>
@@ -1196,7 +1252,7 @@
 </tr>
 <tr>
 <td><strong>shell</strong></td>
-<td>Antarmuka perintah (bash default di RHEL)</td>
+<td>Antarmuka perintah (bash bawaan di RHEL)</td>
 </tr>
 <tr>
 <td><strong>privilege escalation</strong></td>
@@ -1204,7 +1260,7 @@
 </tr>
 <tr>
 <td><strong>ACL</strong></td>
-<td>Access Control List — izin file granular per-user</td>
+<td>Access Control List — izin berkas granular per-user</td>
 </tr>
 <tr>
 <td><strong>target</strong></td>
@@ -1217,6 +1273,57 @@
 <tr>
 <td><strong>performance-based</strong></td>
 <td>Ujian praktik (bukan pilihan ganda)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="padanan-kbbi-kata-indonesia">Padanan KBBI (kata Indonesia)<a class="headerlink" href="#padanan-kbbi-kata-indonesia" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Istilah Asing</th>
+<th>Padanan KBBI (dipakai di panduan)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>file</td>
+<td><strong>berkas</strong></td>
+</tr>
+<tr>
+<td>folder / directory</td>
+<td><strong>direktori</strong></td>
+</tr>
+<tr>
+<td>text editor</td>
+<td><strong>penyunting teks</strong></td>
+</tr>
+<tr>
+<td>device</td>
+<td><strong>perangkat</strong></td>
+</tr>
+<tr>
+<td>user</td>
+<td><strong>pengguna</strong></td>
+</tr>
+<tr>
+<td>group</td>
+<td><strong>kelompok</strong></td>
+</tr>
+<tr>
+<td>permission</td>
+<td><strong>izin</strong></td>
+</tr>
+<tr>
+<td>service / daemon</td>
+<td><strong>layanan</strong></td>
+</tr>
+<tr>
+<td>log</td>
+<td><strong>catatan</strong> (dalam konteks sistem)</td>
+</tr>
+<tr>
+<td>repository</td>
+<td><strong>repositori</strong> (serapan, lazim di KBBI)</td>
 </tr>
 </tbody>
 </table>
