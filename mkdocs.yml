@@ -105,6 +105,7 @@ nav:
   - "⏰ Modul 17 — Penjadwalan & Time Zone": modul/17-scheduling.md
   - "🎓 Modul 18 — EX200 (RHCSA) Prep": modul/18-ex200-prep.md
   - "📝 Modul 19 — Skenario EX200 Terukur": modul/19-skenario-ex200.md
+  - "🖥️ Modul 20 — Shell Scripting Dasar": modul/20-shell-scripting.md
   - "🛠️ Latihan (LAB)": lab/LAB.md
   - "⌨️ Cheat Sheet": referensi/CHEATSHEET.md
   - "🎯 Persiapan EX200": referensi/EX200-prep.md

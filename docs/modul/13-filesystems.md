@@ -120,7 +120,7 @@ berubah antar boot).
 1. Perintah apa untuk verifikasi fstab tanpa reboot? (`mount -a`)
 2. Setelah `lvextend` pada volume XFS, apa yang harus dijalankan?
    (`xfs_growfs /mountpoint`)
-3. Mengapa pakai UUID而非 nama device di fstab? (nama device bisa berubah)
+3. Mengapa pakai UUID daripada nama device di fstab? (nama device bisa berubah)
 
 ## Latihan
 1. Buat partisi + filesystem XFS di disk lab, lalu mount ke `/mnt/uji`.

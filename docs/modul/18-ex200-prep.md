@@ -15,7 +15,7 @@
 
 | Area | Contoh tugas |
 |------|-------------|
-| Understanding & using essential tools | `man`, `vim`, redireksi, `tar`, `grep`, `ssh` |
+| Understanding & using essential tools | `man`, `vim`, redireksi, `tar`, `grep`, `find`, `ssh` |
 | Operating running systems | `systemctl`, `journalctl`, proses, `nice` |
 | Configuring local storage | partisi, LVM, mount `fstab`, swap |
 | Creating & configuring file systems | XFS/ext4, permission, ACL, `umask` |
@@ -23,6 +23,7 @@
 | Managing users & groups | `useradd`, `usermod`, `passwd`, `sudo`, `chage` |
 | Managing security | `firewalld`, `SELinux` (enforcing), `ssh` hardening |
 | Networking | `nmcli`, hostname, DNS, routing |
+| **Creating simple shell scripts** | `#!/bin/bash`, variabel, `if`/`for`/`while`, argumen `$1 $# $@` |
 | Containers (RHEL 9+) | `podman` pull/run, `podman` sebagai service |
 
 > ⚠️ **SELinux** sering jadi penyebab gagal. Jangan mematikan — konfigurasikan

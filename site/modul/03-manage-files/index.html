@@ -547,6 +547,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#7-mencari-berkas-dengan-find-wajib-ex200" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Mencari Berkas dengan find (Wajib EX200)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-arkip-kompresi-tar-gzip-star-wajib-ex200" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Arkip &amp; Kompresi (tar / gzip / star) — Wajib EX200
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#latihan" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1026,6 +1048,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../20-shell-scripting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🖥️ Modul 20 — Shell Scripting Dasar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../lab/LAB/" class="md-nav__link">
         
   
@@ -1328,6 +1377,77 @@
 <li><strong>Absolut</strong>: dimulai dari <code>/</code>, contoh <code>/etc/hosts</code>.</li>
 <li><strong>Relatif</strong>: dari posisi sekarang, contoh <code>../data/file</code>.</li>
 </ul>
+<h2 id="7-mencari-berkas-dengan-find-wajib-ex200">7. Mencari Berkas dengan <code>find</code> (Wajib EX200)<a class="headerlink" href="#7-mencari-berkas-dengan-find-wajib-ex200" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>find<span class="w"> </span>/<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;passwd&quot;</span><span class="w">              </span><span class="c1"># cari berdasar nama</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>find<span class="w"> </span>/etc<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*.conf&quot;</span><span class="w">           </span><span class="c1"># wildcard</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>find<span class="w"> </span>/home<span class="w"> </span>-user<span class="w"> </span>operator<span class="w">          </span><span class="c1"># milik user tertentu</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>find<span class="w"> </span>/<span class="w"> </span>-perm<span class="w"> </span><span class="m">4000</span><span class="w">                  </span><span class="c1"># berkas setuid</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>find<span class="w"> </span>/<span class="w"> </span>-mtime<span class="w"> </span>-1<span class="w">                   </span><span class="c1"># dimodifikasi &lt; 1 hari lalu</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>find<span class="w"> </span>/tmp<span class="w"> </span>-size<span class="w"> </span>+10M<span class="w">               </span><span class="c1"># lebih besar 10 MB</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>find<span class="w"> </span>.<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-exec<span class="w"> </span>rm<span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="se">\;</span><span class="w">      </span><span class="c1"># eksekusi per hasil</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Opsi</th>
+<th>Arti</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-name</code></td>
+<td>cocok nama (case-sensitive)</td>
+</tr>
+<tr>
+<td><code>-iname</code></td>
+<td>cocok nama (case-insensitive)</td>
+</tr>
+<tr>
+<td><code>-user</code> / <code>-group</code></td>
+<td>pemilik</td>
+</tr>
+<tr>
+<td><code>-perm</code></td>
+<td>izin (mis. <code>4000</code> setuid)</td>
+</tr>
+<tr>
+<td><code>-mtime -N</code> / <code>+N</code></td>
+<td>modifikasi &lt; N / &gt; N hari</td>
+</tr>
+<tr>
+<td><code>-size +N</code> / <code>-N</code></td>
+<td>ukuran lebih / kurang</td>
+</tr>
+<tr>
+<td><code>-type f</code> / <code>d</code></td>
+<td>berkas / direktori</td>
+</tr>
+<tr>
+<td><code>-exec cmd {} \;</code></td>
+<td>jalankan per hasil</td>
+</tr>
+</tbody>
+</table>
+<h2 id="8-arkip-kompresi-tar-gzip-star-wajib-ex200">8. Arkip &amp; Kompresi (tar / gzip / star) — Wajib EX200<a class="headerlink" href="#8-arkip-kompresi-tar-gzip-star-wajib-ex200" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Membuat arsip</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>tar<span class="w"> </span>-czf<span class="w"> </span>backup.tar.gz<span class="w"> </span>/etc<span class="w">           </span><span class="c1"># gzip (paling umum)</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>tar<span class="w"> </span>-cjf<span class="w"> </span>backup.tar.bz2<span class="w"> </span>/etc<span class="w">          </span><span class="c1"># bzip2</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>tar<span class="w"> </span>-czf<span class="w"> </span>etc-<span class="k">$(</span>date<span class="w"> </span>+%F<span class="k">)</span>.tar.gz<span class="w"> </span>/etc<span class="w"> </span><span class="c1"># nama dinamis</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="c1"># Mengekstrak</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>tar<span class="w"> </span>-xzf<span class="w"> </span>backup.tar.gz<span class="w">               </span><span class="c1"># ke direktori saat ini</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>tar<span class="w"> </span>-xzf<span class="w"> </span>backup.tar.gz<span class="w"> </span>-C<span class="w"> </span>/tmp/restore<span class="w">   </span><span class="c1"># ke tujuan tertentu</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="c1"># Melihat isi tanpa ekstrak</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>tar<span class="w"> </span>-tzf<span class="w"> </span>backup.tar.gz
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="c1"># star (RHEL, mirip tar, untuk arsip besar/extended)</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>star<span class="w"> </span>-czf<span class="w"> </span>backup.star<span class="w"> </span>/etc
+</code></pre></div>
+<blockquote>
+<p>💡 Di RHEL, <code>tar</code> sudah cukup untuk ujian. <code>star</code> ada sebagai alternatif
+(package <code>star</code>) — kenali perintahnya, tapi <code>tar</code> prioritas utama.</p>
+</blockquote>
 <h2 id="latihan">Latihan<a class="headerlink" href="#latihan" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Buat struktur: <code>mkdir -p latihan/modul03</code> lalu <code>touch latihan/modul03/coba.txt</code>.</li>

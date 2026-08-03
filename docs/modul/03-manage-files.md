@@ -64,6 +64,51 @@ ps aux | grep httpd          # saring proses
 - **Absolut**: dimulai dari `/`, contoh `/etc/hosts`.
 - **Relatif**: dari posisi sekarang, contoh `../data/file`.
 
+## 7. Mencari Berkas dengan `find` (Wajib EX200)
+
+```bash
+find / -name "passwd"              # cari berdasar nama
+find /etc -name "*.conf"           # wildcard
+find /home -user operator          # milik user tertentu
+find / -perm 4000                  # berkas setuid
+find / -mtime -1                   # dimodifikasi < 1 hari lalu
+find /tmp -size +10M               # lebih besar 10 MB
+find . -type f -exec rm {} \;      # eksekusi per hasil
+```
+
+| Opsi | Arti |
+|------|------|
+| `-name` | cocok nama (case-sensitive) |
+| `-iname` | cocok nama (case-insensitive) |
+| `-user` / `-group` | pemilik |
+| `-perm` | izin (mis. `4000` setuid) |
+| `-mtime -N` / `+N` | modifikasi < N / > N hari |
+| `-size +N` / `-N` | ukuran lebih / kurang |
+| `-type f` / `d` | berkas / direktori |
+| `-exec cmd {} \;` | jalankan per hasil |
+
+## 8. Arkip & Kompresi (tar / gzip / star) — Wajib EX200
+
+```bash
+# Membuat arsip
+tar -czf backup.tar.gz /etc           # gzip (paling umum)
+tar -cjf backup.tar.bz2 /etc          # bzip2
+tar -czf etc-$(date +%F).tar.gz /etc # nama dinamis
+
+# Mengekstrak
+tar -xzf backup.tar.gz               # ke direktori saat ini
+tar -xzf backup.tar.gz -C /tmp/restore   # ke tujuan tertentu
+
+# Melihat isi tanpa ekstrak
+tar -tzf backup.tar.gz
+
+# star (RHEL, mirip tar, untuk arsip besar/extended)
+star -czf backup.star /etc
+```
+
+> 💡 Di RHEL, `tar` sudah cukup untuk ujian. `star` ada sebagai alternatif
+> (package `star`) — kenali perintahnya, tapi `tar` prioritas utama.
+
 ## Latihan
 1. Buat struktur: `mkdir -p latihan/modul03` lalu `touch latihan/modul03/coba.txt`.
 2. Salin ke `/tmp`: `cp -r latihan /tmp/latihan`.

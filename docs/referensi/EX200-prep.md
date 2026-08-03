@@ -20,7 +20,7 @@ Panduan taktis menghadapi ujian sertifikasi RHCSA (EX200).
 | Init & service | systemd | systemd (sama) |
 | Container | Podman (rootless) | Podman + **bootc** |
 | OS model | Package-based (RPM/DNF) | **Image mode** (bootc) tersedia |
-| `bootc` | tidak ada | `bootc` untuk sistem berbasis image (imilar ke Container OS) |
+| `bootc` | tidak ada | `bootc` untuk sistem berbasis image (mirip Container OS) |
 | Default FS | XFS | XFS |
 | Networking | NetworkManager/nmcli | NetworkManager/nmcli (sama) |
 
@@ -32,7 +32,11 @@ Podman) — `bootc` muncul sebagai topik baru tapi bobotnya kecil. Perintah dasa
 bootc status          # lihat status image/rollback
 bootc upgrade         # upgrade ke image baru
 bootc rollback        # kembalikan ke image sebelumnya
+bootc switch <image>  # ganti ke image/repo berbeda
 ```
+> Catatan: pada RHEL 9 (yang paling umum diuji saat ini), `bootc` **tidak ada**.
+> Jangan panik jika perintah ini tidak ditemukan di lab RHEL 9 — fokus ke
+> `dnf` seperti biasa. Untuk RHEL 10, cukup pahami konsep image-mode di atas.
 
 
 ## 2. Bobot & Topik (RHEL 9)
