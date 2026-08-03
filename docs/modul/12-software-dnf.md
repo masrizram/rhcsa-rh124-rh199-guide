@@ -65,7 +65,35 @@ sudo dnf module enable postgresql:15
 sudo dnf install postgresql-server
 ```
 
-## 7. Jebakan Umum (EX200)
+## 8. Flatpak — Repository & Paket (Wajib EX200)
+
+Selain RPM/DNF, objektif EX200 mencantumkan **Flatpak**: "Configure access to
+Flatpak repositories" & "Install and remove Flatpak software packages".
+Flatpak memakai *runtime* terisolasi (sandbox) — umum untuk aplikasi desktop.
+
+```bash
+# 1. Pasang flatpak (di RHEL butuh repo Extra/CRB atau EPEL di klon)
+sudo dnf install -y flatpak
+
+# 2. Tambahkan repository Flatpak (contoh Flathub)
+sudo flatpak remote-add --if-not-exists flathub \
+  https://flathub.org/repo/flathub.flatpakrepo
+
+# 3. Pasang aplikasi
+sudo flatpak install -y flathub org.gnome.gedit
+
+# 4. Jalankan & kelola
+flatpak run org.gnome.gedit
+flatpak list                   # lihat yang terpasang
+sudo flatpak remove org.gnome.gedit
+flatpak remotes                # lihat repo terdaftar
+```
+
+> ⚠️ Di RHEL resmi perlu `subscription-manager` + repo `rhel-9-for-x86_64-appstream-rpms`
+> agar `flatpak` bisa diinstall. Di klon gratis cukup `dnf install flatpak`.
+> Soal EX200 biasanya: "tambahkan repo Flatpak X lalu pasang aplikasi Y".
+
+## 9. Jebakan Umum (EX200)
 
 !!! danger "Jebakan"
     - `dnf update` tanpa `dnf history` / snapshot → paket krusial (kernel, DB)
@@ -76,7 +104,7 @@ sudo dnf install postgresql-server
     - Repo nonaktif (RHEL butuh subscription) → `dnf` gagal. Klon gratis
       (Rocky/Alma) sudah punya repo publik.
 
-## 8. Koneksi ke EX200
+## 10. Koneksi ke EX200
 
 !!! success "EX200"
     Soal: "Pasang `httpd` versi terbaru, verifikasi, lalu batalkan instalasi."

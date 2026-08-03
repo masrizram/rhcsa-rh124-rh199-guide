@@ -24,17 +24,29 @@ nmcli device status                  # perangkat & status
 nmcli connection show                # daftar koneksi
 nmcli connection show "con-name"    # detail satu koneksi
 
-# Set IP statis
+# Set IP statis (IPv4)
 sudo nmcli connection modify "eth0" \
   ipv4.addresses 192.168.1.50/24 \
   ipv4.gateway 192.168.1.1 \
   ipv4.dns 8.8.8.8 \
   ipv4.method manual
 
+# Set IPv6 statis (objektif EX200: "Configure IPv4 and IPv6 addresses")
+sudo nmcli connection modify "eth0" \
+  ipv6.addresses 2001:db8:1::50/64 \
+  ipv6.gateway 2001:db8:1::1 \
+  ipv6.dns 2001:4860:4860::8888 \
+  ipv6.method manual
+
 # Aktifkan perubahan
 sudo nmcli connection down "eth0"
 sudo nmcli connection up "eth0"
 ```
+
+Verifikasi IPv6:
+```bash
+ip -6 addr show eth0          # lihat alamat IPv6
+ping6 -c 4 2001:db8:1::1      # uji konektivitas IPv6
 
 ## 4. DHCP & DNS
 
@@ -46,6 +58,12 @@ sudo nmcli connection modify "eth0" ipv4.method auto
 resolvectl status              # lihat resolver (systemd-resolved)
 cat /etc/resolv.conf           # nameserver aktif
 ```
+
+## 4b. IPv6 (Wajib EX200)
+
+Objektif EX200: *"Configure IPv4 and IPv6 addresses"*. `nmcli` menangani keduanya
+lewat `ipv6.*` (lihat §3 di atas). Pastikan `ipv6.method manual` (bukan `ignore`)
+agar alamat aktif. Verifikasi dengan `ip -6 addr` dan `ping6`.
 
 ## 5. Uji Konektivitas
 

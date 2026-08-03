@@ -48,13 +48,36 @@ atrm 1                     # batalkan job nomor 1
 ```
 
 ## 3. Time Zone & Waktu
-
 ```bash
 timedatectl                 # lihat tanggal, waktu, zona
 sudo timedatectl set-timezone Asia/Jakarta
 sudo timedatectl set-time "2026-08-03 10:00:00"
 timedatectl list-timezones | grep -i jakarta
 ```
+
+## 3b. Time Service Client (`chrony`) — Wajib EX200
+
+Objektif EX200: *"Configure time service clients"*. RHEL menggunakan **chrony**
+(`chronyd`) sebagai NTP client/server. Konfigurasi di `/etc/chrony.conf`.
+
+```bash
+# Cek status sinkronisasi
+timedatectl status                 # baris "System clock synchronized"
+chronyc tracking                   # detail sumber waktu
+chronyc sources -v                 # lihat server NTP aktif
+
+# Tambahkan NTP server (edit /etc/chrony.conf)
+sudo sed -i 's/^pool.*/pool 0.id.pool.ntp.org iburst/' /etc/chrony.conf
+# atau tambah: server time.google.com iburst
+sudo systemctl enable --now chronyd
+sudo chronyc makestep              # paksa sinkron sekarang
+```
+
+> Verifikasi: `chronyc tracking` → `Leap status : Normal` dan
+> `timedatectl` menunjukkan `System clock synchronized: yes`.
+> Soal EX200: "konfigurasi client waktu ke NTP server X" → edit
+> `/etc/chrony.conf`, ganti/ tambah `server X iburst`, lalu `restart chronyd`.
+
 
 ## 4. `systemd` Timer (Modern)
 

@@ -15,9 +15,33 @@ ls /var/log/                   # berkas log tradisional
 tail -f /var/log/messages      # (jika rsyslog aktif)
 ```
 
-## 2. Cockpit (Web Console)
+## 2. journald — Preserve System Journals (Wajib EX200)
 
-Panel all-in-one untuk monitor & administrasi:
+Objektif EX200: *"Preserve system journals"*. Secara default, journal disimpan
+di RAM (`/run/log/journal`) dan **hilang setelah reboot**. Agar log persisten,
+set `Storage=persistent`.
+
+```bash
+sudo mkdir -p /var/log/journal        # buat direktori persisten
+sudo systemctl restart systemd-journald   # journald pakai /var/log/journal
+
+# Atau edit konfig:
+sudo sed -i 's/^#*Storage=.*/Storage=persistent/' /etc/systemd/journald.conf
+sudo systemctl restart systemd-journald
+```
+
+Verifikasi:
+```bash
+ls -d /var/log/journal/*        # ada direktori (artinya persisten)
+journalctl --disk-usage         # lihat ukuran log di disk
+journalctl -b -1                # log boot SEBELUMNYA (bukti persisten)
+```
+
+> Tanpa ini, `journalctl -b -1` kosong setelah reboot — soal EX200 bisa minta
+> "pastikan log sistem tersimpan antar reboot".
+
+
+## 3. Cockpit (Web Console)
 
 ```bash
 sudo systemctl enable --now cockpit.socket
@@ -26,7 +50,7 @@ sudo systemctl enable --now cockpit.socket
 
 Fitur: overview CPU/mem/disk, layanan, jaringan, storage, terminal web, log.
 
-## 3. Red Hat Insights
+## 4. Red Hat Insights
 
 Layanan analitik proaktif (butuh subscription RHEL). Mendeteksi risiko
 keamanan & stabilitas.
@@ -37,7 +61,7 @@ sudo insights-client --register
 sudo insights-client --check-results
 ```
 
-## 4. Subscription Management (RHEL resmi)
+## 5. Subscription Management (RHEL resmi)
 
 ```bash
 sudo subscription-manager register --auto-attach
@@ -49,14 +73,14 @@ sudo subscription-manager repos --list
 > Untuk klon gratis (Rocky/Alma) langkah ini tidak diperlukan — repo publik
 > sudah aktif.
 
-## 5. Sumber Dukungan
+## 6. Sumber Dukungan
 
 - **Red Hat Customer Portal**: https://access.redhat.com
 - **KBase articles** & **Solutions**: `https://access.redhat.com/search`
 - **RHN / Bugzilla** untuk pelaporan.
 - Komunitas: Rocky Linux Forum, AlmaLinux Chat, server Discord RHEL.
 
-## 6. Triase Masalah (Langkah Sistematis)
+## 7. Triase Masalah (Langkah Sistematis)
 
 1. Apa gejalanya? (error message persis)
 2. Di layer mana? (aplikasi / service / OS / jaringan / storage)

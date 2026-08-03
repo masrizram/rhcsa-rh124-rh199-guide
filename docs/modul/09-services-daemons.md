@@ -42,7 +42,57 @@ sudo systemctl isolate rescue.target   # masuk mode rescue (single-user)
 | runlevel 5 | `graphical.target` |
 | runlevel 6 | `reboot.target` |
 
-## 5. Journal (Log systemd)
+## 5. Tuning Profiles (`tuned`) — Wajib EX200
+
+Objektif EX200: *"Manage tuning profiles"*. `tuned` menyediakan profil
+optimasi performa/daya yang bisa aktif otomatis.
+
+```bash
+sudo dnf install -y tuned tuned-utils
+sudo systemctl enable --now tuned
+tuned-adm list                 # lihat profil tersedia
+tuned-adm active               # profil aktif sekarang
+sudo tuned-adm profile throughput-performance   # aktifkan profil
+sudo tuned-adm recommend       # saran profil otomatis dari tuned
+```
+
+Profil umum: `balanced` (default), `powersave`, `throughput-performance`
+(server), `latency-performance`, `virtual-guest`, `virtual-host`.
+
+> Verifikasi: `tuned-adm active` harus menampilkan profil yang kamu set —
+> soal EX200 sering: "aktifkan profil throughput-performance dan pastikan
+> persisten setelah reboot" (tuned sudah enable --now, profil tersimpan otomatis).
+
+## 6. Bootloader (`grub2`) & Akses Darurat — Wajib EX200
+
+Objektif EX200: *"Modify the system bootloader"* dan *"Interrupt the boot
+process in order to gain access to a system"* (mis. lupa root password).
+
+**Mengubah parameter bootloader (grub2):**
+```bash
+# Lihat entry & edit default via grubby (cara aman di RHEL)
+grubby --update-kernel=ALL --args="nomodeset"   # tambah param boot
+grubby --info=ALL                               # lihat kernel & args
+sudo grub2-mkconfig -o /boot/grub2/grub.cfg      # regenerate grub.cfg
+```
+
+**Interrupt boot untuk reset password root (rd.break):**
+1. Di menu GRUB, tekan `e` pada kernel default.
+2. Di baris `linux`/`linuxefi`, tambahkan `rd.break` di akhir (lalu `Ctrl+X`).
+3. Sistem berhenti di `switch_root:/#` (initramfs shell).
+4. Remount root writable & masuk chroot:
+   ```bash
+   mount -o remount,rw /sysroot
+   chroot /sysroot
+   passwd root          # set password root baru
+   touch /.autorelabel  # penting: biar SELinux relabel
+   exit; exit           # reboot
+   ```
+> ⚠️ Tanpa `touch /.autorelabel`, SELinux akan blokir login setelah reboot
+> (label konteks berubah). Di RHEL 9+ bisa juga pakai `rw init=/sysroot/bin/sh`
+> lalu `chroot` manual.
+
+## 7. Journal (Log systemd)
 
 ```bash
 journalctl                          # semua log
@@ -53,7 +103,7 @@ journalctl --since "2026-01-01" --until "2026-01-02"
 journalctl -b                       # sejak boot terakhir
 ```
 
-## 6. Membuat Unit Service Sederhana
+## 8. Membuat Unit Service Sederhana
 
 `/etc/systemd/system/hello.service`:
 ```ini
@@ -72,7 +122,7 @@ sudo systemctl daemon-reload
 sudo systemctl enable --now hello.service
 ```
 
-## 7. Jebakan Umum (EX200)
+## 9. Jebakan Umum (EX200)
 
 !!! danger "Jebakan"
     - `systemctl restart` memutus koneksi sesaat — di server produksi gunakan
@@ -84,7 +134,7 @@ sudo systemctl enable --now hello.service
     - Melihat log tapi pakai `cat /var/log/messages` padahal layanan menulis ke
       journal → gunakan `journalctl -u <svc>`.
 
-## 8. Koneksi ke EX200
+## 10. Koneksi ke EX200
 
 !!! success "EX200"
     Soal: "Buat layanan `webapp` yang menjalankan `/opt/webapp/run.sh`, auto-start
@@ -111,3 +161,6 @@ sudo systemctl enable --now hello.service
 2. Matikan dan nyalakan kembali `cups` (jika ada), amati dengan `journalctl -u cups`.
 3. Lihat target default dan ubah ke `multi-user.target` (jangan lupa kembalikan).
 4. Buat unit `hello.service` (echo), `enable --now`, verifikasi `journalctl -u hello`.
+5. Cek profil tuned aktif: `tuned-adm active`; coba ganti ke `throughput-performance`.
+6. (Lab) simulasikan `rd.break`: di GRUB tekan `e`, tambah `rd.break`, `Ctrl+X`,
+   lalu `mount -o remount,rw /sysroot && chroot /sysroot && passwd root && touch /.autorelabel`.
