@@ -1,7 +1,10 @@
 /* =========================================================================
-   Restyle MkDocs Material -> estetika Mintlify / Maple (v2)
-   - Top announcement bar, hero w/ image banner, footer nav cards,
-     command-palette (Cmd+K) styling, rounded everything
+   Restyle MkDocs Material -> estetika Mintlify / Maple (v3 - hardened)
+   Catatan perbaikan bug:
+   - Font TIDAK dipaksa kecil di seluruh .md-typeset (hindari teks terlalu kecil)
+   - Gradient H1 punya fallback color (tidak hilang di browser lama)
+   - Semua aturan di-scoped agar tidak bentrok dgn tema Material
+   - Footer Material dimatikan (navigation.footer off) -> hanya card kita
    ========================================================================= */
 
 :root {
@@ -14,7 +17,7 @@
   --rh-muted: #555;
 }
 
-/* ---- Top announcement bar (ala Mintlify topbar) ---- */
+/* ---- Top announcement bar ---- */
 .rh-topbar {
   background: linear-gradient(90deg, var(--rh-red) 0%, #f97316 100%);
   color: #fff;
@@ -22,10 +25,11 @@
   padding: 0.5rem 1rem;
   text-align: center;
   font-weight: 500;
+  line-height: 1.4;
 }
 .rh-topbar a { color: #fff; text-decoration: underline; }
 
-/* ---- Hero dengan image banner ---- */
+/* ---- Hero ---- */
 .rh-hero {
   position: relative;
   text-align: center;
@@ -45,13 +49,18 @@
   background: linear-gradient(135deg, #e02424 0%, #f97316 100%);
   box-shadow: 0 10px 30px rgba(224,36,36,0.35);
 }
+/* Fallback color dulu, baru gradient-clip (agar tidak hilang di browser lama) */
 .rh-hero h1 {
   font-size: 2.7rem;
   margin: 0 0 0.6rem;
+  color: var(--rh-text);                 /* FALLBACK */
   background: linear-gradient(120deg, #1a1a2e 0%, var(--rh-red) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+@supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+  .rh-hero h1 { -webkit-text-fill-color: initial; color: var(--rh-text); }
 }
 .rh-hero p {
   font-size: 1.1rem;
@@ -82,10 +91,10 @@
 }
 .rh-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(20,20,40,0.10); }
 .rh-card .rh-ico { font-size: 1.7rem; }
-.rh-card h3 { margin: 0.6rem 0 0.4rem; font-size: 1.05rem; }
+.rh-card h3 { margin: 0.6rem 0 0.4rem; font-size: 1.05rem; color: var(--rh-text); }
 .rh-card p { color: #666; font-size: 0.9rem; margin: 0; }
 
-/* ---- Footer navigation cards (prev/next + quick) ---- */
+/* ---- Footer nav cards (menggantikan footer Material) ---- */
 .rh-footnav { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 2.5rem 0 1rem; }
 .rh-footnav a {
   display: block; padding: 1.1rem 1.3rem; border: 1px solid var(--rh-border);
@@ -100,24 +109,20 @@
   text-align: center; font-size: 0.8rem; color: var(--rh-muted);
   padding: 1.5rem 1rem 2rem; border-top: 1px solid var(--rh-border); margin-top: 1rem;
 }
-[data-md-color-scheme="slate"] .rh-copyright { color: var(--rh-muted); }
 
-/* ---- Command palette (Cmd+K) hint ---- */
-.md-search__form { border-radius: 10px; }
-.md-search__input { font-family: "Inter", sans-serif; }
-/* show kbd hint di search */
+/* ---- Cmd+K hint ---- */
 .rh-kbd-hint { font-size: 0.78rem; color: var(--rh-muted); margin-top: 0.5rem; }
 .rh-kbd-hint kbd {
   background: #f0f0f5; border: 1px solid var(--rh-border); border-bottom-width: 2px;
   border-radius: 5px; padding: 1px 6px; font-family: monospace; font-size: 0.72rem;
 }
 
-/* ---- Typography ---- */
-.md-typeset { font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 0.82rem; line-height: 1.7; }
+/* ---- Typography: hanya tweak, TIDAK memaksa font-size kecil ---- */
+.md-typeset { font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.7; }
 .md-typeset h1, .md-typeset h2, .md-typeset h3 { font-weight: 700; letter-spacing: -0.01em; color: var(--rh-text); }
 .md-typeset code { font-family: "JetBrains Mono", ui-monospace, monospace; border-radius: 6px; }
 
-/* ---- Admonition lembut ---- */
+/* ---- Admonition lebih lembut ---- */
 .md-typeset .admonition { border-radius: 12px; box-shadow: 0 2px 10px rgba(20,20,40,0.05); }
 .md-typeset .admonition.danger { border-left: 4px solid var(--rh-red); }
 .md-typeset .admonition.success { border-left: 4px solid #16a34a; }
@@ -130,7 +135,13 @@
 [data-md-color-scheme="slate"] {
   --rh-bg-soft: #16161d; --rh-border: #2a2a35; --rh-text: #f5f5f7; --rh-muted: #aaa;
 }
-[data-md-color-scheme="slate"] .rh-hero { background: linear-gradient(180deg, #111119 0%, #16161d 100%); border-bottom-color: var(--rh-border); }
-[data-md-color-scheme="slate"] .rh-card, [data-md-color-scheme="slate"] .rh-footnav a, [data-md-color-scheme="slate"] .rh-btn-ghost { background: #1d1d27; color: #f5f5f7 !important; }
+[data-md-color-scheme="slate"] .rh-hero {
+  background: linear-gradient(180deg, #111119 0%, #16161d 100%);
+  border-bottom-color: var(--rh-border);
+}
+[data-md-color-scheme="slate"] .rh-card,
+[data-md-color-scheme="slate"] .rh-footnav a,
+[data-md-color-scheme="slate"] .rh-btn-ghost { background: #1d1d27; color: #f5f5f7 !important; }
 [data-md-color-scheme="slate"] .md-typeset table:not([class]) th { background: #1d1d27; }
 [data-md-color-scheme="slate"] .rh-kbd-hint kbd { background: #2a2a35; }
+[data-md-color-scheme="slate"] .rh-hero h1 { color: #f5f5f7; }  /* fallback di dark */
