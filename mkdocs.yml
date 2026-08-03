@@ -8,6 +8,9 @@ edit_uri: edit/main/docs/
 theme:
   name: material
   language: id
+  font:
+    text: Inter
+    code: JetBrains Mono
   palette:
     - scheme: default
       primary: red
@@ -28,12 +31,21 @@ theme:
     - navigation.sections
     - navigation.top
     - navigation.footer
+    - navigation.indexes
     - toc.follow
     - content.code.copy
     - content.code.annotate
+    - content.action.edit
     - search.suggest
     - search.highlight
     - search.share
+
+extra_css:
+  - https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap
+  - assets/css/style.css
+
+extra:
+  homepage: https://masrizram.github.io/rhcsa-rh124-rh199-guide/
 
 plugins:
   - search

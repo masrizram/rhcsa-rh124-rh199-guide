@@ -14,7 +14,7 @@ ssh user@host                 # login jarak jauh
 ssh -p 2222 user@host         # port non-default
 ssh user@host "uptime"        # jalankan perintah remote
 scp file.txt user@host:/tmp/  # salin berkas (secure copy)
-rsync -avz dir/ user@host:dir/# sinkronisasi efisien
+rsync -avz dir/ user@host:dir/   # sinkronisasi efisien (增量)
 ```
 
 ## 3. Autentikasi Kunci (Public Key)

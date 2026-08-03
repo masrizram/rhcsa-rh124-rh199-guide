@@ -65,7 +65,33 @@ sudo dnf module enable postgresql:15
 sudo dnf install postgresql-server
 ```
 
+## 7. Jebakan Umum (EX200)
+
+!!! danger "Jebakan"
+    - `dnf update` tanpa `dnf history` / snapshot → paket krusial (kernel, DB)
+      ter-upgrade dan sesuatu rusak. Di lab selalu snapshot dulu.
+    - Lupa `sudo` → "permission denied" saat install/remove.
+    - `dnf module enable` **setelah** paket terpasang → konflik stream.
+      Enable modul **sebelum** `dnf install`.
+    - Repo nonaktif (RHEL butuh subscription) → `dnf` gagal. Klon gratis
+      (Rocky/Alma) sudah punya repo publik.
+
+## 8. Koneksi ke EX200
+
+!!! success "EX200"
+    Soal: "Pasang `httpd` versi terbaru, verifikasi, lalu batalkan instalasi."
+    Kunci: `dnf install -y httpd` → `rpm -q httpd` → `dnf history undo <id>`.
+    Atau "pasang PostgreSQL 15 via module": `dnf module enable postgresql:15`
+    lalu `dnf install postgresql-server`.
+
+## Kuis Cepat
+
+1. Bedanya `dnf` vs `rpm`? (dnf resolve dependensi; rpm tidak)
+2. Batalkan instalasi lewat history? (`dnf history undo <id>`)
+3. Cari paket pemilik berkas `/usr/bin/ssh`? (`dnf provides /usr/bin/ssh`)
+
 ## Latihan
 1. Cari paket yang menyediakan `vim`: `dnf provides /usr/bin/vim`.
-2. Pasang `tree` lalu hapus: `dnf install tree` → `dnf remove tree`.
+2. Pasang `tree` lalu hapus: `sudo dnf install tree` → `sudo dnf remove tree`.
 3. Cek update yang tersedia: `dnf check-update` (tanpa memasang).
+4. Lihat modul: `dnf module list`, enable satu (mis. `postgresql:15`).

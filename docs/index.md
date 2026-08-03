@@ -1,3 +1,38 @@
+<div class="rh-hero">
+  <span class="rh-badge">🐧 RHEL 9 & 10 · EX200</span>
+  <h1>Belajar RHCSA, Cara yang Benar</h1>
+  <p>Panduan langkah-demi-langkah menuju sertifikasi <strong>Red Hat Certified
+  System Administrator (EX200)</strong> berbasis kurikulum RH124 / RH199.
+  Materi, latihan, jebakan ujian, dan kuis — semua gratis.</p>
+  <div class="rh-cta">
+    <a class="rh-btn rh-btn-primary" href="pusat-belajar/">🗺️ Mulai Belajar</a>
+    <a class="rh-btn rh-btn-ghost" href="modul/00-pengantar-dan-roadmap/">Pengantar →</a>
+  </div>
+</div>
+
+<div class="rh-grid">
+  <div class="rh-card">
+    <div class="rh-ico">📦</div>
+    <h3>18 Modul Terstruktur</h3>
+    <p>Dari shell dasar hingga Podman & SELinux, disusun sesuai kurikulum resmi.</p>
+  </div>
+  <div class="rh-card">
+    <div class="rh-ico">🛠️</div>
+    <h3>Latihan Praktik</h3>
+    <p>LAB per modul + simulasi EX200 90 menit, bisa dijalankan tanpa disk tambahan.</p>
+  </div>
+  <div class="rh-card">
+    <div class="rh-ico">🛡️</div>
+    <h3>Jebakan & Koneksi EX200</h3>
+    <p>Tiap modul kunci diberi tahu apa yang sering membatalkan peserta ujian.</p>
+  </div>
+  <div class="rh-card">
+    <div class="rh-ico">⌨️</div>
+    <h3>Cheat Sheet & Glosarium</h3>
+    <p>Ringkasan perintah + 35+ istilah RHCSA siap dibuka kapan saja.</p>
+  </div>
+</div>
+
 # 📘 Panduan Lengkap RHCSA (RH124 / RH199) — RHEL 9 & 10
 
 Selamat datang di panduan langkah-demi-langkah menuju sertifikasi

@@ -72,6 +72,11 @@ setfacl -x u:andi file.txt         # hapus ACL user andi
 setfacl -R -m d:u:andi:rwx /data   # default ACL (warisan) untuk direktori
 ```
 
+## 7. Latihan Singkat (Review)
+
+Suatu berkas `data.txt` milik `budi:dev` dengan izin `-rw-r-----`.
+Jelaskan siapa yang bisa baca/tulis. (Owner budi rw; group dev r; other tidak ada)
+
 ## 8. Jebakan Umum (EX200)
 
 !!! danger "Jebakan"
@@ -82,14 +87,15 @@ setfacl -R -m d:u:andi:rwx /data   # default ACL (warisan) untuk direktori
       akses ditolak (lihat Modul 16/SELinux).
     - `umask` hanya berlaku untuk sesi shell saat itu; untuk permanen set di
       `/etc/profile` atau `~/.bashrc`.
+    - SGID pada direktori **tidak** mewarisi permission, hanya mewarisi **group**.
 
 ## 9. Koneksi ke EX200
 
 !!! success "EX200"
     Soal permission umum: atur hak akses file/direktori sesuai spesifikasi
-    (mis. "hanya owner yang baca-tulis, group只读"), atau beri user tertentu
-    akses lewat **ACL** tanpa mengubah owner. Kunci: `chmod`, `chown`, `setfacl`,
-    `getfacl` untuk memverifikasi.
+    (mis. "hanya owner yang baca-tulis, group **baca-saja**"), atau beri user
+    tertentu akses lewat **ACL** tanpa mengubah owner. Kunci: `chmod`, `chown`,
+    `setfacl`, `getfacl` untuk memverifikasi.
 
 ## Kuis Cepat
 
