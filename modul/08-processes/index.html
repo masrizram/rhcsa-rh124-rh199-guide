@@ -252,7 +252,9 @@
 
 
 
-<nav class="md-nav md-nav--primary" aria-label="Navigasi" data-md-level="0">
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigasi" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="https://masrizram.github.io/rhcsa-rh124-rh199-guide/" title="Panduan Lengkap RHCSA (RH124 / RH199) - RHEL 9 &amp; 10" class="md-nav__button md-logo" aria-label="Panduan Lengkap RHCSA (RH124 / RH199) - RHEL 9 & 10" data-md-component="logo">
       
@@ -690,6 +692,28 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#kunci-jawaban-klik-untuk-lihat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kunci Jawaban (klik untuk lihat)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kuis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kuis
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1083,6 +1107,60 @@
   
   
     <li class="md-nav__item">
+      <a href="../../referensi/SIMULASI-UJIAN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ⏱️ Simulasi Ujian 2 Jam
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../referensi/CHECKLIST-H1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Checklist H-1 Ujian
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../referensi/GLOSARIUM/" class="md-nav__link">
         
   
@@ -1110,112 +1188,17 @@
               </div>
             
             
-              
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-
-<nav class="md-nav md-nav--secondary" aria-label="Daftar isi">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Daftar isi
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1-apa-itu-proses" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Apa itu Proses?
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-melihat-proses" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Melihat Proses
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-mengelola-proses" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Mengelola Proses
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-job-control-latar-belakang" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Job Control (Latar Belakang)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-prioritas-nice-value" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. Prioritas (Nice Value)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#6-beban-sistem" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6. Beban Sistem
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#latihan" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Latihan
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-                  </div>
-                </div>
-              </div>
-            
           
           
             <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
               
               <article class="md-content__inner md-typeset">
                 
@@ -1281,6 +1264,36 @@ bisa diabaikan tapi bisa meninggalkan data korup.</p>
 <li>Temukan PID <code>sshd</code> dengan <code>pgrep sshd</code>, lalu <code>ps -p &lt;PID&gt; -o pid,comm,ni</code>.</li>
 <li>Amati beban: <code>uptime</code> dan <code>free -h</code>.</li>
 </ol>
+<h2 id="kunci-jawaban-klik-untuk-lihat">Kunci Jawaban (klik untuk lihat)<a class="headerlink" href="#kunci-jawaban-klik-untuk-lihat" title="Permanent link">&para;</a></h2>
+<details class="note">
+<summary>Kunci Jawaban Latihan</summary>
+<ol>
+<li><code>sleep 300 &amp;</code> → muncul <code>[1] &lt;PID&gt;</code>; <code>jobs</code> menampilkan <code>[1]+ Running</code>;
+   <code>kill %1</code> mengirim SIGTERM → job selesai (Done).</li>
+<li><code>pgrep sshd</code> → mis. <code>872</code>; <code>ps -p 872 -o pid,comm,ni</code> →
+   <code>872 sshd 0</code> (nice default 0).</li>
+<li><code>uptime</code> → <code>load average: 0.00, 0.01, 0.05</code> (sistem idle);
+   <code>free -h</code> → total/used/free memori + swap.</li>
+</ol>
+</details>
+<h2 id="kuis">Kuis<a class="headerlink" href="#kuis" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Perintah untuk melihat <strong>semua</strong> proses dalam format standard adalah?</li>
+<li>a. <code>ps aux</code>  b. <code>ps -ef</code>  c. <code>top</code>  d. <code>jobs</code></li>
+<li>Sinyal mana yang <strong>tidak bisa diabaikan</strong> oleh proses?</li>
+<li>a. SIGTERM (15)  b. SIGKILL (9)  c. SIGHUP (1)  d. SIGINT (2)</li>
+<li>Perintah mejalankan proses dengan nice value 10?</li>
+<li>a. <code>renice 10</code>  b. <code>nice -n 10</code>  c. <code>kill -10</code>  d. <code>nohup 10</code></li>
+</ol>
+<details class="note">
+<summary>Kunci Jawaban Kuis</summary>
+<ol>
+<li><strong>b</strong> (<code>ps -ef</code> standard; <code>ps aux</code> BSD style — keduanya tampilkan semua,
+   tapi soal minta "standard" → <code>ps -ef</code>).</li>
+<li><strong>b</strong> (SIGKILL tidak bisa diabaikan, risiko data korup).</li>
+<li><strong>b</strong> (<code>nice -n 10 ./cmd</code>; <code>renice</code> untuk proses yang sudah jalan).</li>
+</ol>
+</details>
 
 
 
@@ -1314,9 +1327,9 @@ bisa diabaikan tapi bisa meninggalkan data korup.</p>
       <div class="rh-dir">▲ Mulai di sini</div>
       <div class="rh-t">🗺️ Pusat Belajar &amp; Roadmap</div>
     </a>
-    <a class="rh-next" href="../../modul/19-skenario-ex200/">
+    <a class="rh-next" href="../../referensi/SIMULASI-UJIAN/">
       <div class="rh-dir">Uji diri</div>
-      <div class="rh-t">📝 Skenario EX200 Terukur →</div>
+      <div class="rh-t">⏱️ Simulasi Ujian 2 Jam →</div>
     </a>
   </div>
   <div class="rh-copyright">
@@ -1332,7 +1345,7 @@ bisa diabaikan tapi bisa meninggalkan data korup.</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.top", "navigation.indexes", "toc.follow", "content.code.copy", "content.code.annotate", "content.action.edit", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Tersalin ke clipboard", "clipboard.copy": "Salin ke clipboard", "search.result.more.one": "1 lagi di halaman ini", "search.result.more.other": "# lagi di halaman ini", "search.result.none": "Tidak ada dokumen yang sesuai", "search.result.one": "1 dokumen ditemukan", "search.result.other": "# dokumen ditemukan", "search.result.placeholder": "Ketik untuk mulai pencarian", "search.result.term.missing": "Tidak ada", "select.version": "Pilih versi"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.path", "navigation.top", "navigation.indexes", "toc.follow", "toc.integrate", "content.code.copy", "content.code.annotate", "content.code.select", "content.tooltips", "content.action.edit", "content.action.raw", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Tersalin ke clipboard", "clipboard.copy": "Salin ke clipboard", "search.result.more.one": "1 lagi di halaman ini", "search.result.more.other": "# lagi di halaman ini", "search.result.none": "Tidak ada dokumen yang sesuai", "search.result.one": "1 dokumen ditemukan", "search.result.other": "# dokumen ditemukan", "search.result.placeholder": "Ketik untuk mulai pencarian", "search.result.term.missing": "Tidak ada", "select.version": "Pilih versi"}, "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
