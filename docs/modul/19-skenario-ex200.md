@@ -125,6 +125,27 @@ timedatectl | grep "Asia/Jakarta"
 sudo crontab -l | grep "tar czf /backup/etc"
 ```
 
+## 🧪 Tugas 11 — NFS Share (10 pt)
+Konfigurasi berbagi **NFS** (objective EX200 2.3). Di sisi **server**: pasang
+`nfs-utils`, aktifkan `nfs-server`, buat `/srv/nfs/share` (beri izin `777`),
+ekspor ke subnet lab `192.168.100.0/24(rw,sync,no_root_squash)` lalu muat
+dengan `exportfs -r`, dan buka service `nfs` di firewalld. Di sisi **klien**:
+pasang `nfs-utils`, mount `server:/srv/nfs/share` ke `/mnt/nfs` secara
+**permanen di fstab** dengan opsi `_netdev`, lalu uji `mount -a`.
+
+> Untuk latihan di 1 VM, jadikan host sendiri sebagai server sekaligus klien:
+> ganti `server` dengan `localhost` (atau `$(hostname)`).
+
+**Verifikasi:**
+```bash
+# server
+exportfs -v | grep "srv/nfs"      # ekspor aktif
+firewall-cmd --list-services | grep nfs
+# klien
+df -hT /mnt/nfs                   # ter-mount
+grep "nfs" /etc/fstab             # entri dengan _netdev
+```
+
 ---
 
 ## 📊 Score Sheet
@@ -140,9 +161,10 @@ sudo crontab -l | grep "tar czf /backup/etc"
 | 7 | DNF module | 10 | |
 | 8 | Podman | 10 | |
 | 9 | SELinux | 10 | |
-| 10 | Cron & TZ |  ----- | |
+| 10 | Cron & TZ | 10 | |
+| 11 | NFS share | 10 | |
 
-**Total:** _____ / 100
+**Total:** _____ / 110
 
 - **≥ 80** → siap ujian.
 - **60–79** → ulangi modul yang lemah.
