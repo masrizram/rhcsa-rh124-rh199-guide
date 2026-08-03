@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{# Top announcement bar (Mintlify-style topbar) #}
+{% block announce %}
+  <div class="rh-topbar">
+    🐧 Panduan gratis persiapan <strong>RHCSA (EX200)</strong> · RHEL 9 &amp; 10 ·
+    <a href="https://www.redhat.com/en/services/training/ex200-red-hat-certified-system-administrator-rhcsa-exam" target="_blank" rel="noopener">Cek detail ujian resmi →</a>
+  </div>
+{% endblock %}
+
+{# Footer navigation cards (Mintlify-style) #}
+{% block footer %}
+  <div class="rh-footnav">
+    <a href="pusat-belajar/">
+      <div class="rh-dir">▲ Mulai di sini</div>
+      <div class="rh-t">🗺️ Pusat Belajar &amp; Roadmap</div>
+    </a>
+    <a class="rh-next" href="modul/19-skenario-ex200/">
+      <div class="rh-dir">Uji diri</div>
+      <div class="rh-t">📝 Skenario EX200 Terukur →</div>
+    </a>
+  </div>
+  {{ super() }}
+{% endblock %}

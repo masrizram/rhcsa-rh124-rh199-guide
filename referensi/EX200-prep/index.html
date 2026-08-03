@@ -89,6 +89,19 @@
     </div>
     <div data-md-component="announce">
       
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+  <div class="rh-topbar">
+    🐧 Panduan gratis persiapan <strong>RHCSA (EX200)</strong> · RHEL 9 &amp; 10 ·
+    <a href="https://www.redhat.com/en/services/training/ex200-red-hat-certified-system-administrator-rhcsa-exam" target="_blank" rel="noopener">Cek detail ujian resmi →</a>
+  </div>
+
+          </div>
+          
+        </aside>
+      
     </div>
     
     
@@ -621,6 +634,25 @@
     
   
   🎓 Modul 18 — EX200 (RHCSA) Prep
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../modul/19-skenario-ex200/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  📝 Modul 19 — Skenario EX200 Terukur
 
       </a>
     </li>
@@ -1324,6 +1356,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../modul/19-skenario-ex200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📝 Modul 19 — Skenario EX200 Terukur
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../lab/LAB/" class="md-nav__link">
         
   
@@ -1442,6 +1501,17 @@
     <span class="md-ellipsis">
       
         1. Profil Ujian
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1b-perbedaan-rhel-9-vs-rhel-10-penting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1b. Perbedaan RHEL 9 vs RHEL 10 (Penting!)
       
     </span>
   </a>
@@ -1587,6 +1657,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#1b-perbedaan-rhel-9-vs-rhel-10-penting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1b. Perbedaan RHEL 9 vs RHEL 10 (Penting!)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#2-bobot-topik-rhel-9" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1681,11 +1762,68 @@
 <p>Panduan taktis menghadapi ujian sertifikasi RHCSA (EX200).</p>
 <h2 id="1-profil-ujian">1. Profil Ujian<a class="headerlink" href="#1-profil-ujian" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Durasi</strong>: 3 jam (180 menit).</li>
+<li><strong>Durasi</strong>: 3 jam (180 menit) untuk RHEL 9; RHEL 10 tetap 3 jam.</li>
 <li><strong>Format</strong>: performance-based di VM nyata (bukan pilihan ganda).</li>
-<li><strong>Skor lolos</strong>: biasanya ~210/300 (bisa berubah tiap rilis RHEL).</li>
+<li><strong>Skor lolos</strong>: Red Hat <strong>tidak mengumumkan</strong> angka pasti; secara historis
+  passing score ~ <strong>210/300</strong> untuk EX200 (bisa berubah per rilis). Strategi
+  aman: kejar <strong>semua</strong> tugas, jangan mengejar nilai tertentu.</li>
 <li><strong>Tools tersedia</strong>: <code>man</code>, <code>vim</code>, <code>/usr/share/doc</code>, <code>cockpit</code> — <strong>tanpa internet</strong>.</li>
+<li><strong>Sistem</strong>: diberi VM (atau 2 VM) RHEL, credential &amp; IP diberikan di lembar soal.</li>
 </ul>
+<blockquote>
+<p>⚠️ <strong>Tidak ada ujian ulang gratis</strong> — satu kesempatan. Verifikasi tiap tugas
+sebelum lanjut.</p>
+</blockquote>
+<h2 id="1b-perbedaan-rhel-9-vs-rhel-10-penting">1b. Perbedaan RHEL 9 vs RHEL 10 (Penting!)<a class="headerlink" href="#1b-perbedaan-rhel-9-vs-rhel-10-penting" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Aspek</th>
+<th>RHEL 9</th>
+<th>RHEL 10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Init &amp; service</td>
+<td>systemd</td>
+<td>systemd (sama)</td>
+</tr>
+<tr>
+<td>Container</td>
+<td>Podman (rootless)</td>
+<td>Podman + <strong>bootc</strong></td>
+</tr>
+<tr>
+<td>OS model</td>
+<td>Package-based (RPM/DNF)</td>
+<td><strong>Image mode</strong> (bootc) tersedia</td>
+</tr>
+<tr>
+<td><code>bootc</code></td>
+<td>tidak ada</td>
+<td><code>bootc</code> untuk sistem berbasis image (imilar ke Container OS)</td>
+</tr>
+<tr>
+<td>Default FS</td>
+<td>XFS</td>
+<td>XFS</td>
+</tr>
+<tr>
+<td>Networking</td>
+<td>NetworkManager/nmcli</td>
+<td>NetworkManager/nmcli (sama)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Bootc / Image Mode (RHEL 10):</strong> sistem dikelola sebagai <em>image</em> yang
+di-update via <code>bootc</code> (bukan <code>dnf update</code> tradisional). Untuk EX200, fokus
+tetap ke administrasi standar (user, storage, service, network, SELinux,
+Podman) — <code>bootc</code> muncul sebagai topik baru tapi bobotnya kecil. Perintah dasar:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>bootc<span class="w"> </span>status<span class="w">          </span><span class="c1"># lihat status image/rollback</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>bootc<span class="w"> </span>upgrade<span class="w">         </span><span class="c1"># upgrade ke image baru</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>bootc<span class="w"> </span>rollback<span class="w">        </span><span class="c1"># kembalikan ke image sebelumnya</span>
+</code></pre></div></p>
 <h2 id="2-bobot-topik-rhel-9">2. Bobot &amp; Topik (RHEL 9)<a class="headerlink" href="#2-bobot-topik-rhel-9" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Essential tools (shell, vim, pipe, <code>tar</code>, <code>grep</code>, <code>ssh</code>) — 10–15%</li>
@@ -1798,6 +1936,17 @@ pekerjaannya sendiri." — prinsip lab.</p>
         
       </main>
       
+  <div class="rh-footnav">
+    <a href="pusat-belajar/">
+      <div class="rh-dir">▲ Mulai di sini</div>
+      <div class="rh-t">🗺️ Pusat Belajar &amp; Roadmap</div>
+    </a>
+    <a class="rh-next" href="modul/19-skenario-ex200/">
+      <div class="rh-dir">Uji diri</div>
+      <div class="rh-t">📝 Skenario EX200 Terukur →</div>
+    </a>
+  </div>
+  
         <footer class="md-footer">
   
     
@@ -1856,6 +2005,7 @@ pekerjaannya sendiri." — prinsip lab.</p>
   </div>
 </footer>
       
+
     </div>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
