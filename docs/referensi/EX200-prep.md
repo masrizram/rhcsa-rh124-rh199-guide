@@ -3,10 +3,37 @@
 Panduan taktis menghadapi ujian sertifikasi RHCSA (EX200).
 
 ## 1. Profil Ujian
-- **Durasi**: 3 jam (180 menit).
+- **Durasi**: 3 jam (180 menit) untuk RHEL 9; RHEL 10 tetap 3 jam.
 - **Format**: performance-based di VM nyata (bukan pilihan ganda).
-- **Skor lolos**: biasanya ~210/300 (bisa berubah tiap rilis RHEL).
+- **Skor lolos**: Red Hat **tidak mengumumkan** angka pasti; secara historis
+  passing score ~ **210/300** untuk EX200 (bisa berubah per rilis). Strategi
+  aman: kejar **semua** tugas, jangan mengejar nilai tertentu.
 - **Tools tersedia**: `man`, `vim`, `/usr/share/doc`, `cockpit` — **tanpa internet**.
+- **Sistem**: diberi VM (atau 2 VM) RHEL, credential & IP diberikan di lembar soal.
+
+> ⚠️ **Tidak ada ujian ulang gratis** — satu kesempatan. Verifikasi tiap tugas
+> sebelum lanjut.
+
+## 1b. Perbedaan RHEL 9 vs RHEL 10 (Penting!)
+| Aspek | RHEL 9 | RHEL 10 |
+|-------|--------|---------|
+| Init & service | systemd | systemd (sama) |
+| Container | Podman (rootless) | Podman + **bootc** |
+| OS model | Package-based (RPM/DNF) | **Image mode** (bootc) tersedia |
+| `bootc` | tidak ada | `bootc` untuk sistem berbasis image (imilar ke Container OS) |
+| Default FS | XFS | XFS |
+| Networking | NetworkManager/nmcli | NetworkManager/nmcli (sama) |
+
+**Bootc / Image Mode (RHEL 10):** sistem dikelola sebagai *image* yang
+di-update via `bootc` (bukan `dnf update` tradisional). Untuk EX200, fokus
+tetap ke administrasi standar (user, storage, service, network, SELinux,
+Podman) — `bootc` muncul sebagai topik baru tapi bobotnya kecil. Perintah dasar:
+```bash
+bootc status          # lihat status image/rollback
+bootc upgrade         # upgrade ke image baru
+bootc rollback        # kembalikan ke image sebelumnya
+```
+
 
 ## 2. Bobot & Topik (RHEL 9)
 1. Essential tools (shell, vim, pipe, `tar`, `grep`, `ssh`) — 10–15%

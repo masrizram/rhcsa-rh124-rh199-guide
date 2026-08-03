@@ -39,6 +39,7 @@ theme:
     - search.suggest
     - search.highlight
     - search.share
+  custom_dir: docs/overrides
 
 extra_css:
   - https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap
@@ -96,6 +97,7 @@ nav:
   - "🛡️ Modul 16 — SELinux": modul/16-selinux.md
   - "⏰ Modul 17 — Penjadwalan & Time Zone": modul/17-scheduling.md
   - "🎓 Modul 18 — EX200 (RHCSA) Prep": modul/15-ex200-prep.md
+  - "📝 Modul 19 — Skenario EX200 Terukur": modul/19-skenario-ex200.md
   - "🛠️ Latihan (LAB)": lab/LAB.md
   - "⌨️ Cheat Sheet": referensi/CHEATSHEET.md
   - "🎯 Persiapan EX200": referensi/EX200-prep.md

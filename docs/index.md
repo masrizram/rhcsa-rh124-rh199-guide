@@ -1,5 +1,5 @@
 <div class="rh-hero">
-  <span class="rh-badge">🐧 RHEL 9 & 10 · EX200</span>
+  <div class="rh-banner">🐧</div>
   <h1>Belajar RHCSA, Cara yang Benar</h1>
   <p>Panduan langkah-demi-langkah menuju sertifikasi <strong>Red Hat Certified
   System Administrator (EX200)</strong> berbasis kurikulum RH124 / RH199.
@@ -8,6 +8,7 @@
     <a class="rh-btn rh-btn-primary" href="pusat-belajar/">🗺️ Mulai Belajar</a>
     <a class="rh-btn rh-btn-ghost" href="modul/00-pengantar-dan-roadmap/">Pengantar →</a>
   </div>
+  <div class="rh-kbd-hint">Cepat cari materi: tekan <kbd>Ctrl</kbd>+<kbd>K</kbd> (atau <kbd>⌘</kbd>+<kbd>K</kbd> di Mac)</div>
 </div>
 
 <div class="rh-grid">
