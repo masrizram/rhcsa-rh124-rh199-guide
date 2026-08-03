@@ -5,8 +5,8 @@
   System Administrator (EX200)</strong> berbasis kurikulum RH124 / RH199.
   Materi, latihan, jebakan ujian, dan kuis — semua gratis.</p>
   <div class="rh-cta">
-    <a class="rh-btn rh-btn-primary" href="pusat-belajar/">🗺️ Mulai Belajar</a>
-    <a class="rh-btn rh-btn-ghost" href="modul/00-pengantar-dan-roadmap/">Pengantar →</a>
+    <a class="rh-btn rh-btn-primary" href="/pusat-belajar/">🗺️ Mulai Belajar</a>
+    <a class="rh-btn rh-btn-ghost" href="/modul/00-pengantar-dan-roadmap/">Pengantar →</a>
   </div>
   <div class="rh-kbd-hint">Cepat cari materi: tekan <kbd>Ctrl</kbd>+<kbd>K</kbd> (atau <kbd>⌘</kbd>+<kbd>K</kbd> di Mac)</div>
 </div>
