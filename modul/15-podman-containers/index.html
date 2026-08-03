@@ -884,6 +884,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#8-quadlet-container-sebagai-systemd-unit-wajib-ex200-rhel-9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Quadlet — Container sebagai systemd Unit (Wajib EX200 RHEL 9)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#9-skopeo-buildah-inspeksi-salin-bangun-image-wajib-ex200" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1376,26 +1387,68 @@
 <li>SELinux blocks read/write volume → <code>z</code>/<code>Z</code> flag: <code>-v /data:/data:Z</code>.</li>
 </ul>
 </div>
+<h2 id="8-quadlet-container-sebagai-systemd-unit-wajib-ex200-rhel-9">8. Quadlet — Container sebagai systemd Unit (Wajib EX200 RHEL 9)<a class="headerlink" href="#8-quadlet-container-sebagai-systemd-unit-wajib-ex200-rhel-9" title="Permanent link">&para;</a></h2>
+<p>Cara <strong>modern &amp; direkomendasikan</strong> di EX200 RHEL 9 untuk menjadikan container
+auto-start saat boot adalah <strong>quadlet</strong>: cukup tulis file unit <code>.container</code>
+(semacam systemd unit), lalu <code>systemctl</code> yang mengelolanya — tanpa perlu
+<code>podman generate systemd</code> lagi.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># 1. Buat file unit quadlet (rootless: ~/.config/containers/systemd/)</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>~/.config/containers/systemd
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>~/.config/containers/systemd/web.container<span class="w"> </span><span class="s">&lt;&lt;&#39;EOF&#39;</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="s">[Unit]</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="s">Description=Web server nginx via quadlet</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="s">After=network-online.target</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="s">Wants=network-online.target</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="s">[Container]</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="s">Image=docker.io/library/nginx:latest</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="s">ContainerName=web</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="s">PublishPorts=8080:80</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="s">Volume=/srv/html:/usr/share/nginx/html:Z</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="s">[Service]</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="s">Restart=always</span>
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>
+<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="s">[Install]</span>
+<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="s">WantedBy=default.target</span>
+<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="s">EOF</span>
+<a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a>
+<a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a><span class="c1"># 2. Muat &amp; jalankan (systemd membaca quadlet otomatis)</span>
+<a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a>systemctl<span class="w"> </span>--user<span class="w"> </span>daemon-reload
+<a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a>systemctl<span class="w"> </span>--user<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>web.container
+<a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a>loginctl<span class="w"> </span>enable-linger<span class="w"> </span><span class="nv">$USER</span><span class="w">          </span><span class="c1"># agar jalan walau user logout (rootless)</span>
+</code></pre></div>
+<p>Verifikasi:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>systemctl<span class="w"> </span>--user<span class="w"> </span>is-active<span class="w"> </span>web.service<span class="w">   </span><span class="c1"># quadlet otomatis jadi *.service</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>podman<span class="w"> </span>ps<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>web
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>curl<span class="w"> </span>-s<span class="w"> </span>localhost:8080<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-1
+</code></pre></div></p>
+<blockquote>
+<p>Quadlet mendeteksi file <code>*.container</code>/<code>*.volume</code>/<code>*.network</code> di direktori
+systemd dan membangun unit systemd-nya saat <code>daemon-reload</code>. Di SOAL EX200
+yang explicit minta "quadlet" atau "systemd-managed container", gunakan cara
+ini (lebih bersih daripada <code>podman generate systemd --new</code>).</p>
+</blockquote>
 <h2 id="9-skopeo-buildah-inspeksi-salin-bangun-image-wajib-ex200">9. skopeo &amp; buildah — Inspeksi, Salin, &amp; Bangun Image (Wajib EX200)<a class="headerlink" href="#9-skopeo-buildah-inspeksi-salin-bangun-image-wajib-ex200" title="Permanent link">&para;</a></h2>
 <p>Selain <code>podman</code>, EX200 mengenal <strong>skopeo</strong> (inspeksi &amp; copy image antar
 registry/tar tanpa perlu pull penuh) dan <strong>buildah</strong> (build image OCI tanpa
 daemon). Berguna untuk soal "ambil image dari registry ke local store" atau
 "inspeksi image".</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># skopeo: inspeksi image di registry tanpa mendownload layer</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>skopeo<span class="w"> </span>inspect<span class="w"> </span>docker://docker.io/library/nginx:latest
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># skopeo: salin image registry -&gt; local tar (offline-friendly)</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>skopeo<span class="w"> </span>copy<span class="w"> </span>docker://docker.io/library/nginx:latest<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">            </span>oci-archive:/tmp/nginx.oci.tar
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="c1"># skopeo: salin antar registry (mirror)</span>
-<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>skopeo<span class="w"> </span>copy<span class="w"> </span>docker://docker.io/library/nginx:latest<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">            </span>docker://registry.access.redhat.com/nginx:latest
-<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>
-<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="c1"># buildah: bangun image dari Containerfile (tanpa docker daemon)</span>
-<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>buildah<span class="w"> </span>bud<span class="w"> </span>-t<span class="w"> </span>myapp:1.0<span class="w"> </span>.<span class="w">        </span><span class="c1"># &#39;bud&#39; = build using dockerfile</span>
-<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>buildah<span class="w"> </span>images<span class="w">                     </span><span class="c1"># lihat image hasil build</span>
-<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>podman<span class="w"> </span>pull<span class="w"> </span>myapp:1.0<span class="w">             </span><span class="c1"># image buildah bisa dipakai podman</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># skopeo: inspeksi image di registry tanpa mendownload layer</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>skopeo<span class="w"> </span>inspect<span class="w"> </span>docker://docker.io/library/nginx:latest
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1"># skopeo: salin image registry -&gt; local tar (offline-friendly)</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>skopeo<span class="w"> </span>copy<span class="w"> </span>docker://docker.io/library/nginx:latest<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">            </span>oci-archive:/tmp/nginx.oci.tar
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="c1"># skopeo: salin antar registry (mirror)</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>skopeo<span class="w"> </span>copy<span class="w"> </span>docker://docker.io/library/nginx:latest<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">            </span>docker://registry.access.redhat.com/nginx:latest
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="c1"># buildah: bangun image dari Containerfile (tanpa docker daemon)</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>buildah<span class="w"> </span>bud<span class="w"> </span>-t<span class="w"> </span>myapp:1.0<span class="w"> </span>.<span class="w">        </span><span class="c1"># &#39;bud&#39; = build using dockerfile</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>buildah<span class="w"> </span>images<span class="w">                     </span><span class="c1"># lihat image hasil build</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>podman<span class="w"> </span>pull<span class="w"> </span>myapp:1.0<span class="w">             </span><span class="c1"># image buildah bisa dipakai podman</span>
 </code></pre></div>
 <blockquote>
 <p>⚠️ <code>skopeo copy</code> tidak butuh <code>podman pull</code> dulu — langsung transfer antar
