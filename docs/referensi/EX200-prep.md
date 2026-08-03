@@ -20,16 +20,18 @@
 6. Users & groups — 10–15%
 7. Security (`firewalld`, **SELinux**, `ssh`, `sudo`) — 12–18%
 8. Networking (`nmcli`, DNS, hostname, **IPv6**) — 10–15%
-9. Containers (`podman`) — bagian baru RHEL 9
+9. Containers (`podman`, **skopeo/buildah**, quadlet) — bagian baru RHEL 9
+10. **Storage modern (RHEL 9/10): Stratis, VDO, disk quota** — wajib diuji
 
-> Perbedaan RHEL 9 vs RHEL 10 (bootc/image mode) ada di Modul 18, §4.
+> Perbedaan RHEL 9 vs RHEL 10 (bootc/image mode, nmstate) ada di Modul 18, §4.
 
 ## 3. Checklist H-7
 - [ ] Kerjakan semua modul 01–20 tanpa melihat catatan.
 - [ ] Selesaikan LAB & [Simulasi 2 Jam](../referensi/SIMULASI-UJIAN.md) < 90 menit.
 - [ ] Kuasai `vim`, `nmcli`, `systemctl`, `journalctl`, `dnf`, `firewall-cmd`, `setsebool`/`restorecon`.
 - [ ] Pahami LVM end-to-end (create → extend → growfs).
-- [ ] Latihan `podman run` + generate systemd service.
+- [ ] Kuasai **Stratis** (pool/filesystem/snapshot), **VDO** (dedup + `vdostats`), dan **disk quota** (`xfs_quota -x -c 'limit ...'`) — wajib RHEL 9/10.
+- [ ] Latihan `podman run` + generate systemd service + `skopeo inspect/copy`.
 - [ ] Simulasikan reboot VM dan pastikan tidak masuk grub rescue (fstab benar).
 - [ ] Kuasai [Break & Fix](../referensi/BREAK-FIX.md) — ~40% soal EX200 adalah troubleshooting.
 - [ ] **Topik sering luput**: autofs, Flatpak, tuned, grub2/rd.break, VFAT, chrony/IPv6.

@@ -130,6 +130,61 @@ df -hT /mnt/nfs             # verifikasi ter-mount
 > ⚠️ Jangan lupa `firewall-cmd --add-service=nfs` di server, dan opsi `_netdev`
 > di fstab klien — tanpa itu mount gagal saat boot (VM hang di emergency).
 
+## 7c. nmstate — Manajemen Network Deklaratif (RHEL 10)
+
+RHEL 10 memperkenalkan **nmstate** sebagai cara deklaratif mengonfigurasi
+jaringan (state file YAML → diterapkan oleh `nmcli`/`networkctl` via
+`nmstatectl`). Berguna saat ingin konfigurasi idempoten/reproducible — cocok
+untuk EX200 track RHEL 10 dan otomasi.
+
+```bash
+# 1. Pastikan tool ada
+sudo dnf install -y nmstate
+
+# 2. Lihat state jaringan saat ini (YAML)
+nmstatectl show
+
+# 3. Terapkan konfigurasi dari file deklaratif
+#    contoh: set IP statis eth0 via state file
+cat > /tmp/eth0-static.yml <<'EOF'
+interfaces:
+  - name: eth0
+    type: ethernet
+    state: up
+    ipv4:
+      enabled: true
+      address:
+        - ip: 192.168.1.50
+          prefix-length: 24
+      dhcp: false
+    ipv6:
+      enabled: true
+      address:
+        - ip: 2001:db8:1::50
+          prefix-length: 64
+      dhcp: false
+dns-resolver:
+  config:
+    server:
+      - 8.8.8.8
+      - 2001:4860:4860::8888
+routes:
+  config:
+    - destination: 0.0.0.0/0
+      next-hop-address: 192.168.1.1
+      next-hop-interface: eth0
+EOF
+sudo nmstatectl apply /tmp/eth0-static.yml
+
+# 4. Verifikasi
+nmstatectl show eth0
+ip -br addr; ip -6 addr show eth0
+```
+
+> ⚠️ `nmstatectl apply` menggantikan konfigurasi NetworkManager yang ada
+> (idempoten: jika sudah cocok, tidak berubah). Cocok untuk EX200 RHEL 10,
+> tapi di lab RHEL 9 gunakan `nmcli` (§3) yang lebih umum diuji.
+
 ## 8. Jebakan Umum (EX200)
 
 !!! danger "Jebakan"

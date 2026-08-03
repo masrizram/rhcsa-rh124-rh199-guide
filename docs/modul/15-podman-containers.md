@@ -88,7 +88,36 @@ podman system prune           # bersihkan semua tak terpakai
     - Firewall host blokir port 8080 → tetap `firewall-cmd --add-port=8080/tcp`.
     - SELinux blocks read/write volume → `z`/`Z` flag: `-v /data:/data:Z`.
 
-## 8. Koneksi ke EX200
+## 9. skopeo & buildah — Inspeksi, Salin, & Bangun Image (Wajib EX200)
+
+Selain `podman`, EX200 mengenal **skopeo** (inspeksi & copy image antar
+registry/tar tanpa perlu pull penuh) dan **buildah** (build image OCI tanpa
+daemon). Berguna untuk soal "ambil image dari registry ke local store" atau
+"inspeksi image".
+
+```bash
+# skopeo: inspeksi image di registry tanpa mendownload layer
+skopeo inspect docker://docker.io/library/nginx:latest
+
+# skopeo: salin image registry -> local tar (offline-friendly)
+skopeo copy docker://docker.io/library/nginx:latest \
+            oci-archive:/tmp/nginx.oci.tar
+
+# skopeo: salin antar registry (mirror)
+skopeo copy docker://docker.io/library/nginx:latest \
+            docker://registry.access.redhat.com/nginx:latest
+
+# buildah: bangun image dari Containerfile (tanpa docker daemon)
+buildah bud -t myapp:1.0 .        # 'bud' = build using dockerfile
+buildah images                     # lihat image hasil build
+podman pull myapp:1.0             # image buildah bisa dipakai podman
+```
+
+> ⚠️ `skopeo copy` tidak butuh `podman pull` dulu — langsung transfer antar
+> sumber/tujuan. Di EX200 sering dipakai untuk "mirror image ke registry
+> internal" atau "backup image ke file".
+
+## 10. Koneksi ke EX200
 
 !!! success "EX200"
     Soal container umumnya: *"Jalankan image X sebagai container bernama Y,

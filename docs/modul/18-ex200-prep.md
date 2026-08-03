@@ -19,8 +19,10 @@ tapi seluruh materi & simulasi soal berada di modul ini.
 ## 2. Lingkup Ujian (Objektif Lengkap EX200)
 
 Berikut pemetaan objektif resmi EX200 (RHEL 10) ke modul di repo ini.
-Semua poin sudah tertutup — termasuk yang sering luput (autofs, Flatpak,
-tuned, bootloader/grub2, VFAT, chrony/IPv6).
+Semua poin tertutup — termasuk yang sering luput (autofs, Flatpak,
+tuned, bootloader/grub2, VFAT, chrony/IPv6) **serta storage modern
+(Stratis, VDO, disk quota) dan network deklaratif (nmstate) untuk track
+RHEL 9/10**.
 
 | Area objektif | Contoh tugas | Modul |
 |------|-------------|-------|
@@ -28,13 +30,13 @@ tuned, bootloader/grub2, VFAT, chrony/IPv6).
 | Manage software | RPM repo, DNF, **Flatpak** repo & paket | 12 |
 | Create simple shell scripts | `if`/`for`/`while`, `$1 $# $@`, output command | 20 |
 | Operate running systems | `systemctl`, `journalctl`, proses, `nice`, **tuned**, interrupt boot | 08, 09 |
-| Configure local storage | partisi GPT, LVM (PV/VG/LV), mount by UUID/label, swap | 13 |
-| Create & configure file systems | XFS/ext4/**VFAT**, NFS, **autofs**, extend LV, permission | 13 |
-| Deploy/adjust/maintain systems | `cron`/`at`/systemd timer, boot target, **chrony**, **grub2/bootloader** | 09, 17 |
-| Manage basic networking | **IPv4 & IPv6**, hostname, DNS, firewalld | 11 |
+| Configure local storage | partisi GPT, LVM (PV/VG/LV), mount by UUID/label, swap, **Stratis**, **VDO** | 13 |
+| Create & configure file systems | XFS/ext4/**VFAT**, NFS, **autofs**, extend LV, permission, **disk quota** | 13 |
+| Deploy/adjust/maintain systems | `cron`/`at`/systemd timer, boot target, **chrony**, **grub2/bootloader**, `bootc` (RHEL10) | 09, 17 |
+| Manage basic networking | **IPv4 & IPv6**, hostname, DNS, firewalld, **nmstate** (RHEL10) | 11 |
 | Manage users & groups | `useradd`, `usermod`, `passwd`, `sudo`, `chage` | 06 |
 | Manage security | `firewalld`, **SELinux** (enforcing), `ssh` key-based, `umask` | 07, 10, 16 |
-| Containers (RHEL 9+) | `podman` pull/run, podman sebagai service | 15 |
+| Containers (RHEL 9+) | `podman` pull/run, **skopeo/buildah**, podman sebagai service | 15 |
 
 > ⚠️ **SELinux** sering jadi penyebab gagal. Jangan mematikan — konfigurasikan
 > dengan benar (`setsebool`, `semanage`, `restorecon`, `chcon`).
@@ -51,6 +53,9 @@ perintah dasarnya (detail ada di modul masing-masing):
   (Modul 09, §Bootloader & Akses Darurat).
 - **VFAT** — format & mount FAT32 (`mkfs.vfat`, Modul 13).
 - **chrony / IPv6** — client time service & alamat IPv6 (`nmcli`, Modul 11 & 17).
+- **Stratis / VDO / disk quota** — storage modern wajib RHEL 9/10: pool
+  Stratis + snapshot, volume VDO dedup, dan `xfs_quota` batas user (Modul 13, §10–§12).
+- **nmstate** — network deklaratif via `nmstatectl apply` (RHEL 10, Modul 11, §7c).
 
 ## 4. Perbedaan RHEL 9 vs RHEL 10 (Penting!)
 
@@ -99,6 +104,12 @@ bootc switch <image>  # ganti ke image/repo berbeda
 7. Set SELinux boolean `httpd_can_network_connect` on.
 8. (Tambahan) Pasang paket Flatpak `gedit`, konfigurasi autofs untuk mount
    NFS lab on-demand, dan aktifkan profil `tuned` `throughput-performance`.
+9. (Storage modern RHEL 9/10) Buat pool Stratis `mypool` dari disk lab, buat
+   filesystem `data1`, mount permanen di `/mnt/stratis`.
+10. (Storage modern) Buat volume VDO dedup `--vdoLogicalSize` 50G di disk lab,
+    format XFS, mount di `/mnt/vdo`, verifikasi dengan `vdostats`.
+11. (Disk quota) Pasang opsi `usrquota,grpquota` di `/home`, set batas user
+    `user1` maks 120M block & 1200 inode via `xfs_quota -x -c 'limit ...'`.
 
 (Jawaban & langkah ada di `../lab/LAB.md` dan
 `../referensi/EX200-prep.md`. Untuk perbaikan sistem rusak, baca

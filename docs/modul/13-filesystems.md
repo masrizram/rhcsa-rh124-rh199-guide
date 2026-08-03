@@ -131,7 +131,117 @@ mount | grep auto.nfs      # terlihat entry automount
 > ⚠️ Bedanya dengan fstab statis: autofs **tidak** mem-block boot bila server
 > NFS down. Itu sebabnya sering jadi preferensi di soal EX200.
 
-## 10. Jebakan Umum (EX200)
+## 10. Stratis — Manajemen Storage Lokal Modern (Wajib EX200)
+
+Stratis menyederhanakan storage tingkat lanjut (snapshot, thin-provision,
+pool) di atas LVM/XFS dengan satu perintah. Objektif EX200 RHEL 9/10:
+*"Configure and manage storage using the Stratis"* (sic) — jadi **wajib diuji**.
+
+**Konsep:** `blockdev` (disk) → `pool` (kumpulan storage) → `filesystem`
+(XFS di atas pool, thin-provision).
+
+```bash
+# 1. Pasang & aktifkan layanan stratis
+sudo dnf install -y stratis-cli stratisd
+sudo systemctl enable --now stratisd
+
+# 2. Buat pool dari satu/lebih block device
+sudo stratis pool create mypool /dev/sdb /dev/sdc
+stratis pool list
+
+# 3. Buat filesystem (thin-provision, otomatis XFS)
+sudo stratis filesystem create mypool data1
+stratis filesystem list mypool
+
+# 4. Mount (pakai device mapper Stratis)
+sudo mkdir /mnt/stratis-data
+sudo mount /dev/stratis/mypool/data1 /mnt/stratis-data
+
+# 5. Mount permanen via /etc/fstab (gunakan _netdev + x-systemd)
+echo '/dev/stratis/mypool/data1  /mnt/stratis-data  xfs  defaults,x-systemd.requires=stratisd.service  0 0' | sudo tee -a /etc/fstab
+sudo mount -a
+```
+
+**Snapshot & recovered (sering muncul di soal):**
+```bash
+# Snapshot filesystem (readonly awal, bisa di-clone jadi RW)
+sudo stratis filesystem snapshot mypool data1 snap1
+# Clone snapshot jadi filesystem kerja
+sudo stratis filesystem clone mypool snap1 data1-restored
+# Hapus filesystem/pool
+sudo stratis filesystem destroy mypool data1-restored
+sudo stratis pool destroy mypool
+```
+
+> ⚠️ Jangan format device yang SUDAH masuk pool Stratis dengan `mkfs`.
+> Stratis mengelola XFS di dalamnya sendiri.
+
+## 11. VDO — Deduplikasi & Kompresi (Wajib EX200)
+
+VDO (Virtual Data Optimizer) memberikan deduplikasi + kompresi di atas block
+device, sehingga ruang fisik lebih efisien untuk data berulang (backup,
+image). Objektif EX200: *"Configure and manage storage using VDO"*.
+
+```bash
+# 1. Pasang & aktifkan
+sudo dnf install -y vdo kmod-kvdo
+sudo systemctl enable --now vdo
+
+# 2. Buat volume VDO (logical size BISA > physical size = thin)
+sudo vdo create --name=myvdo --device=/dev/sdb --vdoLogicalSize=50G
+#    tunggu sampai 'Operating' (lihat status):
+vdo status --name=myvdo
+
+# 3. Format & mount seperti block device biasa
+sudo mkfs.xfs -K /dev/mapper/myvdo
+sudo mkdir /mnt/vdo
+sudo mount /dev/mapper/myvdo /mnt/vdo
+
+# 4. Mount permanen (penting: _netdev + noauto agar tidak hang boot)
+echo '/dev/mapper/myvdo  /mnt/vdo  xfs  defaults,x-systemd.requires=vdo.service,_netdev  0 0' | sudo tee -a /etc/fstab
+
+# 5. Cek efisiensi (dedup ratio)
+vdostats --human-readable
+```
+
+> ⚠️ VDO butuh device **kosong** (belum ada filesystem/partition table).
+> Gunakan `vdo remove --name=myvdo` untuk membongkar.
+
+## 12. Disk Quota — Batasi Pemakaian User/Group (Wajib EX200)
+
+Objektif EX200: *"Implement disk quotas"*. Batasi berapa banyak ruang/	jumlah
+file yang boleh dipakai tiap user atau group pada suatu filesystem.
+
+```bash
+# 1. Mount FS dengan opsi quota (userquota,grpquota)
+#    di /etc/fstab:  UUID=xxxx  /home  xfs  defaults,usrquota,grpquota  0 0
+sudo mount -o remount,usrquota,grpquota /home
+
+# 2. XFS: bangun ulang database quota (langsung aktif, tanpa quotacheck)
+sudo xfs_quota -x -c 'report -h' /home      # lihat status
+sudo xfs_quota -x -c 'state' /home           # pastikan quota ON
+
+# 3. Set batas (block soft/hard + inode soft/hard) untuk user
+sudo xfs_quota -x -c 'limit bsoft=100M bhard=120M isoft=1000 ihard=1200 user1' /home
+
+# 4. Verifikasi
+sudo xfs_quota -x -c 'report -h -u' /home
+#    bhard/bsoft = batas block (ruang), ihard/isoft = batas inode (jumlah file)
+```
+
+Untuk **ext4** (berbeda alat):
+```bash
+sudo quotacheck -cugm /home     # bangun aquota.user/aquota.group
+sudo quotaon -v /home
+sudo edquota -u user1           # edit interaktif (mirip crontab)
+repquota -a                     # laporan
+```
+
+> ⚠️ `bhard` = batas keras (tulis ditolak setelah lewat). `bsoft` = batas lunak
+> (diizinkan lewat dalam masa grace, lalu jadi keras). EX200 sering minta
+> set keduanya.
+
+## 13. Jebakan Umum (EX200)
 
 !!! danger "Jebakan"
     - Salah UUID di `/etc/fstab` → VM **no-boot** (grub rescue). Selalu `mount -a`
@@ -152,6 +262,12 @@ mount | grep auto.nfs      # terlihat entry automount
     fstab (UUID) → `mount -a` → `lvextend -L +1G` → `xfs_growfs /data`.
     Atau: "Pasang share NFS `server:/export` ke `/mnt/data` otomatis saat
     diakses" → pakai **autofs** (§9).
+    Atau (RHEL 9/10): "Buat pool Stratis `mypool` dari `/dev/sdb`, buat
+    filesystem `data1`, mount permanen" → **Stratis** (§10).
+    Atau: "Buat volume VDO dedup 50G di `/dev/sdc`, mount di `/mnt/vdo`" →
+    **VDO** (§11).
+    Atau: "Batasi user `user1` maks 120M & 1200 file di `/home`" →
+    **disk quota** (§12, perintah `xfs_quota -x -c 'limit ...'`).
 
 ## Kunci Jawaban (klik untuk lihat)
 
@@ -177,3 +293,7 @@ mount | grep auto.nfs      # terlihat entry automount
 3. (Jika ada ruang) buat LV dengan LVM dan perbesar 1 GB.
 4. Format flash disk jadi VFAT: `sudo mkfs.vfat -F 32 /dev/sdX`, lalu mount.
 5. (Lab berjaringan) pasang autofs untuk mount NFS lab on-demand di `/mnt/nfs`.
+6. (RHEL 9/10) buat pool Stratis dari disk lab, buat filesystem, mount permanen.
+7. (RHEL 9/10) buat volume VDO dedup, format XFS, cek `vdostats`.
+8. (RHEL 9/10) pasang `usrquota,grpquota` di `/home`, set batas user dengan
+   `xfs_quota -x -c 'limit ...'`, verifikasi dengan `report -h -u`.
