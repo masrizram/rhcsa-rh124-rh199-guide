@@ -844,6 +844,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#kunci-jawaban-klik-untuk-lihat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kunci Jawaban (klik untuk lihat)
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1238,7 +1249,7 @@
 
 <h1 id="modul-12-install-and-update-software-dnf">Modul 12 — Install and Update Software (DNF)<a class="headerlink" href="#modul-12-install-and-update-software-dnf" title="Permanent link">&para;</a></h1>
 <blockquote>
-<p>Referensi video: <code>CDpa7ZpNNEE</code></p>
+<p>📺 Referensi video: <a href="https://www.youtube.com/watch?v=CDpa7ZpNNEE&amp;list=PLZkuninm20jDUT_jArQrkfCImbbi2jWns">CDpa7ZpNNEE</a></p>
 </blockquote>
 <h2 id="1-dnf-vs-rpm">1. DNF vs RPM<a class="headerlink" href="#1-dnf-vs-rpm" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1317,6 +1328,24 @@ lalu <code>dnf install postgresql-server</code>.</p>
 <li>Cek update yang tersedia: <code>dnf check-update</code> (tanpa memasang).</li>
 <li>Lihat modul: <code>dnf module list</code>, enable satu (mis. <code>postgresql:15</code>).</li>
 </ol>
+<h2 id="kunci-jawaban-klik-untuk-lihat">Kunci Jawaban (klik untuk lihat)<a class="headerlink" href="#kunci-jawaban-klik-untuk-lihat" title="Permanent link">&para;</a></h2>
+<details class="note">
+<summary>Kunci Jawaban Latihan</summary>
+<ol>
+<li><code>dnf provides /usr/bin/vim</code> → mis. <code>vim-enhanced</code>.</li>
+<li><code>dnf install -y tree</code> lalu <code>dnf remove -y tree</code> (pakai sudo bila bukan root).</li>
+<li><code>dnf check-update</code> menampilkan update tersedia tanpa memasang.</li>
+<li><code>dnf module list</code>; <code>dnf module enable -y postgresql:15</code>.</li>
+</ol>
+</details>
+<details class="note">
+<summary>Kunci Jawaban Kuis</summary>
+<ol>
+<li><strong><code>dnf</code></strong> (RHEL 8+ menggantikan yum).</li>
+<li><strong><code>dnf install pkg</code></strong> (tambah <code>-y</code> untuk non-interaktif).</li>
+<li><strong><code>dnf provides /path</code></strong> mencari paket pemilik berkas/biner.</li>
+</ol>
+</details>
 
 
 

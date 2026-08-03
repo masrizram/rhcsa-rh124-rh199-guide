@@ -974,6 +974,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#kunci-jawaban-klik-untuk-lihat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kunci Jawaban (klik untuk lihat)
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1235,6 +1246,7 @@
 <blockquote>
 <p>Muncul di objektif EX200: <em>"deploy, adjust, and maintain systems"</em> —
 mencakup cron, at, dan pengaturan waktu/locale.</p>
+<p>📺 Referensi video: <a href="https://www.youtube.com/watch?v=eGbNXqPdUa4&amp;list=PLZkuninm20jDUT_jArQrkfCImbbi2jWns">RHCSA &amp; EX200 Prep</a> (penjadwalan dalam kurikulum RH124/RH199)</p>
 </blockquote>
 <h2 id="1-cron-jadwal-berulang">1. <code>cron</code> — Jadwal Berulang<a class="headerlink" href="#1-cron-jadwal-berulang" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>crontab<span class="w"> </span>-e<span class="w">                   </span><span class="c1"># edit jadwal user saat ini</span>
@@ -1310,6 +1322,23 @@ mencakup cron, at, dan pengaturan waktu/locale.</p>
 <li>Jadwalkan <code>at</code> 1 menit lagi untuk <code>echo done &gt; ~/at.txt</code>.</li>
 <li>Ubah zona waktu ke <code>Asia/Jakarta</code>, verifikasi <code>timedatectl</code>.</li>
 </ol>
+<h2 id="kunci-jawaban-klik-untuk-lihat">Kunci Jawaban (klik untuk lihat)<a class="headerlink" href="#kunci-jawaban-klik-untuk-lihat" title="Permanent link">&para;</a></h2>
+<details class="note">
+<summary>Kunci Jawaban Latihan</summary>
+<ol>
+<li><code>crontab -e</code> → <code>*/5 * * * * date &gt;&gt; ~/log.txt</code> (5 kolom: m h dom mon dow).</li>
+<li><code>echo "echo done &gt; ~/at.txt" | at now + 1 minute</code>.</li>
+<li><code>timedatectl set-timezone Asia/Jakarta</code>; <code>timedatectl</code> → Time zone: Asia/Jakarta.</li>
+</ol>
+</details>
+<details class="note">
+<summary>Kunci Jawaban Kuis</summary>
+<ol>
+<li><strong>5 kolom</strong>: menit, jam, tanggal-bulan, bulan, hari-dalam-minggu.</li>
+<li><strong><code>crontab -r</code></strong> menghapus semua crontab user (tanpa konfirmasi).</li>
+<li><strong><code>timedatectl set-timezone Asia/Jakarta</code></strong>.</li>
+</ol>
+</details>
 
 
 
