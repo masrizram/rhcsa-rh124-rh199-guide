@@ -15,13 +15,13 @@
 <div class="rh-grid">
   <div class="rh-card">
     <div class="rh-ico">📦</div>
-    <h3>18 Modul Terstruktur</h3>
+    <h3>21 Modul Terstruktur</h3>
     <p>Dari shell dasar hingga Podman & SELinux, disusun sesuai kurikulum resmi.</p>
   </div>
   <div class="rh-card">
     <div class="rh-ico">🛠️</div>
     <h3>Latihan Praktik</h3>
-    <p>LAB per modul + simulasi EX200 90 menit, bisa dijalankan tanpa disk tambahan.</p>
+    <p>LAB per modul + simulasi EX200 180 menit (setara durasi ujian nyata), bisa dijalankan tanpa disk tambahan.</p>
   </div>
   <div class="rh-card">
     <div class="rh-ico">🛡️</div>
@@ -47,7 +47,7 @@ Selamat datang di panduan langkah-demi-langkah menuju sertifikasi
 ## 🧭 Mulai dari Mana?
 
 1. Buka **[🗺️ Pusat Belajar](pusat-belajar.md)** — peta jalan 16 minggu & cara pakai.
-2. Ikuti **Modul 0 → 16** di panel navigasi kiri.
+2. Ikuti **Modul 0 → 20** di panel navigasi kiri.
 3. Kerjakan **[🛠️ Latihan (LAB)](lab/LAB.md)** di tiap modul.
 4. Gunakan **[⌨️ Cheat Sheet](referensi/CHEATSHEET.md)** sebagai referensi cepat.
 5. Persiapan ujian: **[🎯 Persiapan EX200](referensi/EX200-prep.md)**.
@@ -85,6 +85,7 @@ Selamat datang di panduan langkah-demi-langkah menuju sertifikasi
 | 17 | [Penjadwalan & Time Zone](modul/17-scheduling.md) |
 | 18 | [EX200 (RHCSA) Prep](modul/18-ex200-prep.md) |
 | 19 | [Skenario EX200 Terukur](modul/19-skenario-ex200.md) |
+| 20 | [Shell Scripting Dasar](modul/20-shell-scripting.md) |
 
 ## 🖥️ Siapkan Lab (Gratis)
 

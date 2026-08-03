@@ -24,7 +24,43 @@ df -h                 # pemakaian filesystem ter-mount
 du -sh /var/log       # ukuran direktori
 ```
 
-## 3. Membuat Filesystem
+## 3. Membuat Partisi (MBR / GPT)
+
+Objektif EX200: *"create and configure file systems"* sering berarti **mulai dari
+disk kosong** — kamu harus membagi (partisi) disk dulu sebelum `mkfs`.
+RHEL 9/10 default pakai tabel **GPT** (bukan MBR) agar bisa disk > 2 TB dan
+lebih dari 4 partisi.
+
+```bash
+# Lihat disk yang tersedia (mis. /dev/vdb masih kosong)
+lsblk /dev/vdb
+
+# ── Opsi 1: parted (GPT, direkomendasikan EX200) ──
+sudo parted -s /dev/vdb mklabel gpt                       # buat tabel partisi GPT
+sudo parted -s /dev/vdb mkpart primary xfs 1MiB 501MiB    # partisi 500M pertama
+sudo parted -s /dev/vdb set 1 lvm on                      # (opsional) flag LVM
+partprobe /dev/vdb                                       # beri tahu kernel (jgn reboot)
+lsblk /dev/vdb                                           # cek: muncul /dev/vdb1
+
+# ── Opsi 2: gdisk (GPT interaktif) ──
+sudo gdisk /dev/vdb
+#   n  → new partition
+#   ↵  → default partnum 1
+#   ↵  → default first sector
+#   +500M → ukuran 500 MiB
+#   8300 → Linux filesystem (atau 8e00 untuk LVM)
+#   w  → write & quit
+partprobe /dev/vdb
+
+# ── Opsi 3: fdisk (MBR, legacy) ──
+sudo fdisk /dev/vdb      # n → p → 1 → ↵ → +500M → w
+```
+
+> **Verifikasi:** `lsblk /dev/vdb` harus menampilkan `vdb1`. Setelah ini baru
+> di-format: `sudo mkfs.xfs /dev/vdb1`. Jangan lupa `partprobe` — tanpa itu
+> kernel tidak melihat partisi baru dan `mkfs` gagal dengan "No such file".
+
+## 4. Membuat Filesystem
 
 ```bash
 sudo mkfs.xfs /dev/sdb1        # format partisi jadi XFS

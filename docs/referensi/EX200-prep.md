@@ -27,7 +27,7 @@
 
 ## 3. Checklist H-7
 - [ ] Kerjakan semua modul 01–20 tanpa melihat catatan.
-- [ ] Selesaikan LAB & [Simulasi 2 Jam](../referensi/SIMULASI-UJIAN.md) < 90 menit.
+- [ ] Selesaikan LAB & [Simulasi 3 Jam / 180 Menit](../referensi/SIMULASI-UJIAN.md) < 90 menit.
 - [ ] Kuasai `vim`, `nmcli`, `systemctl`, `journalctl`, `dnf`, `firewall-cmd`, `setsebool`/`restorecon`.
 - [ ] Pahami LVM end-to-end (create → extend → growfs).
 - [ ] Kuasai **Stratis** (pool/filesystem/snapshot), **VDO** (dedup + `vdostats`), dan **disk quota** (`xfs_quota -x -c 'limit ...'`) — wajib RHEL 9/10.

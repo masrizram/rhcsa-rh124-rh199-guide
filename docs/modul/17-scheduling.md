@@ -81,10 +81,55 @@ sudo chronyc makestep              # paksa sinkron sekarang
 
 ## 4. `systemd` Timer (Modern)
 
+Timer adalah pengganti cron di many kasus; diujikan di EX200 ("schedule tasks
+using systemd timer units"). Timer membutuhkan **dua** unit: `.service` (apa yang
+dikerjakan) dan `.timer` (kapan dijalankan).
+
 ```bash
-systemctl list-timers      # lihat timer aktif
-# Timer menggantikan cron di banyak kasus (lihat /usr/lib/systemd/system/*.timer)
+# 1) Unit SERVICE — tugas yang dijalankan
+sudo tee /etc/systemd/system/backup-etc.service > /dev/null <<'EOF'
+[Unit]
+Description=Backup /etc ke /backup/etc.tar.gz
+
+[Service]
+Type=oneshot
+ExecStart=/bin/tar czf /backup/etc.tar.gz /etc
+EOF
+
+# 2) Unit TIMER — jadwal (OnCalendar, bukan cron 5-kolom)
+sudo tee /etc/systemd/system/backup-etc.timer > /dev/null <<'EOF'
+[Unit]
+Description=Backup /etc setiap hari 02:00
+
+[Timer]
+OnCalendar=*-*-* 02:00:00     # format: Tahun-Bulan-Hari Jam:Menit:Detik
+Persistent=true               # jika VM mati saat jadwal, jalankan saat nyala
+Unit=backup-etc.service
+
+[Install]
+WantedBy=timers.target
+EOF
+
+# 3) Aktifkan & verifikasi
+sudo systemctl daemon-reload
+sudo systemctl enable --now backup-etc.timer
+systemctl list-timers --all | grep backup-etc     # lihat next run
+sudo systemctl start backup-etc.service           # jalankan manual (tes)
 ```
+
+Format `OnCalendar` berguna:
+```text
+*-*-* 02:00:00     # tiap hari 02:00
+*-*-* 02,14:00:00  # 02:00 dan 14:00 tiap hari
+Mon *-*-* 09:00:00 # tiap Senin 09:00
+*:0/15             # tiap 15 menit
+daily              # kata kunci (juga: hourly, weekly, monthly)
+```
+
+> **Bedanya dengan cron:** timer dijalankan oleh systemd (bukan `crond`),
+> mendukung `Persistent=true` (mengejar jadwal terlewat), dan lognya langsung
+> masuk `journalctl -u backup-etc.service`. Soal EX200 kadang explicit minta
+> "systemd timer", bukan cron.
 
 ## 5. Jebakan Umum (EX200)
 

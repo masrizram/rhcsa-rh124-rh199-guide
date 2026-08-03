@@ -1,4 +1,4 @@
-# Simulasi Ujian EX200 — 2 Jam (Timer & Score Sheet)
+# Simulasi Ujian EX200 — 3 Jam / 180 Menit (Timer & Score Sheet)
 
 > Kerjakan seperti ujian beneran: **180 menit**, tanpa buka kunci jawaban
 > sampai selesai. Skor minimal **80% (≥ 8/10 tugas)** = siap ujian.

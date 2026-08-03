@@ -36,7 +36,7 @@
 - [ ] Jangan `chmod 777` — gunakan ACL.
 
 ## 📊 Self-Score
-- [ ] Sudah lulus **Simulasi Ujian 2 Jam** dengan skor ≥ 80%.
+- [ ] Sudah lulus **Simulasi Ujian 3 Jam** dengan skor ≥ 80%.
 - [ ] Waktu rata-rata per tugas < 18 menit.
 
 > Jika ada satu saja skill wajib belum centang → tunda ujian, latih dulu.

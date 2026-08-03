@@ -122,7 +122,7 @@ EX200 adalah troubleshooting.)
 - `lab/LAB.md` di repo ini — kerjakan berulang hingga cepat.
 - Dokumentasi lokal: `file:///usr/share/doc/`.
 - Practice exam environment (mis. lab VirtualBox dengan snapshot).
-- [Simulasi Ujian 2 Jam](../referensi/SIMULASI-UJIAN.md) & [Checklist H-1](../referensi/CHECKLIST-H1.md).
+- [Simulasi Ujian 3 Jam / 180 Menit](../referensi/SIMULASI-UJIAN.md) & [Checklist H-1](../referensi/CHECKLIST-H1.md).
 
 ## Latihan
 - Kerjakan ke-8 simulasi di atas tanpa melihat jawaban. Catat waktu tiap tugas.
