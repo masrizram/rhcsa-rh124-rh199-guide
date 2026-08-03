@@ -574,13 +574,51 @@
   
   
     <li class="md-tabs__item">
+      <a href="../16-selinux/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🛡️ Modul 16 — SELinux
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../17-scheduling/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  ⏰ Modul 17 — Penjadwalan & Time Zone
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
       <a href="../15-ex200-prep/" class="md-tabs__link">
         
   
   
     
   
-  🎓 Modul 16 — EX200 (RHCSA) Prep
+  🎓 Modul 18 — EX200 (RHCSA) Prep
 
       </a>
     </li>
@@ -638,6 +676,25 @@
     
   
   🎯 Persiapan EX200
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../referensi/GLOSARIUM/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  📖 Glosarium
 
       </a>
     </li>
@@ -1184,6 +1241,39 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#8-jebakan-umum-ex200" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Jebakan Umum (EX200)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-koneksi-ke-ex200" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Koneksi ke EX200
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kuis-cepat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kuis Cepat
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#latihan" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1317,6 +1407,60 @@
   
   
     <li class="md-nav__item">
+      <a href="../16-selinux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🛡️ Modul 16 — SELinux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17-scheduling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ⏰ Modul 17 — Penjadwalan & Time Zone
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../15-ex200-prep/" class="md-nav__link">
         
   
@@ -1324,7 +1468,7 @@
   <span class="md-ellipsis">
     
   
-    🎓 Modul 16 — EX200 (RHCSA) Prep
+    🎓 Modul 18 — EX200 (RHCSA) Prep
   
 
     
@@ -1406,6 +1550,33 @@
     
   
     🎯 Persiapan EX200
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../referensi/GLOSARIUM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📖 Glosarium
   
 
     
@@ -1522,6 +1693,39 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#8-jebakan-umum-ex200" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Jebakan Umum (EX200)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-koneksi-ke-ex200" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Koneksi ke EX200
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kuis-cepat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kuis Cepat
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#latihan" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1609,11 +1813,42 @@
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c1"># verifikasi</span>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>hostnamectl
 </code></pre></div>
+<h2 id="8-jebakan-umum-ex200">8. Jebakan Umum (EX200)<a class="headerlink" href="#8-jebakan-umum-ex200" title="Permanent link">&para;</a></h2>
+<div class="admonition danger">
+<p class="admonition-title">Jebakan</p>
+<ul>
+<li><code>set-default graphical.target</code> di server <strong>headless</strong> → tidak ada GUI,
+  boot terasa "hang". Untuk server pakai <code>multi-user.target</code>.</li>
+<li>Edit <code>/etc/sysconfig/network-scripts/ifcfg-*</code> secara manual → diabaikan
+  NetworkManager (usang di RHEL 9). Selalu pakai <code>nmcli</code>/<code>nmtui</code>.</li>
+<li>Lupa <code>nmcli connection down/up</code> setelah <code>modify</code> → perubahan tak aktif.</li>
+<li>DNS salah → <code>ping IP</code> jalan tapi <code>ping nama</code> gagal. Cek <code>resolvectl</code>.</li>
+<li>Firewall blokir port meski konfig benar → selalu <code>firewall-cmd --add-... --permanent &amp;&amp; reload</code>.</li>
+</ul>
+</div>
+<h2 id="9-koneksi-ke-ex200">9. Koneksi ke EX200<a class="headerlink" href="#9-koneksi-ke-ex200" title="Permanent link">&para;</a></h2>
+<div class="admonition success">
+<p class="admonition-title">EX200</p>
+<p>Soal: "Set IP statis 192.168.1.50/24, gateway .1, DNS 8.8.8.8, pastikan
+persisten &amp; bisa ping gateway." Kunci:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sudo<span class="w"> </span>nmcli<span class="w"> </span>connection<span class="w"> </span>modify<span class="w"> </span><span class="s2">&quot;eth0&quot;</span><span class="w"> </span>ipv4.addresses<span class="w"> </span><span class="m">192</span>.168.1.50/24<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span>ipv4.gateway<span class="w"> </span><span class="m">192</span>.168.1.1<span class="w"> </span>ipv4.dns<span class="w"> </span><span class="m">8</span>.8.8.8<span class="w"> </span>ipv4.method<span class="w"> </span>manual
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>sudo<span class="w"> </span>nmcli<span class="w"> </span>connection<span class="w"> </span>down<span class="w"> </span><span class="s2">&quot;eth0&quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>nmcli<span class="w"> </span>connection<span class="w"> </span>up<span class="w"> </span><span class="s2">&quot;eth0&quot;</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>ip<span class="w"> </span>-br<span class="w"> </span>addr<span class="p">;</span><span class="w"> </span>ping<span class="w"> </span>-c2<span class="w"> </span><span class="m">192</span>.168.1.1
+</code></pre></div></p>
+</div>
+<h2 id="kuis-cepat">Kuis Cepat<a class="headerlink" href="#kuis-cepat" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Alat modern konfig jaringan RHEL 9? (<code>nmcli</code> / NetworkManager)</li>
+<li>Aktifkan perubahan koneksi? (<code>nmcli connection down/up "nama"</code>)</li>
+<li>Cek resolver DNS? (<code>resolvectl status</code>)</li>
+</ol>
 <h2 id="latihan">Latihan<a class="headerlink" href="#latihan" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Catat IP saat ini: <code>ip -br addr</code>.</li>
 <li>Ubah hostname menjadi <code>rhcsa-lab</code> dengan <code>hostnamectl</code>.</li>
 <li>Buka port 80 di firewall: <code>firewall-cmd --add-service=http --permanent &amp;&amp; firewall-cmd --reload</code>.</li>
+<li>(Opsional) coba <code>nmtui</code> untuk set IP via antarmuka TUI.</li>
 </ol>
 
 

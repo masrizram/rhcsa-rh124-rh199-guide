@@ -60,10 +60,35 @@ Kumpulan tugas tangan untuk tiap modul. Kerjakan di lab lokal
 - [ ] `dnf provides /usr/bin/vim`, `dnf install tree`, `dnf remove tree`.
 - [ ] `dnf check-update`, `dnf history`.
 
-## Modul 13 — File Systems
-- [ ] Format partisi XFS & mount ke `/mnt/uji`.
-- [ ] Tambah ke `/etc/fstab` lalu `mount -a`.
-- [ ] (LVM) `pvcreate`→`vgcreate`→`lvcreate`→`mkfs.xfs`→`mount`; lalu `lvextend`+`xfs_growfs`.
+## Modul 13 — File Systems (tanpa disk tambahan!)
+Gunakan **loop device** dari file agar bisa dipraktikkan di container/VM
+tanpa disk fisik:
+```bash
+# Buat file 1G sebagai "disk"
+sudo dd if=/dev/zero of=/tmp/disk.img bs=1M count=1024
+sudo mkfs.xfs /tmp/disk.img
+sudo mkdir -p /data
+sudo mount -o loop /tmp/disk.img /data     # mount via loop
+df -h /data
+# permanen di fstab (pakai path file, bukan UUID):
+echo "/tmp/disk.img /data xfs loop 0 0" | sudo tee -a /etc/fstab
+sudo umount /data && sudo mount -a
+```
+Untuk LVM di file:
+```bash
+sudo dd if=/dev/zero of=/tmp/lvm.img bs=1M count=2048
+sudo losetup -fP /tmp/lvm.img
+LOOP=$(losetup -j /tmp/lvm.img | cut -d: -f1)   # mis. /dev/loop0
+sudo pvcreate $LOOP
+sudo vgcreate vgdata $LOOP
+sudo lvcreate -n lvdata -L 1G vgdata
+sudo mkfs.xfs /dev/vgdata/lvdata
+sudo mkdir -p /data && sudo mount /dev/vgdata/lvdata /data
+sudo lvextend -L +1G /dev/vgdata/lvdata
+sudo xfs_growfs /data
+```
+> Di lab fisik/VM dengan disk tambahan, ganti `/tmp/disk.img` & loop dengan
+> `/dev/sdb1` sesuai petunjuk modul 13.
 
 ## Modul 14 — Support
 - [ ] `journalctl -p err -b`, `journalctl -u sshd -f`.

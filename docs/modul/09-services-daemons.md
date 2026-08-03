@@ -72,7 +72,34 @@ sudo systemctl daemon-reload
 sudo systemctl enable --now hello.service
 ```
 
+## 7. Jebakan Umum (EX200)
+
+!!! danger "Jebakan"
+    - `systemctl restart` memutus koneksi sesaat — di server produksi gunakan
+      `reload` bila layanan mendukung (tercantum di `systemctl cat <svc>`).
+    - Lupa `systemctl daemon-reload` setelah mengedit file unit → perubahan
+      tidak dikenali.
+    - `enable` vs `start`: `enable` baru aktif saat boot; untuk jalan sekarang
+      butuh `enable --now` atau `start`.
+    - Melihat log tapi pakai `cat /var/log/messages` padahal layanan menulis ke
+      journal → gunakan `journalctl -u <svc>`.
+
+## 8. Koneksi ke EX200
+
+!!! success "EX200"
+    Soal: "Buat layanan `webapp` yang menjalankan `/opt/webapp/run.sh`, auto-start
+    saat boot, dan restart bila gagal." Kunci: tulis unit di
+    `/etc/systemd/system/webapp.service` dengan `Restart=on-failure` +
+    `WantedBy=multi-user.target`, lalu `daemon-reload` → `enable --now`.
+
+## Kuis Cepat
+
+1. Perintah muat ulang konfig setelah edit unit? (`systemctl daemon-reload`)
+2. Bedanya `restart` vs `reload`? (restart putus sejenak; reload tanpa putus)
+3. Cek log satu layanan? (`journalctl -u <nama>`)
+
 ## Latihan
 1. Cek status `sshd`: `systemctl status sshd`.
 2. Matikan dan nyalakan kembali `cups` (jika ada), amati dengan `journalctl -u cups`.
 3. Lihat target default dan ubah ke `multi-user.target` (jangan lupa kembalikan).
+4. Buat unit `hello.service` (echo), `enable --now`, verifikasi `journalctl -u hello`.

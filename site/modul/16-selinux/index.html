@@ -13,10 +13,10 @@
       
       
       
-        <link rel="prev" href="../17-scheduling/">
+        <link rel="prev" href="../15-podman-containers/">
       
       
-        <link rel="next" href="../../lab/LAB/">
+        <link rel="next" href="../17-scheduling/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>🎓 Modul 18 — EX200 (RHCSA) Prep - Panduan Lengkap RHCSA (RH124 / RH199) - RHEL 9 & 10</title>
+        <title>🛡️ Modul 16 — SELinux - Panduan Lengkap RHCSA (RH124 / RH199) - RHEL 9 & 10</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#modul-15-ex200-rhcsa-exam-preparation" class="md-skip">
+        <a href="#modul-16-selinux-keamanan-wajib-ex200" class="md-skip">
           Lewati ke isi
         </a>
       
@@ -112,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              🎓 Modul 18 — EX200 (RHCSA) Prep
+              🛡️ Modul 16 — SELinux
             
           </span>
         </div>
@@ -570,9 +570,11 @@
   
   
   
+    
   
-    <li class="md-tabs__item">
-      <a href="../16-selinux/" class="md-tabs__link">
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
         
   
   
@@ -608,11 +610,9 @@
   
   
   
-    
   
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="./" class="md-tabs__link">
+    <li class="md-tabs__item">
+      <a href="../15-ex200-prep/" class="md-tabs__link">
         
   
   
@@ -1236,10 +1236,37 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../16-selinux/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🛡️ Modul 16 — SELinux
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1255,6 +1282,136 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Daftar isi">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Daftar isi
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-konsep-dasar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Konsep Dasar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-tiga-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Tiga Mode
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-booleans-saklar-kebijakan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Booleans (Saklar Kebijakan)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-file-context-restorecon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. File Context &amp; Restorecon
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-membaca-denial-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Membaca Denial (Log)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-port-labeling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Port Labeling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-jebakan-umum-ex200" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Jebakan Umum (EX200)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-koneksi-ke-ex200" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Koneksi ke EX200
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kuis-cepat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kuis Cepat
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#latihan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1290,37 +1447,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    🎓 Modul 18 — EX200 (RHCSA) Prep
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../15-ex200-prep/" class="md-nav__link">
         
   
   
@@ -1336,92 +1466,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Daftar isi">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Daftar isi
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1-format-ujian-ex200" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Format Ujian EX200
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-lingkup-ujian-objektif-umum" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Lingkup Ujian (Objektif Umum)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-strategi-hari-h" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Strategi Hari-H
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-simulasi-soal-latihan" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Simulasi Soal Latihan
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-sumber-belajar-tambahan" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. Sumber Belajar Tambahan
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#latihan" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Latihan
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1561,10 +1605,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-format-ujian-ex200" class="md-nav__link">
+  <a href="#1-konsep-dasar" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Format Ujian EX200
+        1. Konsep Dasar
       
     </span>
   </a>
@@ -1572,10 +1616,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-lingkup-ujian-objektif-umum" class="md-nav__link">
+  <a href="#2-tiga-mode" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Lingkup Ujian (Objektif Umum)
+        2. Tiga Mode
       
     </span>
   </a>
@@ -1583,10 +1627,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-strategi-hari-h" class="md-nav__link">
+  <a href="#3-booleans-saklar-kebijakan" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Strategi Hari-H
+        3. Booleans (Saklar Kebijakan)
       
     </span>
   </a>
@@ -1594,10 +1638,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-simulasi-soal-latihan" class="md-nav__link">
+  <a href="#4-file-context-restorecon" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Simulasi Soal Latihan
+        4. File Context &amp; Restorecon
       
     </span>
   </a>
@@ -1605,10 +1649,54 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-sumber-belajar-tambahan" class="md-nav__link">
+  <a href="#5-membaca-denial-log" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Sumber Belajar Tambahan
+        5. Membaca Denial (Log)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-port-labeling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Port Labeling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-jebakan-umum-ex200" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Jebakan Umum (EX200)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-koneksi-ke-ex200" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Koneksi ke EX200
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kuis-cepat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kuis Cepat
       
     </span>
   </a>
@@ -1646,104 +1734,112 @@
   
 
 
-<h1 id="modul-15-ex200-rhcsa-exam-preparation">Modul 15 — EX200 (RHCSA) Exam Preparation<a class="headerlink" href="#modul-15-ex200-rhcsa-exam-preparation" title="Permanent link">&para;</a></h1>
+<h1 id="modul-16-selinux-keamanan-wajib-ex200">Modul 16 — SELinux (Keamanan Wajib EX200)<a class="headerlink" href="#modul-16-selinux-keamanan-wajib-ex200" title="Permanent link">&para;</a></h1>
 <blockquote>
-<p>Referensi video: <code>eGbNXqPdUa4</code> (RHCSA &amp; EX200 Prep), <code>2n2P0Awz3U4</code> (Pass the EX200)</p>
+<p>SELinux adalah penyebab <strong>paling sering</strong> peserta EX200 gagal. Jangan
+mematikan — konfigurasikan dengan benar.</p>
 </blockquote>
-<h2 id="1-format-ujian-ex200">1. Format Ujian EX200<a class="headerlink" href="#1-format-ujian-ex200" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Tipe</strong>: <em>performance-based</em> (hands-on di server nyata, bukan pilihan ganda).</li>
-<li><strong>Durasi</strong>: 3 jam (biasanya).</li>
-<li><strong>Skor lolos</strong>: ±210/300 (berkembang tiap rilis).</li>
-<li><strong>Lingkungan</strong>: beberapa VM RHEL yang harus kamu konfigurasi.</li>
-<li><strong>Aturan</strong>: tanpa internet, tanpa bawa catatan; boleh pakai <code>man</code>, <code>vim</code>,
-  dokumentasi lokal (<code>/usr/share/doc</code>).</li>
-</ul>
-<h2 id="2-lingkup-ujian-objektif-umum">2. Lingkup Ujian (Objektif Umum)<a class="headerlink" href="#2-lingkup-ujian-objektif-umum" title="Permanent link">&para;</a></h2>
+<h2 id="1-konsep-dasar">1. Konsep Dasar<a class="headerlink" href="#1-konsep-dasar" title="Permanent link">&para;</a></h2>
+<p>SELinux = <em>Mandatory Access Control</em> (MAC) di atas DAC (permission biasa).
+Setiap proses &amp; berkas punya <strong>label/context</strong> (user:role:type:level).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>getenforce<span class="w">              </span><span class="c1"># Enforcing / Permissive / Disabled</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>sestatus<span class="w">               </span><span class="c1"># detail status</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>ls<span class="w"> </span>-Z<span class="w"> </span>/var/www/html<span class="w">    </span><span class="c1"># lihat context berkas</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>ps<span class="w"> </span>-Z<span class="w">                  </span><span class="c1"># lihat context proses</span>
+</code></pre></div>
+<h2 id="2-tiga-mode">2. Tiga Mode<a class="headerlink" href="#2-tiga-mode" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Area</th>
-<th>Contoh tugas</th>
+<th>Mode</th>
+<th>Arti</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Understanding &amp; using essential tools</td>
-<td><code>man</code>, <code>vim</code>, redireksi, <code>tar</code>, <code>grep</code>, <code>ssh</code></td>
+<td><code>Enforcing</code></td>
+<td>aturan ditegakkan (default &amp; wajib di ujian)</td>
 </tr>
 <tr>
-<td>Operating running systems</td>
-<td><code>systemctl</code>, <code>journalctl</code>, proses, <code>nice</code></td>
+<td><code>Permissive</code></td>
+<td>hanya mencatat pelanggaran, tidak blokir (buat debug)</td>
 </tr>
 <tr>
-<td>Configuring local storage</td>
-<td>partisi, LVM, mount <code>fstab</code>, swap</td>
-</tr>
-<tr>
-<td>Creating &amp; configuring file systems</td>
-<td>XFS/ext4, permission, ACL, <code>umask</code></td>
-</tr>
-<tr>
-<td>Deploying/adjusting/ maintaining systems</td>
-<td>DNF, repo, <code>cron</code>, <code>at</code>, timezone</td>
-</tr>
-<tr>
-<td>Managing users &amp; groups</td>
-<td><code>useradd</code>, <code>usermod</code>, <code>passwd</code>, <code>sudo</code>, <code>chage</code></td>
-</tr>
-<tr>
-<td>Managing security</td>
-<td><code>firewalld</code>, <code>SELinux</code> (enforcing), <code>ssh</code> hardening</td>
-</tr>
-<tr>
-<td>Networking</td>
-<td><code>nmcli</code>, hostname, DNS, routing</td>
-</tr>
-<tr>
-<td>Containers (RHEL 9+)</td>
-<td><code>podman</code> pull/run, <code>podman</code> sebagai service</td>
+<td><code>Disabled</code></td>
+<td>mati total (<strong>jangan</strong> di ujian)</td>
 </tr>
 </tbody>
 </table>
-<blockquote>
-<p>⚠️ <strong>SELinux</strong> sering jadi penyebab gagal. Jangan mematikan — konfigurasikan
-dengan benar (<code>setsebool</code>, <code>semanage</code>, <code>restorecon</code>, <code>chcon</code>).</p>
-</blockquote>
-<h2 id="3-strategi-hari-h">3. Strategi Hari-H<a class="headerlink" href="#3-strategi-hari-h" title="Permanent link">&para;</a></h2>
-<ol>
-<li><strong>Baca semua soal dulu</strong> — petakan mana yang saling bergantung.</li>
-<li><strong>Mulai dari yang mudah &amp; independen</strong> untuk mengamankan poin.</li>
-<li><strong>Selalu uji perubahan</strong>: setelah <code>sshd_config</code>, jalankan <code>sshd -t</code> &amp; buka
-   sesi baru sebelum logout.</li>
-<li><strong>Jangan reboot sembarangan</strong> — reboot bisa memunculkan error fstab yang
-   membuat VM tidak boot (grub rescue).</li>
-<li><strong>Catat IP &amp; kredensial</strong> yang diberikan — jangan sampai terkunci keluar.</li>
-<li><strong>Waktu</strong>: 3 jam untuk ~15–20 tugas. Alokasikan ~8 menit/tugas, sisakan
-   buffer untuk verifikasi.</li>
-</ol>
-<h2 id="4-simulasi-soal-latihan">4. Simulasi Soal Latihan<a class="headerlink" href="#4-simulasi-soal-latihan" title="Permanent link">&para;</a></h2>
-<ol>
-<li>Buat user <code>operator</code> dengan UID 2000, group <code>ops</code> (GID 3000), shell <code>/bin/bash</code>.</li>
-<li>Atur <code>/data</code> (XFS, mount permanen via fstab, ukuran min 500M).</li>
-<li>Konfigurasi <code>sshd</code> agar root dilarang login &amp; hanya kunci yang diizinkan.</li>
-<li>Buka port 8080 di <code>firewalld</code> secara permanen.</li>
-<li>Pasang <code>httpd</code>, jadikan enable, dan pastikan bisa diakses di port 80.</li>
-<li>Buat cron job: backup <code>/etc</code> ke <code>/backup/etc.tar.gz</code> setiap jam 02:00.</li>
-<li>Set ELinux boolean <code>httpd_can_network_connect</code> on.</li>
-</ol>
-<p>(Jawaban &amp; langkah ada di <code>lab/LAB.md</code> dan <code>referensi/EX200-prep.md</code>.)</p>
-<h2 id="5-sumber-belajar-tambahan">5. Sumber Belajar Tambahan<a class="headerlink" href="#5-sumber-belajar-tambahan" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>setenforce<span class="w"> </span><span class="m">0</span><span class="w">       </span><span class="c1"># sementara → Permissive</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>sudo<span class="w"> </span>setenforce<span class="w"> </span><span class="m">1</span><span class="w">       </span><span class="c1"># sementara → Enforcing</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1"># permanen: edit /etc/selinux/config → SELINUX=enforcing</span>
+</code></pre></div>
+<h2 id="3-booleans-saklar-kebijakan">3. Booleans (Saklar Kebijakan)<a class="headerlink" href="#3-booleans-saklar-kebijakan" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>getsebool<span class="w"> </span>-a<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>httpd<span class="w">          </span><span class="c1"># lihat boolean terkait httpd</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>getsebool<span class="w"> </span>httpd_can_network_connect
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>sudo<span class="w"> </span>setsebool<span class="w"> </span>-P<span class="w"> </span>httpd_can_network_connect<span class="w"> </span>on<span class="w">   </span><span class="c1"># -P = permanen</span>
+</code></pre></div>
+<p>Boolean umum EX200:
+- <code>httpd_can_network_connect</code> — izinkan httpd konek keluar
+- <code>httpd_enable_homedirs</code> — izinkan serve dari home
+- <code>ftp_home_dir</code> — akses home via ftp
+- <code>samba_enable_home_dirs</code></p>
+<h2 id="4-file-context-restorecon">4. File Context &amp; Restorecon<a class="headerlink" href="#4-file-context-restorecon" title="Permanent link">&para;</a></h2>
+<p>Kalau memindahkan berkas ke lokasi web, context-nya sering salah → akses ditolak.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Lihat mapping default context</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>semanage<span class="w"> </span>fcontext<span class="w"> </span>-l<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>httpd_sys_content_t
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># Terapkan context ke direktori kita</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>sudo<span class="w"> </span>semanage<span class="w"> </span>fcontext<span class="w"> </span>-a<span class="w"> </span>-t<span class="w"> </span>httpd_sys_content_t<span class="w"> </span><span class="s2">&quot;/web(/.*)?&quot;</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>sudo<span class="w"> </span>restorecon<span class="w"> </span>-Rv<span class="w"> </span>/web<span class="w">          </span><span class="c1"># terapkan ke filesystem</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="c1"># Cek:</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>ls<span class="w"> </span>-Z<span class="w"> </span>/web
+</code></pre></div>
+<h2 id="5-membaca-denial-log">5. Membaca Denial (Log)<a class="headerlink" href="#5-membaca-denial-log" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>sudo<span class="w"> </span>ausearch<span class="w"> </span>-m<span class="w"> </span>AVC<span class="w"> </span>-ts<span class="w"> </span>recent<span class="w">          </span><span class="c1"># log penolakan terbaru</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>sudo<span class="w"> </span>sealert<span class="w"> </span>-a<span class="w"> </span>/var/log/audit/audit.log<span class="w"> </span><span class="c1"># saran perbaikan (jika ada setroubleshoot)</span>
+</code></pre></div>
+<h2 id="6-port-labeling">6. Port Labeling<a class="headerlink" href="#6-port-labeling" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>sudo<span class="w"> </span>semanage<span class="w"> </span>port<span class="w"> </span>-l<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>http
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>sudo<span class="w"> </span>semanage<span class="w"> </span>port<span class="w"> </span>-a<span class="w"> </span>-t<span class="w"> </span>http_port_t<span class="w"> </span>-p<span class="w"> </span>tcp<span class="w"> </span><span class="m">8080</span><span class="w">   </span><span class="c1"># izinkan httpd di 8080</span>
+</code></pre></div>
+<h2 id="7-jebakan-umum-ex200">7. Jebakan Umum (EX200)<a class="headerlink" href="#7-jebakan-umum-ex200" title="Permanent link">&para;</a></h2>
+<div class="admonition danger">
+<p class="admonition-title">Jebakan</p>
 <ul>
-<li>RH124 + RH134 (wajib).</li>
-<li><code>lab/LAB.md</code> di repo ini — kerjakan berulang hingga cepat.</li>
-<li>Dokumentasi lokal: <code>file:///usr/share/doc/</code>.</li>
-<li>Practice exam environment (mis. lab VirtualBox dengan snapshot).</li>
+<li><strong>Mematikan SELinux</strong> (<code>disabled</code>) karena "biar jalan" → otomatis gagal ujian.
+  Gunakan <code>setsebool</code> / <code>restorecon</code> / <code>semanage</code>.</li>
+<li>Lupa <code>restorecon</code> setelah memindahkan berkas web → 403 Forbidden padahal
+  permission 755 sudah benar.</li>
+<li><code>setsebool</code> tanpa <code>-P</code> → hilang setelah reboot, ujian verifikasi pasca-reboot.</li>
+<li>Salah menambah <code>fcontext</code> (regex salah) → <code>restorecon</code> tidak mempan.</li>
 </ul>
+</div>
+<h2 id="8-koneksi-ke-ex200">8. Koneksi ke EX200<a class="headerlink" href="#8-koneksi-ke-ex200" title="Permanent link">&para;</a></h2>
+<div class="admonition success">
+<p class="admonition-title">EX200</p>
+<p>Soal klasik: "Jalankan web di port 8080 dengan DocumentRoot <code>/web</code>; pastikan
+berfungsi walau SELinux Enforcing." Kunci:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sudo<span class="w"> </span>semanage<span class="w"> </span>fcontext<span class="w"> </span>-a<span class="w"> </span>-t<span class="w"> </span>httpd_sys_content_t<span class="w"> </span><span class="s2">&quot;/web(/.*)?&quot;</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>sudo<span class="w"> </span>restorecon<span class="w"> </span>-Rv<span class="w"> </span>/web
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>sudo<span class="w"> </span>semanage<span class="w"> </span>port<span class="w"> </span>-a<span class="w"> </span>-t<span class="w"> </span>http_port_t<span class="w"> </span>-p<span class="w"> </span>tcp<span class="w"> </span><span class="m">8080</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>sudo<span class="w"> </span>setsebool<span class="w"> </span>-P<span class="w"> </span>httpd_can_network_connect<span class="w"> </span>on<span class="w">   </span><span class="c1"># bila perlu</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>sudo<span class="w"> </span>firewall-cmd<span class="w"> </span>--add-port<span class="o">=</span><span class="m">8080</span>/tcp<span class="w"> </span>--permanent
+</code></pre></div></p>
+</div>
+<h2 id="kuis-cepat">Kuis Cepat<a class="headerlink" href="#kuis-cepat" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Perintah melihat mode saat ini? (<code>getenforce</code>)</li>
+<li>Apa bedanya <code>Permissive</code> vs <code>Disabled</code>? (Permissive mencatat; Disabled mati total)</li>
+<li>Setelah pindah berkas ke <code>/web</code>, perintah apa agar context benar? (<code>restorecon -Rv /web</code>)</li>
+</ol>
 <h2 id="latihan">Latihan<a class="headerlink" href="#latihan" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Kerjakan ke-7 simulasi di atas tanpa melihat jawaban. Catat waktu tiap tugas.</li>
-</ul>
+<ol>
+<li><code>getenforce</code> → pastikan <code>Enforcing</code>. Jika <code>Permissive</code>, <code>setenforce 1</code>.</li>
+<li>Buat <code>/web/index.html</code>, set context <code>httpd_sys_content_t</code>, <code>restorecon -Rv /web</code>.</li>
+<li>Izinkan httpd di port 8080 via <code>semanage port</code>, verifikasi dengan <code>semanage port -l | grep 8080</code>.</li>
+</ol>
 
 
 
@@ -1779,7 +1875,7 @@ dengan benar (<code>setsebool</code>, <code>semanage</code>, <code>restorecon</c
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../17-scheduling/" class="md-footer__link md-footer__link--prev" aria-label="Sebelumnya: ⏰ Modul 17 — Penjadwalan &amp; Time Zone">
+          <a href="../15-podman-containers/" class="md-footer__link md-footer__link--prev" aria-label="Sebelumnya: 🐳 Modul 15 — Podman &amp; Containers">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1789,20 +1885,20 @@ dengan benar (<code>setsebool</code>, <code>semanage</code>, <code>restorecon</c
                 Sebelumnya
               </span>
               <div class="md-ellipsis">
-                ⏰ Modul 17 — Penjadwalan & Time Zone
+                🐳 Modul 15 — Podman & Containers
               </div>
             </div>
           </a>
         
         
           
-          <a href="../../lab/LAB/" class="md-footer__link md-footer__link--next" aria-label="Selanjutnya: 🛠️ Latihan (LAB)">
+          <a href="../17-scheduling/" class="md-footer__link md-footer__link--next" aria-label="Selanjutnya: ⏰ Modul 17 — Penjadwalan &amp; Time Zone">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Selanjutnya
               </span>
               <div class="md-ellipsis">
-                🛠️ Latihan (LAB)
+                ⏰ Modul 17 — Penjadwalan & Time Zone
               </div>
             </div>
             <div class="md-footer__button md-icon">

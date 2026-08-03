@@ -75,7 +75,37 @@ sudo hostnamectl set-hostname server1.lab.local
 hostnamectl
 ```
 
+## 8. Jebakan Umum (EX200)
+
+!!! danger "Jebakan"
+    - `set-default graphical.target` di server **headless** → tidak ada GUI,
+      boot terasa "hang". Untuk server pakai `multi-user.target`.
+    - Edit `/etc/sysconfig/network-scripts/ifcfg-*` secara manual → diabaikan
+      NetworkManager (usang di RHEL 9). Selalu pakai `nmcli`/`nmtui`.
+    - Lupa `nmcli connection down/up` setelah `modify` → perubahan tak aktif.
+    - DNS salah → `ping IP` jalan tapi `ping nama` gagal. Cek `resolvectl`.
+    - Firewall blokir port meski konfig benar → selalu `firewall-cmd --add-... --permanent && reload`.
+
+## 9. Koneksi ke EX200
+
+!!! success "EX200"
+    Soal: "Set IP statis 192.168.1.50/24, gateway .1, DNS 8.8.8.8, pastikan
+    persisten & bisa ping gateway." Kunci:
+    ```bash
+    sudo nmcli connection modify "eth0" ipv4.addresses 192.168.1.50/24 \
+      ipv4.gateway 192.168.1.1 ipv4.dns 8.8.8.8 ipv4.method manual
+    sudo nmcli connection down "eth0" && sudo nmcli connection up "eth0"
+    ip -br addr; ping -c2 192.168.1.1
+    ```
+
+## Kuis Cepat
+
+1. Alat modern konfig jaringan RHEL 9? (`nmcli` / NetworkManager)
+2. Aktifkan perubahan koneksi? (`nmcli connection down/up "nama"`)
+3. Cek resolver DNS? (`resolvectl status`)
+
 ## Latihan
 1. Catat IP saat ini: `ip -br addr`.
 2. Ubah hostname menjadi `rhcsa-lab` dengan `hostnamectl`.
 3. Buka port 80 di firewall: `firewall-cmd --add-service=http --permanent && firewall-cmd --reload`.
+4. (Opsional) coba `nmtui` untuk set IP via antarmuka TUI.
