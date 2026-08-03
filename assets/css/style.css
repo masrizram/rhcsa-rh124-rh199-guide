@@ -94,17 +94,23 @@
 .rh-card h3 { margin: 0.6rem 0 0.4rem; font-size: 1.05rem; color: var(--rh-text); }
 .rh-card p { color: #666; font-size: 0.9rem; margin: 0; }
 
-/* ---- Footer nav cards (menggantikan footer Material) ---- */
-.rh-footnav { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 2.5rem 0 1rem; }
-.rh-footnav a {
+/* ---- Footer nav: Prev/Next mengikuti urutan modul ---- */
+.rh-prevnext { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 2.5rem 0 1rem; }
+.rh-prevnext a {
   display: block; padding: 1.1rem 1.3rem; border: 1px solid var(--rh-border);
   border-radius: var(--rh-radius); text-decoration: none !important; background: #fff;
   transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
-.rh-footnav a:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(20,20,40,0.08); }
-.rh-footnav .rh-dir { font-size: 0.75rem; color: var(--rh-red); font-weight: 600; text-transform: uppercase; }
-.rh-footnav .rh-t { font-weight: 600; color: var(--rh-text); margin-top: 0.2rem; }
-.rh-footnav .rh-next { text-align: right; }
+.rh-prevnext a:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(20,20,40,0.08); }
+.rh-prevnext .rh-dir { font-size: 0.75rem; color: var(--rh-red); font-weight: 600; text-transform: uppercase; }
+.rh-prevnext .rh-t { font-weight: 600; color: var(--rh-text); margin-top: 0.2rem; display: block;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rh-prevnext .rh-next { text-align: right; }
+.rh-prevnext .rh-disabled { visibility: hidden; }
+
+/* ---- Footer CTA (Simulasi / Pusat Belajar) ---- */
+.rh-footcta { display: flex; gap: 0.8rem; flex-wrap: wrap; justify-content: center; margin: 1.5rem 0 0.5rem; }
+
 .rh-copyright {
   text-align: center; font-size: 0.8rem; color: var(--rh-muted);
   padding: 1.5rem 1rem 2rem; border-top: 1px solid var(--rh-border); margin-top: 1rem;
