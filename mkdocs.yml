@@ -28,12 +28,17 @@ theme:
     - navigation.instant
     - navigation.tracking
     - navigation.sections
+    - navigation.path
     - navigation.top
     - navigation.indexes
     - toc.follow
+    - toc.integrate
     - content.code.copy
     - content.code.annotate
+    - content.code.select
+    - content.tooltips
     - content.action.edit
+    - content.action.raw
     - search.suggest
     - search.highlight
     - search.share
@@ -45,6 +50,10 @@ extra_css:
 
 extra:
   homepage: https://masrizram.github.io/rhcsa-rh124-rh199-guide/
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/masrizram
+      name: masrizram di GitHub
 
 plugins:
   - search
@@ -99,4 +108,6 @@ nav:
   - "🛠️ Latihan (LAB)": lab/LAB.md
   - "⌨️ Cheat Sheet": referensi/CHEATSHEET.md
   - "🎯 Persiapan EX200": referensi/EX200-prep.md
+  - "⏱️ Simulasi Ujian 2 Jam": referensi/SIMULASI-UJIAN.md
+  - "✅ Checklist H-1 Ujian": referensi/CHECKLIST-H1.md
   - "📖 Glosarium": referensi/GLOSARIUM.md

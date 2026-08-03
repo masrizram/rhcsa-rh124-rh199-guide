@@ -67,3 +67,27 @@ type ls              # apakah perintah, alias, atau fungsi?
 1. Buka `man hier` untuk memahami struktur direktori, lalu tutup dengan `q`.
 2. Bandingkan `whatis date` dan `date --help`.
 3. Cari semua halaman yang membahas "network": `apropos network`.
+
+## Kunci Jawaban (klik untuk lihat)
+
+??? note "Kunci Jawaban Latihan"
+    1. `man hier` → section 7, menjelaskan `/`, `/usr`, `/var`, dst.
+       `q` keluar.
+    2. `whatis date` → 1 baris ("date - print or set the system date and time");
+       `date --help` → daftar opsi lengkap (`-d`, `-u`, `+FORMAT`).
+    3. `apropos network` → mis. `ip(8)`, `nmcli(1)`, `ss(8)` (dokumentasi
+       terkait subnet/interface).
+
+## Kuis
+
+1. Perintah mencari halaman manual berdasarkan kata kunci?
+   - a. `man -k`  b. `whatis`  c. `info`  d. `help`
+2. `man 5 passwd` membahas?
+   - a. perintah `passwd`  b. format file `/etc/passwd`  c. password  d. grup
+3. Bantuan untuk perintah internal bash (mis. `cd`)?
+   - a. `man cd`  b. `cd --help`  c. `help cd`  d. `info cd`
+
+??? note "Kunci Jawaban Kuis"
+    1. **a** (`man -k` = `apropos`).
+    2. **b** (section 5 = format berkas).
+    3. **c** (`help` khusus builtin bash; `man cd` tidak ada karena cd builtin).
