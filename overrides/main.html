@@ -9,15 +9,15 @@
 {% endblock %}
 
 {# Footer: ganti seluruh footer default dgn card nav + copyright sendiri.
-   PENTING: pakai link ROOT-ABSOLUTE (diawali /) agar tidak dobel saat
-   halaman berada di sub-path (mis. /modul/19-.../19-.../). #}
+   Pakai {{ base_url }} agar benar di PROJECT site
+   (masrizram.github.io/rhcsa-rh124-rh199-guide/...) — bukan user site. #}
 {% block footer %}
   <div class="rh-footnav">
-    <a href="/pusat-belajar/">
+    <a href="{{ base_url }}/pusat-belajar/">
       <div class="rh-dir">▲ Mulai di sini</div>
       <div class="rh-t">🗺️ Pusat Belajar &amp; Roadmap</div>
     </a>
-    <a class="rh-next" href="/modul/19-skenario-ex200/">
+    <a class="rh-next" href="{{ base_url }}/modul/19-skenario-ex200/">
       <div class="rh-dir">Uji diri</div>
       <div class="rh-t">📝 Skenario EX200 Terukur →</div>
     </a>
