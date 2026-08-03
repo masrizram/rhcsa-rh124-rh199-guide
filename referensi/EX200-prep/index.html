@@ -1272,10 +1272,11 @@ Baca Modul 18 sebagai kanonik; halaman ini hanya pengingat cepat &amp; target wa
 <li>Users &amp; groups — 10–15%</li>
 <li>Security (<code>firewalld</code>, <strong>SELinux</strong>, <code>ssh</code>, <code>sudo</code>) — 12–18%</li>
 <li>Networking (<code>nmcli</code>, DNS, hostname, <strong>IPv6</strong>) — 10–15%</li>
-<li>Containers (<code>podman</code>) — bagian baru RHEL 9</li>
+<li>Containers (<code>podman</code>, <strong>skopeo/buildah</strong>, quadlet) — bagian baru RHEL 9</li>
+<li><strong>Storage modern (RHEL 9/10): Stratis, VDO, disk quota</strong> — wajib diuji</li>
 </ol>
 <blockquote>
-<p>Perbedaan RHEL 9 vs RHEL 10 (bootc/image mode) ada di Modul 18, §4.</p>
+<p>Perbedaan RHEL 9 vs RHEL 10 (bootc/image mode, nmstate) ada di Modul 18, §4.</p>
 </blockquote>
 <h2 id="3-checklist-h-7">3. Checklist H-7<a class="headerlink" href="#3-checklist-h-7" title="Permanent link">&para;</a></h2>
 <ul class="task-list">
@@ -1283,7 +1284,8 @@ Baca Modul 18 sebagai kanonik; halaman ini hanya pengingat cepat &amp; target wa
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Selesaikan LAB &amp; <a href="../SIMULASI-UJIAN/">Simulasi 2 Jam</a> &lt; 90 menit.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Kuasai <code>vim</code>, <code>nmcli</code>, <code>systemctl</code>, <code>journalctl</code>, <code>dnf</code>, <code>firewall-cmd</code>, <code>setsebool</code>/<code>restorecon</code>.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Pahami LVM end-to-end (create → extend → growfs).</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Latihan <code>podman run</code> + generate systemd service.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Kuasai <strong>Stratis</strong> (pool/filesystem/snapshot), <strong>VDO</strong> (dedup + <code>vdostats</code>), dan <strong>disk quota</strong> (<code>xfs_quota -x -c 'limit ...'</code>) — wajib RHEL 9/10.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Latihan <code>podman run</code> + generate systemd service + <code>skopeo inspect/copy</code>.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Simulasikan reboot VM dan pastikan tidak masuk grub rescue (fstab benar).</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Kuasai <a href="../BREAK-FIX/">Break &amp; Fix</a> — ~40% soal EX200 adalah troubleshooting.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Topik sering luput</strong>: autofs, Flatpak, tuned, grub2/rd.break, VFAT, chrony/IPv6.</li>

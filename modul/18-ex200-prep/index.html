@@ -1289,8 +1289,10 @@ tapi seluruh materi &amp; simulasi soal berada di modul ini.</p>
 </ul>
 <h2 id="2-lingkup-ujian-objektif-lengkap-ex200">2. Lingkup Ujian (Objektif Lengkap EX200)<a class="headerlink" href="#2-lingkup-ujian-objektif-lengkap-ex200" title="Permanent link">&para;</a></h2>
 <p>Berikut pemetaan objektif resmi EX200 (RHEL 10) ke modul di repo ini.
-Semua poin sudah tertutup — termasuk yang sering luput (autofs, Flatpak,
-tuned, bootloader/grub2, VFAT, chrony/IPv6).</p>
+Semua poin tertutup — termasuk yang sering luput (autofs, Flatpak,
+tuned, bootloader/grub2, VFAT, chrony/IPv6) <strong>serta storage modern
+(Stratis, VDO, disk quota) dan network deklaratif (nmstate) untuk track
+RHEL 9/10</strong>.</p>
 <table>
 <thead>
 <tr>
@@ -1322,22 +1324,22 @@ tuned, bootloader/grub2, VFAT, chrony/IPv6).</p>
 </tr>
 <tr>
 <td>Configure local storage</td>
-<td>partisi GPT, LVM (PV/VG/LV), mount by UUID/label, swap</td>
+<td>partisi GPT, LVM (PV/VG/LV), mount by UUID/label, swap, <strong>Stratis</strong>, <strong>VDO</strong></td>
 <td>13</td>
 </tr>
 <tr>
 <td>Create &amp; configure file systems</td>
-<td>XFS/ext4/<strong>VFAT</strong>, NFS, <strong>autofs</strong>, extend LV, permission</td>
+<td>XFS/ext4/<strong>VFAT</strong>, NFS, <strong>autofs</strong>, extend LV, permission, <strong>disk quota</strong></td>
 <td>13</td>
 </tr>
 <tr>
 <td>Deploy/adjust/maintain systems</td>
-<td><code>cron</code>/<code>at</code>/systemd timer, boot target, <strong>chrony</strong>, <strong>grub2/bootloader</strong></td>
+<td><code>cron</code>/<code>at</code>/systemd timer, boot target, <strong>chrony</strong>, <strong>grub2/bootloader</strong>, <code>bootc</code> (RHEL10)</td>
 <td>09, 17</td>
 </tr>
 <tr>
 <td>Manage basic networking</td>
-<td><strong>IPv4 &amp; IPv6</strong>, hostname, DNS, firewalld</td>
+<td><strong>IPv4 &amp; IPv6</strong>, hostname, DNS, firewalld, <strong>nmstate</strong> (RHEL10)</td>
 <td>11</td>
 </tr>
 <tr>
@@ -1352,7 +1354,7 @@ tuned, bootloader/grub2, VFAT, chrony/IPv6).</p>
 </tr>
 <tr>
 <td>Containers (RHEL 9+)</td>
-<td><code>podman</code> pull/run, podman sebagai service</td>
+<td><code>podman</code> pull/run, <strong>skopeo/buildah</strong>, podman sebagai service</td>
 <td>15</td>
 </tr>
 </tbody>
@@ -1372,6 +1374,9 @@ perintah dasarnya (detail ada di modul masing-masing):</p>
   (Modul 09, §Bootloader &amp; Akses Darurat).</li>
 <li><strong>VFAT</strong> — format &amp; mount FAT32 (<code>mkfs.vfat</code>, Modul 13).</li>
 <li><strong>chrony / IPv6</strong> — client time service &amp; alamat IPv6 (<code>nmcli</code>, Modul 11 &amp; 17).</li>
+<li><strong>Stratis / VDO / disk quota</strong> — storage modern wajib RHEL 9/10: pool
+  Stratis + snapshot, volume VDO dedup, dan <code>xfs_quota</code> batas user (Modul 13, §10–§12).</li>
+<li><strong>nmstate</strong> — network deklaratif via <code>nmstatectl apply</code> (RHEL 10, Modul 11, §7c).</li>
 </ul>
 <h2 id="4-perbedaan-rhel-9-vs-rhel-10-penting">4. Perbedaan RHEL 9 vs RHEL 10 (Penting!)<a class="headerlink" href="#4-perbedaan-rhel-9-vs-rhel-10-penting" title="Permanent link">&para;</a></h2>
 <table>
@@ -1451,6 +1456,12 @@ Jangan panik jika perintah ini tidak ada di lab RHEL 9 — fokus ke <code>dnf</c
 <li>Set SELinux boolean <code>httpd_can_network_connect</code> on.</li>
 <li>(Tambahan) Pasang paket Flatpak <code>gedit</code>, konfigurasi autofs untuk mount
    NFS lab on-demand, dan aktifkan profil <code>tuned</code> <code>throughput-performance</code>.</li>
+<li>(Storage modern RHEL 9/10) Buat pool Stratis <code>mypool</code> dari disk lab, buat
+   filesystem <code>data1</code>, mount permanen di <code>/mnt/stratis</code>.</li>
+<li>(Storage modern) Buat volume VDO dedup <code>--vdoLogicalSize</code> 50G di disk lab,
+    format XFS, mount di <code>/mnt/vdo</code>, verifikasi dengan <code>vdostats</code>.</li>
+<li>(Disk quota) Pasang opsi <code>usrquota,grpquota</code> di <code>/home</code>, set batas user
+    <code>user1</code> maks 120M block &amp; 1200 inode via <code>xfs_quota -x -c 'limit ...'</code>.</li>
 </ol>
 <p>(Jawaban &amp; langkah ada di <code>../lab/LAB.md</code> dan
 <code>../referensi/EX200-prep.md</code>. Untuk perbaikan sistem rusak, baca

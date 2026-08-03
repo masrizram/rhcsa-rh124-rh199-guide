@@ -787,6 +787,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#7c-nmstate-manajemen-network-deklaratif-rhel-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7c. nmstate — Manajemen Network Deklaratif (RHEL 10)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#8-jebakan-umum-ex200" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1420,6 +1431,58 @@ agar alamat aktif. Verifikasi dengan <code>ip -6 addr</code> dan <code>ping6</co
 <p>⚠️ Jangan lupa <code>firewall-cmd --add-service=nfs</code> di server, dan opsi <code>_netdev</code>
 di fstab klien — tanpa itu mount gagal saat boot (VM hang di emergency).</p>
 </blockquote>
+<h2 id="7c-nmstate-manajemen-network-deklaratif-rhel-10">7c. nmstate — Manajemen Network Deklaratif (RHEL 10)<a class="headerlink" href="#7c-nmstate-manajemen-network-deklaratif-rhel-10" title="Permanent link">&para;</a></h2>
+<p>RHEL 10 memperkenalkan <strong>nmstate</strong> sebagai cara deklaratif mengonfigurasi
+jaringan (state file YAML → diterapkan oleh <code>nmcli</code>/<code>networkctl</code> via
+<code>nmstatectl</code>). Berguna saat ingin konfigurasi idempoten/reproducible — cocok
+untuk EX200 track RHEL 10 dan otomasi.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># 1. Pastikan tool ada</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>nmstate
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1"># 2. Lihat state jaringan saat ini (YAML)</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>nmstatectl<span class="w"> </span>show
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="c1"># 3. Terapkan konfigurasi dari file deklaratif</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="c1">#    contoh: set IP statis eth0 via state file</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>/tmp/eth0-static.yml<span class="w"> </span><span class="s">&lt;&lt;&#39;EOF&#39;</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="s">interfaces:</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="s">  - name: eth0</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="s">    type: ethernet</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="s">    state: up</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="s">    ipv4:</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="s">      enabled: true</span>
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="s">      address:</span>
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="s">        - ip: 192.168.1.50</span>
+<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="s">          prefix-length: 24</span>
+<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a><span class="s">      dhcp: false</span>
+<a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a><span class="s">    ipv6:</span>
+<a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a><span class="s">      enabled: true</span>
+<a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a><span class="s">      address:</span>
+<a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a><span class="s">        - ip: 2001:db8:1::50</span>
+<a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a><span class="s">          prefix-length: 64</span>
+<a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a><span class="s">      dhcp: false</span>
+<a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a><span class="s">dns-resolver:</span>
+<a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a><span class="s">  config:</span>
+<a id="__codelineno-8-28" name="__codelineno-8-28" href="#__codelineno-8-28"></a><span class="s">    server:</span>
+<a id="__codelineno-8-29" name="__codelineno-8-29" href="#__codelineno-8-29"></a><span class="s">      - 8.8.8.8</span>
+<a id="__codelineno-8-30" name="__codelineno-8-30" href="#__codelineno-8-30"></a><span class="s">      - 2001:4860:4860::8888</span>
+<a id="__codelineno-8-31" name="__codelineno-8-31" href="#__codelineno-8-31"></a><span class="s">routes:</span>
+<a id="__codelineno-8-32" name="__codelineno-8-32" href="#__codelineno-8-32"></a><span class="s">  config:</span>
+<a id="__codelineno-8-33" name="__codelineno-8-33" href="#__codelineno-8-33"></a><span class="s">    - destination: 0.0.0.0/0</span>
+<a id="__codelineno-8-34" name="__codelineno-8-34" href="#__codelineno-8-34"></a><span class="s">      next-hop-address: 192.168.1.1</span>
+<a id="__codelineno-8-35" name="__codelineno-8-35" href="#__codelineno-8-35"></a><span class="s">      next-hop-interface: eth0</span>
+<a id="__codelineno-8-36" name="__codelineno-8-36" href="#__codelineno-8-36"></a><span class="s">EOF</span>
+<a id="__codelineno-8-37" name="__codelineno-8-37" href="#__codelineno-8-37"></a>sudo<span class="w"> </span>nmstatectl<span class="w"> </span>apply<span class="w"> </span>/tmp/eth0-static.yml
+<a id="__codelineno-8-38" name="__codelineno-8-38" href="#__codelineno-8-38"></a>
+<a id="__codelineno-8-39" name="__codelineno-8-39" href="#__codelineno-8-39"></a><span class="c1"># 4. Verifikasi</span>
+<a id="__codelineno-8-40" name="__codelineno-8-40" href="#__codelineno-8-40"></a>nmstatectl<span class="w"> </span>show<span class="w"> </span>eth0
+<a id="__codelineno-8-41" name="__codelineno-8-41" href="#__codelineno-8-41"></a>ip<span class="w"> </span>-br<span class="w"> </span>addr<span class="p">;</span><span class="w"> </span>ip<span class="w"> </span>-6<span class="w"> </span>addr<span class="w"> </span>show<span class="w"> </span>eth0
+</code></pre></div>
+<blockquote>
+<p>⚠️ <code>nmstatectl apply</code> menggantikan konfigurasi NetworkManager yang ada
+(idempoten: jika sudah cocok, tidak berubah). Cocok untuk EX200 RHEL 10,
+tapi di lab RHEL 9 gunakan <code>nmcli</code> (§3) yang lebih umum diuji.</p>
+</blockquote>
 <h2 id="8-jebakan-umum-ex200">8. Jebakan Umum (EX200)<a class="headerlink" href="#8-jebakan-umum-ex200" title="Permanent link">&para;</a></h2>
 <div class="admonition danger">
 <p class="admonition-title">Jebakan</p>
@@ -1438,10 +1501,10 @@ di fstab klien — tanpa itu mount gagal saat boot (VM hang di emergency).</p>
 <p class="admonition-title">EX200</p>
 <p>Soal: "Set IP statis 192.168.1.50/24, gateway .1, DNS 8.8.8.8, pastikan
 persisten &amp; bisa ping gateway." Kunci:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>sudo<span class="w"> </span>nmcli<span class="w"> </span>connection<span class="w"> </span>modify<span class="w"> </span><span class="s2">&quot;eth0&quot;</span><span class="w"> </span>ipv4.addresses<span class="w"> </span><span class="m">192</span>.168.1.50/24<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span>ipv4.gateway<span class="w"> </span><span class="m">192</span>.168.1.1<span class="w"> </span>ipv4.dns<span class="w"> </span><span class="m">8</span>.8.8.8<span class="w"> </span>ipv4.method<span class="w"> </span>manual
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>sudo<span class="w"> </span>nmcli<span class="w"> </span>connection<span class="w"> </span>down<span class="w"> </span><span class="s2">&quot;eth0&quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>nmcli<span class="w"> </span>connection<span class="w"> </span>up<span class="w"> </span><span class="s2">&quot;eth0&quot;</span>
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>ip<span class="w"> </span>-br<span class="w"> </span>addr<span class="p">;</span><span class="w"> </span>ping<span class="w"> </span>-c2<span class="w"> </span><span class="m">192</span>.168.1.1
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>sudo<span class="w"> </span>nmcli<span class="w"> </span>connection<span class="w"> </span>modify<span class="w"> </span><span class="s2">&quot;eth0&quot;</span><span class="w"> </span>ipv4.addresses<span class="w"> </span><span class="m">192</span>.168.1.50/24<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span>ipv4.gateway<span class="w"> </span><span class="m">192</span>.168.1.1<span class="w"> </span>ipv4.dns<span class="w"> </span><span class="m">8</span>.8.8.8<span class="w"> </span>ipv4.method<span class="w"> </span>manual
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>sudo<span class="w"> </span>nmcli<span class="w"> </span>connection<span class="w"> </span>down<span class="w"> </span><span class="s2">&quot;eth0&quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>nmcli<span class="w"> </span>connection<span class="w"> </span>up<span class="w"> </span><span class="s2">&quot;eth0&quot;</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>ip<span class="w"> </span>-br<span class="w"> </span>addr<span class="p">;</span><span class="w"> </span>ping<span class="w"> </span>-c2<span class="w"> </span><span class="m">192</span>.168.1.1
 </code></pre></div></p>
 </div>
 <h2 id="kunci-jawaban-klik-untuk-lihat">Kunci Jawaban (klik untuk lihat)<a class="headerlink" href="#kunci-jawaban-klik-untuk-lihat" title="Permanent link">&para;</a></h2>

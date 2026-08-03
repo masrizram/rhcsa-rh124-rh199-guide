@@ -884,10 +884,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#8-koneksi-ke-ex200" class="md-nav__link">
+  <a href="#9-skopeo-buildah-inspeksi-salin-bangun-image-wajib-ex200" class="md-nav__link">
     <span class="md-ellipsis">
       
-        8. Koneksi ke EX200
+        9. skopeo &amp; buildah — Inspeksi, Salin, &amp; Bangun Image (Wajib EX200)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-koneksi-ke-ex200" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Koneksi ke EX200
       
     </span>
   </a>
@@ -1365,7 +1376,33 @@
 <li>SELinux blocks read/write volume → <code>z</code>/<code>Z</code> flag: <code>-v /data:/data:Z</code>.</li>
 </ul>
 </div>
-<h2 id="8-koneksi-ke-ex200">8. Koneksi ke EX200<a class="headerlink" href="#8-koneksi-ke-ex200" title="Permanent link">&para;</a></h2>
+<h2 id="9-skopeo-buildah-inspeksi-salin-bangun-image-wajib-ex200">9. skopeo &amp; buildah — Inspeksi, Salin, &amp; Bangun Image (Wajib EX200)<a class="headerlink" href="#9-skopeo-buildah-inspeksi-salin-bangun-image-wajib-ex200" title="Permanent link">&para;</a></h2>
+<p>Selain <code>podman</code>, EX200 mengenal <strong>skopeo</strong> (inspeksi &amp; copy image antar
+registry/tar tanpa perlu pull penuh) dan <strong>buildah</strong> (build image OCI tanpa
+daemon). Berguna untuk soal "ambil image dari registry ke local store" atau
+"inspeksi image".</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># skopeo: inspeksi image di registry tanpa mendownload layer</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>skopeo<span class="w"> </span>inspect<span class="w"> </span>docker://docker.io/library/nginx:latest
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># skopeo: salin image registry -&gt; local tar (offline-friendly)</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>skopeo<span class="w"> </span>copy<span class="w"> </span>docker://docker.io/library/nginx:latest<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">            </span>oci-archive:/tmp/nginx.oci.tar
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="c1"># skopeo: salin antar registry (mirror)</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>skopeo<span class="w"> </span>copy<span class="w"> </span>docker://docker.io/library/nginx:latest<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">            </span>docker://registry.access.redhat.com/nginx:latest
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="c1"># buildah: bangun image dari Containerfile (tanpa docker daemon)</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>buildah<span class="w"> </span>bud<span class="w"> </span>-t<span class="w"> </span>myapp:1.0<span class="w"> </span>.<span class="w">        </span><span class="c1"># &#39;bud&#39; = build using dockerfile</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>buildah<span class="w"> </span>images<span class="w">                     </span><span class="c1"># lihat image hasil build</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>podman<span class="w"> </span>pull<span class="w"> </span>myapp:1.0<span class="w">             </span><span class="c1"># image buildah bisa dipakai podman</span>
+</code></pre></div>
+<blockquote>
+<p>⚠️ <code>skopeo copy</code> tidak butuh <code>podman pull</code> dulu — langsung transfer antar
+sumber/tujuan. Di EX200 sering dipakai untuk "mirror image ke registry
+internal" atau "backup image ke file".</p>
+</blockquote>
+<h2 id="10-koneksi-ke-ex200">10. Koneksi ke EX200<a class="headerlink" href="#10-koneksi-ke-ex200" title="Permanent link">&para;</a></h2>
 <div class="admonition success">
 <p class="admonition-title">EX200</p>
 <p>Soal container umumnya: <em>"Jalankan image X sebagai container bernama Y,

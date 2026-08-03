@@ -852,10 +852,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#10-jebakan-umum-ex200" class="md-nav__link">
+  <a href="#10-stratis-manajemen-storage-lokal-modern-wajib-ex200" class="md-nav__link">
     <span class="md-ellipsis">
       
-        10. Jebakan Umum (EX200)
+        10. Stratis — Manajemen Storage Lokal Modern (Wajib EX200)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-vdo-deduplikasi-kompresi-wajib-ex200" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. VDO — Deduplikasi &amp; Kompresi (Wajib EX200)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-disk-quota-batasi-pemakaian-usergroup-wajib-ex200" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Disk Quota — Batasi Pemakaian User/Group (Wajib EX200)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-jebakan-umum-ex200" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Jebakan Umum (EX200)
       
     </span>
   </a>
@@ -1428,7 +1461,103 @@ fstab statis, tidak hang saat server NFS mati saat boot).</p>
 <p>⚠️ Bedanya dengan fstab statis: autofs <strong>tidak</strong> mem-block boot bila server
 NFS down. Itu sebabnya sering jadi preferensi di soal EX200.</p>
 </blockquote>
-<h2 id="10-jebakan-umum-ex200">10. Jebakan Umum (EX200)<a class="headerlink" href="#10-jebakan-umum-ex200" title="Permanent link">&para;</a></h2>
+<h2 id="10-stratis-manajemen-storage-lokal-modern-wajib-ex200">10. Stratis — Manajemen Storage Lokal Modern (Wajib EX200)<a class="headerlink" href="#10-stratis-manajemen-storage-lokal-modern-wajib-ex200" title="Permanent link">&para;</a></h2>
+<p>Stratis menyederhanakan storage tingkat lanjut (snapshot, thin-provision,
+pool) di atas LVM/XFS dengan satu perintah. Objektif EX200 RHEL 9/10:
+<em>"Configure and manage storage using the Stratis"</em> (sic) — jadi <strong>wajib diuji</strong>.</p>
+<p><strong>Konsep:</strong> <code>blockdev</code> (disk) → <code>pool</code> (kumpulan storage) → <code>filesystem</code>
+(XFS di atas pool, thin-provision).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># 1. Pasang &amp; aktifkan layanan stratis</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>stratis-cli<span class="w"> </span>stratisd
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>stratisd
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="c1"># 2. Buat pool dari satu/lebih block device</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>sudo<span class="w"> </span>stratis<span class="w"> </span>pool<span class="w"> </span>create<span class="w"> </span>mypool<span class="w"> </span>/dev/sdb<span class="w"> </span>/dev/sdc
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>stratis<span class="w"> </span>pool<span class="w"> </span>list
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="c1"># 3. Buat filesystem (thin-provision, otomatis XFS)</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>sudo<span class="w"> </span>stratis<span class="w"> </span>filesystem<span class="w"> </span>create<span class="w"> </span>mypool<span class="w"> </span>data1
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>stratis<span class="w"> </span>filesystem<span class="w"> </span>list<span class="w"> </span>mypool
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="c1"># 4. Mount (pakai device mapper Stratis)</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>sudo<span class="w"> </span>mkdir<span class="w"> </span>/mnt/stratis-data
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>sudo<span class="w"> </span>mount<span class="w"> </span>/dev/stratis/mypool/data1<span class="w"> </span>/mnt/stratis-data
+<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>
+<a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="c1"># 5. Mount permanen via /etc/fstab (gunakan _netdev + x-systemd)</span>
+<a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;/dev/stratis/mypool/data1  /mnt/stratis-data  xfs  defaults,x-systemd.requires=stratisd.service  0 0&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span>/etc/fstab
+<a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a>sudo<span class="w"> </span>mount<span class="w"> </span>-a
+</code></pre></div>
+<p><strong>Snapshot &amp; recovered (sering muncul di soal):</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Snapshot filesystem (readonly awal, bisa di-clone jadi RW)</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>sudo<span class="w"> </span>stratis<span class="w"> </span>filesystem<span class="w"> </span>snapshot<span class="w"> </span>mypool<span class="w"> </span>data1<span class="w"> </span>snap1
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="c1"># Clone snapshot jadi filesystem kerja</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>sudo<span class="w"> </span>stratis<span class="w"> </span>filesystem<span class="w"> </span>clone<span class="w"> </span>mypool<span class="w"> </span>snap1<span class="w"> </span>data1-restored
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="c1"># Hapus filesystem/pool</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>sudo<span class="w"> </span>stratis<span class="w"> </span>filesystem<span class="w"> </span>destroy<span class="w"> </span>mypool<span class="w"> </span>data1-restored
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>sudo<span class="w"> </span>stratis<span class="w"> </span>pool<span class="w"> </span>destroy<span class="w"> </span>mypool
+</code></pre></div></p>
+<blockquote>
+<p>⚠️ Jangan format device yang SUDAH masuk pool Stratis dengan <code>mkfs</code>.
+Stratis mengelola XFS di dalamnya sendiri.</p>
+</blockquote>
+<h2 id="11-vdo-deduplikasi-kompresi-wajib-ex200">11. VDO — Deduplikasi &amp; Kompresi (Wajib EX200)<a class="headerlink" href="#11-vdo-deduplikasi-kompresi-wajib-ex200" title="Permanent link">&para;</a></h2>
+<p>VDO (Virtual Data Optimizer) memberikan deduplikasi + kompresi di atas block
+device, sehingga ruang fisik lebih efisien untuk data berulang (backup,
+image). Objektif EX200: <em>"Configure and manage storage using VDO"</em>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># 1. Pasang &amp; aktifkan</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>vdo<span class="w"> </span>kmod-kvdo
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>vdo
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="c1"># 2. Buat volume VDO (logical size BISA &gt; physical size = thin)</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>sudo<span class="w"> </span>vdo<span class="w"> </span>create<span class="w"> </span>--name<span class="o">=</span>myvdo<span class="w"> </span>--device<span class="o">=</span>/dev/sdb<span class="w"> </span>--vdoLogicalSize<span class="o">=</span>50G
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="c1">#    tunggu sampai &#39;Operating&#39; (lihat status):</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>vdo<span class="w"> </span>status<span class="w"> </span>--name<span class="o">=</span>myvdo
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="c1"># 3. Format &amp; mount seperti block device biasa</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>sudo<span class="w"> </span>mkfs.xfs<span class="w"> </span>-K<span class="w"> </span>/dev/mapper/myvdo
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>sudo<span class="w"> </span>mkdir<span class="w"> </span>/mnt/vdo
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>sudo<span class="w"> </span>mount<span class="w"> </span>/dev/mapper/myvdo<span class="w"> </span>/mnt/vdo
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>
+<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a><span class="c1"># 4. Mount permanen (penting: _netdev + noauto agar tidak hang boot)</span>
+<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;/dev/mapper/myvdo  /mnt/vdo  xfs  defaults,x-systemd.requires=vdo.service,_netdev  0 0&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span>/etc/fstab
+<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>
+<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a><span class="c1"># 5. Cek efisiensi (dedup ratio)</span>
+<a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a>vdostats<span class="w"> </span>--human-readable
+</code></pre></div>
+<blockquote>
+<p>⚠️ VDO butuh device <strong>kosong</strong> (belum ada filesystem/partition table).
+Gunakan <code>vdo remove --name=myvdo</code> untuk membongkar.</p>
+</blockquote>
+<h2 id="12-disk-quota-batasi-pemakaian-usergroup-wajib-ex200">12. Disk Quota — Batasi Pemakaian User/Group (Wajib EX200)<a class="headerlink" href="#12-disk-quota-batasi-pemakaian-usergroup-wajib-ex200" title="Permanent link">&para;</a></h2>
+<p>Objektif EX200: <em>"Implement disk quotas"</em>. Batasi berapa banyak ruang/  jumlah
+file yang boleh dipakai tiap user atau group pada suatu filesystem.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># 1. Mount FS dengan opsi quota (userquota,grpquota)</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="c1">#    di /etc/fstab:  UUID=xxxx  /home  xfs  defaults,usrquota,grpquota  0 0</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>sudo<span class="w"> </span>mount<span class="w"> </span>-o<span class="w"> </span>remount,usrquota,grpquota<span class="w"> </span>/home
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="c1"># 2. XFS: bangun ulang database quota (langsung aktif, tanpa quotacheck)</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>sudo<span class="w"> </span>xfs_quota<span class="w"> </span>-x<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;report -h&#39;</span><span class="w"> </span>/home<span class="w">      </span><span class="c1"># lihat status</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>sudo<span class="w"> </span>xfs_quota<span class="w"> </span>-x<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;state&#39;</span><span class="w"> </span>/home<span class="w">           </span><span class="c1"># pastikan quota ON</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="c1"># 3. Set batas (block soft/hard + inode soft/hard) untuk user</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>sudo<span class="w"> </span>xfs_quota<span class="w"> </span>-x<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;limit bsoft=100M bhard=120M isoft=1000 ihard=1200 user1&#39;</span><span class="w"> </span>/home
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="c1"># 4. Verifikasi</span>
+<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>sudo<span class="w"> </span>xfs_quota<span class="w"> </span>-x<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;report -h -u&#39;</span><span class="w"> </span>/home
+<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a><span class="c1">#    bhard/bsoft = batas block (ruang), ihard/isoft = batas inode (jumlah file)</span>
+</code></pre></div>
+<p>Untuk <strong>ext4</strong> (berbeda alat):
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>sudo<span class="w"> </span>quotacheck<span class="w"> </span>-cugm<span class="w"> </span>/home<span class="w">     </span><span class="c1"># bangun aquota.user/aquota.group</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>sudo<span class="w"> </span>quotaon<span class="w"> </span>-v<span class="w"> </span>/home
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>sudo<span class="w"> </span>edquota<span class="w"> </span>-u<span class="w"> </span>user1<span class="w">           </span><span class="c1"># edit interaktif (mirip crontab)</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>repquota<span class="w"> </span>-a<span class="w">                     </span><span class="c1"># laporan</span>
+</code></pre></div></p>
+<blockquote>
+<p>⚠️ <code>bhard</code> = batas keras (tulis ditolak setelah lewat). <code>bsoft</code> = batas lunak
+(diizinkan lewat dalam masa grace, lalu jadi keras). EX200 sering minta
+set keduanya.</p>
+</blockquote>
+<h2 id="13-jebakan-umum-ex200">13. Jebakan Umum (EX200)<a class="headerlink" href="#13-jebakan-umum-ex200" title="Permanent link">&para;</a></h2>
 <div class="admonition danger">
 <p class="admonition-title">Jebakan</p>
 <ul>
@@ -1450,7 +1579,13 @@ NFS down. Itu sebabnya sering jadi preferensi di soal EX200.</p>
 lalu besarkan jadi 2G." Kunci: <code>pvcreate</code>→<code>vgcreate</code>→<code>lvcreate</code>→<code>mkfs.xfs</code>→
 fstab (UUID) → <code>mount -a</code> → <code>lvextend -L +1G</code> → <code>xfs_growfs /data</code>.
 Atau: "Pasang share NFS <code>server:/export</code> ke <code>/mnt/data</code> otomatis saat
-diakses" → pakai <strong>autofs</strong> (§9).</p>
+diakses" → pakai <strong>autofs</strong> (§9).
+Atau (RHEL 9/10): "Buat pool Stratis <code>mypool</code> dari <code>/dev/sdb</code>, buat
+filesystem <code>data1</code>, mount permanen" → <strong>Stratis</strong> (§10).
+Atau: "Buat volume VDO dedup 50G di <code>/dev/sdc</code>, mount di <code>/mnt/vdo</code>" →
+<strong>VDO</strong> (§11).
+Atau: "Batasi user <code>user1</code> maks 120M &amp; 1200 file di <code>/home</code>" →
+<strong>disk quota</strong> (§12, perintah <code>xfs_quota -x -c 'limit ...'</code>).</p>
 </div>
 <h2 id="kunci-jawaban-klik-untuk-lihat">Kunci Jawaban (klik untuk lihat)<a class="headerlink" href="#kunci-jawaban-klik-untuk-lihat" title="Permanent link">&para;</a></h2>
 <details class="note">
@@ -1479,6 +1614,10 @@ diakses" → pakai <strong>autofs</strong> (§9).</p>
 <li>(Jika ada ruang) buat LV dengan LVM dan perbesar 1 GB.</li>
 <li>Format flash disk jadi VFAT: <code>sudo mkfs.vfat -F 32 /dev/sdX</code>, lalu mount.</li>
 <li>(Lab berjaringan) pasang autofs untuk mount NFS lab on-demand di <code>/mnt/nfs</code>.</li>
+<li>(RHEL 9/10) buat pool Stratis dari disk lab, buat filesystem, mount permanen.</li>
+<li>(RHEL 9/10) buat volume VDO dedup, format XFS, cek <code>vdostats</code>.</li>
+<li>(RHEL 9/10) pasang <code>usrquota,grpquota</code> di <code>/home</code>, set batas user dengan
+   <code>xfs_quota -x -c 'limit ...'</code>, verifikasi dengan <code>report -h -u</code>.</li>
 </ol>
 
 
