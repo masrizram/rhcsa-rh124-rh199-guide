@@ -5,6 +5,27 @@ Kumpulan tugas tangan untuk tiap modul. Kerjakan di lab lokal
 
 ---
 
+## 🤖 Verifikasi Otomatis (Podman)
+
+Ingin memastikan perintah di panduan **benar-benar jalan**, bukan cuma
+teori? Jalankan skrip verifikasi di komputer Anda (butuh `podman`):
+
+```bash
+# dari root repo
+chmod +x lab/verify/verify-lab.sh
+./lab/verify/verify-lab.sh
+```
+
+Skrip akan menarik `rockylinux:9`, lalu mengeksekusi perintah kunci dari
+tiap modul (user/grup, ACL, proses, SSH key, DNF, LVM tools, journald,
+Podman, SELinux, cron) di dalam container **ephemeral** — tidak mengubah
+sistem Anda. Hasil tiap cek ditampilkan `✓ PASS / ✗ FAIL / ⊘ SKIP`.
+`SKIP` wajar di container (systemd/SELinux/LVM butuh VM nyata, bukan container).
+
+> File: [`lab/verify/verify-lab.sh`](https://github.com/masrizram/rhcsa-rh124-rh199-guide/blob/main/lab/verify/verify-lab.sh)
+
+---
+
 ## Modul 01 — Get Started
 - [ ] Akses Cockpit: `systemctl enable --now cockpit.socket` lalu buka `:9090`.
 - [ ] Jalankan `whoami`, `pwd`, `hostname`, `date`.

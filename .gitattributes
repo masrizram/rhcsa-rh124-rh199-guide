@@ -1,0 +1,3 @@
+# Paksa LF untuk file skrip (dijalankan di Linux container via podman)
+*.sh text eol=lf
+lab/verify/verify-lab.sh text eol=lf
