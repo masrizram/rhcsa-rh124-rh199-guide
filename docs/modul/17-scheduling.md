@@ -3,6 +3,8 @@
 > Muncul di objektif EX200: *"deploy, adjust, and maintain systems"* —
 > mencakup cron, at, dan pengaturan waktu/locale.
 
+> 📺 Referensi video: [RHCSA & EX200 Prep](https://www.youtube.com/watch?v=eGbNXqPdUa4&list=PLZkuninm20jDUT_jArQrkfCImbbi2jWns) (penjadwalan dalam kurikulum RH124/RH199)
+
 ## 1. `cron` — Jadwal Berulang
 
 ```bash
@@ -90,3 +92,15 @@ systemctl list-timers      # lihat timer aktif
 1. Buat crontab yang mencatat `date` ke `~/log.txt` tiap 5 menit (`*/5 * * * *`).
 2. Jadwalkan `at` 1 menit lagi untuk `echo done > ~/at.txt`.
 3. Ubah zona waktu ke `Asia/Jakarta`, verifikasi `timedatectl`.
+
+## Kunci Jawaban (klik untuk lihat)
+
+??? note "Kunci Jawaban Latihan"
+    1. `crontab -e` → `*/5 * * * * date >> ~/log.txt` (5 kolom: m h dom mon dow).
+    2. `echo "echo done > ~/at.txt" | at now + 1 minute`.
+    3. `timedatectl set-timezone Asia/Jakarta`; `timedatectl` → Time zone: Asia/Jakarta.
+
+??? note "Kunci Jawaban Kuis"
+    1. **5 kolom**: menit, jam, tanggal-bulan, bulan, hari-dalam-minggu.
+    2. **`crontab -r`** menghapus semua crontab user (tanpa konfirmasi).
+    3. **`timedatectl set-timezone Asia/Jakarta`**.

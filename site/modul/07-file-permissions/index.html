@@ -688,6 +688,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#kunci-jawaban-klik-untuk-lihat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kunci Jawaban (klik untuk lihat)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#kuis-cepat" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1238,7 +1249,7 @@
 
 <h1 id="modul-07-access-to-files-permissions-ownership">Modul 07 — Access to Files (Permissions &amp; Ownership)<a class="headerlink" href="#modul-07-access-to-files-permissions-ownership" title="Permanent link">&para;</a></h1>
 <blockquote>
-<p>Referensi video: <code>FmyIyp73bGM</code></p>
+<p>📺 Referensi video: <a href="https://www.youtube.com/watch?v=FmyIyp73bGM&amp;list=PLZkuninm20jDUT_jArQrkfCImbbi2jWns">FmyIyp73bGM</a></p>
 </blockquote>
 <h2 id="1-model-izin-linux">1. Model Izin Linux<a class="headerlink" href="#1-model-izin-linux" title="Permanent link">&para;</a></h2>
 <p>Setiap berkas punya: <strong>pemilik (owner)</strong>, <strong>group</strong>, dan <strong>izin</strong> untuk
@@ -1335,6 +1346,15 @@ Jelaskan siapa yang bisa baca/tulis. (Owner budi rw; group dev r; other tidak ad
 tertentu akses lewat <strong>ACL</strong> tanpa mengubah owner. Kunci: <code>chmod</code>, <code>chown</code>,
 <code>setfacl</code>, <code>getfacl</code> untuk memverifikasi.</p>
 </div>
+<h2 id="kunci-jawaban-klik-untuk-lihat">Kunci Jawaban (klik untuk lihat)<a class="headerlink" href="#kunci-jawaban-klik-untuk-lihat" title="Permanent link">&para;</a></h2>
+<details class="note">
+<summary>Kunci Jawaban Latihan</summary>
+<ol>
+<li><code>chmod 755 file</code> → rwxr-xr-x (owner rw, grup+other r-x).</li>
+<li><code>chown user:grp</code> mengubah owner &amp; group.</li>
+<li><code>setfacl -m u:alice:rwx</code> memberi akses rwx khusus alice (tanpa ubah owner).</li>
+</ol>
+</details>
 <h2 id="kuis-cepat">Kuis Cepat<a class="headerlink" href="#kuis-cepat" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Izin <code>rwxr-xr--</code> berapa dalam angka oktal? (750)</li>

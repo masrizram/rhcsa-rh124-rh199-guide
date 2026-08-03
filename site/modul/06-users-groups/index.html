@@ -649,6 +649,28 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#kunci-jawaban-klik-untuk-lihat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kunci Jawaban (klik untuk lihat)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kuis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kuis
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1205,7 +1227,7 @@
 
 <h1 id="modul-06-manage-local-users-and-groups">Modul 06 — Manage Local Users and Groups<a class="headerlink" href="#modul-06-manage-local-users-and-groups" title="Permanent link">&para;</a></h1>
 <blockquote>
-<p>Referensi video: <code>yg1IdxH38OA</code></p>
+<p>📺 Referensi video: <a href="https://www.youtube.com/watch?v=yg1IdxH38OA&amp;list=PLZkuninm20jDUT_jArQrkfCImbbi2jWns">yg1IdxH38OA</a></p>
 </blockquote>
 <h2 id="1-konsep-user-group">1. Konsep User &amp; Group<a class="headerlink" href="#1-konsep-user-group" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1283,6 +1305,32 @@
 <li>Tambahkan <code>siswa</code> ke group <code>wheel</code> agar bisa <code>sudo</code>.</li>
 <li>Verifikasi: <code>id siswa</code> dan <code>sudo -l -U siswa</code>.</li>
 </ol>
+<h2 id="kunci-jawaban-klik-untuk-lihat">Kunci Jawaban (klik untuk lihat)<a class="headerlink" href="#kunci-jawaban-klik-untuk-lihat" title="Permanent link">&para;</a></h2>
+<details class="note">
+<summary>Kunci Jawaban Latihan</summary>
+<ol>
+<li><code>useradd</code> + <code>/etc/passwd</code> baris baru.</li>
+<li><code>/etc/passwd</code> sumber user (shadow untuk hash).</li>
+<li><code>usermod -aG</code> (a=append) atau <code>gpasswd -a</code>.</li>
+</ol>
+</details>
+<h2 id="kuis">Kuis<a class="headerlink" href="#kuis" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Perintah membuat user baru?</li>
+<li>a. useradd  b. adduser  c. mkuser  d. newuser</li>
+<li>File daftar user?</li>
+<li>a. /etc/passwd  b. /etc/shadow  c. /etc/group  d. /etc/users</li>
+<li>Menambah user ke grup tambahan?</li>
+<li>a. usermod -aG grp user  b. gpasswd -a  c. useradd -G  d. keduanya a &amp; b</li>
+</ol>
+<details class="note">
+<summary>Kunci Jawaban Kuis</summary>
+<ol>
+<li><strong>a</strong></li>
+<li><strong>a</strong></li>
+<li><strong>d</strong></li>
+</ol>
+</details>
 
 
 

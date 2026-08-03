@@ -3,6 +3,8 @@
 > SELinux adalah penyebab **paling sering** peserta EX200 gagal. Jangan
 > mematikan — konfigurasikan dengan benar.
 
+> 📺 Referensi video: [RHCSA & EX200 Prep](https://www.youtube.com/watch?v=eGbNXqPdUa4&list=PLZkuninm20jDUT_jArQrkfCImbbi2jWns) (SELinux dibahas dalam video prep EX200)
+
 ## 1. Konsep Dasar
 
 SELinux = *Mandatory Access Control* (MAC) di atas DAC (permission biasa).
@@ -95,6 +97,14 @@ sudo semanage port -a -t http_port_t -p tcp 8080   # izinkan httpd di 8080
     sudo setsebool -P httpd_can_network_connect on   # bila perlu
     sudo firewall-cmd --add-port=8080/tcp --permanent
     ```
+
+
+## Kunci Jawaban (klik untuk lihat)
+
+??? note "Kunci Jawaban Latihan"
+    1. `getenforce` → Enforcing/Permissive/Disabled.
+    2. `setsebool -P` permanen.
+    3. `restorecon -R` terapkan label fcontext.
 
 ## Kuis Cepat
 

@@ -1,6 +1,6 @@
 # Modul 06 — Manage Local Users and Groups
 
-> Referensi video: `yg1IdxH38OA`
+> 📺 Referensi video: [yg1IdxH38OA](https://www.youtube.com/watch?v=yg1IdxH38OA&list=PLZkuninm20jDUT_jArQrkfCImbbi2jWns)
 
 ## 1. Konsep User & Group
 
@@ -77,3 +77,24 @@ visudo
 1. Buat user `siswa` dengan home & shell bash, lalu set sandi.
 2. Tambahkan `siswa` ke group `wheel` agar bisa `sudo`.
 3. Verifikasi: `id siswa` dan `sudo -l -U siswa`.
+
+## Kunci Jawaban (klik untuk lihat)
+
+??? note "Kunci Jawaban Latihan"
+    1. `useradd` + `/etc/passwd` baris baru.
+    2. `/etc/passwd` sumber user (shadow untuk hash).
+    3. `usermod -aG` (a=append) atau `gpasswd -a`.
+
+## Kuis
+
+1. Perintah membuat user baru?
+   - a. useradd  b. adduser  c. mkuser  d. newuser
+2. File daftar user?
+   - a. /etc/passwd  b. /etc/shadow  c. /etc/group  d. /etc/users
+3. Menambah user ke grup tambahan?
+   - a. usermod -aG grp user  b. gpasswd -a  c. useradd -G  d. keduanya a & b
+
+??? note "Kunci Jawaban Kuis"
+    1. **a**
+    2. **a**
+    3. **d**

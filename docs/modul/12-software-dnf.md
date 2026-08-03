@@ -1,6 +1,6 @@
 # Modul 12 — Install and Update Software (DNF)
 
-> Referensi video: `CDpa7ZpNNEE`
+> 📺 Referensi video: [CDpa7ZpNNEE](https://www.youtube.com/watch?v=CDpa7ZpNNEE&list=PLZkuninm20jDUT_jArQrkfCImbbi2jWns)
 
 ## 1. DNF vs RPM
 
@@ -95,3 +95,16 @@ sudo dnf install postgresql-server
 2. Pasang `tree` lalu hapus: `sudo dnf install tree` → `sudo dnf remove tree`.
 3. Cek update yang tersedia: `dnf check-update` (tanpa memasang).
 4. Lihat modul: `dnf module list`, enable satu (mis. `postgresql:15`).
+
+## Kunci Jawaban (klik untuk lihat)
+
+??? note "Kunci Jawaban Latihan"
+    1. `dnf provides /usr/bin/vim` → mis. `vim-enhanced`.
+    2. `dnf install -y tree` lalu `dnf remove -y tree` (pakai sudo bila bukan root).
+    3. `dnf check-update` menampilkan update tersedia tanpa memasang.
+    4. `dnf module list`; `dnf module enable -y postgresql:15`.
+
+??? note "Kunci Jawaban Kuis"
+    1. **`dnf`** (RHEL 8+ menggantikan yum).
+    2. **`dnf install pkg`** (tambah `-y` untuk non-interaktif).
+    3. **`dnf provides /path`** mencari paket pemilik berkas/biner.

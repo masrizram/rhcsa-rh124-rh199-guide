@@ -1,6 +1,6 @@
 # Modul 10 — Configure and Secure SSH
 
-> Referensi video: `jGzIZZrdEpE`
+> 📺 Referensi video: [jGzIZZrdEpE](https://www.youtube.com/watch?v=jGzIZZrdEpE&list=PLZkuninm20jDUT_jArQrkfCImbbi2jWns)
 
 ## 1. SSH (Secure Shell)
 
@@ -91,6 +91,14 @@ Lalu cukup: `ssh server1`.
     Soal SSH umum: "Amankan server — forbidden root login, wajib kunci, ubah port,
     batasi user." Kunci: edit `/etc/ssh/sshd_config` → `sshd -t` (UJI!) →
     `systemctl restart sshd` → verifikasi dari sesi ke-2.
+
+
+## Kunci Jawaban (klik untuk lihat)
+
+??? note "Kunci Jawaban Latihan"
+    1. `ssh-copy-id` menaruh pubkey ke authorized_keys.
+    2. `PermitRootLogin no` cegah root login langsung.
+    3. `scp -P 2222` untuk port non-default.
 
 ## Kuis Cepat
 

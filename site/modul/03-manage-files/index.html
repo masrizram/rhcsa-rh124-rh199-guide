@@ -557,6 +557,28 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#kunci-jawaban-klik-untuk-lihat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kunci Jawaban (klik untuk lihat)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kuis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kuis
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1194,7 +1216,7 @@
 
 <h1 id="modul-03-manage-files-from-the-command-line">Modul 03 — Manage Files from the Command Line<a class="headerlink" href="#modul-03-manage-files-from-the-command-line" title="Permanent link">&para;</a></h1>
 <blockquote>
-<p>Referensi video: <code>__5fjNolVtU</code></p>
+<p>📺 Referensi video: <a href="https://www.youtube.com/watch?v=__5fjNolVtU&amp;list=PLZkuninm20jDUT_jArQrkfCImbbi2jWns">__5fjNolVtU</a></p>
 </blockquote>
 <h2 id="1-hirarki-sistem-berkas-fhs">1. Hirarki Sistem Berkas (FHS)<a class="headerlink" href="#1-hirarki-sistem-berkas-fhs" title="Permanent link">&para;</a></h2>
 <p>RHEL menggunakan <em>Filesystem Hierarchy Standard</em>:</p>
@@ -1285,6 +1307,32 @@
 <li>Salin ke <code>/tmp</code>: <code>cp -r latihan /tmp/latihan</code>.</li>
 <li>Gunakan wildcard: buat 3 berkas <code>x1 x2 x3</code>, lalu <code>ls x?</code> untuk membuktikan.</li>
 </ol>
+<h2 id="kunci-jawaban-klik-untuk-lihat">Kunci Jawaban (klik untuk lihat)<a class="headerlink" href="#kunci-jawaban-klik-untuk-lihat" title="Permanent link">&para;</a></h2>
+<details class="note">
+<summary>Kunci Jawaban Latihan</summary>
+<ol>
+<li><code>mkdir -p latihan/modul03</code> membuat nested; <code>touch</code> membuat berkas kosong.</li>
+<li><code>cp -r</code> penting (direktori butuh <code>-r</code>), hasil di <code>/tmp/latihan/</code>.</li>
+<li><code>x?</code> cocok <code>x1 x2 x3</code> (1 karakter sesudah x). <code>ls x*</code> juga cocok.</li>
+</ol>
+</details>
+<h2 id="kuis">Kuis<a class="headerlink" href="#kuis" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Perintah membuat direktori bertingkat sekaligus?</li>
+<li>a. <code>mkdir a/b/c</code>  b. <code>mkdir -p a/b/c</code>  c. <code>touch -p</code>  d. <code>cp -r</code></li>
+<li>Menghapus direktori beserta isi tanpa konfirmasi?</li>
+<li>a. <code>rm dir</code>  b. <code>rm -r dir</code>  c. <code>rm -rf dir</code>  d. <code>rmdir dir</code></li>
+<li><code>ls *.txt</code> artinya?</li>
+<li>a. semua berkas  b. berkas berakhiran .txt  c. berkas diawali txt  d. direktori</li>
+</ol>
+<details class="note">
+<summary>Kunci Jawaban Kuis</summary>
+<ol>
+<li><strong>b</strong> (<code>-p</code> = parents, buat nested).</li>
+<li><strong>c</strong> (<code>-rf</code> = recursive + force, tanpa konfirmasi — hati-hati).</li>
+<li><strong>b</strong> (wildcard <code>*</code> = apa pun di akhiran).</li>
+</ol>
+</details>
 
 
 

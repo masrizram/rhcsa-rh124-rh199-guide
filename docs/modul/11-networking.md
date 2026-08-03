@@ -1,6 +1,6 @@
 # Modul 11 — Manage Networking
 
-> Referensi video: `sm2LR26JERA`
+> 📺 Referensi video: [sm2LR26JERA](https://www.youtube.com/watch?v=sm2LR26JERA&list=PLZkuninm20jDUT_jArQrkfCImbbi2jWns)
 
 ## 1. Alat Jaringan di RHEL
 
@@ -97,6 +97,14 @@ hostnamectl
     sudo nmcli connection down "eth0" && sudo nmcli connection up "eth0"
     ip -br addr; ping -c2 192.168.1.1
     ```
+
+
+## Kunci Jawaban (klik untuk lihat)
+
+??? note "Kunci Jawaban Latihan"
+    1. `nmcli con up` mengaktifkan koneksi.
+    2. `ip addr` tampilkan interface & IP.
+    3. `hostnamectl set-hostname` ubah hostname.
 
 ## Kuis Cepat
 

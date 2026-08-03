@@ -1,6 +1,6 @@
 # Modul 09 — Control Services and Daemons (systemd)
 
-> Referensi video: `RESDzgTwqYk`
+> 📺 Referensi video: [RESDzgTwqYk](https://www.youtube.com/watch?v=RESDzgTwqYk&list=PLZkuninm20jDUT_jArQrkfCImbbi2jWns)
 
 ## 1. systemd — Init System Modern
 
@@ -91,6 +91,14 @@ sudo systemctl enable --now hello.service
     saat boot, dan restart bila gagal." Kunci: tulis unit di
     `/etc/systemd/system/webapp.service` dengan `Restart=on-failure` +
     `WantedBy=multi-user.target`, lalu `daemon-reload` → `enable --now`.
+
+
+## Kunci Jawaban (klik untuk lihat)
+
+??? note "Kunci Jawaban Latihan"
+    1. `systemctl enable --now` aktif sekarang & saat boot.
+    2. `systemctl status` kolom: Loaded/Active/Sub.
+    3. `journalctl -u` filter log unit.
 
 ## Kuis Cepat
 

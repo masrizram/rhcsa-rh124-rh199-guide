@@ -1,6 +1,6 @@
 # Modul 13 — Access Linux File Systems
 
-> Referensi video: `tuN89JVWjCs`
+> 📺 Referensi video: [tuN89JVWjCs](https://www.youtube.com/watch?v=tuN89JVWjCs&list=PLZkuninm20jDUT_jArQrkfCImbbi2jWns)
 
 ## 1. Konsep Storage
 
@@ -106,6 +106,14 @@ berubah antar boot).
     Soal storage sering: "Buat LV 1G, format XFS, mount permanen di `/data`,
     lalu besarkan jadi 2G." Kunci: `pvcreate`→`vgcreate`→`lvcreate`→`mkfs.xfs`→
     fstab (UUID) → `mount -a` → `lvextend -L +1G` → `xfs_growfs /data`.
+
+
+## Kunci Jawaban (klik untuk lihat)
+
+??? note "Kunci Jawaban Latihan"
+    1. `lvcreate` butuh VG ada.
+    2. `mkfs.xfs` memformat; XFS tidak bisa shrink.
+    3. `mount -a` uji semua entri fstab.
 
 ## Kuis Cepat
 

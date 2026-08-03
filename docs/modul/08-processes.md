@@ -1,6 +1,6 @@
 # Modul 08 — Monitor and Manage Linux Processes
 
-> Referensi video: `xeN2_R7W7so`
+> 📺 Referensi video: [xeN2_R7W7so](https://www.youtube.com/watch?v=xeN2_R7W7so&list=PLZkuninm20jDUT_jArQrkfCImbbi2jWns)
 
 ## 1. Apa itu Proses?
 

@@ -1,6 +1,6 @@
 # Modul 15 — EX200 (RHCSA) Exam Preparation
 
-> Referensi video: `eGbNXqPdUa4` (RHCSA & EX200 Prep), `2n2P0Awz3U4` (Pass the EX200)
+> 📺 Referensi video: [RHCSA & EX200 Prep](https://www.youtube.com/watch?v=eGbNXqPdUa4&list=PLZkuninm20jDUT_jArQrkfCImbbi2jWns) · [Pass the EX200](https://www.youtube.com/watch?v=2n2P0Awz3U4&list=PLZkuninm20jDUT_jArQrkfCImbbi2jWns)
 
 ## 1. Format Ujian EX200
 
@@ -61,3 +61,11 @@
 
 ## Latihan
 - Kerjakan ke-7 simulasi di atas tanpa melihat jawaban. Catat waktu tiap tugas.
+
+## Kunci Jawaban (klik untuk lihat)
+
+??? note "Kunci Jawaban Latihan"
+    - Kerjakan 7 skenario di atas di lab; verifikasi tiap tugas dengan
+      `id`, `getfacl`, `sshd -t`, `firewall-cmd --list-all`, `df -h`, `podman ps`,
+      `getenforce` — sesuai kolom "Cara Buktikan" di tiap skenario.
+    - Target: rata-rata < 18 menit/tugas dan skor ≥ 80% sebelum ujian nyata.

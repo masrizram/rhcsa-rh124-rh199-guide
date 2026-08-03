@@ -1,6 +1,6 @@
 # Modul 07 — Access to Files (Permissions & Ownership)
 
-> Referensi video: `FmyIyp73bGM`
+> 📺 Referensi video: [FmyIyp73bGM](https://www.youtube.com/watch?v=FmyIyp73bGM&list=PLZkuninm20jDUT_jArQrkfCImbbi2jWns)
 
 ## 1. Model Izin Linux
 
@@ -96,6 +96,14 @@ Jelaskan siapa yang bisa baca/tulis. (Owner budi rw; group dev r; other tidak ad
     (mis. "hanya owner yang baca-tulis, group **baca-saja**"), atau beri user
     tertentu akses lewat **ACL** tanpa mengubah owner. Kunci: `chmod`, `chown`,
     `setfacl`, `getfacl` untuk memverifikasi.
+
+
+## Kunci Jawaban (klik untuk lihat)
+
+??? note "Kunci Jawaban Latihan"
+    1. `chmod 755 file` → rwxr-xr-x (owner rw, grup+other r-x).
+    2. `chown user:grp` mengubah owner & group.
+    3. `setfacl -m u:alice:rwx` memberi akses rwx khusus alice (tanpa ubah owner).
 
 ## Kuis Cepat
 

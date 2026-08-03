@@ -1,6 +1,6 @@
 # Modul 00 — Pengantar & Roadmap Sertifikasi Red Hat
 
-> Referensi video: `pnHqii1Oq8Y` (Introduction), `O58uDdztjGU` (Wrap Up), `2n2P0Awz3U4` (Pass the EX200)
+> 📺 Referensi video: [Introduction](https://www.youtube.com/watch?v=pnHqii1Oq8Y&list=PLZkuninm20jDUT_jArQrkfCImbbi2jWns) · [Wrap Up](https://www.youtube.com/watch?v=O58uDdztjGU&list=PLZkuninm20jDUT_jArQrkfCImbbi2jWns) · [Pass the EX200](https://www.youtube.com/watch?v=2n2P0Awz3U4&list=PLZkuninm20jDUT_jArQrkfCImbbi2jWns)
 
 ## 1. Apa itu Red Hat Enterprise Linux (RHEL)?
 
@@ -67,3 +67,25 @@ cat /etc/redhat-release
 1. Tentukan distro yang akan kamu pakai untuk lab dan catat alasannya.
 2. Jalankan `cat /etc/redhat-release` dan simpan outputnya.
 3. Buat akun latihan bernama `student` (dilakukan di Modul 06 nanti).
+
+## Kunci Jawaban (klik untuk lihat)
+
+??? note "Kunci Jawaban Latihan"
+    1. Pilih Rocky/AlmaLinux (100% RHEL-compatible, gratis) atau Fedora (WSL).
+       Alasan: tanpa langganan RHEL resmi tetap bisa latihan penuh.
+    2. Output mis. `Rocky Linux release 9.4 (Blue Onyx)` — bukti distro RHEL-like.
+    3. Akun `student` dibuat di Modul 06 (useradd); di sini cukup rencanakan.
+
+## Kuis
+
+1. Ujian EX200 (RHCSA) berbasis?
+   - a. Pilihan ganda  b. Performance/hands-on  c. Esai  d. Wawancara
+2. Jalur setelah RH124 untuk menjadi RHCSA adalah?
+   - a. RH134 → EX200  b. EX200 langsung  c. RH294  d. RHCE
+3. Distro gratis pengganti RHEL untuk latihan?
+   - a. Ubuntu  b. Rocky/AlmaLinux  c. Debian  d. Arch
+
+??? note "Kunci Jawaban Kuis"
+    1. **b** (performance-based, diberi server nyata).
+    2. **a** (RH124 → RH134 → EX200).
+    3. **b** (Rocky/AlmaLinux biner-kompatibel RHEL).

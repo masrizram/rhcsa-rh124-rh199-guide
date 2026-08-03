@@ -758,6 +758,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#kunci-jawaban-klik-untuk-lihat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kunci Jawaban (klik untuk lihat)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#kuis-cepat" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1227,7 +1238,7 @@
 
 <h1 id="modul-10-configure-and-secure-ssh">Modul 10 — Configure and Secure SSH<a class="headerlink" href="#modul-10-configure-and-secure-ssh" title="Permanent link">&para;</a></h1>
 <blockquote>
-<p>Referensi video: <code>jGzIZZrdEpE</code></p>
+<p>📺 Referensi video: <a href="https://www.youtube.com/watch?v=jGzIZZrdEpE&amp;list=PLZkuninm20jDUT_jArQrkfCImbbi2jWns">jGzIZZrdEpE</a></p>
 </blockquote>
 <h2 id="1-ssh-secure-shell">1. SSH (Secure Shell)<a class="headerlink" href="#1-ssh-secure-shell" title="Permanent link">&para;</a></h2>
 <p>SSH menggantikan Telnet — seluruh lalu lintas dienkripsi. Server = <code>sshd</code>,
@@ -1301,6 +1312,15 @@ Lalu cukup: <code>ssh server1</code>.</p>
 batasi user." Kunci: edit <code>/etc/ssh/sshd_config</code> → <code>sshd -t</code> (UJI!) →
 <code>systemctl restart sshd</code> → verifikasi dari sesi ke-2.</p>
 </div>
+<h2 id="kunci-jawaban-klik-untuk-lihat">Kunci Jawaban (klik untuk lihat)<a class="headerlink" href="#kunci-jawaban-klik-untuk-lihat" title="Permanent link">&para;</a></h2>
+<details class="note">
+<summary>Kunci Jawaban Latihan</summary>
+<ol>
+<li><code>ssh-copy-id</code> menaruh pubkey ke authorized_keys.</li>
+<li><code>PermitRootLogin no</code> cegah root login langsung.</li>
+<li><code>scp -P 2222</code> untuk port non-default.</li>
+</ol>
+</details>
 <h2 id="kuis-cepat">Kuis Cepat<a class="headerlink" href="#kuis-cepat" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Perintah uji konfigurasi sshd sebelum restart? (<code>sshd -t</code>)</li>

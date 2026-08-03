@@ -914,6 +914,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#kunci-jawaban-klik-untuk-lihat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kunci Jawaban (klik untuk lihat)
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1229,6 +1240,7 @@
 <blockquote>
 <p>Topik wajib di <strong>EX200 RHEL 9</strong>. RHEL menggantikan Docker dengan <strong>Podman</strong>
 (rootless, daemonless, CLI kompatibel Docker).</p>
+<p>📺 Referensi video: <a href="https://www.youtube.com/watch?v=eGbNXqPdUa4&amp;list=PLZkuninm20jDUT_jArQrkfCImbbi2jWns">RHCSA &amp; EX200 Prep</a> (Podman bagian dari kurikulum RH124/RH199; video playlist tidak memilah per-topik container)</p>
 </blockquote>
 <h2 id="1-mengapa-podman">1. Mengapa Podman?<a class="headerlink" href="#1-mengapa-podman" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1317,6 +1329,18 @@ port P, persistent, dan pastikan hidup setelah reboot."</em> Kunci: <code>podman
 <li>Jalankan <code>nginx</code> di port 8080, akses via browser/curl, lalu hapus.</li>
 <li>Generate systemd unit untuk container nginx dan enable --now.</li>
 </ol>
+<h2 id="kunci-jawaban-klik-untuk-lihat">Kunci Jawaban (klik untuk lihat)<a class="headerlink" href="#kunci-jawaban-klik-untuk-lihat" title="Permanent link">&para;</a></h2>
+<details class="note">
+<summary>Kunci Jawaban Latihan</summary>
+<ol>
+<li><code>podman pull registry.access.redhat.com/ubi9/ubi</code> lalu <code>podman run -it --rm ubi9/ubi bash</code>.</li>
+<li><code>podman run -d -p 8080:80 --name web nginx</code>; <code>curl localhost:8080</code>;
+   <code>podman rm -f web</code>.</li>
+<li><code>podman generate systemd --new --files --name web</code>; pindahkan unit ke
+   <code>~/.config/systemd/user/</code>; <code>systemctl --user enable --now container-web.service</code>
+   (butuh <code>loginctl enable-linger $USER</code> agar jalan saat boot).</li>
+</ol>
+</details>
 
 
 

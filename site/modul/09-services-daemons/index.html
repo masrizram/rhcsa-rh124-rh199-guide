@@ -731,6 +731,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#kunci-jawaban-klik-untuk-lihat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kunci Jawaban (klik untuk lihat)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#kuis-cepat" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1227,7 +1238,7 @@
 
 <h1 id="modul-09-control-services-and-daemons-systemd">Modul 09 — Control Services and Daemons (systemd)<a class="headerlink" href="#modul-09-control-services-and-daemons-systemd" title="Permanent link">&para;</a></h1>
 <blockquote>
-<p>Referensi video: <code>RESDzgTwqYk</code></p>
+<p>📺 Referensi video: <a href="https://www.youtube.com/watch?v=RESDzgTwqYk&amp;list=PLZkuninm20jDUT_jArQrkfCImbbi2jWns">RESDzgTwqYk</a></p>
 </blockquote>
 <h2 id="1-systemd-init-system-modern">1. systemd — Init System Modern<a class="headerlink" href="#1-systemd-init-system-modern" title="Permanent link">&para;</a></h2>
 <p>RHEL 7+ menggunakan <strong>systemd</strong> sebagai init. Ia mengelola <em>unit</em> (service,
@@ -1319,6 +1330,15 @@ saat boot, dan restart bila gagal." Kunci: tulis unit di
 <code>/etc/systemd/system/webapp.service</code> dengan <code>Restart=on-failure</code> +
 <code>WantedBy=multi-user.target</code>, lalu <code>daemon-reload</code> → <code>enable --now</code>.</p>
 </div>
+<h2 id="kunci-jawaban-klik-untuk-lihat">Kunci Jawaban (klik untuk lihat)<a class="headerlink" href="#kunci-jawaban-klik-untuk-lihat" title="Permanent link">&para;</a></h2>
+<details class="note">
+<summary>Kunci Jawaban Latihan</summary>
+<ol>
+<li><code>systemctl enable --now</code> aktif sekarang &amp; saat boot.</li>
+<li><code>systemctl status</code> kolom: Loaded/Active/Sub.</li>
+<li><code>journalctl -u</code> filter log unit.</li>
+</ol>
+</details>
 <h2 id="kuis-cepat">Kuis Cepat<a class="headerlink" href="#kuis-cepat" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Perintah muat ulang konfig setelah edit unit? (<code>systemctl daemon-reload</code>)</li>

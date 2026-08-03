@@ -854,6 +854,28 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#kunci-jawaban-klik-untuk-lihat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kunci Jawaban (klik untuk lihat)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kuis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kuis
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1194,7 +1216,7 @@
 
 <h1 id="modul-14-analyze-servers-and-get-support">Modul 14 — Analyze Servers and Get Support<a class="headerlink" href="#modul-14-analyze-servers-and-get-support" title="Permanent link">&para;</a></h1>
 <blockquote>
-<p>Referensi video: <code>44ObsKHr0IA</code></p>
+<p>📺 Referensi video: <a href="https://www.youtube.com/watch?v=44ObsKHr0IA&amp;list=PLZkuninm20jDUT_jArQrkfCImbbi2jWns">44ObsKHr0IA</a></p>
 </blockquote>
 <h2 id="1-log-sistem">1. Log Sistem<a class="headerlink" href="#1-log-sistem" title="Permanent link">&para;</a></h2>
 <p>Di RHEL modern, log dikelola oleh <code>systemd-journald</code> dan (biasanya) <code>rsyslog</code>.</p>
@@ -1250,6 +1272,34 @@ sudah aktif.</p>
 <li>Buka Cockpit di browser lab (atau pastikan socket aktif).</li>
 <li>Buat "checklist triase" singkat untuk kasus "web tidak bisa diakses".</li>
 </ol>
+<h2 id="kunci-jawaban-klik-untuk-lihat">Kunci Jawaban (klik untuk lihat)<a class="headerlink" href="#kunci-jawaban-klik-untuk-lihat" title="Permanent link">&para;</a></h2>
+<details class="note">
+<summary>Kunci Jawaban Latihan</summary>
+<ol>
+<li><code>journalctl -p err -b</code> → error sejak boot; mis. unit failed.</li>
+<li><code>systemctl enable --now cockpit.socket</code> lalu buka <code>https://host:9090</code>.</li>
+<li>Triase: (a) cek service <code>systemctl status httpd</code>; (b) firewall
+   <code>firewall-cmd --list-all</code>; (c) port listen <code>ss -tulnp | grep :80</code>;
+   (d) log <code>journalctl -u httpd</code>.</li>
+</ol>
+</details>
+<h2 id="kuis">Kuis<a class="headerlink" href="#kuis" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Perintah melihat log live satu layanan?</li>
+<li>a. <code>journalctl -f -u nginx</code>  b. <code>tail /var/log/nginx</code>  c. <code>log nginx</code>  d. <code>dmesg -u</code></li>
+<li>Cockpit diakses lewat port?</li>
+<li>a. 8080  b. 9090  c. 80  d. 22</li>
+<li>Untuk klon gratis (Rocky), subscription-manager diperlukan?</li>
+<li>a. Ya  b. Tidak  c. Hanya untuk update  d. Hanya di RHEL 10</li>
+</ol>
+<details class="note">
+<summary>Kunci Jawaban Kuis</summary>
+<ol>
+<li><strong>a</strong> (<code>journalctl -f -u &lt;svc&gt;</code> live tail layanan).</li>
+<li><strong>b</strong> (Cockpit port 9090).</li>
+<li><strong>b</strong> (klon gratis tidak perlu subscription-manager).</li>
+</ol>
+</details>
 
 
 

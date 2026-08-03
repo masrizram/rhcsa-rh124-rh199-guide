@@ -1,6 +1,6 @@
 # Modul 14 — Analyze Servers and Get Support
 
-> Referensi video: `44ObsKHr0IA`
+> 📺 Referensi video: [44ObsKHr0IA](https://www.youtube.com/watch?v=44ObsKHr0IA&list=PLZkuninm20jDUT_jArQrkfCImbbi2jWns)
 
 ## 1. Log Sistem
 
@@ -69,3 +69,26 @@ sudo subscription-manager repos --list
 1. Jalankan `journalctl -p err -b` dan catat 1 error (walau minor).
 2. Buka Cockpit di browser lab (atau pastikan socket aktif).
 3. Buat "checklist triase" singkat untuk kasus "web tidak bisa diakses".
+
+## Kunci Jawaban (klik untuk lihat)
+
+??? note "Kunci Jawaban Latihan"
+    1. `journalctl -p err -b` → error sejak boot; mis. unit failed.
+    2. `systemctl enable --now cockpit.socket` lalu buka `https://host:9090`.
+    3. Triase: (a) cek service `systemctl status httpd`; (b) firewall
+       `firewall-cmd --list-all`; (c) port listen `ss -tulnp | grep :80`;
+       (d) log `journalctl -u httpd`.
+
+## Kuis
+
+1. Perintah melihat log live satu layanan?
+   - a. `journalctl -f -u nginx`  b. `tail /var/log/nginx`  c. `log nginx`  d. `dmesg -u`
+2. Cockpit diakses lewat port?
+   - a. 8080  b. 9090  c. 80  d. 22
+3. Untuk klon gratis (Rocky), subscription-manager diperlukan?
+   - a. Ya  b. Tidak  c. Hanya untuk update  d. Hanya di RHEL 10
+
+??? note "Kunci Jawaban Kuis"
+    1. **a** (`journalctl -f -u <svc>` live tail layanan).
+    2. **b** (Cockpit port 9090).
+    3. **b** (klon gratis tidak perlu subscription-manager).

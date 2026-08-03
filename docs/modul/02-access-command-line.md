@@ -1,6 +1,6 @@
 # Modul 02 — Access the Command Line
 
-> Referensi video: `aYTFiUhNN7E`
+> 📺 Referensi video: [aYTFiUhNN7E](https://www.youtube.com/watch?v=aYTFiUhNN7E&list=PLZkuninm20jDUT_jArQrkfCImbbi2jWns)
 
 ## 1. Anatomi Perintah Shell
 
@@ -73,3 +73,24 @@ echo hai\ dunia       # backslash menghubungkan spasi
 1. Gunakan `history` lalu jalankan kembali perintah nomor tertentu dengan `!nomor`.
 2. Di `/etc`, jalankan `ls -la` dan jelaskan kolom pertama (izin).
 3. Buat variabel `export LATIHAN=RH124` lalu `echo $LATIHAN`.
+
+## Kunci Jawaban (klik untuk lihat)
+
+??? note "Kunci Jawaban Latihan"
+    1. `sudo` menjalankan sebagai root (audit trail).
+    2. `ls -l` kolom: izin, link, owner, group, size, tgl, nama.
+    3. TTY virtual: Ctrl+Alt+F2 s/d F6.
+
+## Kuis
+
+1. Untuk menjalankan perintah sebagai admin?
+   - a. sudo cmd  b. su cmd  c. admin cmd  d. root cmd
+2. `ls -l` menampilkan?
+   - a. detail izin/owner  b. hanya nama  c. ukuran saja  d. waktu saja
+3. Virtual console diakses dengan?
+   - a. Ctrl+Alt+F2  b. Alt+Tab  c. Ctrl+C  d. Win+L
+
+??? note "Kunci Jawaban Kuis"
+    1. **a**
+    2. **a**
+    3. **a**

@@ -1,6 +1,6 @@
 # Modul 05 — Create, View, and Edit Text Files
 
-> Referensi video: `-gARZ98HUL4`
+> 📺 Referensi video: [-gARZ98HUL4](https://www.youtube.com/watch?v=-gARZ98HUL4&list=PLZkuninm20jDUT_jArQrkfCImbbi2jWns)
 
 ## 1. Melihat Isi Berkas
 
@@ -79,3 +79,24 @@ awk -F: '{print $1}' /etc/passwd      # cetak kolom 1
 1. Buat berkas dengan here-document berisi 3 baris, lalu `cat` untuk verifikasi.
 2. Di `vim`, ketik 5 baris, simpan dengan `:wq`, lalu buka lagi dan hapus 1 baris (`dd`).
 3. Hitung jumlah user di sistem: `wc -l /etc/passwd`.
+
+## Kunci Jawaban (klik untuk lihat)
+
+??? note "Kunci Jawaban Latihan"
+    1. vim standar; `i` masuk insert.
+    2. Normal mode untuk navigasi/perintah.
+    3. `grep` filter baris cocok.
+
+## Kuis
+
+1. Editor default RHEL untuk teks?
+   - a. vi/vim  b. nano  c. emacs  d. gedit
+2. Di vim, mode untuk mengetik teks?
+   - a. Insert (i)  b. Normal  c. Command  d. Visual
+3. Perintah cari teks dalam file?
+   - a. grep  b. find  c. cat  d. less
+
+??? note "Kunci Jawaban Kuis"
+    1. **a**
+    2. **a**
+    3. **a**

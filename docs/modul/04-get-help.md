@@ -1,6 +1,6 @@
 # Modul 04 — Get Help in Red Hat Enterprise Linux
 
-> Referensi video: `UC_V5af1Ah0`
+> 📺 Referensi video: [UC_V5af1Ah0](https://www.youtube.com/watch?v=UC_V5af1Ah0&list=PLZkuninm20jDUT_jArQrkfCImbbi2jWns)
 
 ## 1. `man` (Manual Pages)
 

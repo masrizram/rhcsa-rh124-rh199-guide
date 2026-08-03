@@ -3,6 +3,8 @@
 > Topik wajib di **EX200 RHEL 9**. RHEL menggantikan Docker dengan **Podman**
 > (rootless, daemonless, CLI kompatibel Docker).
 
+> 📺 Referensi video: [RHCSA & EX200 Prep](https://www.youtube.com/watch?v=eGbNXqPdUa4&list=PLZkuninm20jDUT_jArQrkfCImbbi2jWns) (Podman bagian dari kurikulum RH124/RH199; video playlist tidak memilah per-topik container)
+
 ## 1. Mengapa Podman?
 
 - **Rootless**: jalan sebagai user biasa, lebih aman.
@@ -104,3 +106,13 @@ podman system prune           # bersihkan semua tak terpakai
 1. `podman pull` image `ubi9/ubi`, jalankan interaktif `podman run -it --rm ubi9/ubi bash`.
 2. Jalankan `nginx` di port 8080, akses via browser/curl, lalu hapus.
 3. Generate systemd unit untuk container nginx dan enable --now.
+
+## Kunci Jawaban (klik untuk lihat)
+
+??? note "Kunci Jawaban Latihan"
+    1. `podman pull registry.access.redhat.com/ubi9/ubi` lalu `podman run -it --rm ubi9/ubi bash`.
+    2. `podman run -d -p 8080:80 --name web nginx`; `curl localhost:8080`;
+       `podman rm -f web`.
+    3. `podman generate systemd --new --files --name web`; pindahkan unit ke
+       `~/.config/systemd/user/`; `systemctl --user enable --now container-web.service`
+       (butuh `loginctl enable-linger $USER` agar jalan saat boot).

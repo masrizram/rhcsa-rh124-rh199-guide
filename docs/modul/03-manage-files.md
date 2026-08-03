@@ -1,6 +1,6 @@
 # Modul 03 — Manage Files from the Command Line
 
-> Referensi video: `__5fjNolVtU`
+> 📺 Referensi video: [__5fjNolVtU](https://www.youtube.com/watch?v=__5fjNolVtU&list=PLZkuninm20jDUT_jArQrkfCImbbi2jWns)
 
 ## 1. Hirarki Sistem Berkas (FHS)
 
@@ -68,3 +68,24 @@ ps aux | grep httpd          # saring proses
 1. Buat struktur: `mkdir -p latihan/modul03` lalu `touch latihan/modul03/coba.txt`.
 2. Salin ke `/tmp`: `cp -r latihan /tmp/latihan`.
 3. Gunakan wildcard: buat 3 berkas `x1 x2 x3`, lalu `ls x?` untuk membuktikan.
+
+## Kunci Jawaban (klik untuk lihat)
+
+??? note "Kunci Jawaban Latihan"
+    1. `mkdir -p latihan/modul03` membuat nested; `touch` membuat berkas kosong.
+    2. `cp -r` penting (direktori butuh `-r`), hasil di `/tmp/latihan/`.
+    3. `x?` cocok `x1 x2 x3` (1 karakter sesudah x). `ls x*` juga cocok.
+
+## Kuis
+
+1. Perintah membuat direktori bertingkat sekaligus?
+   - a. `mkdir a/b/c`  b. `mkdir -p a/b/c`  c. `touch -p`  d. `cp -r`
+2. Menghapus direktori beserta isi tanpa konfirmasi?
+   - a. `rm dir`  b. `rm -r dir`  c. `rm -rf dir`  d. `rmdir dir`
+3. `ls *.txt` artinya?
+   - a. semua berkas  b. berkas berakhiran .txt  c. berkas diawali txt  d. direktori
+
+??? note "Kunci Jawaban Kuis"
+    1. **b** (`-p` = parents, buat nested).
+    2. **c** (`-rf` = recursive + force, tanpa konfirmasi — hati-hati).
+    3. **b** (wildcard `*` = apa pun di akhiran).

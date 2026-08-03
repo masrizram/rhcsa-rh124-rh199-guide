@@ -861,6 +861,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#kunci-jawaban-klik-untuk-lihat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kunci Jawaban (klik untuk lihat)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#kuis-cepat" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1249,7 +1260,7 @@
 
 <h1 id="modul-13-access-linux-file-systems">Modul 13 — Access Linux File Systems<a class="headerlink" href="#modul-13-access-linux-file-systems" title="Permanent link">&para;</a></h1>
 <blockquote>
-<p>Referensi video: <code>tuN89JVWjCs</code></p>
+<p>📺 Referensi video: <a href="https://www.youtube.com/watch?v=tuN89JVWjCs&amp;list=PLZkuninm20jDUT_jArQrkfCImbbi2jWns">tuN89JVWjCs</a></p>
 </blockquote>
 <h2 id="1-konsep-storage">1. Konsep Storage<a class="headerlink" href="#1-konsep-storage" title="Permanent link">&para;</a></h2>
 <p>Hirarki penyimpanan RHEL:
@@ -1333,6 +1344,15 @@ berubah antar boot).</p>
 lalu besarkan jadi 2G." Kunci: <code>pvcreate</code>→<code>vgcreate</code>→<code>lvcreate</code>→<code>mkfs.xfs</code>→
 fstab (UUID) → <code>mount -a</code> → <code>lvextend -L +1G</code> → <code>xfs_growfs /data</code>.</p>
 </div>
+<h2 id="kunci-jawaban-klik-untuk-lihat">Kunci Jawaban (klik untuk lihat)<a class="headerlink" href="#kunci-jawaban-klik-untuk-lihat" title="Permanent link">&para;</a></h2>
+<details class="note">
+<summary>Kunci Jawaban Latihan</summary>
+<ol>
+<li><code>lvcreate</code> butuh VG ada.</li>
+<li><code>mkfs.xfs</code> memformat; XFS tidak bisa shrink.</li>
+<li><code>mount -a</code> uji semua entri fstab.</li>
+</ol>
+</details>
 <h2 id="kuis-cepat">Kuis Cepat<a class="headerlink" href="#kuis-cepat" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Perintah apa untuk verifikasi fstab tanpa reboot? (<code>mount -a</code>)</li>
