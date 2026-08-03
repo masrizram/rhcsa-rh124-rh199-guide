@@ -8,20 +8,33 @@
   </div>
 {% endblock %}
 
-{# Footer: ganti seluruh footer default dgn card nav + copyright sendiri.
-   Pakai {{ base_url }} agar benar di PROJECT site
-   (masrizram.github.io/rhcsa-rh124-rh199-guide/...) — bukan user site. #}
+{# Footer: Prev/Next mengikuti urutan nav (tidak perlu scroll sidebar)
+   + CTA "Uji diri" (Simulasi Ujian). #}
 {% block footer %}
-  <div class="rh-footnav">
-    <a href="{{ base_url }}/pusat-belajar/">
-      <div class="rh-dir">▲ Mulai di sini</div>
-      <div class="rh-t">🗺️ Pusat Belajar &amp; Roadmap</div>
-    </a>
-    <a class="rh-next" href="{{ base_url }}/referensi/SIMULASI-UJIAN/">
-      <div class="rh-dir">Uji diri</div>
-      <div class="rh-t">⏱️ Simulasi Ujian 2 Jam →</div>
-    </a>
+  <nav class="rh-prevnext" aria-label="Navigasi modul">
+    {% if page.previous_page %}
+      <a class="rh-prev" href="{{ page.previous_page.url | url }}">
+        <span class="rh-dir">← Sebelumnya</span>
+        <span class="rh-t">{{ page.previous_page.title }}</span>
+      </a>
+    {% else %}
+      <span class="rh-prev rh-disabled"></span>
+    {% endif %}
+    {% if page.next_page %}
+      <a class="rh-next" href="{{ page.next_page.url | url }}">
+        <span class="rh-dir">Berikutnya →</span>
+        <span class="rh-t">{{ page.next_page.title }}</span>
+      </a>
+    {% else %}
+      <span class="rh-next rh-disabled"></span>
+    {% endif %}
+  </nav>
+
+  <div class="rh-footcta">
+    <a class="rh-btn rh-btn-primary" href="{{ base_url }}/referensi/SIMULASI-UJIAN/">⏱️ Uji diri: Simulasi Ujian 2 Jam</a>
+    <a class="rh-btn rh-btn-ghost" href="{{ base_url }}/pusat-belajar/">🗺️ Pusat Belajar</a>
   </div>
+
   <div class="rh-copyright">
     © 2026 masrizram · Panduan RHCSA (RH124/RH199) → EX200 · Lisensi MIT
   </div>
