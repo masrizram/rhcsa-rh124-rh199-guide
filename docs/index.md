@@ -81,7 +81,10 @@ Selamat datang di panduan langkah-demi-langkah menuju sertifikasi
 | 13 | [File Systems & LVM](modul/13-filesystems.md) |
 | 14 | [Support & Logs](modul/14-support.md) |
 | 15 | [Podman & Containers](modul/15-podman-containers.md) |
-| 16 | [EX200 (RHCSA) Prep](modul/15-ex200-prep.md) |
+| 16 | [SELinux](modul/16-selinux.md) |
+| 17 | [Penjadwalan & Time Zone](modul/17-scheduling.md) |
+| 18 | [EX200 (RHCSA) Prep](modul/18-ex200-prep.md) |
+| 19 | [Skenario EX200 Terukur](modul/19-skenario-ex200.md) |
 
 ## 🖥️ Siapkan Lab (Gratis)
 

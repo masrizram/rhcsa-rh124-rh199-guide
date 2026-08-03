@@ -47,12 +47,13 @@ bootc rollback        # kembalikan ke image sebelumnya
 9. Containers (`podman`) — bagian baru RHEL 9
 
 ## 3. Checklist H-7
-- [ ] Kerjakan semua modul 01–14 tanpa melihat catatan.
-- [ ] Selesaikan LAB Modul 15 simulasi < 90 menit.
+- [ ] Kerjakan semua modul 01–17 tanpa melihat catatan.
+- [ ] Selesaikan LAB Modul 17 simulasi < 90 menit.
 - [ ] Kuasai `vim`, `nmcli`, `systemctl`, `journalctl`, `dnf`, `firewall-cmd`, `setsebool`/`restorecon`.
 - [ ] Pahami LVM end-to-end (create → extend → growfs).
 - [ ] Latihan `podman run` + generate systemd service.
 - [ ] Simulasikan reboot VM dan pastikan tidak masuk grub rescue (fstab benar).
+- [ ] **Wajib**: kuasai [Break & Fix / Troubleshooting](BREAK-FIX.md) — ~40% soal EX200 adalah perbaikan sistem.
 
 ## 4. Jebakan Umum (Penyebab Gagal)
 | Jebakan | Solusi |
