@@ -841,10 +841,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#9-jebakan-umum-ex200" class="md-nav__link">
+  <a href="#9-autofs-mount-otomatis-on-demand-wajib-ex200" class="md-nav__link">
     <span class="md-ellipsis">
       
-        9. Jebakan Umum (EX200)
+        9. autofs — Mount Otomatis on-demand (Wajib EX200)
       
     </span>
   </a>
@@ -852,10 +852,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#10-koneksi-ke-ex200" class="md-nav__link">
+  <a href="#10-jebakan-umum-ex200" class="md-nav__link">
     <span class="md-ellipsis">
       
-        10. Koneksi ke EX200
+        10. Jebakan Umum (EX200)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-koneksi-ke-ex200" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Koneksi ke EX200
       
     </span>
   </a>
@@ -1323,7 +1334,7 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Disk fisik (sda)
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  └─ Partisi (sda1, sda2)
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>       └─ Physical Volume (PV)  →  Volume Group (VG)  →  Logical Volume (LV)
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>            └─ File System (ext4 / xfs)  →  mount point (/data)
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>            └─ File System (ext4 / xfs / vfat)  →  mount point (/data)
 </code></pre></div></p>
 <p>RHEL default menggunakan <strong>XFS</strong>. LVM memberi fleksibilitas resize.</p>
 <h2 id="2-melihat-storage">2. Melihat Storage<a class="headerlink" href="#2-melihat-storage" title="Permanent link">&para;</a></h2>
@@ -1336,7 +1347,13 @@
 <h2 id="3-membuat-filesystem">3. Membuat Filesystem<a class="headerlink" href="#3-membuat-filesystem" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>mkfs.xfs<span class="w"> </span>/dev/sdb1<span class="w">        </span><span class="c1"># format partisi jadi XFS</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>sudo<span class="w"> </span>mkfs.ext4<span class="w"> </span>/dev/sdb2<span class="w">       </span><span class="c1"># atau ext4</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>sudo<span class="w"> </span>mkfs.vfat<span class="w"> </span>-F<span class="w"> </span><span class="m">32</span><span class="w"> </span>/dev/sdc1<span class="w"> </span><span class="c1"># FAT32 (VFAT) — objektif EX200</span>
 </code></pre></div>
+<blockquote>
+<p><strong>VFAT (FAT32)</strong> muncul di objektif EX200 ("mount, unmount, and use VFAT").
+Cocok untuk USB flash disk / share dengan Windows. Tanpa journal, tanpa
+permission Unix (semua file 0777), batas file 4 GB.</p>
+</blockquote>
 <h2 id="4-mount-unmount">4. Mount &amp; Unmount<a class="headerlink" href="#4-mount-unmount" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo<span class="w"> </span>mkdir<span class="w"> </span>/data
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>sudo<span class="w"> </span>mount<span class="w"> </span>/dev/sdb1<span class="w"> </span>/data<span class="w">     </span><span class="c1"># mount manual (hilang setelah reboot)</span>
@@ -1354,6 +1371,8 @@
 <a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>sudo<span class="w"> </span>mount<span class="w"> </span>-a
 </code></pre></div>
 <p>Format fstab: <code>device  mountpoint  fstype  options  dump  fsck</code></p>
+<p>Untuk VFAT, opsi umum: <code>UUID=xxxx  /mnt/usb  vfat  defaults,uid=1000,gid=1000  0 0</code>
+(pakai <code>uid/gid</code> agar pemiliknya user biasa, bukan root).</p>
 <h2 id="6-lvm-logical-volume-manager">6. LVM (Logical Volume Manager)<a class="headerlink" href="#6-lvm-logical-volume-manager" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># 1. Tandai partisi sebagai PV</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>sudo<span class="w"> </span>pvcreate<span class="w"> </span>/dev/sdb1
@@ -1379,8 +1398,37 @@
 </code></pre></div>
 <h2 id="8-label-uuid">8. Label &amp; UUID<a class="headerlink" href="#8-label-uuid" title="Permanent link">&para;</a></h2>
 <p>Gunakan UUID di fstab (lebih stabil dari nama device <code>/dev/sdX</code> yang bisa
-berubah antar boot).</p>
-<h2 id="9-jebakan-umum-ex200">9. Jebakan Umum (EX200)<a class="headerlink" href="#9-jebakan-umum-ex200" title="Permanent link">&para;</a></h2>
+berubah antar boot). <code>blkid</code> untuk melihat keduanya; <code>e2label</code>/<code>xfs_admin -L</code>
+untuk memberi label.</p>
+<h2 id="9-autofs-mount-otomatis-on-demand-wajib-ex200">9. autofs — Mount Otomatis on-demand (Wajib EX200)<a class="headerlink" href="#9-autofs-mount-otomatis-on-demand-wajib-ex200" title="Permanent link">&para;</a></h2>
+<p><code>autofs</code> mem-mount filesystem <strong>secara otomatis saat diakses</strong> dan me-lepas
+otomatis saat idle. Sangat dipakai untuk NFS di client (tidak perlu entri
+fstab statis, tidak hang saat server NFS mati saat boot).</p>
+<p><strong>Langkah di client:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># 1. Pasang &amp; aktifkan</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>autofs
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>autofs
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="c1"># 2. Master map: arahkan /mnt/nfs ke map file</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;/mnt/nfs  /etc/auto.nfs&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span>/etc/auto.master.d/nfs.autofs
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="c1"># 3. Map file: direktori tujuan -&gt; sumber NFS</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="c1">#    sintaks:  &lt;subdir&gt;  &lt;opts&gt;  &lt;server&gt;:&lt;export&gt;</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;share  -fstype=nfs,rw,soft,intr  server1.lab.local:/srv/nfs/share&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">  </span>sudo<span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span>/etc/auto.nfs
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>autofs
+</code></pre></div></p>
+<p><strong>Cara membuktikan (verifikasi):</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nb">cd</span><span class="w"> </span>/mnt/nfs/share<span class="w">          </span><span class="c1"># akses -&gt; autofs otomatis mount!</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>mount<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>auto.nfs<span class="w">      </span><span class="c1"># terlihat entry automount</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="c1"># setelah idle (default ~300 dtk), autofs me-lepas sendiri</span>
+</code></pre></div></p>
+<blockquote>
+<p>⚠️ Bedanya dengan fstab statis: autofs <strong>tidak</strong> mem-block boot bila server
+NFS down. Itu sebabnya sering jadi preferensi di soal EX200.</p>
+</blockquote>
+<h2 id="10-jebakan-umum-ex200">10. Jebakan Umum (EX200)<a class="headerlink" href="#10-jebakan-umum-ex200" title="Permanent link">&para;</a></h2>
 <div class="admonition danger">
 <p class="admonition-title">Jebakan</p>
 <ul>
@@ -1391,14 +1439,18 @@ berubah antar boot).</p>
 <li>Membuat filesystem di partisi yang masih ter-mount → data hilang.</li>
 <li>Lupa <code>xfs_growfs</code> setelah <code>lvextend</code> → ukuran LV bertambah tapi FS tetap.</li>
 <li>ext4 butuh <code>resize2fs</code>; XFS butuh <code>xfs_growfs</code> (berbeda perintah!).</li>
+<li>NFS di fstab tanpa opsi <code>_netdev</code> → boot hang (tunggu timeout mount).</li>
+<li>autofs: lupa <code>systemctl enable --now autofs</code> → mount on-demand tak jalan.</li>
 </ul>
 </div>
-<h2 id="10-koneksi-ke-ex200">10. Koneksi ke EX200<a class="headerlink" href="#10-koneksi-ke-ex200" title="Permanent link">&para;</a></h2>
+<h2 id="11-koneksi-ke-ex200">11. Koneksi ke EX200<a class="headerlink" href="#11-koneksi-ke-ex200" title="Permanent link">&para;</a></h2>
 <div class="admonition success">
 <p class="admonition-title">EX200</p>
 <p>Soal storage sering: "Buat LV 1G, format XFS, mount permanen di <code>/data</code>,
 lalu besarkan jadi 2G." Kunci: <code>pvcreate</code>→<code>vgcreate</code>→<code>lvcreate</code>→<code>mkfs.xfs</code>→
-fstab (UUID) → <code>mount -a</code> → <code>lvextend -L +1G</code> → <code>xfs_growfs /data</code>.</p>
+fstab (UUID) → <code>mount -a</code> → <code>lvextend -L +1G</code> → <code>xfs_growfs /data</code>.
+Atau: "Pasang share NFS <code>server:/export</code> ke <code>/mnt/data</code> otomatis saat
+diakses" → pakai <strong>autofs</strong> (§9).</p>
 </div>
 <h2 id="kunci-jawaban-klik-untuk-lihat">Kunci Jawaban (klik untuk lihat)<a class="headerlink" href="#kunci-jawaban-klik-untuk-lihat" title="Permanent link">&para;</a></h2>
 <details class="note">
@@ -1407,20 +1459,26 @@ fstab (UUID) → <code>mount -a</code> → <code>lvextend -L +1G</code> → <cod
 <li><code>lvcreate</code> butuh VG ada.</li>
 <li><code>mkfs.xfs</code> memformat; XFS tidak bisa shrink.</li>
 <li><code>mount -a</code> uji semua entri fstab.</li>
+<li>VFAT: <code>mkfs.vfat -F 32 /dev/sdX</code>; mount type <code>vfat</code>.</li>
+<li>autofs: isi <code>/etc/auto.master.d/*.autofs</code> + map file, lalu <code>enable --now autofs</code>.</li>
 </ol>
 </details>
 <h2 id="kuis-cepat">Kuis Cepat<a class="headerlink" href="#kuis-cepat" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Perintah apa untuk verifikasi fstab tanpa reboot? (<code>mount -a</code>)</li>
+<li>Perintah verifikasi fstab tanpa reboot? (<code>mount -a</code>)</li>
 <li>Setelah <code>lvextend</code> pada volume XFS, apa yang harus dijalankan?
    (<code>xfs_growfs /mountpoint</code>)</li>
 <li>Mengapa pakai UUID daripada nama device di fstab? (nama device bisa berubah)</li>
+<li>Bedanya autofs vs fstab statis untuk NFS? (autofs mount on-demand, tidak
+   block boot bila server mati)</li>
 </ol>
 <h2 id="latihan">Latihan<a class="headerlink" href="#latihan" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Buat partisi + filesystem XFS di disk lab, lalu mount ke <code>/mnt/uji</code>.</li>
 <li>Tambahkan entri ke <code>/etc/fstab</code> dan validasi dengan <code>mount -a</code>.</li>
 <li>(Jika ada ruang) buat LV dengan LVM dan perbesar 1 GB.</li>
+<li>Format flash disk jadi VFAT: <code>sudo mkfs.vfat -F 32 /dev/sdX</code>, lalu mount.</li>
+<li>(Lab berjaringan) pasang autofs untuk mount NFS lab on-demand di <code>/mnt/nfs</code>.</li>
 </ol>
 
 

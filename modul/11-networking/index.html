@@ -732,10 +732,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-dhcp-dns" class="md-nav__link">
+  <a href="#4b-ipv6-wajib-ex200" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. DHCP &amp; DNS
+        4b. IPv6 (Wajib EX200)
       
     </span>
   </a>
@@ -1333,25 +1333,42 @@
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>nmcli<span class="w"> </span>connection<span class="w"> </span>show<span class="w">                </span><span class="c1"># daftar koneksi</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>nmcli<span class="w"> </span>connection<span class="w"> </span>show<span class="w"> </span><span class="s2">&quot;con-name&quot;</span><span class="w">    </span><span class="c1"># detail satu koneksi</span>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1"># Set IP statis</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1"># Set IP statis (IPv4)</span>
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>sudo<span class="w"> </span>nmcli<span class="w"> </span>connection<span class="w"> </span>modify<span class="w"> </span><span class="s2">&quot;eth0&quot;</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span>ipv4.addresses<span class="w"> </span><span class="m">192</span>.168.1.50/24<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span>ipv4.gateway<span class="w"> </span><span class="m">192</span>.168.1.1<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span>ipv4.dns<span class="w"> </span><span class="m">8</span>.8.8.8<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">  </span>ipv4.method<span class="w"> </span>manual
 <a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="c1"># Aktifkan perubahan</span>
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>sudo<span class="w"> </span>nmcli<span class="w"> </span>connection<span class="w"> </span>down<span class="w"> </span><span class="s2">&quot;eth0&quot;</span>
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>sudo<span class="w"> </span>nmcli<span class="w"> </span>connection<span class="w"> </span>up<span class="w"> </span><span class="s2">&quot;eth0&quot;</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="c1"># Set IPv6 statis (objektif EX200: &quot;Configure IPv4 and IPv6 addresses&quot;)</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>sudo<span class="w"> </span>nmcli<span class="w"> </span>connection<span class="w"> </span>modify<span class="w"> </span><span class="s2">&quot;eth0&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">  </span>ipv6.addresses<span class="w"> </span><span class="m">2001</span>:db8:1::50/64<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">  </span>ipv6.gateway<span class="w"> </span><span class="m">2001</span>:db8:1::1<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">  </span>ipv6.dns<span class="w"> </span><span class="m">2001</span>:4860:4860::8888<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">  </span>ipv6.method<span class="w"> </span>manual
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="c1"># Aktifkan perubahan</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>sudo<span class="w"> </span>nmcli<span class="w"> </span>connection<span class="w"> </span>down<span class="w"> </span><span class="s2">&quot;eth0&quot;</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>sudo<span class="w"> </span>nmcli<span class="w"> </span>connection<span class="w"> </span>up<span class="w"> </span><span class="s2">&quot;eth0&quot;</span>
 </code></pre></div>
-<h2 id="4-dhcp-dns">4. DHCP &amp; DNS<a class="headerlink" href="#4-dhcp-dns" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Kembalikan ke DHCP</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>sudo<span class="w"> </span>nmcli<span class="w"> </span>connection<span class="w"> </span>modify<span class="w"> </span><span class="s2">&quot;eth0&quot;</span><span class="w"> </span>ipv4.method<span class="w"> </span>auto
+<p>Verifikasi IPv6:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>ip<span class="w"> </span>-6<span class="w"> </span>addr<span class="w"> </span>show<span class="w"> </span>eth0<span class="w">          </span><span class="c1"># lihat alamat IPv6</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>ping6<span class="w"> </span>-c<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">2001</span>:db8:1::1<span class="w">      </span><span class="c1"># uji konektivitas IPv6</span>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># DNS</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>resolvectl<span class="w"> </span>status<span class="w">              </span><span class="c1"># lihat resolver (systemd-resolved)</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>cat<span class="w"> </span>/etc/resolv.conf<span class="w">           </span><span class="c1"># nameserver aktif</span>
-</code></pre></div>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1">## 4. DHCP &amp; DNS</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="sb">```</span>bash
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1"># Kembalikan ke DHCP</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>sudo<span class="w"> </span>nmcli<span class="w"> </span>connection<span class="w"> </span>modify<span class="w"> </span><span class="s2">&quot;eth0&quot;</span><span class="w"> </span>ipv4.method<span class="w"> </span>auto
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="c1"># DNS</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>resolvectl<span class="w"> </span>status<span class="w">              </span><span class="c1"># lihat resolver (systemd-resolved)</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>cat<span class="w"> </span>/etc/resolv.conf<span class="w">           </span><span class="c1"># nameserver aktif</span>
+</code></pre></div></p>
+<h2 id="4b-ipv6-wajib-ex200">4b. IPv6 (Wajib EX200)<a class="headerlink" href="#4b-ipv6-wajib-ex200" title="Permanent link">&para;</a></h2>
+<p>Objektif EX200: <em>"Configure IPv4 and IPv6 addresses"</em>. <code>nmcli</code> menangani keduanya
+lewat <code>ipv6.*</code> (lihat §3 di atas). Pastikan <code>ipv6.method manual</code> (bukan <code>ignore</code>)
+agar alamat aktif. Verifikasi dengan <code>ip -6 addr</code> dan <code>ping6</code>.</p>
 <h2 id="5-uji-konektivitas">5. Uji Konektivitas<a class="headerlink" href="#5-uji-konektivitas" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>ping<span class="w"> </span>-c<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">8</span>.8.8.8<span class="w">             </span><span class="c1"># uji reachability IP</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>ping<span class="w"> </span>-c<span class="w"> </span><span class="m">4</span><span class="w"> </span>google.com<span class="w">          </span><span class="c1"># uji DNS + reachability</span>

@@ -791,10 +791,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-cockpit-web-console" class="md-nav__link">
+  <a href="#2-journald-preserve-system-journals-wajib-ex200" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Cockpit (Web Console)
+        2. journald — Preserve System Journals (Wajib EX200)
       
     </span>
   </a>
@@ -802,10 +802,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-red-hat-insights" class="md-nav__link">
+  <a href="#3-cockpit-web-console" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Red Hat Insights
+        3. Cockpit (Web Console)
       
     </span>
   </a>
@@ -813,10 +813,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-subscription-management-rhel-resmi" class="md-nav__link">
+  <a href="#4-red-hat-insights" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Subscription Management (RHEL resmi)
+        4. Red Hat Insights
       
     </span>
   </a>
@@ -824,10 +824,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-sumber-dukungan" class="md-nav__link">
+  <a href="#5-subscription-management-rhel-resmi" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Sumber Dukungan
+        5. Subscription Management (RHEL resmi)
       
     </span>
   </a>
@@ -835,10 +835,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#6-triase-masalah-langkah-sistematis" class="md-nav__link">
+  <a href="#6-sumber-dukungan" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. Triase Masalah (Langkah Sistematis)
+        6. Sumber Dukungan
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-triase-masalah-langkah-sistematis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Triase Masalah (Langkah Sistematis)
       
     </span>
   </a>
@@ -1283,37 +1294,56 @@
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>ls<span class="w"> </span>/var/log/<span class="w">                   </span><span class="c1"># berkas log tradisional</span>
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>tail<span class="w"> </span>-f<span class="w"> </span>/var/log/messages<span class="w">      </span><span class="c1"># (jika rsyslog aktif)</span>
 </code></pre></div>
-<h2 id="2-cockpit-web-console">2. Cockpit (Web Console)<a class="headerlink" href="#2-cockpit-web-console" title="Permanent link">&para;</a></h2>
-<p>Panel all-in-one untuk monitor &amp; administrasi:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>cockpit.socket
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># Buka https://&lt;host&gt;:9090</span>
+<h2 id="2-journald-preserve-system-journals-wajib-ex200">2. journald — Preserve System Journals (Wajib EX200)<a class="headerlink" href="#2-journald-preserve-system-journals-wajib-ex200" title="Permanent link">&para;</a></h2>
+<p>Objektif EX200: <em>"Preserve system journals"</em>. Secara default, journal disimpan
+di RAM (<code>/run/log/journal</code>) dan <strong>hilang setelah reboot</strong>. Agar log persisten,
+set <code>Storage=persistent</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/var/log/journal<span class="w">        </span><span class="c1"># buat direktori persisten</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>systemd-journald<span class="w">   </span><span class="c1"># journald pakai /var/log/journal</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># Atau edit konfig:</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>sudo<span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/^#*Storage=.*/Storage=persistent/&#39;</span><span class="w"> </span>/etc/systemd/journald.conf
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>systemd-journald
+</code></pre></div>
+<p>Verifikasi:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>ls<span class="w"> </span>-d<span class="w"> </span>/var/log/journal/*<span class="w">        </span><span class="c1"># ada direktori (artinya persisten)</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>journalctl<span class="w"> </span>--disk-usage<span class="w">         </span><span class="c1"># lihat ukuran log di disk</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>journalctl<span class="w"> </span>-b<span class="w"> </span>-1<span class="w">                </span><span class="c1"># log boot SEBELUMNYA (bukti persisten)</span>
+</code></pre></div></p>
+<blockquote>
+<p>Tanpa ini, <code>journalctl -b -1</code> kosong setelah reboot — soal EX200 bisa minta
+"pastikan log sistem tersimpan antar reboot".</p>
+</blockquote>
+<h2 id="3-cockpit-web-console">3. Cockpit (Web Console)<a class="headerlink" href="#3-cockpit-web-console" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>cockpit.socket
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="c1"># Buka https://&lt;host&gt;:9090</span>
 </code></pre></div>
 <p>Fitur: overview CPU/mem/disk, layanan, jaringan, storage, terminal web, log.</p>
-<h2 id="3-red-hat-insights">3. Red Hat Insights<a class="headerlink" href="#3-red-hat-insights" title="Permanent link">&para;</a></h2>
+<h2 id="4-red-hat-insights">4. Red Hat Insights<a class="headerlink" href="#4-red-hat-insights" title="Permanent link">&para;</a></h2>
 <p>Layanan analitik proaktif (butuh subscription RHEL). Mendeteksi risiko
 keamanan &amp; stabilitas.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Di sistem RHEL berlangganan:</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>sudo<span class="w"> </span>insights-client<span class="w"> </span>--register
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>sudo<span class="w"> </span>insights-client<span class="w"> </span>--check-results
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Di sistem RHEL berlangganan:</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>sudo<span class="w"> </span>insights-client<span class="w"> </span>--register
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>sudo<span class="w"> </span>insights-client<span class="w"> </span>--check-results
 </code></pre></div>
-<h2 id="4-subscription-management-rhel-resmi">4. Subscription Management (RHEL resmi)<a class="headerlink" href="#4-subscription-management-rhel-resmi" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo<span class="w"> </span>subscription-manager<span class="w"> </span>register<span class="w"> </span>--auto-attach
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>sudo<span class="w"> </span>subscription-manager<span class="w"> </span>list<span class="w"> </span>--available
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>sudo<span class="w"> </span>subscription-manager<span class="w"> </span>attach<span class="w"> </span>--pool<span class="o">=</span>&lt;pool_id&gt;
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>sudo<span class="w"> </span>subscription-manager<span class="w"> </span>repos<span class="w"> </span>--list
+<h2 id="5-subscription-management-rhel-resmi">5. Subscription Management (RHEL resmi)<a class="headerlink" href="#5-subscription-management-rhel-resmi" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>sudo<span class="w"> </span>subscription-manager<span class="w"> </span>register<span class="w"> </span>--auto-attach
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>sudo<span class="w"> </span>subscription-manager<span class="w"> </span>list<span class="w"> </span>--available
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>sudo<span class="w"> </span>subscription-manager<span class="w"> </span>attach<span class="w"> </span>--pool<span class="o">=</span>&lt;pool_id&gt;
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>sudo<span class="w"> </span>subscription-manager<span class="w"> </span>repos<span class="w"> </span>--list
 </code></pre></div>
 <blockquote>
 <p>Untuk klon gratis (Rocky/Alma) langkah ini tidak diperlukan — repo publik
 sudah aktif.</p>
 </blockquote>
-<h2 id="5-sumber-dukungan">5. Sumber Dukungan<a class="headerlink" href="#5-sumber-dukungan" title="Permanent link">&para;</a></h2>
+<h2 id="6-sumber-dukungan">6. Sumber Dukungan<a class="headerlink" href="#6-sumber-dukungan" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Red Hat Customer Portal</strong>: https://access.redhat.com</li>
 <li><strong>KBase articles</strong> &amp; <strong>Solutions</strong>: <code>https://access.redhat.com/search</code></li>
 <li><strong>RHN / Bugzilla</strong> untuk pelaporan.</li>
 <li>Komunitas: Rocky Linux Forum, AlmaLinux Chat, server Discord RHEL.</li>
 </ul>
-<h2 id="6-triase-masalah-langkah-sistematis">6. Triase Masalah (Langkah Sistematis)<a class="headerlink" href="#6-triase-masalah-langkah-sistematis" title="Permanent link">&para;</a></h2>
+<h2 id="7-triase-masalah-langkah-sistematis">7. Triase Masalah (Langkah Sistematis)<a class="headerlink" href="#7-triase-masalah-langkah-sistematis" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Apa gejalanya? (error message persis)</li>
 <li>Di layer mana? (aplikasi / service / OS / jaringan / storage)</li>

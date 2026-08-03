@@ -84,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#modul-15-ex200-rhcsa-exam-preparation" class="md-skip">
+        <a href="#modul-18-ex200-rhcsa-exam-preparation" class="md-skip">
           Lewati ke isi
         </a>
       
@@ -899,10 +899,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-lingkup-ujian-objektif-umum" class="md-nav__link">
+  <a href="#2-lingkup-ujian-objektif-lengkap-ex200" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Lingkup Ujian (Objektif Umum)
+        2. Lingkup Ujian (Objektif Lengkap EX200)
       
     </span>
   </a>
@@ -910,10 +910,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-strategi-hari-h" class="md-nav__link">
+  <a href="#3-topik-baru-yang-sering-luput" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Strategi Hari-H
+        3. Topik Baru yang Sering Luput
       
     </span>
   </a>
@@ -921,10 +921,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-simulasi-soal-latihan" class="md-nav__link">
+  <a href="#4-perbedaan-rhel-9-vs-rhel-10-penting" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Simulasi Soal Latihan
+        4. Perbedaan RHEL 9 vs RHEL 10 (Penting!)
       
     </span>
   </a>
@@ -932,10 +932,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-sumber-belajar-tambahan" class="md-nav__link">
+  <a href="#5-strategi-hari-h" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Sumber Belajar Tambahan
+        5. Strategi Hari-H
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-simulasi-soal-latihan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Simulasi Soal Latihan
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-sumber-belajar-tambahan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Sumber Belajar Tambahan
       
     </span>
   </a>
@@ -1248,67 +1270,90 @@
   
 
 
-<h1 id="modul-15-ex200-rhcsa-exam-preparation">Modul 15 — EX200 (RHCSA) Exam Preparation<a class="headerlink" href="#modul-15-ex200-rhcsa-exam-preparation" title="Permanent link">&para;</a></h1>
+<h1 id="modul-18-ex200-rhcsa-exam-preparation">Modul 18 — EX200 (RHCSA) Exam Preparation<a class="headerlink" href="#modul-18-ex200-rhcsa-exam-preparation" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p>📺 Referensi video: <a href="https://www.youtube.com/watch?v=eGbNXqPdUa4&amp;list=PLZkuninm20jDUT_jArQrkfCImbbi2jWns">RHCSA &amp; EX200 Prep</a> · <a href="https://www.youtube.com/watch?v=2n2P0Awz3U4&amp;list=PLZkuninm20jDUT_jArQrkfCImbbi2jWns">Pass the EX200</a></p>
 </blockquote>
+<p>Ini adalah <strong>modul persiapan utama (kanonik)</strong> untuk ujian EX200. Halaman
+ringkas taktis ada di <a href="../../referensi/EX200-prep/">Persiapan EX200 (referensi)</a>,
+tapi seluruh materi &amp; simulasi soal berada di modul ini.</p>
 <h2 id="1-format-ujian-ex200">1. Format Ujian EX200<a class="headerlink" href="#1-format-ujian-ex200" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Tipe</strong>: <em>performance-based</em> (hands-on di server nyata, bukan pilihan ganda).</li>
-<li><strong>Durasi</strong>: 3 jam (biasanya).</li>
-<li><strong>Skor lolos</strong>: ±210/300 (berkembang tiap rilis).</li>
+<li><strong>Durasi</strong>: 3 jam (180 menit).</li>
+<li><strong>Skor lolos</strong>: Red Hat tidak mengumumkan angka pasti; historis ~210/300.
+  Strategi aman: kejar <strong>semua</strong> tugas, jangan mengejar nilai tertentu.</li>
 <li><strong>Lingkungan</strong>: beberapa VM RHEL yang harus kamu konfigurasi.</li>
 <li><strong>Aturan</strong>: tanpa internet, tanpa bawa catatan; boleh pakai <code>man</code>, <code>vim</code>,
-  dokumentasi lokal (<code>/usr/share/doc</code>).</li>
+  dokumentasi lokal (<code>/usr/share/doc</code>), dan Cockpit.</li>
 </ul>
-<h2 id="2-lingkup-ujian-objektif-umum">2. Lingkup Ujian (Objektif Umum)<a class="headerlink" href="#2-lingkup-ujian-objektif-umum" title="Permanent link">&para;</a></h2>
+<h2 id="2-lingkup-ujian-objektif-lengkap-ex200">2. Lingkup Ujian (Objektif Lengkap EX200)<a class="headerlink" href="#2-lingkup-ujian-objektif-lengkap-ex200" title="Permanent link">&para;</a></h2>
+<p>Berikut pemetaan objektif resmi EX200 (RHEL 10) ke modul di repo ini.
+Semua poin sudah tertutup — termasuk yang sering luput (autofs, Flatpak,
+tuned, bootloader/grub2, VFAT, chrony/IPv6).</p>
 <table>
 <thead>
 <tr>
-<th>Area</th>
+<th>Area objektif</th>
 <th>Contoh tugas</th>
+<th>Modul</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Understanding &amp; using essential tools</td>
-<td><code>man</code>, <code>vim</code>, redireksi, <code>tar</code>, <code>grep</code>, <code>find</code>, <code>ssh</code></td>
+<td>Understand and use essential tools</td>
+<td><code>man</code>, <code>vim</code>, redireksi, <code>tar</code>, <code>grep</code>, <code>find</code>, <code>ssh</code>, hard/soft link</td>
+<td>02, 03, 04, 05</td>
 </tr>
 <tr>
-<td>Operating running systems</td>
-<td><code>systemctl</code>, <code>journalctl</code>, proses, <code>nice</code></td>
+<td>Manage software</td>
+<td>RPM repo, DNF, <strong>Flatpak</strong> repo &amp; paket</td>
+<td>12</td>
 </tr>
 <tr>
-<td>Configuring local storage</td>
-<td>partisi, LVM, mount <code>fstab</code>, swap</td>
+<td>Create simple shell scripts</td>
+<td><code>if</code>/<code>for</code>/<code>while</code>, <code>$1 $# $@</code>, output command</td>
+<td>20</td>
 </tr>
 <tr>
-<td>Creating &amp; configuring file systems</td>
-<td>XFS/ext4, permission, ACL, <code>umask</code></td>
+<td>Operate running systems</td>
+<td><code>systemctl</code>, <code>journalctl</code>, proses, <code>nice</code>, <strong>tuned</strong>, interrupt boot</td>
+<td>08, 09</td>
 </tr>
 <tr>
-<td>Deploying/adjusting/ maintaining systems</td>
-<td>DNF, repo, <code>cron</code>, <code>at</code>, timezone</td>
+<td>Configure local storage</td>
+<td>partisi GPT, LVM (PV/VG/LV), mount by UUID/label, swap</td>
+<td>13</td>
 </tr>
 <tr>
-<td>Managing users &amp; groups</td>
+<td>Create &amp; configure file systems</td>
+<td>XFS/ext4/<strong>VFAT</strong>, NFS, <strong>autofs</strong>, extend LV, permission</td>
+<td>13</td>
+</tr>
+<tr>
+<td>Deploy/adjust/maintain systems</td>
+<td><code>cron</code>/<code>at</code>/systemd timer, boot target, <strong>chrony</strong>, <strong>grub2/bootloader</strong></td>
+<td>09, 17</td>
+</tr>
+<tr>
+<td>Manage basic networking</td>
+<td><strong>IPv4 &amp; IPv6</strong>, hostname, DNS, firewalld</td>
+<td>11</td>
+</tr>
+<tr>
+<td>Manage users &amp; groups</td>
 <td><code>useradd</code>, <code>usermod</code>, <code>passwd</code>, <code>sudo</code>, <code>chage</code></td>
+<td>06</td>
 </tr>
 <tr>
-<td>Managing security</td>
-<td><code>firewalld</code>, <code>SELinux</code> (enforcing), <code>ssh</code> hardening</td>
-</tr>
-<tr>
-<td>Networking</td>
-<td><code>nmcli</code>, hostname, DNS, routing</td>
-</tr>
-<tr>
-<td><strong>Creating simple shell scripts</strong></td>
-<td><code>#!/bin/bash</code>, variabel, <code>if</code>/<code>for</code>/<code>while</code>, argumen <code>$1 $# $@</code></td>
+<td>Manage security</td>
+<td><code>firewalld</code>, <strong>SELinux</strong> (enforcing), <code>ssh</code> key-based, <code>umask</code></td>
+<td>07, 10, 16</td>
 </tr>
 <tr>
 <td>Containers (RHEL 9+)</td>
-<td><code>podman</code> pull/run, <code>podman</code> sebagai service</td>
+<td><code>podman</code> pull/run, podman sebagai service</td>
+<td>15</td>
 </tr>
 </tbody>
 </table>
@@ -1316,7 +1361,74 @@
 <p>⚠️ <strong>SELinux</strong> sering jadi penyebab gagal. Jangan mematikan — konfigurasikan
 dengan benar (<code>setsebool</code>, <code>semanage</code>, <code>restorecon</code>, <code>chcon</code>).</p>
 </blockquote>
-<h2 id="3-strategi-hari-h">3. Strategi Hari-H<a class="headerlink" href="#3-strategi-hari-h" title="Permanent link">&para;</a></h2>
+<h2 id="3-topik-baru-yang-sering-luput">3. Topik Baru yang Sering Luput<a class="headerlink" href="#3-topik-baru-yang-sering-luput" title="Permanent link">&para;</a></h2>
+<p>Ini bagian yang di versi lama catatan sering kosong. Pastikan kamu hafal
+perintah dasarnya (detail ada di modul masing-masing):</p>
+<ul>
+<li><strong>autofs</strong> — mount NFS/USB otomatis on-demand (Modul 13, §VFAT/autofs).</li>
+<li><strong>Flatpak</strong> — repo &amp; paket desktop containerized (Modul 12, §Flatpak).</li>
+<li><strong>tuned</strong> — profil tuning performa (<code>tuned-adm</code>, Modul 09).</li>
+<li><strong>grub2 / bootloader</strong> — ubah parameter boot &amp; interrupt boot via <code>rd.break</code>
+  (Modul 09, §Bootloader &amp; Akses Darurat).</li>
+<li><strong>VFAT</strong> — format &amp; mount FAT32 (<code>mkfs.vfat</code>, Modul 13).</li>
+<li><strong>chrony / IPv6</strong> — client time service &amp; alamat IPv6 (<code>nmcli</code>, Modul 11 &amp; 17).</li>
+</ul>
+<h2 id="4-perbedaan-rhel-9-vs-rhel-10-penting">4. Perbedaan RHEL 9 vs RHEL 10 (Penting!)<a class="headerlink" href="#4-perbedaan-rhel-9-vs-rhel-10-penting" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Aspek</th>
+<th>RHEL 9</th>
+<th>RHEL 10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Init &amp; service</td>
+<td>systemd</td>
+<td>systemd (sama)</td>
+</tr>
+<tr>
+<td>Container</td>
+<td>Podman (rootless)</td>
+<td>Podman + <strong>bootc</strong></td>
+</tr>
+<tr>
+<td>OS model</td>
+<td>Package-based (RPM/DNF)</td>
+<td><strong>Image mode</strong> (bootc) tersedia</td>
+</tr>
+<tr>
+<td><code>bootc</code></td>
+<td>tidak ada</td>
+<td>sistem berbasis image (mirip Container OS)</td>
+</tr>
+<tr>
+<td>Default FS</td>
+<td>XFS</td>
+<td>XFS</td>
+</tr>
+<tr>
+<td>Networking</td>
+<td>NetworkManager/nmcli</td>
+<td>NetworkManager/nmcli (sama)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Bootc / Image Mode (RHEL 10):</strong> sistem dikelola sebagai <em>image</em> yang
+di-update via <code>bootc</code> (bukan <code>dnf update</code> tradisional). Untuk EX200, fokus
+tetap ke administrasi standar (user, storage, service, network, SELinux,
+Podman) — <code>bootc</code> bobotnya kecil. Perintah dasar:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>bootc<span class="w"> </span>status<span class="w">          </span><span class="c1"># lihat status image/rollback</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>bootc<span class="w"> </span>upgrade<span class="w">         </span><span class="c1"># upgrade ke image baru</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>bootc<span class="w"> </span>rollback<span class="w">        </span><span class="c1"># kembalikan ke image sebelumnya</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>bootc<span class="w"> </span>switch<span class="w"> </span>&lt;image&gt;<span class="w">  </span><span class="c1"># ganti ke image/repo berbeda</span>
+</code></pre></div></p>
+<blockquote>
+<p>Catatan: pada RHEL 9 (paling umum diuji saat ini), <code>bootc</code> <strong>tidak ada</strong>.
+Jangan panik jika perintah ini tidak ada di lab RHEL 9 — fokus ke <code>dnf</code>.</p>
+</blockquote>
+<h2 id="5-strategi-hari-h">5. Strategi Hari-H<a class="headerlink" href="#5-strategi-hari-h" title="Permanent link">&para;</a></h2>
 <ol>
 <li><strong>Baca semua soal dulu</strong> — petakan mana yang saling bergantung.</li>
 <li><strong>Mulai dari yang mudah &amp; independen</strong> untuk mengamankan poin.</li>
@@ -1328,7 +1440,7 @@ dengan benar (<code>setsebool</code>, <code>semanage</code>, <code>restorecon</c
 <li><strong>Waktu</strong>: 3 jam untuk ~15–20 tugas. Alokasikan ~8 menit/tugas, sisakan
    buffer untuk verifikasi.</li>
 </ol>
-<h2 id="4-simulasi-soal-latihan">4. Simulasi Soal Latihan<a class="headerlink" href="#4-simulasi-soal-latihan" title="Permanent link">&para;</a></h2>
+<h2 id="6-simulasi-soal-latihan">6. Simulasi Soal Latihan<a class="headerlink" href="#6-simulasi-soal-latihan" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Buat user <code>operator</code> dengan UID 2000, group <code>ops</code> (GID 3000), shell <code>/bin/bash</code>.</li>
 <li>Atur <code>/data</code> (XFS, mount permanen via fstab, ukuran min 500M).</li>
@@ -1336,28 +1448,34 @@ dengan benar (<code>setsebool</code>, <code>semanage</code>, <code>restorecon</c
 <li>Buka port 8080 di <code>firewalld</code> secara permanen.</li>
 <li>Pasang <code>httpd</code>, jadikan enable, dan pastikan bisa diakses di port 80.</li>
 <li>Buat cron job: backup <code>/etc</code> ke <code>/backup/etc.tar.gz</code> setiap jam 02:00.</li>
-<li>Set ELinux boolean <code>httpd_can_network_connect</code> on.</li>
+<li>Set SELinux boolean <code>httpd_can_network_connect</code> on.</li>
+<li>(Tambahan) Pasang paket Flatpak <code>gedit</code>, konfigurasi autofs untuk mount
+   NFS lab on-demand, dan aktifkan profil <code>tuned</code> <code>throughput-performance</code>.</li>
 </ol>
-<p>(Jawaban &amp; langkah ada di <code>../lab/LAB.md</code> dan <code>../referensi/EX200-prep.md</code>.
-Untuk perbaikan sistem rusak, baca <strong><a href="../../referensi/BREAK-FIX/">Break &amp; Fix / Troubleshooting</a></strong> — ~40% soal EX200 adalah troubleshooting.)</p>
-<h2 id="5-sumber-belajar-tambahan">5. Sumber Belajar Tambahan<a class="headerlink" href="#5-sumber-belajar-tambahan" title="Permanent link">&para;</a></h2>
+<p>(Jawaban &amp; langkah ada di <code>../lab/LAB.md</code> dan
+<code>../referensi/EX200-prep.md</code>. Untuk perbaikan sistem rusak, baca
+<strong><a href="../../referensi/BREAK-FIX/">Break &amp; Fix / Troubleshooting</a></strong> — ~40% soal
+EX200 adalah troubleshooting.)</p>
+<h2 id="7-sumber-belajar-tambahan">7. Sumber Belajar Tambahan<a class="headerlink" href="#7-sumber-belajar-tambahan" title="Permanent link">&para;</a></h2>
 <ul>
 <li>RH124 + RH134 (wajib).</li>
 <li><code>lab/LAB.md</code> di repo ini — kerjakan berulang hingga cepat.</li>
 <li>Dokumentasi lokal: <code>file:///usr/share/doc/</code>.</li>
 <li>Practice exam environment (mis. lab VirtualBox dengan snapshot).</li>
+<li><a href="../../referensi/SIMULASI-UJIAN/">Simulasi Ujian 2 Jam</a> &amp; <a href="../../referensi/CHECKLIST-H1/">Checklist H-1</a>.</li>
 </ul>
 <h2 id="latihan">Latihan<a class="headerlink" href="#latihan" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Kerjakan ke-7 simulasi di atas tanpa melihat jawaban. Catat waktu tiap tugas.</li>
+<li>Kerjakan ke-8 simulasi di atas tanpa melihat jawaban. Catat waktu tiap tugas.</li>
 </ul>
 <h2 id="kunci-jawaban-klik-untuk-lihat">Kunci Jawaban (klik untuk lihat)<a class="headerlink" href="#kunci-jawaban-klik-untuk-lihat" title="Permanent link">&para;</a></h2>
 <details class="note">
 <summary>Kunci Jawaban Latihan</summary>
 <ul>
-<li>Kerjakan 7 skenario di atas di lab; verifikasi tiap tugas dengan
+<li>Kerjakan skenario di atas di lab; verifikasi tiap tugas dengan
   <code>id</code>, <code>getfacl</code>, <code>sshd -t</code>, <code>firewall-cmd --list-all</code>, <code>df -h</code>, <code>podman ps</code>,
-  <code>getenforce</code> — sesuai kolom "Cara Buktikan" di tiap skenario.</li>
+  <code>getenforce</code>, <code>tuned-adm active</code>, <code>flatpak list</code> — sesuai kolom
+  "Cara Buktikan" di tiap skenario.</li>
 <li>Target: rata-rata &lt; 18 menit/tugas dan skor ≥ 80% sebelum ujian nyata.</li>
 </ul>
 </details>

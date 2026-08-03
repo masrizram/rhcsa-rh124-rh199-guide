@@ -84,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#persiapan-ujian-ex200-rhcsa" class="md-skip">
+        <a href="#persiapan-ex200-ringkasan-taktis" class="md-skip">
           Lewati ke isi
         </a>
       
@@ -1023,10 +1023,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-profil-ujian" class="md-nav__link">
+  <a href="#1-profil-ujian-singkat" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Profil Ujian
+        1. Profil Ujian (Singkat)
       
     </span>
   </a>
@@ -1034,21 +1034,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#1b-perbedaan-rhel-9-vs-rhel-10-penting" class="md-nav__link">
+  <a href="#2-topik-bobot-rhel-9" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1b. Perbedaan RHEL 9 vs RHEL 10 (Penting!)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-bobot-topik-rhel-9" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Bobot &amp; Topik (RHEL 9)
+        2. Topik &amp; Bobot (RHEL 9)
       
     </span>
   </a>
@@ -1078,10 +1067,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-alur-kerja-saat-ujian" class="md-nav__link">
+  <a href="#5-contoh-skor-waktu-target" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Alur Kerja Saat Ujian
+        5. Contoh Skor Waktu (target)
       
     </span>
   </a>
@@ -1089,10 +1078,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#6-contoh-skor-waktu-target" class="md-nav__link">
+  <a href="#6-alur-kerja-saat-ujian" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. Contoh Skor Waktu (target)
+        6. Alur Kerja Saat Ujian
       
     </span>
   </a>
@@ -1259,99 +1248,45 @@
   
 
 
-<h1 id="persiapan-ujian-ex200-rhcsa">🎓 Persiapan Ujian EX200 (RHCSA)<a class="headerlink" href="#persiapan-ujian-ex200-rhcsa" title="Permanent link">&para;</a></h1>
-<p>Panduan taktis menghadapi ujian sertifikasi RHCSA (EX200).</p>
-<h2 id="1-profil-ujian">1. Profil Ujian<a class="headerlink" href="#1-profil-ujian" title="Permanent link">&para;</a></h2>
+<h1 id="persiapan-ex200-ringkasan-taktis">🎯 Persiapan EX200 — Ringkasan Taktis<a class="headerlink" href="#persiapan-ex200-ringkasan-taktis" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>⚠️ <strong>Halaman ini ringkas.</strong> Materi lengkap, objektif EX200 lengkap, dan
+simulasi soal berada di <strong><a href="../../modul/18-ex200-prep/">Modul 18 — EX200 Prep</a></strong>.
+Baca Modul 18 sebagai kanonik; halaman ini hanya pengingat cepat &amp; target waktu.</p>
+</blockquote>
+<h2 id="1-profil-ujian-singkat">1. Profil Ujian (Singkat)<a class="headerlink" href="#1-profil-ujian-singkat" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Durasi</strong>: 3 jam (180 menit) untuk RHEL 9; RHEL 10 tetap 3 jam.</li>
+<li><strong>Durasi</strong>: 3 jam (180 menit).</li>
 <li><strong>Format</strong>: performance-based di VM nyata (bukan pilihan ganda).</li>
-<li><strong>Skor lolos</strong>: Red Hat <strong>tidak mengumumkan</strong> angka pasti; secara historis
-  passing score ~ <strong>210/300</strong> untuk EX200 (bisa berubah per rilis). Strategi
-  aman: kejar <strong>semua</strong> tugas, jangan mengejar nilai tertentu.</li>
-<li><strong>Tools tersedia</strong>: <code>man</code>, <code>vim</code>, <code>/usr/share/doc</code>, <code>cockpit</code> — <strong>tanpa internet</strong>.</li>
-<li><strong>Sistem</strong>: diberi VM (atau 2 VM) RHEL, credential &amp; IP diberikan di lembar soal.</li>
+<li><strong>Skor lolos</strong>: historis ~210/300; kejar <strong>semua</strong> tugas.</li>
+<li><strong>Tools</strong>: <code>man</code>, <code>vim</code>, <code>/usr/share/doc</code>, Cockpit — <strong>tanpa internet</strong>.</li>
+<li><strong>Satu kesempatan</strong> — tidak ada ujian ulang gratis. Verifikasi tiap tugas.</li>
 </ul>
-<blockquote>
-<p>⚠️ <strong>Tidak ada ujian ulang gratis</strong> — satu kesempatan. Verifikasi tiap tugas
-sebelum lanjut.</p>
-</blockquote>
-<h2 id="1b-perbedaan-rhel-9-vs-rhel-10-penting">1b. Perbedaan RHEL 9 vs RHEL 10 (Penting!)<a class="headerlink" href="#1b-perbedaan-rhel-9-vs-rhel-10-penting" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Aspek</th>
-<th>RHEL 9</th>
-<th>RHEL 10</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Init &amp; service</td>
-<td>systemd</td>
-<td>systemd (sama)</td>
-</tr>
-<tr>
-<td>Container</td>
-<td>Podman (rootless)</td>
-<td>Podman + <strong>bootc</strong></td>
-</tr>
-<tr>
-<td>OS model</td>
-<td>Package-based (RPM/DNF)</td>
-<td><strong>Image mode</strong> (bootc) tersedia</td>
-</tr>
-<tr>
-<td><code>bootc</code></td>
-<td>tidak ada</td>
-<td><code>bootc</code> untuk sistem berbasis image (mirip Container OS)</td>
-</tr>
-<tr>
-<td>Default FS</td>
-<td>XFS</td>
-<td>XFS</td>
-</tr>
-<tr>
-<td>Networking</td>
-<td>NetworkManager/nmcli</td>
-<td>NetworkManager/nmcli (sama)</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Bootc / Image Mode (RHEL 10):</strong> sistem dikelola sebagai <em>image</em> yang
-di-update via <code>bootc</code> (bukan <code>dnf update</code> tradisional). Untuk EX200, fokus
-tetap ke administrasi standar (user, storage, service, network, SELinux,
-Podman) — <code>bootc</code> muncul sebagai topik baru tapi bobotnya kecil. Perintah dasar:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>bootc<span class="w"> </span>status<span class="w">          </span><span class="c1"># lihat status image/rollback</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>bootc<span class="w"> </span>upgrade<span class="w">         </span><span class="c1"># upgrade ke image baru</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>bootc<span class="w"> </span>rollback<span class="w">        </span><span class="c1"># kembalikan ke image sebelumnya</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>bootc<span class="w"> </span>switch<span class="w"> </span>&lt;image&gt;<span class="w">  </span><span class="c1"># ganti ke image/repo berbeda</span>
-</code></pre></div></p>
-<blockquote>
-<p>Catatan: pada RHEL 9 (yang paling umum diuji saat ini), <code>bootc</code> <strong>tidak ada</strong>.
-Jangan panik jika perintah ini tidak ditemukan di lab RHEL 9 — fokus ke
-<code>dnf</code> seperti biasa. Untuk RHEL 10, cukup pahami konsep image-mode di atas.</p>
-</blockquote>
-<h2 id="2-bobot-topik-rhel-9">2. Bobot &amp; Topik (RHEL 9)<a class="headerlink" href="#2-bobot-topik-rhel-9" title="Permanent link">&para;</a></h2>
+<h2 id="2-topik-bobot-rhel-9">2. Topik &amp; Bobot (RHEL 9)<a class="headerlink" href="#2-topik-bobot-rhel-9" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Essential tools (shell, vim, pipe, <code>tar</code>, <code>grep</code>, <code>ssh</code>) — 10–15%</li>
-<li>Operating running systems (<code>systemctl</code>, <code>journalctl</code>, proses) — 10–15%</li>
+<li>Operating running systems (<code>systemctl</code>, <code>journalctl</code>, proses, <strong>tuned</strong>) — 10–15%</li>
 <li>Local storage (partisi, LVM, mount, swap) — 12–18%</li>
-<li>File systems (XFS/ext4, permission, ACL) — 10–15%</li>
-<li>Deploy/maintain systems (DNF, repo, <code>cron</code>, timezone) — 10–15%</li>
+<li>File systems (XFS/ext4/<strong>VFAT</strong>, permission, ACL, <strong>autofs</strong>) — 10–15%</li>
+<li>Deploy/maintain (DNF, repo, Flatpak, <code>cron</code>, timezone, <strong>chrony</strong>, <strong>grub2</strong>) — 10–15%</li>
 <li>Users &amp; groups — 10–15%</li>
 <li>Security (<code>firewalld</code>, <strong>SELinux</strong>, <code>ssh</code>, <code>sudo</code>) — 12–18%</li>
-<li>Networking (<code>nmcli</code>, DNS, hostname) — 10–15%</li>
+<li>Networking (<code>nmcli</code>, DNS, hostname, <strong>IPv6</strong>) — 10–15%</li>
 <li>Containers (<code>podman</code>) — bagian baru RHEL 9</li>
 </ol>
+<blockquote>
+<p>Perbedaan RHEL 9 vs RHEL 10 (bootc/image mode) ada di Modul 18, §4.</p>
+</blockquote>
 <h2 id="3-checklist-h-7">3. Checklist H-7<a class="headerlink" href="#3-checklist-h-7" title="Permanent link">&para;</a></h2>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Kerjakan semua modul 01–17 tanpa melihat catatan.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Selesaikan LAB Modul 17 simulasi &lt; 90 menit.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Kerjakan semua modul 01–20 tanpa melihat catatan.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Selesaikan LAB &amp; <a href="../SIMULASI-UJIAN/">Simulasi 2 Jam</a> &lt; 90 menit.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Kuasai <code>vim</code>, <code>nmcli</code>, <code>systemctl</code>, <code>journalctl</code>, <code>dnf</code>, <code>firewall-cmd</code>, <code>setsebool</code>/<code>restorecon</code>.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Pahami LVM end-to-end (create → extend → growfs).</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Latihan <code>podman run</code> + generate systemd service.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Simulasikan reboot VM dan pastikan tidak masuk grub rescue (fstab benar).</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Wajib</strong>: kuasai <a href="../BREAK-FIX/">Break &amp; Fix / Troubleshooting</a> — ~40% soal EX200 adalah perbaikan sistem.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Kuasai <a href="../BREAK-FIX/">Break &amp; Fix</a> — ~40% soal EX200 adalah troubleshooting.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Topik sering luput</strong>: autofs, Flatpak, tuned, grub2/rd.break, VFAT, chrony/IPv6.</li>
 </ul>
 <h2 id="4-jebakan-umum-penyebab-gagal">4. Jebakan Umum (Penyebab Gagal)<a class="headerlink" href="#4-jebakan-umum-penyebab-gagal" title="Permanent link">&para;</a></h2>
 <table>
@@ -1392,24 +1327,24 @@ Jangan panik jika perintah ini tidak ditemukan di lab RHEL 9 — fokus ke
 </tr>
 </tbody>
 </table>
-<h2 id="5-alur-kerja-saat-ujian">5. Alur Kerja Saat Ujian<a class="headerlink" href="#5-alur-kerja-saat-ujian" title="Permanent link">&para;</a></h2>
-<ol>
-<li>Catat IP, username, password, nama host yang diberikan.</li>
-<li>Buka 2 terminal (jika bisa) — satu untuk uji, satu untuk kerja.</li>
-<li>Untuk tiap tugas: kerjakan → verifikasi → lanjut.</li>
-<li>Sisakan 20 menit terakhir untuk cek ulang tugas bernilai tinggi.</li>
-</ol>
-<h2 id="6-contoh-skor-waktu-target">6. Contoh Skor Waktu (target)<a class="headerlink" href="#6-contoh-skor-waktu-target" title="Permanent link">&para;</a></h2>
+<h2 id="5-contoh-skor-waktu-target">5. Contoh Skor Waktu (target)<a class="headerlink" href="#5-contoh-skor-waktu-target" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Tugas kecil (user/group, permission): 5–8 menit.</li>
 <li>Tugas menengah (networking, service): 10–15 menit.</li>
 <li>Tugas besar (LVM, storage, container): 15–25 menit.</li>
 </ul>
+<h2 id="6-alur-kerja-saat-ujian">6. Alur Kerja Saat Ujian<a class="headerlink" href="#6-alur-kerja-saat-ujian" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Catat IP, username, password, nama host yang diberikan.</li>
+<li>Buka 2 terminal (jika bisa) — satu uji, satu kerja.</li>
+<li>Untuk tiap tugas: kerjakan → verifikasi → lanjut.</li>
+<li>Sisakan 20 menit terakhir untuk cek ulang tugas bernilai tinggi.</li>
+</ol>
 <h2 id="7-resource-resmi">7. Resource Resmi<a class="headerlink" href="#7-resource-resmi" title="Permanent link">&para;</a></h2>
 <ul>
 <li>https://www.redhat.com/en/services/training/ex200-red-hat-certified-system-administrator-rhcsa-exam</li>
 <li>RH124 + RH134 course content.</li>
-<li><code>lab/LAB.md</code> &amp; <code>modul/</code> di repo ini.</li>
+<li><code>lab/LAB.md</code>, <code>modul/</code>, dan <a href="../../modul/18-ex200-prep/">Modul 18</a> di repo ini.</li>
 </ul>
 <hr />
 <blockquote>

@@ -689,10 +689,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-journal-log-systemd" class="md-nav__link">
+  <a href="#5-tuning-profiles-tuned-wajib-ex200" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Journal (Log systemd)
+        5. Tuning Profiles (tuned) — Wajib EX200
       
     </span>
   </a>
@@ -700,10 +700,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#6-membuat-unit-service-sederhana" class="md-nav__link">
+  <a href="#6-bootloader-grub2-akses-darurat-wajib-ex200" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. Membuat Unit Service Sederhana
+        6. Bootloader (grub2) &amp; Akses Darurat — Wajib EX200
       
     </span>
   </a>
@@ -711,10 +711,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#7-jebakan-umum-ex200" class="md-nav__link">
+  <a href="#7-journal-log-systemd" class="md-nav__link">
     <span class="md-ellipsis">
       
-        7. Jebakan Umum (EX200)
+        7. Journal (Log systemd)
       
     </span>
   </a>
@@ -722,10 +722,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#8-koneksi-ke-ex200" class="md-nav__link">
+  <a href="#8-membuat-unit-service-sederhana" class="md-nav__link">
     <span class="md-ellipsis">
       
-        8. Koneksi ke EX200
+        8. Membuat Unit Service Sederhana
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-jebakan-umum-ex200" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Jebakan Umum (EX200)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-koneksi-ke-ex200" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Koneksi ke EX200
       
     </span>
   </a>
@@ -1341,30 +1363,72 @@ target, socket, dll). <code>systemctl</code> adalah alat utamanya.</p>
 </tr>
 </tbody>
 </table>
-<h2 id="5-journal-log-systemd">5. Journal (Log systemd)<a class="headerlink" href="#5-journal-log-systemd" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>journalctl<span class="w">                          </span><span class="c1"># semua log</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>journalctl<span class="w"> </span>-u<span class="w"> </span>httpd<span class="w">                 </span><span class="c1"># log satu layanan</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>journalctl<span class="w"> </span>-u<span class="w"> </span>httpd<span class="w"> </span>-f<span class="w">              </span><span class="c1"># ikuti log (live)</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>journalctl<span class="w"> </span>-p<span class="w"> </span>err<span class="w">                   </span><span class="c1"># hanya error ke atas</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>journalctl<span class="w"> </span>--since<span class="w"> </span><span class="s2">&quot;2026-01-01&quot;</span><span class="w"> </span>--until<span class="w"> </span><span class="s2">&quot;2026-01-02&quot;</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>journalctl<span class="w"> </span>-b<span class="w">                       </span><span class="c1"># sejak boot terakhir</span>
+<h2 id="5-tuning-profiles-tuned-wajib-ex200">5. Tuning Profiles (<code>tuned</code>) — Wajib EX200<a class="headerlink" href="#5-tuning-profiles-tuned-wajib-ex200" title="Permanent link">&para;</a></h2>
+<p>Objektif EX200: <em>"Manage tuning profiles"</em>. <code>tuned</code> menyediakan profil
+optimasi performa/daya yang bisa aktif otomatis.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>tuned<span class="w"> </span>tuned-utils
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>tuned
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>tuned-adm<span class="w"> </span>list<span class="w">                 </span><span class="c1"># lihat profil tersedia</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>tuned-adm<span class="w"> </span>active<span class="w">               </span><span class="c1"># profil aktif sekarang</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>sudo<span class="w"> </span>tuned-adm<span class="w"> </span>profile<span class="w"> </span>throughput-performance<span class="w">   </span><span class="c1"># aktifkan profil</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>sudo<span class="w"> </span>tuned-adm<span class="w"> </span>recommend<span class="w">       </span><span class="c1"># saran profil otomatis dari tuned</span>
 </code></pre></div>
-<h2 id="6-membuat-unit-service-sederhana">6. Membuat Unit Service Sederhana<a class="headerlink" href="#6-membuat-unit-service-sederhana" title="Permanent link">&para;</a></h2>
-<p><code>/etc/systemd/system/hello.service</code>:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">[Unit]</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="na">Description</span><span class="o">=</span><span class="s">Hello Service</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="k">[Service]</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/bin/echo hello</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="na">Restart</span><span class="o">=</span><span class="s">on-failure</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="k">[Install]</span>
-<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>daemon-reload
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>hello.service
+<p>Profil umum: <code>balanced</code> (default), <code>powersave</code>, <code>throughput-performance</code>
+(server), <code>latency-performance</code>, <code>virtual-guest</code>, <code>virtual-host</code>.</p>
+<blockquote>
+<p>Verifikasi: <code>tuned-adm active</code> harus menampilkan profil yang kamu set —
+soal EX200 sering: "aktifkan profil throughput-performance dan pastikan
+persisten setelah reboot" (tuned sudah enable --now, profil tersimpan otomatis).</p>
+</blockquote>
+<h2 id="6-bootloader-grub2-akses-darurat-wajib-ex200">6. Bootloader (<code>grub2</code>) &amp; Akses Darurat — Wajib EX200<a class="headerlink" href="#6-bootloader-grub2-akses-darurat-wajib-ex200" title="Permanent link">&para;</a></h2>
+<p>Objektif EX200: <em>"Modify the system bootloader"</em> dan <em>"Interrupt the boot
+process in order to gain access to a system"</em> (mis. lupa root password).</p>
+<p><strong>Mengubah parameter bootloader (grub2):</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Lihat entry &amp; edit default via grubby (cara aman di RHEL)</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>grubby<span class="w"> </span>--update-kernel<span class="o">=</span>ALL<span class="w"> </span>--args<span class="o">=</span><span class="s2">&quot;nomodeset&quot;</span><span class="w">   </span><span class="c1"># tambah param boot</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>grubby<span class="w"> </span>--info<span class="o">=</span>ALL<span class="w">                               </span><span class="c1"># lihat kernel &amp; args</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>sudo<span class="w"> </span>grub2-mkconfig<span class="w"> </span>-o<span class="w"> </span>/boot/grub2/grub.cfg<span class="w">      </span><span class="c1"># regenerate grub.cfg</span>
 </code></pre></div></p>
-<h2 id="7-jebakan-umum-ex200">7. Jebakan Umum (EX200)<a class="headerlink" href="#7-jebakan-umum-ex200" title="Permanent link">&para;</a></h2>
+<p><strong>Interrupt boot untuk reset password root (rd.break):</strong>
+1. Di menu GRUB, tekan <code>e</code> pada kernel default.
+2. Di baris <code>linux</code>/<code>linuxefi</code>, tambahkan <code>rd.break</code> di akhir (lalu <code>Ctrl+X</code>).
+3. Sistem berhenti di <code>switch_root:/#</code> (initramfs shell).
+4. Remount root writable &amp; masuk chroot:
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>mount<span class="w"> </span>-o<span class="w"> </span>remount,rw<span class="w"> </span>/sysroot
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>chroot<span class="w"> </span>/sysroot
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>passwd<span class="w"> </span>root<span class="w">          </span><span class="c1"># set password root baru</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>touch<span class="w"> </span>/.autorelabel<span class="w">  </span><span class="c1"># penting: biar SELinux relabel</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>exit<span class="p">;</span><span class="w"> </span><span class="nb">exit</span><span class="w">           </span><span class="c1"># reboot</span>
+</code></pre></div></p>
+<blockquote>
+<p>⚠️ Tanpa <code>touch /.autorelabel</code>, SELinux akan blokir login setelah reboot
+(label konteks berubah). Di RHEL 9+ bisa juga pakai <code>rw init=/sysroot/bin/sh</code>
+lalu <code>chroot</code> manual.</p>
+</blockquote>
+<h2 id="7-journal-log-systemd">7. Journal (Log systemd)<a class="headerlink" href="#7-journal-log-systemd" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>journalctl<span class="w">                          </span><span class="c1"># semua log</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>journalctl<span class="w"> </span>-u<span class="w"> </span>httpd<span class="w">                 </span><span class="c1"># log satu layanan</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>journalctl<span class="w"> </span>-u<span class="w"> </span>httpd<span class="w"> </span>-f<span class="w">              </span><span class="c1"># ikuti log (live)</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>journalctl<span class="w"> </span>-p<span class="w"> </span>err<span class="w">                   </span><span class="c1"># hanya error ke atas</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>journalctl<span class="w"> </span>--since<span class="w"> </span><span class="s2">&quot;2026-01-01&quot;</span><span class="w"> </span>--until<span class="w"> </span><span class="s2">&quot;2026-01-02&quot;</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>journalctl<span class="w"> </span>-b<span class="w">                       </span><span class="c1"># sejak boot terakhir</span>
+</code></pre></div>
+<h2 id="8-membuat-unit-service-sederhana">8. Membuat Unit Service Sederhana<a class="headerlink" href="#8-membuat-unit-service-sederhana" title="Permanent link">&para;</a></h2>
+<p><code>/etc/systemd/system/hello.service</code>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">[Unit]</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="na">Description</span><span class="o">=</span><span class="s">Hello Service</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="k">[Service]</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/bin/echo hello</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="na">Restart</span><span class="o">=</span><span class="s">on-failure</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="k">[Install]</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>daemon-reload
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>hello.service
+</code></pre></div></p>
+<h2 id="9-jebakan-umum-ex200">9. Jebakan Umum (EX200)<a class="headerlink" href="#9-jebakan-umum-ex200" title="Permanent link">&para;</a></h2>
 <div class="admonition danger">
 <p class="admonition-title">Jebakan</p>
 <ul>
@@ -1378,7 +1442,7 @@ target, socket, dll). <code>systemctl</code> adalah alat utamanya.</p>
   journal → gunakan <code>journalctl -u &lt;svc&gt;</code>.</li>
 </ul>
 </div>
-<h2 id="8-koneksi-ke-ex200">8. Koneksi ke EX200<a class="headerlink" href="#8-koneksi-ke-ex200" title="Permanent link">&para;</a></h2>
+<h2 id="10-koneksi-ke-ex200">10. Koneksi ke EX200<a class="headerlink" href="#10-koneksi-ke-ex200" title="Permanent link">&para;</a></h2>
 <div class="admonition success">
 <p class="admonition-title">EX200</p>
 <p>Soal: "Buat layanan <code>webapp</code> yang menjalankan <code>/opt/webapp/run.sh</code>, auto-start
@@ -1407,6 +1471,9 @@ saat boot, dan restart bila gagal." Kunci: tulis unit di
 <li>Matikan dan nyalakan kembali <code>cups</code> (jika ada), amati dengan <code>journalctl -u cups</code>.</li>
 <li>Lihat target default dan ubah ke <code>multi-user.target</code> (jangan lupa kembalikan).</li>
 <li>Buat unit <code>hello.service</code> (echo), <code>enable --now</code>, verifikasi <code>journalctl -u hello</code>.</li>
+<li>Cek profil tuned aktif: <code>tuned-adm active</code>; coba ganti ke <code>throughput-performance</code>.</li>
+<li>(Lab) simulasikan <code>rd.break</code>: di GRUB tekan <code>e</code>, tambah <code>rd.break</code>, <code>Ctrl+X</code>,
+   lalu <code>mount -o remount,rw /sysroot &amp;&amp; chroot /sysroot &amp;&amp; passwd root &amp;&amp; touch /.autorelabel</code>.</li>
 </ol>
 
 

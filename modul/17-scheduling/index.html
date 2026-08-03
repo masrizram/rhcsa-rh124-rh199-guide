@@ -922,6 +922,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#3b-time-service-client-chrony-wajib-ex200" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3b. Time Service Client (chrony) — Wajib EX200
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#4-systemd-timer-modern" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1342,9 +1353,29 @@ mencakup cron, at, dan pengaturan waktu/locale.</p>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>sudo<span class="w"> </span>timedatectl<span class="w"> </span>set-time<span class="w"> </span><span class="s2">&quot;2026-08-03 10:00:00&quot;</span>
 <a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>timedatectl<span class="w"> </span>list-timezones<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span>jakarta
 </code></pre></div>
+<h2 id="3b-time-service-client-chrony-wajib-ex200">3b. Time Service Client (<code>chrony</code>) — Wajib EX200<a class="headerlink" href="#3b-time-service-client-chrony-wajib-ex200" title="Permanent link">&para;</a></h2>
+<p>Objektif EX200: <em>"Configure time service clients"</em>. RHEL menggunakan <strong>chrony</strong>
+(<code>chronyd</code>) sebagai NTP client/server. Konfigurasi di <code>/etc/chrony.conf</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Cek status sinkronisasi</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>timedatectl<span class="w"> </span>status<span class="w">                 </span><span class="c1"># baris &quot;System clock synchronized&quot;</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>chronyc<span class="w"> </span>tracking<span class="w">                   </span><span class="c1"># detail sumber waktu</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>chronyc<span class="w"> </span>sources<span class="w"> </span>-v<span class="w">                 </span><span class="c1"># lihat server NTP aktif</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="c1"># Tambahkan NTP server (edit /etc/chrony.conf)</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>sudo<span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/^pool.*/pool 0.id.pool.ntp.org iburst/&#39;</span><span class="w"> </span>/etc/chrony.conf
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="c1"># atau tambah: server time.google.com iburst</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>chronyd
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>sudo<span class="w"> </span>chronyc<span class="w"> </span>makestep<span class="w">              </span><span class="c1"># paksa sinkron sekarang</span>
+</code></pre></div>
+<blockquote>
+<p>Verifikasi: <code>chronyc tracking</code> → <code>Leap status : Normal</code> dan
+<code>timedatectl</code> menunjukkan <code>System clock synchronized: yes</code>.
+Soal EX200: "konfigurasi client waktu ke NTP server X" → edit
+<code>/etc/chrony.conf</code>, ganti/ tambah <code>server X iburst</code>, lalu <code>restart chronyd</code>.</p>
+</blockquote>
 <h2 id="4-systemd-timer-modern">4. <code>systemd</code> Timer (Modern)<a class="headerlink" href="#4-systemd-timer-modern" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>systemctl<span class="w"> </span>list-timers<span class="w">      </span><span class="c1"># lihat timer aktif</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c1"># Timer menggantikan cron di banyak kasus (lihat /usr/lib/systemd/system/*.timer)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>systemctl<span class="w"> </span>list-timers<span class="w">      </span><span class="c1"># lihat timer aktif</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="c1"># Timer menggantikan cron di banyak kasus (lihat /usr/lib/systemd/system/*.timer)</span>
 </code></pre></div>
 <h2 id="5-jebakan-umum-ex200">5. Jebakan Umum (EX200)<a class="headerlink" href="#5-jebakan-umum-ex200" title="Permanent link">&para;</a></h2>
 <div class="admonition danger">
@@ -1361,9 +1392,9 @@ mencakup cron, at, dan pengaturan waktu/locale.</p>
 <div class="admonition success">
 <p class="admonition-title">EX200</p>
 <p>Soal: "Buat tugas yang membackup <code>/etc</code> tiap hari 02:00 ke <code>/backup/etc.tar.gz</code>."
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/backup
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="o">(</span>sudo<span class="w"> </span>crontab<span class="w"> </span>-l<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="p">;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;0 2 * * * tar czf /backup/etc.tar.gz /etc&quot;</span><span class="o">)</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>crontab<span class="w"> </span>-
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>sudo<span class="w"> </span>crontab<span class="w"> </span>-l
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/backup
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="o">(</span>sudo<span class="w"> </span>crontab<span class="w"> </span>-l<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="p">;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;0 2 * * * tar czf /backup/etc.tar.gz /etc&quot;</span><span class="o">)</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>crontab<span class="w"> </span>-
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>sudo<span class="w"> </span>crontab<span class="w"> </span>-l
 </code></pre></div></p>
 </div>
 <h2 id="kuis-cepat">Kuis Cepat<a class="headerlink" href="#kuis-cepat" title="Permanent link">&para;</a></h2>
