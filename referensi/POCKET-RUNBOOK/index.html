@@ -12,13 +12,13 @@
         <meta name="author" content="masrizram">
       
       
-        <link rel="canonical" href="https://masrizram.github.io/rhcsa-rh124-rh199-guide/referensi/SIMULASI-UJIAN/">
+        <link rel="canonical" href="https://masrizram.github.io/rhcsa-rh124-rh199-guide/referensi/POCKET-RUNBOOK/">
       
       
-        <link rel="prev" href="../BREAK-FIX/">
+        <link rel="prev" href="../SUMBER-EX200/">
       
       
-        <link rel="next" href="../CHECKLIST-H1/">
+        <link rel="next" href="../ONCALL-DRILL/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>⏱️ Simulasi Ujian 3 Jam - Panduan Lengkap RHCSA (RH124 / RH199) - RHEL 9 & 10</title>
+        <title>⚡ Pocket Runbook (Offline) - Panduan Lengkap RHCSA (RH124 / RH199) - RHEL 9 & 10</title>
       
     
     
@@ -84,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#simulasi-ujian-ex200-3-jam-180-menit-timer-score-sheet" class="md-skip">
+        <a href="#pocket-runbook-troubleshooting-darurat-offline" class="md-skip">
           Lewati ke isi
         </a>
       
@@ -133,7 +133,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              ⏱️ Simulasi Ujian 3 Jam
+              ⚡ Pocket Runbook (Offline)
             
           </span>
         </div>
@@ -1095,37 +1095,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    ⏱️ Simulasi Ujian 3 Jam
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../SIMULASI-UJIAN/" class="md-nav__link">
         
   
   
@@ -1141,70 +1114,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Daftar isi">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Daftar isi
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#aturan" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ⏱️ Aturan
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tugas-score-sheet" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        📋 Tugas &amp; Score Sheet
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#hitung-skor" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        🧮 Hitung Skor
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#kunci-jawaban-singkat-buka-setelah-180-mnt" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ✅ Kunci Jawaban Singkat (buka SETELAH 180 mnt)
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1294,10 +1203,37 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../POCKET-RUNBOOK/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ⚡ Pocket Runbook (Offline)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1313,6 +1249,125 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Daftar isi">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Daftar isi
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0-aturan-emas-baca-dulu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0. Aturan Emas (baca dulu)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-server-no-boot-emergency-fstab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Server No-Boot / Emergency (fstab)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-selinux-blokir-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. SELinux Blokir Service
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-disk-penuh-atau-varlog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Disk Penuh (/ atau /var/log)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-network-port-unreachable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Network / Port Unreachable
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-lvm-pv-hilang-san-putus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. LVM / PV Hilang (SAN putus)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-root-terkunci-rdbreak" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Root Terkunci (rd.break)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-service-crash-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Service Crash Loop
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matrix-cepat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matrix Cepat
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1369,7 +1424,7 @@
 
 
   
-    <a href="https://github.com/masrizram/rhcsa-rh124-rh199-guide/edit/main/docs/referensi/SIMULASI-UJIAN.md" title="Ubah halaman ini" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/masrizram/rhcsa-rh124-rh199-guide/edit/main/docs/referensi/POCKET-RUNBOOK.md" title="Ubah halaman ini" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -1377,121 +1432,123 @@
   
 
 
-<h1 id="simulasi-ujian-ex200-3-jam-180-menit-timer-score-sheet">Simulasi Ujian EX200 — 3 Jam / 180 Menit (Timer &amp; Score Sheet)<a class="headerlink" href="#simulasi-ujian-ex200-3-jam-180-menit-timer-score-sheet" title="Permanent link">&para;</a></h1>
+<h1 id="pocket-runbook-troubleshooting-darurat-offline">⚡ Pocket Runbook — Troubleshooting Darurat (Offline)<a class="headerlink" href="#pocket-runbook-troubleshooting-darurat-offline" title="Permanent link">&para;</a></h1>
 <blockquote>
-<p>Kerjakan seperti ujian beneran: <strong>180 menit</strong>, tanpa buka kunci jawaban
-sampai selesai. Skor minimal <strong>80% (≥ 8/10 tugas)</strong> = siap ujian.</p>
+<p>Cetak 1–2 halaman ini &amp; bawa ke Data Center / area tanpa internet. Cuplikan
+darurat dari Modul 22. <strong>Jangan pernah <code>setenforce 0</code> lalu biarkan</strong>, jangan
+<code>stop firewalld</code>. Selalu punya <strong>rollback plan</strong> (Modul 21 §8).</p>
 </blockquote>
-<h2 id="aturan">⏱️ Aturan<a class="headerlink" href="#aturan" title="Permanent link">&para;</a></h2>
+<hr />
+<h2 id="0-aturan-emas-baca-dulu">0. Aturan Emas (baca dulu)<a class="headerlink" href="#0-aturan-emas-baca-dulu" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Pakai lab VM/container Rocky/Alma/RHEL 9 (bukan produksi).</li>
-<li>Snapshot dulu (<code>virsh snapshot-create</code> / <code>podman commit</code>).</li>
-<li>Buka stopwatch (hp/online). Mulai sekarang.</li>
-<li>Kerjakan 10 tugas berurutan. Setiap selesai, <strong>verifikasi</strong> dengan
-   perintah cek (lihat kolom "Cara Buktikan").</li>
+<li>Catat gejala + waktu + siapa melapor.</li>
+<li>Insiden mematikan layanan → <strong>recovery dulu</strong>, dokumentasi sesudah.</li>
+<li>Perubahan non-insiden → lewat <strong>Change Request + maintenance window</strong>.</li>
+<li>Selalu <code>mount -a</code> / <code>ss -tulnp</code> / <code>journalctl</code> <strong>sebelum</strong> reboot.</li>
 </ol>
-<h2 id="tugas-score-sheet">📋 Tugas &amp; Score Sheet<a class="headerlink" href="#tugas-score-sheet" title="Permanent link">&para;</a></h2>
+<hr />
+<h2 id="1-server-no-boot-emergency-fstab">1. Server No-Boot / Emergency (fstab)<a class="headerlink" href="#1-server-no-boot-emergency-fstab" title="Permanent link">&para;</a></h2>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>mount<span class="w"> </span>-o<span class="w"> </span>remount,rw<span class="w"> </span>/<span class="w">                 </span><span class="c1"># edit fstab</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>vim<span class="w"> </span>/etc/fstab<span class="w">                        </span><span class="c1"># komen baris salah / tambah ,nofail</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>mount<span class="w"> </span>-a<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span>FSTAB_OK<span class="w">            </span><span class="c1"># wajib test tanpa reboot</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>reboot
+</code></pre></div>
+✅ Bukti: <code>systemctl is-system-running</code> → <code>running</code>.</p>
+<h2 id="2-selinux-blokir-service">2. SELinux Blokir Service<a class="headerlink" href="#2-selinux-blokir-service" title="Permanent link">&para;</a></h2>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>getenforce
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>sudo<span class="w"> </span>ausearch<span class="w"> </span>-m<span class="w"> </span>AVC<span class="w"> </span>-ts<span class="w"> </span>recent<span class="w"> </span><span class="p">|</span><span class="w"> </span>audit2why
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>sudo<span class="w"> </span>semanage<span class="w"> </span>fcontext<span class="w"> </span>-a<span class="w"> </span>-t<span class="w"> </span>httpd_sys_content_t<span class="w"> </span><span class="s2">&quot;/web(/.*)?&quot;</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>sudo<span class="w"> </span>restorecon<span class="w"> </span>-Rv<span class="w"> </span>/web
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>sudo<span class="w"> </span>setsebool<span class="w"> </span>-P<span class="w"> </span>httpd_can_network_connect<span class="w"> </span>on
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>sudo<span class="w"> </span>semanage<span class="w"> </span>port<span class="w"> </span>-a<span class="w"> </span>-t<span class="w"> </span>http_port_t<span class="w"> </span>-p<span class="w"> </span>tcp<span class="w"> </span><span class="m">8443</span><span class="w">   </span><span class="c1"># port non-standar</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># uji sementara (jangan biarkan): sudo setenforce 0 ... lalu sudo setenforce 1</span>
+</code></pre></div>
+✅ Bukti: <code>getenforce</code> = <code>Enforcing</code>, <code>ausearch -m AVC -ts recent | wc -l</code> = 0.</p>
+<h2 id="3-disk-penuh-atau-varlog">3. Disk Penuh (/ atau /var/log)<a class="headerlink" href="#3-disk-penuh-atau-varlog" title="Permanent link">&para;</a></h2>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>df<span class="w"> </span>-h<span class="w">                                  </span><span class="c1"># cari 100%</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>du<span class="w"> </span>-xh<span class="w"> </span>/var/log<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-rh<span class="w"> </span><span class="p">|</span><span class="w"> </span>head
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>journalctl<span class="w"> </span>--vacuum-size<span class="o">=</span>200M
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>sudo<span class="w"> </span>truncate<span class="w"> </span>-s<span class="w"> </span><span class="m">0</span><span class="w"> </span>/var/log/big.log<span class="w">    </span><span class="c1"># JANGAN rm file yg sedang dibuka</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>sudo<span class="w"> </span>dnf<span class="w"> </span>clean<span class="w"> </span>all
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="c1"># ekspansi LVM online:</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>sudo<span class="w"> </span>lvextend<span class="w"> </span>-L<span class="w"> </span>+5G<span class="w"> </span>/dev/vg0/var<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>xfs_growfs<span class="w"> </span>/var<span class="w">   </span><span class="c1"># (ext4: resize2fs)</span>
+</code></pre></div>
+✅ Bukti: <code>df -h /var</code> Use turun; service stabil.</p>
+<h2 id="4-network-port-unreachable">4. Network / Port Unreachable<a class="headerlink" href="#4-network-port-unreachable" title="Permanent link">&para;</a></h2>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>ip<span class="w"> </span>addr<span class="p">;</span><span class="w"> </span>ip<span class="w"> </span>route<span class="p">;</span><span class="w"> </span>nmcli<span class="w"> </span>device<span class="w"> </span>status
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>ss<span class="w"> </span>-tulppn<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>:80
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>sudo<span class="w"> </span>firewall-cmd<span class="w"> </span>--list-all
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>sudo<span class="w"> </span>nmcli<span class="w"> </span>con<span class="w"> </span>up<span class="w"> </span><span class="s2">&quot;ens192&quot;</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>sudo<span class="w"> </span>firewall-cmd<span class="w"> </span>--add-port<span class="o">=</span><span class="m">8080</span>/tcp<span class="w"> </span>--permanent<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>firewall-cmd<span class="w"> </span>--reload
+</code></pre></div>
+✅ Bukti: <code>ping -c2 &lt;gw&gt;</code>; <code>ss -tulppn | grep :8080</code>; <code>curl localhost:8080</code>.</p>
+<h2 id="5-lvm-pv-hilang-san-putus">5. LVM / PV Hilang (SAN putus)<a class="headerlink" href="#5-lvm-pv-hilang-san-putus" title="Permanent link">&para;</a></h2>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>lsblk<span class="p">;</span><span class="w"> </span>pvs<span class="p">;</span><span class="w"> </span>vgs
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>sudo<span class="w"> </span>pvscan<span class="w"> </span>--cache
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>sudo<span class="w"> </span>vgchange<span class="w"> </span>-ay<span class="w"> </span>&lt;vg&gt;
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>sudo<span class="w"> </span>vgcfgrestore<span class="w"> </span>&lt;vg&gt;<span class="w">            </span><span class="c1"># restore metadata dari /etc/lvm/backup/</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>sudo<span class="w"> </span>multipath<span class="w"> </span>-ll<span class="w">                </span><span class="c1"># cek jalur storage (SAN)</span>
+</code></pre></div>
+✅ Bukti: <code>vgs &lt;vg&gt;</code> tidak <code>missing</code>; <code>lvs</code> active; mount jalan.</p>
+<h2 id="6-root-terkunci-rdbreak">6. Root Terkunci (rd.break)<a class="headerlink" href="#6-root-terkunci-rdbreak" title="Permanent link">&para;</a></h2>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># GRUB: e -&gt; akhir baris linux -&gt; rd.break enforcing=0 -&gt; Ctrl+X</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>mount<span class="w"> </span>-o<span class="w"> </span>remount,rw<span class="w"> </span>/sysroot
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>chroot<span class="w"> </span>/sysroot
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>passwd<span class="w"> </span>root
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>faillock<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>--reset
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>touch<span class="w"> </span>/.autorelabel<span class="w">               </span><span class="c1"># PENTING</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>exit<span class="p">;</span><span class="w"> </span><span class="nb">exit</span>
+</code></pre></div>
+✅ Bukti: login root console sukses; <code>getenforce</code> Enforcing.</p>
+<h2 id="7-service-crash-loop">7. Service Crash Loop<a class="headerlink" href="#7-service-crash-loop" title="Permanent link">&para;</a></h2>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>journalctl<span class="w"> </span>-u<span class="w"> </span>&lt;svc&gt;<span class="w"> </span>-n<span class="w"> </span><span class="m">50</span><span class="w"> </span>--no-pager
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>ss<span class="w"> </span>-tulppn<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>&lt;port&gt;<span class="w">          </span><span class="c1"># port bentrok?</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>systemctl<span class="w"> </span>reset-failed<span class="w"> </span>&lt;svc&gt;
+</code></pre></div>
+✅ Bukti: <code>systemctl is-active &lt;svc&gt;</code> = <code>active</code> (stabil 1 menit).</p>
+<hr />
+<h2 id="matrix-cepat">Matrix Cepat<a class="headerlink" href="#matrix-cepat" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>#</th>
-<th>Tugas</th>
-<th>Cara Buktikan (verifikasi)</th>
-<th>Skor</th>
+<th>Gejala</th>
+<th>Perintah kunci</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>1</td>
-<td>Buat user <code>operator</code> + grup <code>ops</code>, password <code>RedHat123</code></td>
-<td><code>id operator</code> → gid ops; <code>passwd -S operator</code></td>
-<td>/1</td>
+<td>No-boot</td>
+<td><code>mount -o remount,rw /</code> → <code>vim /etc/fstab</code> → <code>mount -a</code></td>
 </tr>
 <tr>
-<td>2</td>
-<td>Set umask default 027 di <code>/etc/profile</code></td>
-<td><code>umask</code> → 0027 untuk user baru</td>
-<td>/1</td>
+<td>SELinux deny</td>
+<td><code>ausearch -m AVC</code>, <code>semanage fcontext</code>, <code>restorecon</code></td>
 </tr>
 <tr>
-<td>3</td>
-<td>Beri <code>operator</code> akses sudo tanpa password</td>
-<td><code>sudo -l -U operator</code> → NOPASSWD</td>
-<td>/1</td>
+<td>Disk 100%</td>
+<td><code>journalctl --vacuum-size=</code>, <code>truncate -s 0</code>, <code>lvextend</code>+<code>xfs_growfs</code></td>
 </tr>
 <tr>
-<td>4</td>
-<td>Buat file <code>/shared/data.txt</code> milik <code>operator:ops</code> mode 640 + ACL baca untuk <code>qa</code></td>
-<td><code>getfacl /shared/data.txt</code></td>
-<td>/1</td>
+<td>Port blocked</td>
+<td><code>ss -tulppn</code>, <code>firewall-cmd --add-port --permanent --reload</code></td>
 </tr>
 <tr>
-<td>5</td>
-<td>Pasang <code>vim-enhanced</code> via DNF, hapus <code>tree</code></td>
-<td><code>rpm -q vim-enhanced tree</code></td>
-<td>/1</td>
+<td>LV missing</td>
+<td><code>pvs</code>, <code>vgchange -ay</code>, <code>vgcfgrestore</code></td>
 </tr>
 <tr>
-<td>6</td>
-<td>Aktifkan &amp; enable layanan <code>httpd</code> (atau <code>nginx</code>)</td>
-<td><code>systemctl is-active httpd</code> = active</td>
-<td>/1</td>
+<td>Root lock</td>
+<td><code>rd.break enforcing=0</code> → <code>passwd root</code> → <code>touch /.autorelabel</code></td>
 </tr>
 <tr>
-<td>7</td>
-<td>Blokir port 23 (telnet) via firewall, izinkan 8080</td>
-<td><code>firewall-cmd --list-all</code></td>
-<td>/1</td>
-</tr>
-<tr>
-<td>8</td>
-<td>Tambah LV 500M di VG <code>rhel</code> (atau buat VG baru), format XFS, mount <code>/data</code> fstab</td>
-<td><code>df -h /data</code>; <code>mount | grep /data</code></td>
-<td>/1</td>
-</tr>
-<tr>
-<td>9</td>
-<td>Jalankan <code>httpd</code> sebagai container Podman, systemd-managed (quadlet/--system)</td>
-<td><code>podman ps</code>; <code>systemctl --user is-active</code></td>
-<td>/1</td>
-</tr>
-<tr>
-<td>10</td>
-<td>Set SELinux <code>httpd_sys_content_t</code> pada <code>/data</code>, mode enforcing</td>
-<td><code>ls -Z /data</code>; <code>getenforce</code> = Enforcing</td>
-<td>/1</td>
+<td>Crash loop</td>
+<td><code>journalctl -u &lt;svc&gt;</code>, <code>systemctl reset-failed</code></td>
 </tr>
 </tbody>
 </table>
-<h2 id="hitung-skor">🧮 Hitung Skor<a class="headerlink" href="#hitung-skor" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Skor = (jumlah tugas lulus) × 10
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Lulus ujian = skor ≥ 80
-</code></pre></div>
-<h2 id="kunci-jawaban-singkat-buka-setelah-180-mnt">✅ Kunci Jawaban Singkat (buka SETELAH 180 mnt)<a class="headerlink" href="#kunci-jawaban-singkat-buka-setelah-180-mnt" title="Permanent link">&para;</a></h2>
-<details class="note">
-<summary>Kunci Jawaban</summary>
-<ol>
-<li><code>useradd -G ops operator; echo RedHat123 | passwd --stdin operator</code></li>
-<li>Tambah <code>umask 027</code> di <code>/etc/profile</code> (atau <code>/etc/bashrc</code>)</li>
-<li>File <code>/etc/sudoers.d/operator</code>: <code>operator ALL=(ALL) NOPASSWD: ALL</code></li>
-<li><code>mkdir -p /shared; touch /shared/data.txt; chown operator:ops /shared/data.txt;
-   chmod 640 /shared/data.txt; setfacl -m u:qa:r /shared/data.txt</code></li>
-<li><code>dnf install -y vim-enhanced; dnf remove -y tree</code></li>
-<li><code>dnf install -y httpd; systemctl enable --now httpd</code></li>
-<li><code>firewall-cmd --add-port=8080/tcp --permanent; firewall-cmd --remove-service=telnet --permanent; firewall-cmd --reload</code>
-   (telnet bukan service default; pastikan tidak ada rule terbuka ke 23)</li>
-<li><code>lvcreate -L 500M -n lvdata rhel; mkfs.xfs /dev/rhel/lvdata;
-   mkdir /data; echo '/dev/rhel/lvdata /data xfs defaults 0 0' &gt;&gt; /etc/fstab; mount -a</code></li>
-<li><code>podman run -d --name httpd -p 8080:80 docker.io/library/httpd;
-   podman generate systemd --new --files --name httpd;
-   systemctl --user enable --now container-httpd.service</code></li>
-<li><code>semanage fcontext -a -t httpd_sys_content_t '/data(/.*)?';
-    restorecon -Rv /data; setenforce 1; getenforce</code></li>
-</ol>
-</details>
 <blockquote>
-<p>Catatan: jawaban di atas contoh; di ujian asli verifikasi dilakukan oleh
-pemeriksa otomatis (skrip) yang mengecek kondisi sistem, bukan perintah.</p>
+<p>Versi lengkap &amp; latihan: <strong>Modul 22 — Runbook Troubleshooting Produksi</strong>.
+Konteks organisasi &amp; rollback: <strong>Modul 21 — System Engineer Enterprise</strong>.</p>
 </blockquote>
 
 
@@ -1524,15 +1581,15 @@ pemeriksa otomatis (skrip) yang mengecek kondisi sistem, bukan perintah.</p>
   <nav class="rh-prevnext" aria-label="Navigasi modul">
     
       
-        <a class="rh-prev" href="../BREAK-FIX/">
+        <a class="rh-prev" href="../SUMBER-EX200/">
           <span class="rh-dir">← Sebelumnya</span>
-          <span class="rh-t">🚑 Break & Fix (Troubleshooting)</span>
+          <span class="rh-t">🔗 Sumber & Pendaftaran EX200</span>
         </a>
       
       
-        <a class="rh-next" href="../CHECKLIST-H1/">
+        <a class="rh-next" href="../ONCALL-DRILL/">
           <span class="rh-dir">Berikutnya →</span>
-          <span class="rh-t">✅ Checklist H-1 Ujian</span>
+          <span class="rh-t">🚑 On-Call Drill (Latihan Insiden)</span>
         </a>
       
     

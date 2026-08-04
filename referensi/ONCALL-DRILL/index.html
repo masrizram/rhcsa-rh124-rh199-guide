@@ -12,13 +12,11 @@
         <meta name="author" content="masrizram">
       
       
-        <link rel="canonical" href="https://masrizram.github.io/rhcsa-rh124-rh199-guide/referensi/SIMULASI-UJIAN/">
+        <link rel="canonical" href="https://masrizram.github.io/rhcsa-rh124-rh199-guide/referensi/ONCALL-DRILL/">
       
       
-        <link rel="prev" href="../BREAK-FIX/">
+        <link rel="prev" href="../POCKET-RUNBOOK/">
       
-      
-        <link rel="next" href="../CHECKLIST-H1/">
       
       
         
@@ -29,7 +27,7 @@
     
     
       
-        <title>⏱️ Simulasi Ujian 3 Jam - Panduan Lengkap RHCSA (RH124 / RH199) - RHEL 9 & 10</title>
+        <title>🚑 On-Call Drill (Latihan Insiden) - Panduan Lengkap RHCSA (RH124 / RH199) - RHEL 9 & 10</title>
       
     
     
@@ -84,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#simulasi-ujian-ex200-3-jam-180-menit-timer-score-sheet" class="md-skip">
+        <a href="#on-call-drill-latihan-insiden-muscle-memory" class="md-skip">
           Lewati ke isi
         </a>
       
@@ -133,7 +131,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              ⏱️ Simulasi Ujian 3 Jam
+              🚑 On-Call Drill (Latihan Insiden)
             
           </span>
         </div>
@@ -1095,37 +1093,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    ⏱️ Simulasi Ujian 3 Jam
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../SIMULASI-UJIAN/" class="md-nav__link">
         
   
   
@@ -1141,70 +1112,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Daftar isi">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Daftar isi
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#aturan" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ⏱️ Aturan
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tugas-score-sheet" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        📋 Tugas &amp; Score Sheet
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#hitung-skor" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        🧮 Hitung Skor
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#kunci-jawaban-singkat-buka-setelah-180-mnt" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ✅ Kunci Jawaban Singkat (buka SETELAH 180 mnt)
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1321,10 +1228,37 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../ONCALL-DRILL/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🚑 On-Call Drill (Latihan Insiden)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1340,6 +1274,142 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Daftar isi">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Daftar isi
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dek-kartu-skenario-acak-satu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎴 Dek Kartu Skenario (acak satu)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎴 Dek Kartu Skenario (acak satu)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kartu-a-server-tidak-mau-boot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kartu A — "Server tidak mau boot"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kartu-b-web-tidak-jalan-padahal-service-aktif" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kartu B — "Web tidak jalan, padahal service aktif"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kartu-c-server-lambat-banyak-service-crash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kartu C — "Server lambat &amp; banyak service crash"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kartu-d-aplikasi-tiba-tiba-unreachable-pasca-reboot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kartu D — "Aplikasi tiba-tiba unreachable pasca reboot"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kartu-e-volume-hilang-setelah-maintenance-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kartu E — "Volume hilang setelah maintenance storage"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kartu-f-tidak-bisa-login-root" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kartu F — "Tidak bisa login root"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kartu-g-service-restart-terus-menerus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kartu G — "Service restart terus-menerus"
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#score-sheet-isi-per-drill" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📋 Score Sheet (isi per drill)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rutinitas-mingguan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔁 Rutinitas Mingguan
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1369,7 +1439,7 @@
 
 
   
-    <a href="https://github.com/masrizram/rhcsa-rh124-rh199-guide/edit/main/docs/referensi/SIMULASI-UJIAN.md" title="Ubah halaman ini" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/masrizram/rhcsa-rh124-rh199-guide/edit/main/docs/referensi/ONCALL-DRILL.md" title="Ubah halaman ini" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -1377,121 +1447,154 @@
   
 
 
-<h1 id="simulasi-ujian-ex200-3-jam-180-menit-timer-score-sheet">Simulasi Ujian EX200 — 3 Jam / 180 Menit (Timer &amp; Score Sheet)<a class="headerlink" href="#simulasi-ujian-ex200-3-jam-180-menit-timer-score-sheet" title="Permanent link">&para;</a></h1>
+<h1 id="on-call-drill-latihan-insiden-muscle-memory">🚑 On-Call Drill — Latihan Insiden (Muscle Memory)<a class="headerlink" href="#on-call-drill-latihan-insiden-muscle-memory" title="Permanent link">&para;</a></h1>
 <blockquote>
-<p>Kerjakan seperti ujian beneran: <strong>180 menit</strong>, tanpa buka kunci jawaban
-sampai selesai. Skor minimal <strong>80% (≥ 8/10 tugas)</strong> = siap ujian.</p>
+<p>Ini <strong>lembar drill</strong>, bukan materi baru. Ambil 1 kartu secara acak, <strong>jangan
+lihat Modul 22</strong>, coba selesaikan di VM lab dalam batas waktu. Setelah selesai,
+buka Modul 22 untuk self-grade. Ulangi hingga &lt; 10 menit per skenario.</p>
+<p>🎯 Tujuan: kecepatan &amp; ketenangan saat insiden (incident response time).
+Semua drill dijalankan di <strong>lab VM</strong>, BUKAN production.</p>
 </blockquote>
-<h2 id="aturan">⏱️ Aturan<a class="headerlink" href="#aturan" title="Permanent link">&para;</a></h2>
-<ol>
-<li>Pakai lab VM/container Rocky/Alma/RHEL 9 (bukan produksi).</li>
-<li>Snapshot dulu (<code>virsh snapshot-create</code> / <code>podman commit</code>).</li>
-<li>Buka stopwatch (hp/online). Mulai sekarang.</li>
-<li>Kerjakan 10 tugas berurutan. Setiap selesai, <strong>verifikasi</strong> dengan
-   perintah cek (lihat kolom "Cara Buktikan").</li>
-</ol>
-<h2 id="tugas-score-sheet">📋 Tugas &amp; Score Sheet<a class="headerlink" href="#tugas-score-sheet" title="Permanent link">&para;</a></h2>
+<hr />
+<h2 id="dek-kartu-skenario-acak-satu">🎴 Dek Kartu Skenario (acak satu)<a class="headerlink" href="#dek-kartu-skenario-acak-satu" title="Permanent link">&para;</a></h2>
+<h3 id="kartu-a-server-tidak-mau-boot">Kartu A — "Server tidak mau boot"<a class="headerlink" href="#kartu-a-server-tidak-mau-boot" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Gejala:</strong> Setelah reboot, masuk ke <code>emergency mode</code>.</li>
+<li><strong>Waktu:</strong> 10 menit.</li>
+<li><strong>Target:</strong> sistem <code>running</code> kembali.</li>
+<li><strong>Hint opsional:</strong> <code>/etc/fstab</code>.</li>
+</ul>
+<h3 id="kartu-b-web-tidak-jalan-padahal-service-aktif">Kartu B — "Web tidak jalan, padahal service aktif"<a class="headerlink" href="#kartu-b-web-tidak-jalan-padahal-service-aktif" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Gejala:</strong> <code>systemctl is-active httpd</code> = active, tapi <code>curl localhost</code> →
+  <code>Permission denied</code> / 503.</li>
+<li><strong>Waktu:</strong> 10 menit.</li>
+<li><strong>Target:</strong> layanan merespons, SELinux tetap Enforcing.</li>
+<li><strong>Hint opsional:</strong> <code>ausearch -m AVC</code>.</li>
+</ul>
+<h3 id="kartu-c-server-lambat-banyak-service-crash">Kartu C — "Server lambat &amp; banyak service crash"<a class="headerlink" href="#kartu-c-server-lambat-banyak-service-crash" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Gejala:</strong> <code>df -h</code> → <code>/var</code> 100% Use.</li>
+<li><strong>Waktu:</strong> 8 menit.</li>
+<li><strong>Target:</strong> ruang bebas, service stabil (tanpa reboot).</li>
+<li><strong>Hint opsional:</strong> <code>journalctl --vacuum-size</code>.</li>
+</ul>
+<h3 id="kartu-d-aplikasi-tiba-tiba-unreachable-pasca-reboot">Kartu D — "Aplikasi tiba-tiba unreachable pasca reboot"<a class="headerlink" href="#kartu-d-aplikasi-tiba-tiba-unreachable-pasca-reboot" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Gejala:</strong> port 8080 <code>connection refused</code> dari luar, padahal <code>ss</code> menunjukkan
+  listen di localhost.</li>
+<li><strong>Waktu:</strong> 8 menit.</li>
+<li><strong>Target:</strong> port terbuka dari luar, firewall tetap aktif.</li>
+<li><strong>Hint opsional:</strong> <code>firewall-cmd --list-all</code>.</li>
+</ul>
+<h3 id="kartu-e-volume-hilang-setelah-maintenance-storage">Kartu E — "Volume hilang setelah maintenance storage"<a class="headerlink" href="#kartu-e-volume-hilang-setelah-maintenance-storage" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Gejala:</strong> <code>vgs</code> menunjukkan <code>&lt;vg&gt;</code> dengan <code>unknown device</code> / <code>pvs</code> kosong.</li>
+<li><strong>Waktu:</strong> 12 menit.</li>
+<li><strong>Target:</strong> LV aktif &amp; ter-mount kembali.</li>
+<li><strong>Hint opsional:</strong> <code>vgchange -ay</code>, <code>vgcfgrestore</code>.</li>
+</ul>
+<h3 id="kartu-f-tidak-bisa-login-root">Kartu F — "Tidak bisa login root"<a class="headerlink" href="#kartu-f-tidak-bisa-login-root" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Gejala:</strong> root ditolak (lupa password / faillock).</li>
+<li><strong>Waktu:</strong> 8 menit.</li>
+<li><strong>Target:</strong> bisa login root via console, SELinux tetap Enforcing.</li>
+<li><strong>Hint opsional:</strong> <code>rd.break enforcing=0</code>.</li>
+</ul>
+<h3 id="kartu-g-service-restart-terus-menerus">Kartu G — "Service restart terus-menerus"<a class="headerlink" href="#kartu-g-service-restart-terus-menerus" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Gejala:</strong> <code>systemctl status app</code> → <code>active (auto-restart)</code> / <code>failed</code>.</li>
+<li><strong>Waktu:</strong> 8 menit.</li>
+<li><strong>Target:</strong> service <code>active</code> stabil 1 menit.</li>
+<li><strong>Hint opsional:</strong> <code>journalctl -u app</code>.</li>
+</ul>
+<hr />
+<h2 id="score-sheet-isi-per-drill">📋 Score Sheet (isi per drill)<a class="headerlink" href="#score-sheet-isi-per-drill" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>#</th>
-<th>Tugas</th>
-<th>Cara Buktikan (verifikasi)</th>
-<th>Skor</th>
+<th>Tanggal</th>
+<th>Kartu</th>
+<th>Waktu (m)</th>
+<th>Selesai tanpa lihat?</th>
+<th>SELinux tetap Enforcing?</th>
+<th>Skor (/10)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>1</td>
-<td>Buat user <code>operator</code> + grup <code>ops</code>, password <code>RedHat123</code></td>
-<td><code>id operator</code> → gid ops; <code>passwd -S operator</code></td>
-<td>/1</td>
+<td></td>
+<td>A</td>
+<td></td>
+<td>Y / T</td>
+<td>Y / T</td>
+<td></td>
 </tr>
 <tr>
-<td>2</td>
-<td>Set umask default 027 di <code>/etc/profile</code></td>
-<td><code>umask</code> → 0027 untuk user baru</td>
-<td>/1</td>
+<td></td>
+<td>B</td>
+<td></td>
+<td>Y / T</td>
+<td>Y / T</td>
+<td></td>
 </tr>
 <tr>
-<td>3</td>
-<td>Beri <code>operator</code> akses sudo tanpa password</td>
-<td><code>sudo -l -U operator</code> → NOPASSWD</td>
-<td>/1</td>
+<td></td>
+<td>C</td>
+<td></td>
+<td>Y / T</td>
+<td>Y / T</td>
+<td></td>
 </tr>
 <tr>
-<td>4</td>
-<td>Buat file <code>/shared/data.txt</code> milik <code>operator:ops</code> mode 640 + ACL baca untuk <code>qa</code></td>
-<td><code>getfacl /shared/data.txt</code></td>
-<td>/1</td>
+<td></td>
+<td>D</td>
+<td></td>
+<td>Y / T</td>
+<td>Y / T</td>
+<td></td>
 </tr>
 <tr>
-<td>5</td>
-<td>Pasang <code>vim-enhanced</code> via DNF, hapus <code>tree</code></td>
-<td><code>rpm -q vim-enhanced tree</code></td>
-<td>/1</td>
+<td></td>
+<td>E</td>
+<td></td>
+<td>Y / T</td>
+<td>Y / T</td>
+<td></td>
 </tr>
 <tr>
-<td>6</td>
-<td>Aktifkan &amp; enable layanan <code>httpd</code> (atau <code>nginx</code>)</td>
-<td><code>systemctl is-active httpd</code> = active</td>
-<td>/1</td>
+<td></td>
+<td>F</td>
+<td></td>
+<td>Y / T</td>
+<td>Y / T</td>
+<td></td>
 </tr>
 <tr>
-<td>7</td>
-<td>Blokir port 23 (telnet) via firewall, izinkan 8080</td>
-<td><code>firewall-cmd --list-all</code></td>
-<td>/1</td>
-</tr>
-<tr>
-<td>8</td>
-<td>Tambah LV 500M di VG <code>rhel</code> (atau buat VG baru), format XFS, mount <code>/data</code> fstab</td>
-<td><code>df -h /data</code>; <code>mount | grep /data</code></td>
-<td>/1</td>
-</tr>
-<tr>
-<td>9</td>
-<td>Jalankan <code>httpd</code> sebagai container Podman, systemd-managed (quadlet/--system)</td>
-<td><code>podman ps</code>; <code>systemctl --user is-active</code></td>
-<td>/1</td>
-</tr>
-<tr>
-<td>10</td>
-<td>Set SELinux <code>httpd_sys_content_t</code> pada <code>/data</code>, mode enforcing</td>
-<td><code>ls -Z /data</code>; <code>getenforce</code> = Enforcing</td>
-<td>/1</td>
+<td></td>
+<td>G</td>
+<td></td>
+<td>Y / T</td>
+<td>Y / T</td>
+<td></td>
 </tr>
 </tbody>
 </table>
-<h2 id="hitung-skor">🧮 Hitung Skor<a class="headerlink" href="#hitung-skor" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Skor = (jumlah tugas lulus) × 10
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Lulus ujian = skor ≥ 80
-</code></pre></div>
-<h2 id="kunci-jawaban-singkat-buka-setelah-180-mnt">✅ Kunci Jawaban Singkat (buka SETELAH 180 mnt)<a class="headerlink" href="#kunci-jawaban-singkat-buka-setelah-180-mnt" title="Permanent link">&para;</a></h2>
-<details class="note">
-<summary>Kunci Jawaban</summary>
-<ol>
-<li><code>useradd -G ops operator; echo RedHat123 | passwd --stdin operator</code></li>
-<li>Tambah <code>umask 027</code> di <code>/etc/profile</code> (atau <code>/etc/bashrc</code>)</li>
-<li>File <code>/etc/sudoers.d/operator</code>: <code>operator ALL=(ALL) NOPASSWD: ALL</code></li>
-<li><code>mkdir -p /shared; touch /shared/data.txt; chown operator:ops /shared/data.txt;
-   chmod 640 /shared/data.txt; setfacl -m u:qa:r /shared/data.txt</code></li>
-<li><code>dnf install -y vim-enhanced; dnf remove -y tree</code></li>
-<li><code>dnf install -y httpd; systemctl enable --now httpd</code></li>
-<li><code>firewall-cmd --add-port=8080/tcp --permanent; firewall-cmd --remove-service=telnet --permanent; firewall-cmd --reload</code>
-   (telnet bukan service default; pastikan tidak ada rule terbuka ke 23)</li>
-<li><code>lvcreate -L 500M -n lvdata rhel; mkfs.xfs /dev/rhel/lvdata;
-   mkdir /data; echo '/dev/rhel/lvdata /data xfs defaults 0 0' &gt;&gt; /etc/fstab; mount -a</code></li>
-<li><code>podman run -d --name httpd -p 8080:80 docker.io/library/httpd;
-   podman generate systemd --new --files --name httpd;
-   systemctl --user enable --now container-httpd.service</code></li>
-<li><code>semanage fcontext -a -t httpd_sys_content_t '/data(/.*)?';
-    restorecon -Rv /data; setenforce 1; getenforce</code></li>
-</ol>
-</details>
+<p><strong>Gradasi:</strong>
+- 9–10: siap on-call hari pertama.
+- 6–8: perkuat bagian lemah (lihat Modul 22 §terkait).
+- &lt; 6: ulangi drill + baca Modul 22 pelan-pelan.</p>
+<hr />
+<h2 id="rutinitas-mingguan">🔁 Rutinitas Mingguan<a class="headerlink" href="#rutinitas-mingguan" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Senin:</strong> 3 kartu acak, tanpa catatan.</li>
+<li><strong>Rabu:</strong> 2 kartu berbeda.</li>
+<li><strong>Jumat:</strong> full deck (7 kartu), target total &lt; 60 menit.</li>
+</ul>
 <blockquote>
-<p>Catatan: jawaban di atas contoh; di ujian asli verifikasi dilakukan oleh
-pemeriksa otomatis (skrip) yang mengecek kondisi sistem, bukan perintah.</p>
+<p>Kombinasikan dengan <strong>Pocket Runbook</strong> (bawa ke DC) &amp; <strong>Modul 22</strong> (referensi
+lengkap). Tiga lapis ini = amunisi on-call yang matang untuk enterprise/
+perbankan.</p>
 </blockquote>
 
 
@@ -1524,16 +1627,13 @@ pemeriksa otomatis (skrip) yang mengecek kondisi sistem, bukan perintah.</p>
   <nav class="rh-prevnext" aria-label="Navigasi modul">
     
       
-        <a class="rh-prev" href="../BREAK-FIX/">
+        <a class="rh-prev" href="../POCKET-RUNBOOK/">
           <span class="rh-dir">← Sebelumnya</span>
-          <span class="rh-t">🚑 Break & Fix (Troubleshooting)</span>
+          <span class="rh-t">⚡ Pocket Runbook (Offline)</span>
         </a>
       
       
-        <a class="rh-next" href="../CHECKLIST-H1/">
-          <span class="rh-dir">Berikutnya →</span>
-          <span class="rh-t">✅ Checklist H-1 Ujian</span>
-        </a>
+        <span class="rh-next rh-disabled"></span>
       
     
   </nav>
