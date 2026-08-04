@@ -24,7 +24,9 @@ flowchart TD
     H --> I[Modul 17: Penjadwalan & Time Zone]
     I --> J[Modul 20: Shell Scripting]
     J --> K[Modul 18: EX200 Prep + Modul 19: Skenario]
-    K --> L[Ujian EX200 RHCSA]
+    K --> L[Modul 20: Shell Scripting]
+    L --> M[Modul 21: System Engineer Enterprise]
+    M --> N[Ujian EX200 / Karier Enterprise]
 ```
 
 | Minggu | Fokus | Modul |
@@ -69,6 +71,7 @@ podman run -it --name lab-rhel rockylinux:9 bash
 - **Modul 18**: Persiapan ujian EX200 + simulasi soal.
 - **Modul 19**: Skenario EX200 Terukur (latihan berbobot + kunci).
 - **Modul 20**: Shell Scripting Dasar (wajib EX200).
+- **Modul 21**: System Engineer Enterprise (SSSD/IDM, SIEM, Satellite, CIS/PCI-DSS, Ansible, HA, DR) — bridge RHCSA ke dunia kerja nyata.
 - **LAB**: kumpulan tugas praktik & jawaban.
 - **Cheat Sheet**: ringkasan perintah cepat.
 - **Persiapan EX200**: taktik & jebakan ujian.

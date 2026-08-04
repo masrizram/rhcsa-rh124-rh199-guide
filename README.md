@@ -54,6 +54,7 @@ Setelah menyelesaikan panduan ini, kamu diharapkan mampu:
 | 18 | EX200 (RHCSA) Exam Prep | Strategi, lingkup ujian, simulasi soal | `eGbNXqPdUa4`, `2n2P0Awz3U4` |
 | 19 | Skenario EX200 Terukur | Latihan soal berbobot + kunci | `eGbNXqPdUa4` |
 | 20 | Shell Scripting Dasar | `if`/`for`/`while`, variabel, argumen | `eGbNXqPdUa4` |
+| 21 | System Engineer Enterprise | SSSD/IDM, SIEM, Satellite, CIS/PCI-DSS, Ansible, HA, DR | — |
 
 Materi lengkap tiap modul ada di folder [`modul/`](modul/).
 
