@@ -1256,6 +1256,14 @@
 <h1 id="pusat-belajar-panduan-rhcsa-rh124-rh199">🗺️ Pusat Belajar — Panduan RHCSA (RH124 / RH199)<a class="headerlink" href="#pusat-belajar-panduan-rhcsa-rh124-rh199" title="Permanent link">&para;</a></h1>
 <p>Selamat datang! Halaman ini adalah <strong>peta jalan</strong> agar kamu belajar efektif, tidak
 asal loncat. Ikuti urutan, kerjakan LAB di tiap modul, dan uji diri dengan kuis.</p>
+<blockquote>
+<p>📌 <strong>EX200 saat ini resmi berbasis RHEL 10 (2026).</strong> Yang diujikan = 11 area
+objektif resmi (essential tools, software + <strong>Flatpak</strong>, shell script, running
+systems, storage GPT/LVM, filesystems, deploy/timer/bootloader/chrony, networking
+IPv4+<strong>IPv6</strong>, users/groups, security/SELinux). <strong>Containers/Podman &amp; Stratis/VDO
+bukan objektif resmi RHEL 10</strong> — ada di repo sebagai materi bonus. Detail di
+<a href="../modul/18-ex200-prep/">Modul 18 — EX200 Prep</a>.</p>
+</blockquote>
 <h2 id="roadmap-belajar-16-minggu">🧭 Roadmap Belajar 16 Minggu<a class="headerlink" href="#roadmap-belajar-16-minggu" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>flowchart TD
     A[Mulai: Modul 0 - Pengantar] --&gt; B[Modul 1-4: Dasar Shell &amp; Berkas]
@@ -1264,8 +1272,11 @@ asal loncat. Ikuti urutan, kerjakan LAB di tiap modul, dan uji diri dengan kuis.
     D --&gt; E[Modul 10-12: SSH, Jaringan, DNF]
     E --&gt; F[Modul 13-14: Storage &amp; Support]
     F --&gt; G[Modul 15: Podman Containers]
-    G --&gt; H[Modul 18: EX200 Prep + Modul 19: Skenario]
-    H --&gt; I[Ujian EX200 RHCSA]</code></pre>
+    G --&gt; H[Modul 16: SELinux]
+    H --&gt; I[Modul 17: Penjadwalan &amp; Time Zone]
+    I --&gt; J[Modul 20: Shell Scripting]
+    J --&gt; K[Modul 18: EX200 Prep + Modul 19: Skenario]
+    K --&gt; L[Ujian EX200 RHCSA]</code></pre>
 <table>
 <thead>
 <tr>
@@ -1338,7 +1349,10 @@ di VirtualBox. Atau WSL2: <code>wsl --install -d FedoraLinux-42</code>.</p>
 <li><strong>Modul 0–14</strong>: materi inti RH124.</li>
 <li><strong>Modul 15</strong>: Podman &amp; Containers (muncul di EX200 RHEL 9).</li>
 <li><strong>Modul 16</strong>: SELinux (keamanan wajib EX200).</li>
+<li><strong>Modul 17</strong>: Penjadwalan &amp; Time Zone (cron/at/systemd timer).</li>
 <li><strong>Modul 18</strong>: Persiapan ujian EX200 + simulasi soal.</li>
+<li><strong>Modul 19</strong>: Skenario EX200 Terukur (latihan berbobot + kunci).</li>
+<li><strong>Modul 20</strong>: Shell Scripting Dasar (wajib EX200).</li>
 <li><strong>LAB</strong>: kumpulan tugas praktik &amp; jawaban.</li>
 <li><strong>Cheat Sheet</strong>: ringkasan perintah cepat.</li>
 <li><strong>Persiapan EX200</strong>: taktik &amp; jebakan ujian.</li>

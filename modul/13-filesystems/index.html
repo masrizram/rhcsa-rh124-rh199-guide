@@ -797,10 +797,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-mount-unmount" class="md-nav__link">
+  <a href="#5-mount-unmount" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Mount &amp; Unmount
+        5. Mount &amp; Unmount
       
     </span>
   </a>
@@ -808,10 +808,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-mount-permanen-etcfstab" class="md-nav__link">
+  <a href="#6-mount-permanen-etcfstab" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Mount Permanen (/etc/fstab)
+        6. Mount Permanen (/etc/fstab)
       
     </span>
   </a>
@@ -819,10 +819,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#6-lvm-logical-volume-manager" class="md-nav__link">
+  <a href="#7-lvm-logical-volume-manager" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. LVM (Logical Volume Manager)
+        7. LVM (Logical Volume Manager)
       
     </span>
   </a>
@@ -830,10 +830,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#7-swap" class="md-nav__link">
+  <a href="#8-swap" class="md-nav__link">
     <span class="md-ellipsis">
       
-        7. Swap
+        8. Swap
       
     </span>
   </a>
@@ -841,10 +841,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#8-label-uuid" class="md-nav__link">
+  <a href="#9-label-uuid" class="md-nav__link">
     <span class="md-ellipsis">
       
-        8. Label &amp; UUID
+        9. Label &amp; UUID
       
     </span>
   </a>
@@ -852,10 +852,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#9-autofs-mount-otomatis-on-demand-wajib-ex200" class="md-nav__link">
+  <a href="#10-autofs-mount-otomatis-on-demand-wajib-ex200" class="md-nav__link">
     <span class="md-ellipsis">
       
-        9. autofs — Mount Otomatis on-demand (Wajib EX200)
+        10. autofs — Mount Otomatis on-demand (Wajib EX200)
       
     </span>
   </a>
@@ -863,10 +863,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#10-stratis-manajemen-storage-lokal-modern-wajib-ex200" class="md-nav__link">
+  <a href="#11-stratis-manajemen-storage-lokal-modern-wajib-ex200" class="md-nav__link">
     <span class="md-ellipsis">
       
-        10. Stratis — Manajemen Storage Lokal Modern (Wajib EX200)
+        11. Stratis — Manajemen Storage Lokal Modern (Wajib EX200)
       
     </span>
   </a>
@@ -874,10 +874,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#11-vdo-deduplikasi-kompresi-wajib-ex200" class="md-nav__link">
+  <a href="#12-vdo-deduplikasi-kompresi-wajib-ex200" class="md-nav__link">
     <span class="md-ellipsis">
       
-        11. VDO — Deduplikasi &amp; Kompresi (Wajib EX200)
+        12. VDO — Deduplikasi &amp; Kompresi (Wajib EX200)
       
     </span>
   </a>
@@ -885,10 +885,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#12-disk-quota-batasi-pemakaian-usergroup-wajib-ex200" class="md-nav__link">
+  <a href="#13-disk-quota-batasi-pemakaian-usergroup-wajib-ex200" class="md-nav__link">
     <span class="md-ellipsis">
       
-        12. Disk Quota — Batasi Pemakaian User/Group (Wajib EX200)
+        13. Disk Quota — Batasi Pemakaian User/Group (Wajib EX200)
       
     </span>
   </a>
@@ -896,10 +896,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#13-jebakan-umum-ex200" class="md-nav__link">
+  <a href="#14-jebakan-umum-ex200" class="md-nav__link">
     <span class="md-ellipsis">
       
-        13. Jebakan Umum (EX200)
+        14. Jebakan Umum (EX200)
       
     </span>
   </a>
@@ -907,10 +907,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#11-koneksi-ke-ex200" class="md-nav__link">
+  <a href="#15-koneksi-ke-ex200" class="md-nav__link">
     <span class="md-ellipsis">
       
-        11. Koneksi ke EX200
+        15. Koneksi ke EX200
       
     </span>
   </a>
@@ -1458,13 +1458,13 @@ kernel tidak melihat partisi baru dan <code>mkfs</code> gagal dengan "No such fi
 Cocok untuk USB flash disk / share dengan Windows. Tanpa journal, tanpa
 permission Unix (semua file 0777), batas file 4 GB.</p>
 </blockquote>
-<h2 id="4-mount-unmount">4. Mount &amp; Unmount<a class="headerlink" href="#4-mount-unmount" title="Permanent link">&para;</a></h2>
+<h2 id="5-mount-unmount">5. Mount &amp; Unmount<a class="headerlink" href="#5-mount-unmount" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>sudo<span class="w"> </span>mkdir<span class="w"> </span>/data
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>sudo<span class="w"> </span>mount<span class="w"> </span>/dev/sdb1<span class="w"> </span>/data<span class="w">     </span><span class="c1"># mount manual (hilang setelah reboot)</span>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>mount<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>data<span class="w">              </span><span class="c1"># verifikasi</span>
 <a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>sudo<span class="w"> </span>umount<span class="w"> </span>/data<span class="w">              </span><span class="c1"># lepas</span>
 </code></pre></div>
-<h2 id="5-mount-permanen-etcfstab">5. Mount Permanen (<code>/etc/fstab</code>)<a class="headerlink" href="#5-mount-permanen-etcfstab" title="Permanent link">&para;</a></h2>
+<h2 id="6-mount-permanen-etcfstab">6. Mount Permanen (<code>/etc/fstab</code>)<a class="headerlink" href="#6-mount-permanen-etcfstab" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Dapatkan UUID</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>blkid<span class="w"> </span>/dev/sdb1
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
@@ -1477,7 +1477,7 @@ permission Unix (semua file 0777), batas file 4 GB.</p>
 <p>Format fstab: <code>device  mountpoint  fstype  options  dump  fsck</code></p>
 <p>Untuk VFAT, opsi umum: <code>UUID=xxxx  /mnt/usb  vfat  defaults,uid=1000,gid=1000  0 0</code>
 (pakai <code>uid/gid</code> agar pemiliknya user biasa, bukan root).</p>
-<h2 id="6-lvm-logical-volume-manager">6. LVM (Logical Volume Manager)<a class="headerlink" href="#6-lvm-logical-volume-manager" title="Permanent link">&para;</a></h2>
+<h2 id="7-lvm-logical-volume-manager">7. LVM (Logical Volume Manager)<a class="headerlink" href="#7-lvm-logical-volume-manager" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># 1. Tandai partisi sebagai PV</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>sudo<span class="w"> </span>pvcreate<span class="w"> </span>/dev/sdb1
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="c1"># 2. Gabung ke VG</span>
@@ -1493,18 +1493,18 @@ permission Unix (semua file 0777), batas file 4 GB.</p>
 <a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>sudo<span class="w"> </span>xfs_growfs<span class="w"> </span>/data<span class="w">        </span><span class="c1"># untuk XFS</span>
 <a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="c1"># (ext4: resize2fs /dev/vgdata/lvdata)</span>
 </code></pre></div>
-<h2 id="7-swap">7. Swap<a class="headerlink" href="#7-swap" title="Permanent link">&para;</a></h2>
+<h2 id="8-swap">8. Swap<a class="headerlink" href="#8-swap" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sudo<span class="w"> </span>mkswap<span class="w"> </span>/dev/sdc1
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>sudo<span class="w"> </span>swapon<span class="w"> </span>/dev/sdc1
 <a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>swapon<span class="w"> </span>--show<span class="w">                 </span><span class="c1"># verifikasi</span>
 <a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1"># permanen: tambahkan ke /etc/fstab:</span>
 <a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="c1"># /dev/sdc1  swap  swap  defaults  0 0</span>
 </code></pre></div>
-<h2 id="8-label-uuid">8. Label &amp; UUID<a class="headerlink" href="#8-label-uuid" title="Permanent link">&para;</a></h2>
+<h2 id="9-label-uuid">9. Label &amp; UUID<a class="headerlink" href="#9-label-uuid" title="Permanent link">&para;</a></h2>
 <p>Gunakan UUID di fstab (lebih stabil dari nama device <code>/dev/sdX</code> yang bisa
 berubah antar boot). <code>blkid</code> untuk melihat keduanya; <code>e2label</code>/<code>xfs_admin -L</code>
 untuk memberi label.</p>
-<h2 id="9-autofs-mount-otomatis-on-demand-wajib-ex200">9. autofs — Mount Otomatis on-demand (Wajib EX200)<a class="headerlink" href="#9-autofs-mount-otomatis-on-demand-wajib-ex200" title="Permanent link">&para;</a></h2>
+<h2 id="10-autofs-mount-otomatis-on-demand-wajib-ex200">10. autofs — Mount Otomatis on-demand (Wajib EX200)<a class="headerlink" href="#10-autofs-mount-otomatis-on-demand-wajib-ex200" title="Permanent link">&para;</a></h2>
 <p><code>autofs</code> mem-mount filesystem <strong>secara otomatis saat diakses</strong> dan me-lepas
 otomatis saat idle. Sangat dipakai untuk NFS di client (tidak perlu entri
 fstab statis, tidak hang saat server NFS mati saat boot).</p>
@@ -1532,7 +1532,7 @@ fstab statis, tidak hang saat server NFS mati saat boot).</p>
 <p>⚠️ Bedanya dengan fstab statis: autofs <strong>tidak</strong> mem-block boot bila server
 NFS down. Itu sebabnya sering jadi preferensi di soal EX200.</p>
 </blockquote>
-<h2 id="10-stratis-manajemen-storage-lokal-modern-wajib-ex200">10. Stratis — Manajemen Storage Lokal Modern (Wajib EX200)<a class="headerlink" href="#10-stratis-manajemen-storage-lokal-modern-wajib-ex200" title="Permanent link">&para;</a></h2>
+<h2 id="11-stratis-manajemen-storage-lokal-modern-wajib-ex200">11. Stratis — Manajemen Storage Lokal Modern (Wajib EX200)<a class="headerlink" href="#11-stratis-manajemen-storage-lokal-modern-wajib-ex200" title="Permanent link">&para;</a></h2>
 <p>Stratis menyederhanakan storage tingkat lanjut (snapshot, thin-provision,
 pool) di atas LVM/XFS dengan satu perintah. Objektif EX200 RHEL 9/10:
 <em>"Configure and manage storage using the Stratis"</em> (sic) — jadi <strong>wajib diuji</strong>.</p>
@@ -1571,7 +1571,7 @@ pool) di atas LVM/XFS dengan satu perintah. Objektif EX200 RHEL 9/10:
 <p>⚠️ Jangan format device yang SUDAH masuk pool Stratis dengan <code>mkfs</code>.
 Stratis mengelola XFS di dalamnya sendiri.</p>
 </blockquote>
-<h2 id="11-vdo-deduplikasi-kompresi-wajib-ex200">11. VDO — Deduplikasi &amp; Kompresi (Wajib EX200)<a class="headerlink" href="#11-vdo-deduplikasi-kompresi-wajib-ex200" title="Permanent link">&para;</a></h2>
+<h2 id="12-vdo-deduplikasi-kompresi-wajib-ex200">12. VDO — Deduplikasi &amp; Kompresi (Wajib EX200)<a class="headerlink" href="#12-vdo-deduplikasi-kompresi-wajib-ex200" title="Permanent link">&para;</a></h2>
 <p>VDO (Virtual Data Optimizer) memberikan deduplikasi + kompresi di atas block
 device, sehingga ruang fisik lebih efisien untuk data berulang (backup,
 image). Objektif EX200: <em>"Configure and manage storage using VDO"</em>.</p>
@@ -1599,7 +1599,7 @@ image). Objektif EX200: <em>"Configure and manage storage using VDO"</em>.</p>
 <p>⚠️ VDO butuh device <strong>kosong</strong> (belum ada filesystem/partition table).
 Gunakan <code>vdo remove --name=myvdo</code> untuk membongkar.</p>
 </blockquote>
-<h2 id="12-disk-quota-batasi-pemakaian-usergroup-wajib-ex200">12. Disk Quota — Batasi Pemakaian User/Group (Wajib EX200)<a class="headerlink" href="#12-disk-quota-batasi-pemakaian-usergroup-wajib-ex200" title="Permanent link">&para;</a></h2>
+<h2 id="13-disk-quota-batasi-pemakaian-usergroup-wajib-ex200">13. Disk Quota — Batasi Pemakaian User/Group (Wajib EX200)<a class="headerlink" href="#13-disk-quota-batasi-pemakaian-usergroup-wajib-ex200" title="Permanent link">&para;</a></h2>
 <p>Objektif EX200: <em>"Implement disk quotas"</em>. Batasi berapa banyak ruang/  jumlah
 file yang boleh dipakai tiap user atau group pada suatu filesystem.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># 1. Mount FS dengan opsi quota (userquota,grpquota)</span>
@@ -1628,7 +1628,7 @@ file yang boleh dipakai tiap user atau group pada suatu filesystem.</p>
 (diizinkan lewat dalam masa grace, lalu jadi keras). EX200 sering minta
 set keduanya.</p>
 </blockquote>
-<h2 id="13-jebakan-umum-ex200">13. Jebakan Umum (EX200)<a class="headerlink" href="#13-jebakan-umum-ex200" title="Permanent link">&para;</a></h2>
+<h2 id="14-jebakan-umum-ex200">14. Jebakan Umum (EX200)<a class="headerlink" href="#14-jebakan-umum-ex200" title="Permanent link">&para;</a></h2>
 <div class="admonition danger">
 <p class="admonition-title">Jebakan</p>
 <ul>
@@ -1643,20 +1643,20 @@ set keduanya.</p>
 <li>autofs: lupa <code>systemctl enable --now autofs</code> → mount on-demand tak jalan.</li>
 </ul>
 </div>
-<h2 id="11-koneksi-ke-ex200">11. Koneksi ke EX200<a class="headerlink" href="#11-koneksi-ke-ex200" title="Permanent link">&para;</a></h2>
+<h2 id="15-koneksi-ke-ex200">15. Koneksi ke EX200<a class="headerlink" href="#15-koneksi-ke-ex200" title="Permanent link">&para;</a></h2>
 <div class="admonition success">
 <p class="admonition-title">EX200</p>
 <p>Soal storage sering: "Buat LV 1G, format XFS, mount permanen di <code>/data</code>,
 lalu besarkan jadi 2G." Kunci: <code>pvcreate</code>→<code>vgcreate</code>→<code>lvcreate</code>→<code>mkfs.xfs</code>→
 fstab (UUID) → <code>mount -a</code> → <code>lvextend -L +1G</code> → <code>xfs_growfs /data</code>.
 Atau: "Pasang share NFS <code>server:/export</code> ke <code>/mnt/data</code> otomatis saat
-diakses" → pakai <strong>autofs</strong> (§9).
+diakses" → pakai <strong>autofs</strong> (§10).
 Atau (RHEL 9/10): "Buat pool Stratis <code>mypool</code> dari <code>/dev/sdb</code>, buat
-filesystem <code>data1</code>, mount permanen" → <strong>Stratis</strong> (§10).
+filesystem <code>data1</code>, mount permanen" → <strong>Stratis</strong> (§11).
 Atau: "Buat volume VDO dedup 50G di <code>/dev/sdc</code>, mount di <code>/mnt/vdo</code>" →
-<strong>VDO</strong> (§11).
+<strong>VDO</strong> (§12).
 Atau: "Batasi user <code>user1</code> maks 120M &amp; 1200 file di <code>/home</code>" →
-<strong>disk quota</strong> (§12, perintah <code>xfs_quota -x -c 'limit ...'</code>).</p>
+<strong>disk quota</strong> (§13, perintah <code>xfs_quota -x -c 'limit ...'</code>).</p>
 </div>
 <h2 id="kunci-jawaban-klik-untuk-lihat">Kunci Jawaban (klik untuk lihat)<a class="headerlink" href="#kunci-jawaban-klik-untuk-lihat" title="Permanent link">&para;</a></h2>
 <details class="note">

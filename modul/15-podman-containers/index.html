@@ -84,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#modul-15-podman-containers-rhel-9" class="md-skip">
+        <a href="#modul-15-podman-containers-materi-perluasan" class="md-skip">
           Lewati ke isi
         </a>
       
@@ -906,10 +906,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#10-koneksi-ke-ex200" class="md-nav__link">
+  <a href="#10-koneksi-ke-ex200-era-rhel-9-bonus-di-rhel-10" class="md-nav__link">
     <span class="md-ellipsis">
       
-        10. Koneksi ke EX200
+        10. Koneksi ke EX200 (Era RHEL 9 — Bonus di RHEL 10)
       
     </span>
   </a>
@@ -1341,10 +1341,15 @@
   
 
 
-<h1 id="modul-15-podman-containers-rhel-9">Modul 15 — Podman &amp; Containers (RHEL 9+)<a class="headerlink" href="#modul-15-podman-containers-rhel-9" title="Permanent link">&para;</a></h1>
+<h1 id="modul-15-podman-containers-materi-perluasan">Modul 15 — Podman &amp; Containers (Materi Perluasan)<a class="headerlink" href="#modul-15-podman-containers-materi-perluasan" title="Permanent link">&para;</a></h1>
 <blockquote>
-<p>Topik wajib di <strong>EX200 RHEL 9</strong>. RHEL menggantikan Docker dengan <strong>Podman</strong>
-(rootless, daemonless, CLI kompatibel Docker).</p>
+<p>⚠️ <strong>Penting — status di EX200:</strong> Mulai <strong>EX200 berbasis RHEL 10</strong> (ujian
+saat ini, 2026), <strong>Containers/Podman TIDAK LAGI masuk objektif resmi</strong> —
+Red Hat menggantinya dengan <strong>Flatpak</strong> (lihat Modul 12). Modul ini tetap
+sangat berguna sebagai <strong>bonus keahlian</strong> dan persiapan jalur <strong>RHCE
+(EX294, Ansible)</strong>, tapi <strong>tidak wajib</strong> untuk lulus EX200 RHEL 10.
+(Di era RHEL 9, Podman memang pernah masuk objektif — itu sebabnya banyak
+materi lama masih mencantumkannya.)</p>
 <p>📺 Referensi video: <a href="https://www.youtube.com/watch?v=eGbNXqPdUa4&amp;list=PLZkuninm20jDUT_jArQrkfCImbbi2jWns">RHCSA &amp; EX200 Prep</a> (Podman bagian dari kurikulum RH124/RH199; video playlist tidak memilah per-topik container)</p>
 </blockquote>
 <h2 id="1-mengapa-podman">1. Mengapa Podman?<a class="headerlink" href="#1-mengapa-podman" title="Permanent link">&para;</a></h2>
@@ -1482,12 +1487,17 @@ daemon). Berguna untuk soal "ambil image dari registry ke local store" atau
 sumber/tujuan. Di EX200 sering dipakai untuk "mirror image ke registry
 internal" atau "backup image ke file".</p>
 </blockquote>
-<h2 id="10-koneksi-ke-ex200">10. Koneksi ke EX200<a class="headerlink" href="#10-koneksi-ke-ex200" title="Permanent link">&para;</a></h2>
+<h2 id="10-koneksi-ke-ex200-era-rhel-9-bonus-di-rhel-10">10. Koneksi ke EX200 (Era RHEL 9 — Bonus di RHEL 10)<a class="headerlink" href="#10-koneksi-ke-ex200-era-rhel-9-bonus-di-rhel-10" title="Permanent link">&para;</a></h2>
 <div class="admonition success">
-<p class="admonition-title">EX200</p>
-<p>Soal container umumnya: <em>"Jalankan image X sebagai container bernama Y,
-port P, persistent, dan pastikan hidup setelah reboot."</em> Kunci: <code>podman run</code>
-+ <code>-v</code> + <code>podman generate systemd --new</code> + <code>systemctl enable</code>.</p>
+<p class="admonition-title">EX200 (RHEL 9) / Bonus RHEL 10</p>
+<p>Di era <strong>RHEL 9</strong>, soal container umumnya: <em>"Jalankan image X sebagai
+container bernama Y, port P, persistent, dan pastikan hidup setelah
+reboot."</em> Kunci: <code>podman run</code> + <code>-v</code> + <code>podman generate systemd --new</code> +
+<code>systemctl enable</code>.</p>
+<blockquote>
+<p>Di <strong>EX200 RHEL 10</strong>, container <strong>tidak lagi diujikan</strong> — fokus ke
+Flatpak (Modul 12). Modul ini bermanfaat untuk jalur RHCE.</p>
+</blockquote>
 </div>
 <h2 id="kuis-cepat">Kuis Cepat<a class="headerlink" href="#kuis-cepat" title="Permanent link">&para;</a></h2>
 <ol>

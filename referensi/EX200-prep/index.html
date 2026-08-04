@@ -1034,10 +1034,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-topik-bobot-rhel-9" class="md-nav__link">
+  <a href="#2-topik-bobot-resmi-ex200-rhel-10-2026" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Topik &amp; Bobot (RHEL 9)
+        2. Topik &amp; Bobot (Resmi EX200 — RHEL 10, 2026)
       
     </span>
   </a>
@@ -1289,33 +1289,38 @@ Baca Modul 18 sebagai kanonik; halaman ini hanya pengingat cepat &amp; target wa
 <li><strong>Tools</strong>: <code>man</code>, <code>vim</code>, <code>/usr/share/doc</code>, Cockpit — <strong>tanpa internet</strong>.</li>
 <li><strong>Satu kesempatan</strong> — tidak ada ujian ulang gratis. Verifikasi tiap tugas.</li>
 </ul>
-<h2 id="2-topik-bobot-rhel-9">2. Topik &amp; Bobot (RHEL 9)<a class="headerlink" href="#2-topik-bobot-rhel-9" title="Permanent link">&para;</a></h2>
+<h2 id="2-topik-bobot-resmi-ex200-rhel-10-2026">2. Topik &amp; Bobot (Resmi EX200 — RHEL 10, 2026)<a class="headerlink" href="#2-topik-bobot-resmi-ex200-rhel-10-2026" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>EX200 <strong>saat ini resmi berbasis RHEL 10</strong>. Objektif resmi terdiri 11 area
+(lihat <a href="../../modul/18-ex200-prep/">Modul 18 §2</a>). Ringkasan bobot relatif:</p>
+</blockquote>
 <ol>
-<li>Essential tools (shell, vim, pipe, <code>tar</code>, <code>grep</code>, <code>ssh</code>) — 10–15%</li>
-<li>Operating running systems (<code>systemctl</code>, <code>journalctl</code>, proses, <strong>tuned</strong>) — 10–15%</li>
-<li>Local storage (partisi, LVM, mount, swap) — 12–18%</li>
-<li>File systems (XFS/ext4/<strong>VFAT</strong>, permission, ACL, <strong>autofs</strong>) — 10–15%</li>
-<li>Deploy/maintain (DNF, repo, Flatpak, <code>cron</code>, timezone, <strong>chrony</strong>, <strong>grub2</strong>) — 10–15%</li>
+<li>Essential tools (shell, vim, pipe, <code>tar</code>/<code>gzip</code>/<code>bzip2</code>, <code>grep</code>, <code>ssh</code>) — 10–15%</li>
+<li>Operating running systems (<code>systemctl</code>, <code>journalctl</code>, proses, <strong>tuned</strong>, preserve journals, <code>rd.break</code>) — 10–15%</li>
+<li>Local storage (GPT partisi, LVM, mount UUID/label, swap) — 12–18%</li>
+<li>File systems (VFAT/ext4/XFS, permission, ACL, <strong>autofs</strong>, NFS, extend LV) — 10–15%</li>
+<li>Deploy/maintain (DNF, repo, <strong>Flatpak</strong>, <code>cron</code>/at/systemd timer, timezone, <strong>chrony</strong>, <strong>grub2</strong>) — 10–15%</li>
 <li>Users &amp; groups — 10–15%</li>
-<li>Security (<code>firewalld</code>, <strong>SELinux</strong>, <code>ssh</code>, <code>sudo</code>) — 12–18%</li>
-<li>Networking (<code>nmcli</code>, DNS, hostname, <strong>IPv6</strong>) — 10–15%</li>
-<li>Containers (<code>podman</code>, <strong>skopeo/buildah</strong>, quadlet) — bagian baru RHEL 9</li>
-<li><strong>Storage modern (RHEL 9/10): Stratis, VDO, disk quota</strong> — wajib diuji</li>
+<li>Security (<code>firewalld</code>, <strong>SELinux</strong> enforcing/port-label/restorecon, <code>ssh</code> key, <code>umask</code>, <code>sudo</code>) — 12–18%</li>
+<li>Networking (<code>nmcli</code> + <strong>IPv6</strong>, hostname resolution, DNS, <strong>firewalld</strong>) — 10–15%</li>
 </ol>
 <blockquote>
-<p>Perbedaan RHEL 9 vs RHEL 10 (bootc/image mode, nmstate) ada di Modul 18, §4.</p>
+<p>⚠️ <strong>Containers/Podman TIDAK lagi masuk objektif resmi EX200 RHEL 10</strong>
+(diganti <strong>Flatpak</strong>). Stratis/VDO/disk quota/nmstate/bootc juga <strong>tidak</strong>
+diujikan — ada di repo sebagai materi perluasan (bonus), bukan soal wajib.
+Perbedaan RHEL 9 vs 10 lengkap di <a href="../../modul/18-ex200-prep/">Modul 18 §3–§4</a>.</p>
 </blockquote>
 <h2 id="3-checklist-h-7">3. Checklist H-7<a class="headerlink" href="#3-checklist-h-7" title="Permanent link">&para;</a></h2>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Kerjakan semua modul 01–20 tanpa melihat catatan.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Selesaikan LAB &amp; <a href="../SIMULASI-UJIAN/">Simulasi 3 Jam / 180 Menit</a> &lt; 90 menit.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Kuasai <code>vim</code>, <code>nmcli</code>, <code>systemctl</code>, <code>journalctl</code>, <code>dnf</code>, <code>firewall-cmd</code>, <code>setsebool</code>/<code>restorecon</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Kuasai <code>vim</code>, <code>nmcli</code>, <code>systemctl</code>, <code>journalctl</code>, <code>dnf</code>, <code>firewall-cmd</code>, <code>setsebool</code>/<code>restorecon</code>, <strong><code>semanage port</code></strong> (SELinux port label).</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Pahami LVM end-to-end (create → extend → growfs).</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Kuasai <strong>Stratis</strong> (pool/filesystem/snapshot), <strong>VDO</strong> (dedup + <code>vdostats</code>), dan <strong>disk quota</strong> (<code>xfs_quota -x -c 'limit ...'</code>) — wajib RHEL 9/10.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Latihan <code>podman run</code> + generate systemd service + <code>skopeo inspect/copy</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Kuasai <strong>Flatpak</strong> (<code>flatpak remote-add</code>/<code>install</code>) — pengganti container di RHEL 10.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Latihan <code>podman run</code> + generate systemd service + <code>skopeo inspect/copy</code> <strong>(bonus RHCE, bukan objektif EX200 RHEL 10)</strong>.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Simulasikan reboot VM dan pastikan tidak masuk grub rescue (fstab benar).</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Kuasai <a href="../BREAK-FIX/">Break &amp; Fix</a> — ~40% soal EX200 adalah troubleshooting.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Topik sering luput</strong>: autofs, Flatpak, tuned, grub2/rd.break, VFAT, chrony/IPv6.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Topik sering luput (masih relevan RHEL 10)</strong>: autofs, Flatpak, tuned, grub2/rd.break, VFAT, chrony/IPv6, SELinux port labels.</li>
 </ul>
 <h2 id="4-jebakan-umum-penyebab-gagal">4. Jebakan Umum (Penyebab Gagal)<a class="headerlink" href="#4-jebakan-umum-penyebab-gagal" title="Permanent link">&para;</a></h2>
 <table>

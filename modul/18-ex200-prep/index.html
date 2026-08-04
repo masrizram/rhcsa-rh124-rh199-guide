@@ -899,10 +899,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-lingkup-ujian-objektif-lengkap-ex200" class="md-nav__link">
+  <a href="#2-lingkup-ujian-objektif-resmi-ex200-berbasis-rhel-10" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Lingkup Ujian (Objektif Lengkap EX200)
+        2. Lingkup Ujian (Objektif Resmi EX200 — Berbasis RHEL 10)
       
     </span>
   </a>
@@ -910,10 +910,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-topik-baru-yang-sering-luput" class="md-nav__link">
+  <a href="#3-perubahan-penting-ex200-rhel-9-rhel-10-jangan-tertipu-materi-lama" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Topik Baru yang Sering Luput
+        3. Perubahan Penting EX200 RHEL 9 → RHEL 10 (Jangan Tertipu Materi Lama!)
       
     </span>
   </a>
@@ -921,10 +921,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-perbedaan-rhel-9-vs-rhel-10-penting" class="md-nav__link">
+  <a href="#4-rhel-9-vs-rhel-10-fakta-bukan-spekulasi" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Perbedaan RHEL 9 vs RHEL 10 (Penting!)
+        4. RHEL 9 vs RHEL 10 (Fakta, Bukan Spekulasi)
       
     </span>
   </a>
@@ -1314,15 +1314,14 @@ tapi seluruh materi &amp; simulasi soal berada di modul ini.</p>
 <li><strong>Aturan</strong>: tanpa internet, tanpa bawa catatan; boleh pakai <code>man</code>, <code>vim</code>,
   dokumentasi lokal (<code>/usr/share/doc</code>), dan Cockpit.</li>
 </ul>
-<h2 id="2-lingkup-ujian-objektif-lengkap-ex200">2. Lingkup Ujian (Objektif Lengkap EX200)<a class="headerlink" href="#2-lingkup-ujian-objektif-lengkap-ex200" title="Permanent link">&para;</a></h2>
-<p>Berikut pemetaan objektif resmi EX200 (RHEL 10) ke modul di repo ini.
-Semua poin tertutup — termasuk yang sering luput (autofs, Flatpak,
-tuned, bootloader/grub2, VFAT, chrony/IPv6) <strong>serta storage modern
-(Stratis, VDO, disk quota) dan network deklaratif (nmstate) untuk track
-RHEL 9/10</strong>.</p>
+<h2 id="2-lingkup-ujian-objektif-resmi-ex200-berbasis-rhel-10">2. Lingkup Ujian (Objektif Resmi EX200 — Berbasis RHEL 10)<a class="headerlink" href="#2-lingkup-ujian-objektif-resmi-ex200-berbasis-rhel-10" title="Permanent link">&para;</a></h2>
+<p>EX200 <strong>saat ini resmi berbasis RHEL 10</strong>. Berikut 11 kategori objektif resmi
+(Red Hat, 2026) dan pemetaannya ke modul di repo ini. <strong>Ini yang benar-benar
+diujikan</strong> — fokuskan latihan ke sini.</p>
 <table>
 <thead>
 <tr>
+<th>#</th>
 <th>Area objektif</th>
 <th>Contoh tugas</th>
 <th>Modul</th>
@@ -1330,110 +1329,132 @@ RHEL 9/10</strong>.</p>
 </thead>
 <tbody>
 <tr>
+<td>1</td>
 <td>Understand and use essential tools</td>
-<td><code>man</code>, <code>vim</code>, redireksi, <code>tar</code>, <code>grep</code>, <code>find</code>, <code>ssh</code>, hard/soft link</td>
+<td>shell prompt, redireksi, <code>grep</code>+regex, SSH, <code>tar</code>/<code>gzip</code>/<code>bzip2</code>, vim, file/dir, hard/soft link, ugo/rwx, <code>man</code>/<code>info</code>/<code>/usr/share/doc</code></td>
 <td>02, 03, 04, 05</td>
 </tr>
 <tr>
+<td>2</td>
 <td>Manage software</td>
-<td>RPM repo, DNF, <strong>Flatpak</strong> repo &amp; paket</td>
+<td>repo RPM, install/remove via DNF, <strong>repo &amp; paket Flatpak</strong></td>
 <td>12</td>
 </tr>
 <tr>
+<td>3</td>
 <td>Create simple shell scripts</td>
-<td><code>if</code>/<code>for</code>/<code>while</code>, <code>$1 $# $@</code>, output command</td>
+<td><code>if</code>/<code>test</code>/<code>[]</code>, loop <code>for</code>, argumen <code>$1 $2</code>, output command</td>
 <td>20</td>
 </tr>
 <tr>
+<td>4</td>
 <td>Operate running systems</td>
-<td><code>systemctl</code>, <code>journalctl</code>, proses, <code>nice</code>, <strong>tuned</strong>, interrupt boot</td>
+<td>boot/reboot/shutdown, target manual, <strong>interrupt boot</strong> (<code>rd.break</code>), proses CPU/mem (<code>kill</code>), <code>nice</code>, <strong>tuned</strong>, log/journal, <strong>preserve journals</strong>, service status, transfer file aman</td>
 <td>08, 09</td>
 </tr>
 <tr>
+<td>5</td>
 <td>Configure local storage</td>
-<td>partisi GPT, LVM (PV/VG/LV), mount by UUID/label, swap, <strong>Stratis</strong>, <strong>VDO</strong></td>
+<td>partisi <strong>GPT</strong>, PV/VG/LV, mount by <strong>UUID/label</strong>, tambah partisi/LV/swap non-destruktif</td>
 <td>13</td>
 </tr>
 <tr>
+<td>6</td>
 <td>Create &amp; configure file systems</td>
-<td>XFS/ext4/<strong>VFAT</strong>, NFS, <strong>autofs</strong>, extend LV, permission, <strong>disk quota</strong></td>
+<td><strong>VFAT/ext4/XFS</strong>, mount NFS, <strong>autofs</strong>, <strong>extend LV</strong>, diagnosis permission</td>
 <td>13</td>
 </tr>
 <tr>
+<td>7</td>
 <td>Deploy/adjust/maintain systems</td>
-<td><code>cron</code>/<code>at</code>/systemd timer, boot target, <strong>chrony</strong>, <strong>grub2/bootloader</strong>, <code>bootc</code> (RHEL10)</td>
-<td>09, 17</td>
+<td><code>at</code>/<code>cron</code>/systemd timer, service auto-boot, boot target, <strong>chrony</strong> (time client), update software, <strong>grub2/bootloader</strong></td>
+<td>09, 12, 17</td>
 </tr>
 <tr>
+<td>8</td>
 <td>Manage basic networking</td>
-<td><strong>IPv4 &amp; IPv6</strong>, hostname, DNS, firewalld, <strong>nmstate</strong> (RHEL10)</td>
+<td><strong>IPv4 &amp; IPv6</strong>, hostname resolution, service auto-boot, <strong>firewalld</strong></td>
 <td>11</td>
 </tr>
 <tr>
+<td>9</td>
 <td>Manage users &amp; groups</td>
-<td><code>useradd</code>, <code>usermod</code>, <code>passwd</code>, <code>sudo</code>, <code>chage</code></td>
+<td><code>useradd</code>/<code>usermod</code>/<code>userdel</code>, password aging (<code>chage</code>), group, privileged access (<code>sudo</code>/<code>wheel</code>)</td>
 <td>06</td>
 </tr>
 <tr>
+<td>10</td>
 <td>Manage security</td>
-<td><code>firewalld</code>, <strong>SELinux</strong> (enforcing), <code>ssh</code> key-based, <code>umask</code></td>
+<td><strong>firewalld</strong>, <strong>umask</strong> default, <strong>SSH key-based</strong>, SELinux <strong>enforcing/permissive</strong>, context file/proses, <strong>restorecon</strong>, <strong>SELinux port labels</strong>, <strong>boolean</strong></td>
 <td>07, 10, 16</td>
 </tr>
 <tr>
-<td>Containers (RHEL 9+)</td>
-<td><code>podman</code> pull/run, <strong>skopeo/buildah</strong>, podman sebagai service</td>
-<td>15</td>
+<td>11</td>
+<td><em>Containers</em></td>
+<td><strong>🚫 TIDAK LAGI masuk objektif resmi EX200 RHEL 10</strong> — lihat catatan §4</td>
+<td>—</td>
 </tr>
 </tbody>
 </table>
 <blockquote>
 <p>⚠️ <strong>SELinux</strong> sering jadi penyebab gagal. Jangan mematikan — konfigurasikan
-dengan benar (<code>setsebool</code>, <code>semanage</code>, <code>restorecon</code>, <code>chcon</code>).</p>
+dengan benar (<code>setsebool</code>, <code>semanage fcontext</code>, <code>restorecon</code>, <code>semanage port</code>).
+Khusus RHEL 10: objektif menekankan <strong>SELinux port labels</strong> (mis. izinkan
+service non-standar mendengarkan port lewat <code>semanage port</code>).</p>
 </blockquote>
-<h2 id="3-topik-baru-yang-sering-luput">3. Topik Baru yang Sering Luput<a class="headerlink" href="#3-topik-baru-yang-sering-luput" title="Permanent link">&para;</a></h2>
-<p>Ini bagian yang di versi lama catatan sering kosong. Pastikan kamu hafal
-perintah dasarnya (detail ada di modul masing-masing):</p>
+<h2 id="3-perubahan-penting-ex200-rhel-9-rhel-10-jangan-tertipu-materi-lama">3. Perubahan Penting EX200 RHEL 9 → RHEL 10 (Jangan Tertipu Materi Lama!)<a class="headerlink" href="#3-perubahan-penting-ex200-rhel-9-rhel-10-jangan-tertipu-materi-lama" title="Permanent link">&para;</a></h2>
+<p>Banyak panduan lama (RHEL 9) masih beredar. Perbedaan yang <strong>berdampak ke
+skor ujian</strong> saat ini:</p>
 <ul>
-<li><strong>autofs</strong> — mount NFS/USB otomatis on-demand (Modul 13, §VFAT/autofs).</li>
-<li><strong>Flatpak</strong> — repo &amp; paket desktop containerized (Modul 12, §Flatpak).</li>
-<li><strong>tuned</strong> — profil tuning performa (<code>tuned-adm</code>, Modul 09).</li>
-<li><strong>grub2 / bootloader</strong> — ubah parameter boot &amp; interrupt boot via <code>rd.break</code>
-  (Modul 09, §Bootloader &amp; Akses Darurat).</li>
-<li><strong>VFAT</strong> — format &amp; mount FAT32 (<code>mkfs.vfat</code>, Modul 13).</li>
-<li><strong>chrony / IPv6</strong> — client time service &amp; alamat IPv6 (<code>nmcli</code>, Modul 11 &amp; 17).</li>
-<li><strong>Stratis / VDO / disk quota</strong> — storage modern wajib RHEL 9/10: pool
-  Stratis + snapshot, volume VDO dedup, dan <code>xfs_quota</code> batas user (Modul 13, §10–§12).</li>
-<li><strong>nmstate</strong> — network deklaratif via <code>nmstatectl apply</code> (RHEL 10, Modul 11, §7c).</li>
+<li><strong>🚫 Containers / Podman DIHAPUS</strong> dari objektif resmi EX200 RHEL 10.
+  Red Hat menggantinya dengan <strong>Flatpak</strong> di kategori "Manage software".
+  → Modul 15 (Podman) tetap ada sebagai <strong>bonus keahlian &amp; persiapan RHCE</strong>,
+  tapi <strong>tidak wajib</strong> untuk lulus EX200 RHEL 10.</li>
+<li><strong>🚫 Stratis / VDO / disk quota / nmstate / bootc</strong>: <strong>TIDAK</strong> ada di
+  objektif resmi EX200 RHEL 10. Modul 13 memuat Stratis/VDO/quota sebagai
+  <strong>materi perluasan (bonus)</strong> — bagus untuk wawasan, tapi <strong>jangan menganggap
+  ini akan keluar di soal EX200 RHEL 10</strong>.</li>
+<li><strong>✅ Yang BARU &amp; wajib di RHEL 10</strong>: <strong>Flatpak</strong> (ganti container),
+  <strong>SELinux port labels</strong>, <strong>preserve system journals</strong> (<code>/var/log/journal</code>
+  persisten), <strong>IPv6</strong> eksplisit di networking.</li>
 </ul>
-<h2 id="4-perbedaan-rhel-9-vs-rhel-10-penting">4. Perbedaan RHEL 9 vs RHEL 10 (Penting!)<a class="headerlink" href="#4-perbedaan-rhel-9-vs-rhel-10-penting" title="Permanent link">&para;</a></h2>
+<p>Topik yang sering luput peserta (dan MASIH relevan RHEL 10):
+- <strong>Flatpak</strong> — repo &amp; paket desktop (Modul 12).
+- <strong>tuned</strong> — profil tuning (<code>tuned-adm</code>, Modul 09).
+- <strong>grub2 / bootloader + <code>rd.break</code></strong> — interrupt boot (Modul 09).
+- <strong>VFAT</strong> — <code>mkfs.vfat -F 32</code> (Modul 13).
+- <strong>chrony / IPv6</strong> — time client &amp; alamat IPv6 (Modul 11 &amp; 17).
+- <strong>autofs</strong> — mount NFS on-demand (Modul 13).
+- <strong>SELinux port labels</strong> — <code>semanage port -a -t ...</code> (Modul 16).</p>
+<h2 id="4-rhel-9-vs-rhel-10-fakta-bukan-spekulasi">4. RHEL 9 vs RHEL 10 (Fakta, Bukan Spekulasi)<a class="headerlink" href="#4-rhel-9-vs-rhel-10-fakta-bukan-spekulasi" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
 <th>Aspek</th>
 <th>RHEL 9</th>
-<th>RHEL 10</th>
+<th>RHEL 10 (ujian saat ini)</th>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>Containers di EX200</td>
+<td><strong>Masuk</strong> objektif</td>
+<td><strong>DIHAPUS</strong> (diganti Flatpak)</td>
+</tr>
+<tr>
+<td>Storage modern</td>
+<td>Stratis/VDO sering dibahas</td>
+<td><strong>Tidak</strong> di objektif resmi</td>
+</tr>
 <tr>
 <td>Init &amp; service</td>
 <td>systemd</td>
 <td>systemd (sama)</td>
 </tr>
 <tr>
-<td>Container</td>
-<td>Podman (rootless)</td>
-<td>Podman + <strong>bootc</strong></td>
-</tr>
-<tr>
 <td>OS model</td>
-<td>Package-based (RPM/DNF)</td>
-<td><strong>Image mode</strong> (bootc) tersedia</td>
-</tr>
-<tr>
-<td><code>bootc</code></td>
-<td>tidak ada</td>
-<td>sistem berbasis image (mirip Container OS)</td>
+<td>RPM/DNF package-based</td>
+<td>Image mode (<code>bootc</code>) <em>tersedia</em>, tapi <strong>tidak diujikan</strong> di EX200</td>
 </tr>
 <tr>
 <td>Default FS</td>
@@ -1442,23 +1463,27 @@ perintah dasarnya (detail ada di modul masing-masing):</p>
 </tr>
 <tr>
 <td>Networking</td>
-<td>NetworkManager/nmcli</td>
-<td>NetworkManager/nmcli (sama)</td>
+<td>nmcli (IPv4)</td>
+<td>nmcli + <strong>IPv6 eksplisit</strong></td>
+</tr>
+<tr>
+<td>Security</td>
+<td>SELinux enforcing/boolean</td>
+<td>+ <strong>port labels</strong>, <strong>restorecon</strong> ditekankan</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Bootc / Image Mode (RHEL 10):</strong> sistem dikelola sebagai <em>image</em> yang
-di-update via <code>bootc</code> (bukan <code>dnf update</code> tradisional). Untuk EX200, fokus
-tetap ke administrasi standar (user, storage, service, network, SELinux,
-Podman) — <code>bootc</code> bobotnya kecil. Perintah dasar:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>bootc<span class="w"> </span>status<span class="w">          </span><span class="c1"># lihat status image/rollback</span>
+<p><strong>Bootc / Image Mode (RHEL 10):</strong> sistem bisa dikelola sebagai <em>image</em>
+(<code>bootc upgrade</code>/<code>rollback</code>). <strong>Tidak masuk objektif EX200</strong> — cukup tahu
+ada, jangan panik bila tidak ada di lab RHEL 9.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>bootc<span class="w"> </span>status<span class="w">          </span><span class="c1"># lihat status image/rollback (RHEL 10 image mode)</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>bootc<span class="w"> </span>upgrade<span class="w">         </span><span class="c1"># upgrade ke image baru</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>bootc<span class="w"> </span>rollback<span class="w">        </span><span class="c1"># kembalikan ke image sebelumnya</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>bootc<span class="w"> </span>switch<span class="w"> </span>&lt;image&gt;<span class="w">  </span><span class="c1"># ganti ke image/repo berbeda</span>
 </code></pre></div></p>
 <blockquote>
-<p>Catatan: pada RHEL 9 (paling umum diuji saat ini), <code>bootc</code> <strong>tidak ada</strong>.
-Jangan panik jika perintah ini tidak ada di lab RHEL 9 — fokus ke <code>dnf</code>.</p>
+<p>Fokus utama EX200 RHEL 10 tetaplah administrasi standar: user, storage
+(GPT/LVM), service (systemd), network (nmcli + IPv6), <strong>SELinux</strong>, dan
+<strong>Flatpak</strong> — bukan container/bootc.</p>
 </blockquote>
 <h2 id="5-strategi-hari-h">5. Strategi Hari-H<a class="headerlink" href="#5-strategi-hari-h" title="Permanent link">&para;</a></h2>
 <ol>
@@ -1483,12 +1508,14 @@ Jangan panik jika perintah ini tidak ada di lab RHEL 9 — fokus ke <code>dnf</c
 <li>Set SELinux boolean <code>httpd_can_network_connect</code> on.</li>
 <li>(Tambahan) Pasang paket Flatpak <code>gedit</code>, konfigurasi autofs untuk mount
    NFS lab on-demand, dan aktifkan profil <code>tuned</code> <code>throughput-performance</code>.</li>
-<li>(Storage modern RHEL 9/10) Buat pool Stratis <code>mypool</code> dari disk lab, buat
-   filesystem <code>data1</code>, mount permanen di <code>/mnt/stratis</code>.</li>
-<li>(Storage modern) Buat volume VDO dedup <code>--vdoLogicalSize</code> 50G di disk lab,
+<li>(BONUS — bukan objektif resmi EX200 RHEL 10) Buat pool Stratis <code>mypool</code>
+   dari disk lab, buat filesystem <code>data1</code>, mount permanen di <code>/mnt/stratis</code>.</li>
+<li>(BONUS) Buat volume VDO dedup <code>--vdoLogicalSize</code> 50G di disk lab,
     format XFS, mount di <code>/mnt/vdo</code>, verifikasi dengan <code>vdostats</code>.</li>
-<li>(Disk quota) Pasang opsi <code>usrquota,grpquota</code> di <code>/home</code>, set batas user
-    <code>user1</code> maks 120M block &amp; 1200 inode via <code>xfs_quota -x -c 'limit ...'</code>.</li>
+<li>(BONUS) Pasang opsi <code>usrquota,grpquota</code> di <code>/home</code>, set batas user
+    <code>user1</code> maks 120M block &amp; 1200 inode via <code>xfs_quota -x -c 'limit ...'</code>.
+    &gt; Soal 9–11 bagus untuk wawasan &amp; persiapan lanjutan, tapi <strong>tidak masuk</strong>
+    &gt; objektif resmi EX200 RHEL 10. Prioritaskan soal 1–8.</li>
 </ol>
 <p>(Jawaban &amp; langkah ada di <code>../lab/LAB.md</code> dan
 <code>../referensi/EX200-prep.md</code>. Untuk perbaikan sistem rusak, baca
@@ -1504,14 +1531,14 @@ EX200 adalah troubleshooting.)</p>
 </ul>
 <h2 id="latihan">Latihan<a class="headerlink" href="#latihan" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Kerjakan ke-8 simulasi di atas tanpa melihat jawaban. Catat waktu tiap tugas.</li>
+<li>Kerjakan skenario 1–8 di atas tanpa melihat jawaban (soal 9–11 opsional/bonus). Catat waktu tiap tugas.</li>
 </ul>
 <h2 id="kunci-jawaban-klik-untuk-lihat">Kunci Jawaban (klik untuk lihat)<a class="headerlink" href="#kunci-jawaban-klik-untuk-lihat" title="Permanent link">&para;</a></h2>
 <details class="note">
 <summary>Kunci Jawaban Latihan</summary>
 <ul>
 <li>Kerjakan skenario di atas di lab; verifikasi tiap tugas dengan
-  <code>id</code>, <code>getfacl</code>, <code>sshd -t</code>, <code>firewall-cmd --list-all</code>, <code>df -h</code>, <code>podman ps</code>,
+  <code>id</code>, <code>getfacl</code>, <code>sshd -t</code>, <code>firewall-cmd --list-all</code>, <code>df -h</code>,
   <code>getenforce</code>, <code>tuned-adm active</code>, <code>flatpak list</code> — sesuai kolom
   "Cara Buktikan" di tiap skenario.</li>
 <li>Target: rata-rata &lt; 18 menit/tugas dan skor ≥ 80% sebelum ujian nyata.</li>
