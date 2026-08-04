@@ -42,7 +42,12 @@ Setelah menyelesaikan panduan ini, kamu diharapkan mampu:
 | 12 | Install and Update Software | DNF, repo, `rpm`, grup paket | `CDpa7ZpNNEE` |
 | 13 | Access Linux File Systems | Partisi, LVM, `mount`, `fstab`, swap | `tuN89JVWjCs` |
 | 14 | Analyze Servers and Get Support | Log, `cockpit`, Red Hat Insights, subscription | `44ObsKHr0IA` |
-| 15 | EX200 (RHCSA) Exam Prep | Strategi, lingkup ujian, simulasi soal | `eGbNXqPdUa4`, `2n2P0Awz3U4` |
+| 15 | Podman & Containers | Pull/run, quadlet, skopeo/buildah | `eGbNXqPdUa4`, `2n2P0Awz3U4` |
+| 16 | SELinux (Keamanan Wajib) | Enforcing, boolean, fcontext, `restorecon` | `eGbNXqPdUa4` |
+| 17 | Penjadwalan & Time Zone | `cron`, `at`, systemd timer, `timedatectl` | `eGbNXqPdUa4` |
+| 18 | EX200 (RHCSA) Exam Prep | Strategi, lingkup ujian, simulasi soal | `eGbNXqPdUa4`, `2n2P0Awz3U4` |
+| 19 | Skenario EX200 Terukur | Latihan soal berbobot + kunci | `eGbNXqPdUa4` |
+| 20 | Shell Scripting Dasar | `if`/`for`/`while`, variabel, argumen | `eGbNXqPdUa4` |
 
 Materi lengkap tiap modul ada di folder [`modul/`](modul/).
 

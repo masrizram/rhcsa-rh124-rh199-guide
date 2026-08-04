@@ -72,7 +72,7 @@ sudo mkfs.vfat -F 32 /dev/sdc1 # FAT32 (VFAT) — objektif EX200
 > Cocok untuk USB flash disk / share dengan Windows. Tanpa journal, tanpa
 > permission Unix (semua file 0777), batas file 4 GB.
 
-## 4. Mount & Unmount
+## 5. Mount & Unmount
 
 ```bash
 sudo mkdir /data
@@ -81,7 +81,7 @@ mount | grep data              # verifikasi
 sudo umount /data              # lepas
 ```
 
-## 5. Mount Permanen (`/etc/fstab`)
+## 6. Mount Permanen (`/etc/fstab`)
 
 ```bash
 # Dapatkan UUID
@@ -99,7 +99,7 @@ Format fstab: `device  mountpoint  fstype  options  dump  fsck`
 Untuk VFAT, opsi umum: `UUID=xxxx  /mnt/usb  vfat  defaults,uid=1000,gid=1000  0 0`
 (pakai `uid/gid` agar pemiliknya user biasa, bukan root).
 
-## 6. LVM (Logical Volume Manager)
+## 7. LVM (Logical Volume Manager)
 
 ```bash
 # 1. Tandai partisi sebagai PV
@@ -118,7 +118,7 @@ sudo xfs_growfs /data        # untuk XFS
 # (ext4: resize2fs /dev/vgdata/lvdata)
 ```
 
-## 7. Swap
+## 8. Swap
 
 ```bash
 sudo mkswap /dev/sdc1
@@ -128,13 +128,13 @@ swapon --show                 # verifikasi
 # /dev/sdc1  swap  swap  defaults  0 0
 ```
 
-## 8. Label & UUID
+## 9. Label & UUID
 
 Gunakan UUID di fstab (lebih stabil dari nama device `/dev/sdX` yang bisa
 berubah antar boot). `blkid` untuk melihat keduanya; `e2label`/`xfs_admin -L`
 untuk memberi label.
 
-## 9. autofs — Mount Otomatis on-demand (Wajib EX200)
+## 10. autofs — Mount Otomatis on-demand (Wajib EX200)
 
 `autofs` mem-mount filesystem **secara otomatis saat diakses** dan me-lepas
 otomatis saat idle. Sangat dipakai untuk NFS di client (tidak perlu entri
@@ -167,7 +167,7 @@ mount | grep auto.nfs      # terlihat entry automount
 > ⚠️ Bedanya dengan fstab statis: autofs **tidak** mem-block boot bila server
 > NFS down. Itu sebabnya sering jadi preferensi di soal EX200.
 
-## 10. Stratis — Manajemen Storage Lokal Modern (Wajib EX200)
+## 11. Stratis — Manajemen Storage Lokal Modern (Wajib EX200)
 
 Stratis menyederhanakan storage tingkat lanjut (snapshot, thin-provision,
 pool) di atas LVM/XFS dengan satu perintah. Objektif EX200 RHEL 9/10:
@@ -212,7 +212,7 @@ sudo stratis pool destroy mypool
 > ⚠️ Jangan format device yang SUDAH masuk pool Stratis dengan `mkfs`.
 > Stratis mengelola XFS di dalamnya sendiri.
 
-## 11. VDO — Deduplikasi & Kompresi (Wajib EX200)
+## 12. VDO — Deduplikasi & Kompresi (Wajib EX200)
 
 VDO (Virtual Data Optimizer) memberikan deduplikasi + kompresi di atas block
 device, sehingga ruang fisik lebih efisien untuk data berulang (backup,
@@ -243,7 +243,7 @@ vdostats --human-readable
 > ⚠️ VDO butuh device **kosong** (belum ada filesystem/partition table).
 > Gunakan `vdo remove --name=myvdo` untuk membongkar.
 
-## 12. Disk Quota — Batasi Pemakaian User/Group (Wajib EX200)
+## 13. Disk Quota — Batasi Pemakaian User/Group (Wajib EX200)
 
 Objektif EX200: *"Implement disk quotas"*. Batasi berapa banyak ruang/	jumlah
 file yang boleh dipakai tiap user atau group pada suatu filesystem.
@@ -277,7 +277,7 @@ repquota -a                     # laporan
 > (diizinkan lewat dalam masa grace, lalu jadi keras). EX200 sering minta
 > set keduanya.
 
-## 13. Jebakan Umum (EX200)
+## 14. Jebakan Umum (EX200)
 
 !!! danger "Jebakan"
     - Salah UUID di `/etc/fstab` → VM **no-boot** (grub rescue). Selalu `mount -a`
@@ -290,20 +290,20 @@ repquota -a                     # laporan
     - NFS di fstab tanpa opsi `_netdev` → boot hang (tunggu timeout mount).
     - autofs: lupa `systemctl enable --now autofs` → mount on-demand tak jalan.
 
-## 11. Koneksi ke EX200
+## 15. Koneksi ke EX200
 
 !!! success "EX200"
     Soal storage sering: "Buat LV 1G, format XFS, mount permanen di `/data`,
     lalu besarkan jadi 2G." Kunci: `pvcreate`→`vgcreate`→`lvcreate`→`mkfs.xfs`→
     fstab (UUID) → `mount -a` → `lvextend -L +1G` → `xfs_growfs /data`.
     Atau: "Pasang share NFS `server:/export` ke `/mnt/data` otomatis saat
-    diakses" → pakai **autofs** (§9).
+    diakses" → pakai **autofs** (§10).
     Atau (RHEL 9/10): "Buat pool Stratis `mypool` dari `/dev/sdb`, buat
-    filesystem `data1`, mount permanen" → **Stratis** (§10).
+    filesystem `data1`, mount permanen" → **Stratis** (§11).
     Atau: "Buat volume VDO dedup 50G di `/dev/sdc`, mount di `/mnt/vdo`" →
-    **VDO** (§11).
+    **VDO** (§12).
     Atau: "Batasi user `user1` maks 120M & 1200 file di `/home`" →
-    **disk quota** (§12, perintah `xfs_quota -x -c 'limit ...'`).
+    **disk quota** (§13, perintah `xfs_quota -x -c 'limit ...'`).
 
 ## Kunci Jawaban (klik untuk lihat)
 
