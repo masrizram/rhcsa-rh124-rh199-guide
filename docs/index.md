@@ -15,8 +15,8 @@
 <div class="rh-grid">
   <div class="rh-card">
     <div class="rh-ico">📦</div>
-    <h3>21 Modul Terstruktur</h3>
-    <p>Dari shell dasar hingga Podman & SELinux, disusun sesuai kurikulum resmi.</p>
+    <h3>23 Modul Terstruktur</h3>
+    <p>Dari shell dasar hingga SELinux, Enterprise Reality, & Runbook Troubleshooting Produksi — disusun sesuai kurikulum resmi & diselaraskan objektif EX200 RHEL 10.</p>
   </div>
   <div class="rh-card">
     <div class="rh-ico">🛠️</div>
@@ -47,7 +47,7 @@ Selamat datang di panduan langkah-demi-langkah menuju sertifikasi
 ## 🧭 Mulai dari Mana?
 
 1. Buka **[🗺️ Pusat Belajar](pusat-belajar.md)** — peta jalan 16 minggu & cara pakai.
-2. Ikuti **Modul 0 → 20** di panel navigasi kiri.
+2. Ikuti **Modul 0 → 22** di panel navigasi kiri (Modul 21 = Enterprise Reality, Modul 22 = Runbook Troubleshooting Produksi).
 3. Kerjakan **[🛠️ Latihan (LAB)](lab/LAB.md)** di tiap modul.
 4. Gunakan **[⌨️ Cheat Sheet](referensi/CHEATSHEET.md)** sebagai referensi cepat.
 5. Persiapan ujian: **[🎯 Persiapan EX200](referensi/EX200-prep.md)**.
@@ -57,9 +57,8 @@ Selamat datang di panduan langkah-demi-langkah menuju sertifikasi
 - Akses & perintah RHEL via shell & web console (Cockpit).
 - Kelola berkas, teks (`vim`), user/grup, dan hak akses (incl. ACL).
 - Pantau proses, kelola `systemd`, amankan SSH.
-- Konfigurasi jaringan, DNF, dan file system (incl. LVM).
-- Jalankan **container Podman** sebagai systemd service.
-- Siap menghadapi ujian **EX200 (RHCSA)**.
+- Konfigurasi jaringan, DNF (+ **Flatpak**), dan file system (incl. LVM).
+- Siap menghadapi ujian **EX200 (RHCSA)** berbasis **RHEL 10** (Containers/Podman sudah diganti Flatpak di objektif resmi — lihat Modul 15 & 18).
 
 ## 📚 Daftar Modul
 
@@ -86,6 +85,8 @@ Selamat datang di panduan langkah-demi-langkah menuju sertifikasi
 | 18 | [EX200 (RHCSA) Prep](modul/18-ex200-prep.md) |
 | 19 | [Skenario EX200 Terukur](modul/19-skenario-ex200.md) |
 | 20 | [Shell Scripting Dasar](modul/20-shell-scripting.md) |
+| 21 | [System Engineer Enterprise](modul/21-enterprise-system-engineer.md) |
+| 22 | [Runbook Troubleshooting Produksi](modul/22-runbook-troubleshooting-production.md) |
 
 ## 🖥️ Siapkan Lab (Gratis)
 
