@@ -56,6 +56,7 @@ Setelah menyelesaikan panduan ini, kamu diharapkan mampu:
 | 20 | Shell Scripting Dasar | `if`/`for`/`while`, variabel, argumen | `eGbNXqPdUa4` |
 | 21 | System Engineer Enterprise | SSSD/IDM, SIEM, Satellite, CIS/PCI-DSS, Ansible, HA, DR | — |
 | 22 | Runbook Troubleshooting Produksi | fstab no-boot, SELinux, disk penuh, network, LVM, crash | — |
+| 23 | RHCE / EX294 (Ansible) Prep | inventory, playbook, vault, integrasi CR | — |
 
 Materi lengkap tiap modul ada di folder [`modul/`](modul/).
 

@@ -27,7 +27,8 @@ flowchart TD
     K --> L[Modul 20: Shell Scripting]
     L --> M[Modul 21: System Engineer Enterprise]
     M --> N[Modul 22: Runbook Troubleshooting Produksi]
-    N --> O[Ujian EX200 / Karier Enterprise]
+    N --> O[Modul 23: RHCE/EX294 Ansible Prep]
+    O --> P[Ujian EX200 / Karier Enterprise]
 ```
 
 | Minggu | Fokus | Modul |
@@ -74,6 +75,8 @@ podman run -it --name lab-rhel rockylinux:9 bash
 - **Modul 20**: Shell Scripting Dasar (wajib EX200).
 - **Modul 21**: System Engineer Enterprise (SSSD/IDM, SIEM, Satellite, CIS/PCI-DSS, Ansible, HA, DR) — bridge RHCSA ke dunia kerja nyata.
 - **Modul 22**: Runbook Troubleshooting Produksi (firefighting hari pertama: fstab no-boot, SELinux block, disk penuh, network unreachable, LVM/PV corruption, crash loop).
+- **Modul 23**: RHCE / EX294 (Ansible) Prep — otomasi skala besar, integrasi Change Request.
+- **Referensi tambahan**: [⚡ Pocket Runbook (Offline)](referensi/POCKET-RUNBOOK.md) & [🚑 On-Call Drill](referensi/ONCALL-DRILL.md) untuk latihan insiden hari pertama.
 - **LAB**: kumpulan tugas praktik & jawaban.
 - **Cheat Sheet**: ringkasan perintah cepat.
 - **Persiapan EX200**: taktik & jebakan ujian.
