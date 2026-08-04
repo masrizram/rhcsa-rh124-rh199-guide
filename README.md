@@ -7,6 +7,12 @@ diajarkan di playlist YouTube *"RH124 RH199 - Red Hat System Administration I - 
 
 > **Basis materi:** RHEL 9.3 (berlaku juga untuk RHEL 10.x). Semua perintah diuji
 > pada lingkungan RHEL / Rocky Linux / AlmaLinux / Fedora yang setara.
+>
+> 📌 **EX200 saat ini resmi berbasis RHEL 10 (2026).** Panduan ini sudah
+> diselaraskan dengan objektif resmi: *Containers/Podman tidak lagi wajib*
+> (diganti **Flatpak**), dan Stratis/VDO/disk quota/nmstate/bootc berstatus
+> **materi perluasan (bonus)**, bukan soal ujian. Lihat
+> [Modul 18 — EX200 Prep](../modul/18-ex200-prep.md) §2–§4 untuk detail.
 
 ---
 

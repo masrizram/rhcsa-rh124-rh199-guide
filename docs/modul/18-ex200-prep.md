@@ -16,70 +16,80 @@ tapi seluruh materi & simulasi soal berada di modul ini.
 - **Aturan**: tanpa internet, tanpa bawa catatan; boleh pakai `man`, `vim`,
   dokumentasi lokal (`/usr/share/doc`), dan Cockpit.
 
-## 2. Lingkup Ujian (Objektif Lengkap EX200)
+## 2. Lingkup Ujian (Objektif Resmi EX200 — Berbasis RHEL 10)
 
-Berikut pemetaan objektif resmi EX200 (RHEL 10) ke modul di repo ini.
-Semua poin tertutup — termasuk yang sering luput (autofs, Flatpak,
-tuned, bootloader/grub2, VFAT, chrony/IPv6) **serta storage modern
-(Stratis, VDO, disk quota) dan network deklaratif (nmstate) untuk track
-RHEL 9/10**.
+EX200 **saat ini resmi berbasis RHEL 10**. Berikut 11 kategori objektif resmi
+(Red Hat, 2026) dan pemetaannya ke modul di repo ini. **Ini yang benar-benar
+diujikan** — fokuskan latihan ke sini.
 
-| Area objektif | Contoh tugas | Modul |
-|------|-------------|-------|
-| Understand and use essential tools | `man`, `vim`, redireksi, `tar`, `grep`, `find`, `ssh`, hard/soft link | 02, 03, 04, 05 |
-| Manage software | RPM repo, DNF, **Flatpak** repo & paket | 12 |
-| Create simple shell scripts | `if`/`for`/`while`, `$1 $# $@`, output command | 20 |
-| Operate running systems | `systemctl`, `journalctl`, proses, `nice`, **tuned**, interrupt boot | 08, 09 |
-| Configure local storage | partisi GPT, LVM (PV/VG/LV), mount by UUID/label, swap, **Stratis**, **VDO** | 13 |
-| Create & configure file systems | XFS/ext4/**VFAT**, NFS, **autofs**, extend LV, permission, **disk quota** | 13 |
-| Deploy/adjust/maintain systems | `cron`/`at`/systemd timer, boot target, **chrony**, **grub2/bootloader**, `bootc` (RHEL10) | 09, 17 |
-| Manage basic networking | **IPv4 & IPv6**, hostname, DNS, firewalld, **nmstate** (RHEL10) | 11 |
-| Manage users & groups | `useradd`, `usermod`, `passwd`, `sudo`, `chage` | 06 |
-| Manage security | `firewalld`, **SELinux** (enforcing), `ssh` key-based, `umask` | 07, 10, 16 |
-| Containers (RHEL 9+) | `podman` pull/run, **skopeo/buildah**, podman sebagai service | 15 |
+| # | Area objektif | Contoh tugas | Modul |
+|---|--------------|-------------|-------|
+| 1 | Understand and use essential tools | shell prompt, redireksi, `grep`+regex, SSH, `tar`/`gzip`/`bzip2`, vim, file/dir, hard/soft link, ugo/rwx, `man`/`info`/`/usr/share/doc` | 02, 03, 04, 05 |
+| 2 | Manage software | repo RPM, install/remove via DNF, **repo & paket Flatpak** | 12 |
+| 3 | Create simple shell scripts | `if`/`test`/`[]`, loop `for`, argumen `$1 $2`, output command | 20 |
+| 4 | Operate running systems | boot/reboot/shutdown, target manual, **interrupt boot** (`rd.break`), proses CPU/mem (`kill`), `nice`, **tuned**, log/journal, **preserve journals**, service status, transfer file aman | 08, 09 |
+| 5 | Configure local storage | partisi **GPT**, PV/VG/LV, mount by **UUID/label**, tambah partisi/LV/swap non-destruktif | 13 |
+| 6 | Create & configure file systems | **VFAT/ext4/XFS**, mount NFS, **autofs**, **extend LV**, diagnosis permission | 13 |
+| 7 | Deploy/adjust/maintain systems | `at`/`cron`/systemd timer, service auto-boot, boot target, **chrony** (time client), update software, **grub2/bootloader** | 09, 12, 17 |
+| 8 | Manage basic networking | **IPv4 & IPv6**, hostname resolution, service auto-boot, **firewalld** | 11 |
+| 9 | Manage users & groups | `useradd`/`usermod`/`userdel`, password aging (`chage`), group, privileged access (`sudo`/`wheel`) | 06 |
+| 10 | Manage security | **firewalld**, **umask** default, **SSH key-based**, SELinux **enforcing/permissive**, context file/proses, **restorecon**, **SELinux port labels**, **boolean** | 07, 10, 16 |
+| 11 | *Containers* | **🚫 TIDAK LAGI masuk objektif resmi EX200 RHEL 10** — lihat catatan §4 | — |
 
 > ⚠️ **SELinux** sering jadi penyebab gagal. Jangan mematikan — konfigurasikan
-> dengan benar (`setsebool`, `semanage`, `restorecon`, `chcon`).
+> dengan benar (`setsebool`, `semanage fcontext`, `restorecon`, `semanage port`).
+> Khusus RHEL 10: objektif menekankan **SELinux port labels** (mis. izinkan
+> service non-standar mendengarkan port lewat `semanage port`).
 
-## 3. Topik Baru yang Sering Luput
+## 3. Perubahan Penting EX200 RHEL 9 → RHEL 10 (Jangan Tertipu Materi Lama!)
 
-Ini bagian yang di versi lama catatan sering kosong. Pastikan kamu hafal
-perintah dasarnya (detail ada di modul masing-masing):
+Banyak panduan lama (RHEL 9) masih beredar. Perbedaan yang **berdampak ke
+skor ujian** saat ini:
 
-- **autofs** — mount NFS/USB otomatis on-demand (Modul 13, §VFAT/autofs).
-- **Flatpak** — repo & paket desktop containerized (Modul 12, §Flatpak).
-- **tuned** — profil tuning performa (`tuned-adm`, Modul 09).
-- **grub2 / bootloader** — ubah parameter boot & interrupt boot via `rd.break`
-  (Modul 09, §Bootloader & Akses Darurat).
-- **VFAT** — format & mount FAT32 (`mkfs.vfat`, Modul 13).
-- **chrony / IPv6** — client time service & alamat IPv6 (`nmcli`, Modul 11 & 17).
-- **Stratis / VDO / disk quota** — storage modern wajib RHEL 9/10: pool
-  Stratis + snapshot, volume VDO dedup, dan `xfs_quota` batas user (Modul 13, §10–§12).
-- **nmstate** — network deklaratif via `nmstatectl apply` (RHEL 10, Modul 11, §7c).
+- **🚫 Containers / Podman DIHAPUS** dari objektif resmi EX200 RHEL 10.
+  Red Hat menggantinya dengan **Flatpak** di kategori "Manage software".
+  → Modul 15 (Podman) tetap ada sebagai **bonus keahlian & persiapan RHCE**,
+  tapi **tidak wajib** untuk lulus EX200 RHEL 10.
+- **🚫 Stratis / VDO / disk quota / nmstate / bootc**: **TIDAK** ada di
+  objektif resmi EX200 RHEL 10. Modul 13 memuat Stratis/VDO/quota sebagai
+  **materi perluasan (bonus)** — bagus untuk wawasan, tapi **jangan menganggap
+  ini akan keluar di soal EX200 RHEL 10**.
+- **✅ Yang BARU & wajib di RHEL 10**: **Flatpak** (ganti container),
+  **SELinux port labels**, **preserve system journals** (`/var/log/journal`
+  persisten), **IPv6** eksplisit di networking.
 
-## 4. Perbedaan RHEL 9 vs RHEL 10 (Penting!)
+Topik yang sering luput peserta (dan MASIH relevan RHEL 10):
+- **Flatpak** — repo & paket desktop (Modul 12).
+- **tuned** — profil tuning (`tuned-adm`, Modul 09).
+- **grub2 / bootloader + `rd.break`** — interrupt boot (Modul 09).
+- **VFAT** — `mkfs.vfat -F 32` (Modul 13).
+- **chrony / IPv6** — time client & alamat IPv6 (Modul 11 & 17).
+- **autofs** — mount NFS on-demand (Modul 13).
+- **SELinux port labels** — `semanage port -a -t ...` (Modul 16).
 
-| Aspek | RHEL 9 | RHEL 10 |
-|-------|--------|---------|
+## 4. RHEL 9 vs RHEL 10 (Fakta, Bukan Spekulasi)
+
+| Aspek | RHEL 9 | RHEL 10 (ujian saat ini) |
+|-------|--------|---------------------------|
+| Containers di EX200 | **Masuk** objektif | **DIHAPUS** (diganti Flatpak) |
+| Storage modern | Stratis/VDO sering dibahas | **Tidak** di objektif resmi |
 | Init & service | systemd | systemd (sama) |
-| Container | Podman (rootless) | Podman + **bootc** |
-| OS model | Package-based (RPM/DNF) | **Image mode** (bootc) tersedia |
-| `bootc` | tidak ada | sistem berbasis image (mirip Container OS) |
+| OS model | RPM/DNF package-based | Image mode (`bootc`) *tersedia*, tapi **tidak diujikan** di EX200 |
 | Default FS | XFS | XFS |
-| Networking | NetworkManager/nmcli | NetworkManager/nmcli (sama) |
+| Networking | nmcli (IPv4) | nmcli + **IPv6 eksplisit** |
+| Security | SELinux enforcing/boolean | + **port labels**, **restorecon** ditekankan |
 
-**Bootc / Image Mode (RHEL 10):** sistem dikelola sebagai *image* yang
-di-update via `bootc` (bukan `dnf update` tradisional). Untuk EX200, fokus
-tetap ke administrasi standar (user, storage, service, network, SELinux,
-Podman) — `bootc` bobotnya kecil. Perintah dasar:
+**Bootc / Image Mode (RHEL 10):** sistem bisa dikelola sebagai *image*
+(`bootc upgrade`/`rollback`). **Tidak masuk objektif EX200** — cukup tahu
+ada, jangan panik bila tidak ada di lab RHEL 9.
 ```bash
-bootc status          # lihat status image/rollback
+bootc status          # lihat status image/rollback (RHEL 10 image mode)
 bootc upgrade         # upgrade ke image baru
 bootc rollback        # kembalikan ke image sebelumnya
-bootc switch <image>  # ganti ke image/repo berbeda
 ```
-> Catatan: pada RHEL 9 (paling umum diuji saat ini), `bootc` **tidak ada**.
-> Jangan panik jika perintah ini tidak ada di lab RHEL 9 — fokus ke `dnf`.
+> Fokus utama EX200 RHEL 10 tetaplah administrasi standar: user, storage
+> (GPT/LVM), service (systemd), network (nmcli + IPv6), **SELinux**, dan
+> **Flatpak** — bukan container/bootc.
 
 ## 5. Strategi Hari-H
 
@@ -104,12 +114,14 @@ bootc switch <image>  # ganti ke image/repo berbeda
 7. Set SELinux boolean `httpd_can_network_connect` on.
 8. (Tambahan) Pasang paket Flatpak `gedit`, konfigurasi autofs untuk mount
    NFS lab on-demand, dan aktifkan profil `tuned` `throughput-performance`.
-9. (Storage modern RHEL 9/10) Buat pool Stratis `mypool` dari disk lab, buat
-   filesystem `data1`, mount permanen di `/mnt/stratis`.
-10. (Storage modern) Buat volume VDO dedup `--vdoLogicalSize` 50G di disk lab,
+9. (BONUS — bukan objektif resmi EX200 RHEL 10) Buat pool Stratis `mypool`
+   dari disk lab, buat filesystem `data1`, mount permanen di `/mnt/stratis`.
+10. (BONUS) Buat volume VDO dedup `--vdoLogicalSize` 50G di disk lab,
     format XFS, mount di `/mnt/vdo`, verifikasi dengan `vdostats`.
-11. (Disk quota) Pasang opsi `usrquota,grpquota` di `/home`, set batas user
+11. (BONUS) Pasang opsi `usrquota,grpquota` di `/home`, set batas user
     `user1` maks 120M block & 1200 inode via `xfs_quota -x -c 'limit ...'`.
+    > Soal 9–11 bagus untuk wawasan & persiapan lanjutan, tapi **tidak masuk**
+    > objektif resmi EX200 RHEL 10. Prioritaskan soal 1–8.
 
 (Jawaban & langkah ada di `../lab/LAB.md` dan
 `../referensi/EX200-prep.md`. Untuk perbaikan sistem rusak, baca
@@ -125,12 +137,12 @@ EX200 adalah troubleshooting.)
 - [Simulasi Ujian 3 Jam / 180 Menit](../referensi/SIMULASI-UJIAN.md) & [Checklist H-1](../referensi/CHECKLIST-H1.md).
 
 ## Latihan
-- Kerjakan ke-8 simulasi di atas tanpa melihat jawaban. Catat waktu tiap tugas.
+- Kerjakan skenario 1–8 di atas tanpa melihat jawaban (soal 9–11 opsional/bonus). Catat waktu tiap tugas.
 
 ## Kunci Jawaban (klik untuk lihat)
 ??? note "Kunci Jawaban Latihan"
     - Kerjakan skenario di atas di lab; verifikasi tiap tugas dengan
-      `id`, `getfacl`, `sshd -t`, `firewall-cmd --list-all`, `df -h`, `podman ps`,
+      `id`, `getfacl`, `sshd -t`, `firewall-cmd --list-all`, `df -h`,
       `getenforce`, `tuned-adm active`, `flatpak list` — sesuai kolom
       "Cara Buktikan" di tiap skenario.
     - Target: rata-rata < 18 menit/tugas dan skor ≥ 80% sebelum ujian nyata.

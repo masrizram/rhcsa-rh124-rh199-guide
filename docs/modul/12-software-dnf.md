@@ -89,9 +89,9 @@ sudo flatpak remove org.gnome.gedit
 flatpak remotes                # lihat repo terdaftar
 ```
 
-> ⚠️ Di RHEL resmi perlu `subscription-manager` + repo `rhel-9-for-x86_64-appstream-rpms`
-> agar `flatpak` bisa diinstall. Di klon gratis cukup `dnf install flatpak`.
-> Soal EX200 biasanya: "tambahkan repo Flatpak X lalu pasang aplikasi Y".
+> ⚠️ Di RHEL resmi perlu `subscription-manager` + repo `rhel-10-for-x86_64-appstream-rpms`
+> agar `flatpak` bisa diinstall. Di klon gratis (Rocky/Alma) cukup `dnf install flatpak`.
+> Soal EX200 RHEL 10 biasanya: "tambahkan repo Flatpak X lalu pasang aplikasi Y".
 
 ## 9. Jebakan Umum (EX200)
 

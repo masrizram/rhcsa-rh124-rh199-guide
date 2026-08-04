@@ -1,7 +1,12 @@
-# Modul 15 — Podman & Containers (RHEL 9+)
+# Modul 15 — Podman & Containers (Materi Perluasan)
 
-> Topik wajib di **EX200 RHEL 9**. RHEL menggantikan Docker dengan **Podman**
-> (rootless, daemonless, CLI kompatibel Docker).
+> ⚠️ **Penting — status di EX200:** Mulai **EX200 berbasis RHEL 10** (ujian
+> saat ini, 2026), **Containers/Podman TIDAK LAGI masuk objektif resmi** —
+> Red Hat menggantinya dengan **Flatpak** (lihat Modul 12). Modul ini tetap
+> sangat berguna sebagai **bonus keahlian** dan persiapan jalur **RHCE
+> (EX294, Ansible)**, tapi **tidak wajib** untuk lulus EX200 RHEL 10.
+> (Di era RHEL 9, Podman memang pernah masuk objektif — itu sebabnya banyak
+> materi lama masih mencantumkannya.)
 
 > 📺 Referensi video: [RHCSA & EX200 Prep](https://www.youtube.com/watch?v=eGbNXqPdUa4&list=PLZkuninm20jDUT_jArQrkfCImbbi2jWns) (Podman bagian dari kurikulum RH124/RH199; video playlist tidak memilah per-topik container)
 
@@ -164,12 +169,15 @@ podman pull myapp:1.0             # image buildah bisa dipakai podman
 > sumber/tujuan. Di EX200 sering dipakai untuk "mirror image ke registry
 > internal" atau "backup image ke file".
 
-## 10. Koneksi ke EX200
+## 10. Koneksi ke EX200 (Era RHEL 9 — Bonus di RHEL 10)
 
-!!! success "EX200"
-    Soal container umumnya: *"Jalankan image X sebagai container bernama Y,
-    port P, persistent, dan pastikan hidup setelah reboot."* Kunci: `podman run`
-    + `-v` + `podman generate systemd --new` + `systemctl enable`.
+!!! success "EX200 (RHEL 9) / Bonus RHEL 10"
+    Di era **RHEL 9**, soal container umumnya: *"Jalankan image X sebagai
+    container bernama Y, port P, persistent, dan pastikan hidup setelah
+    reboot."* Kunci: `podman run` + `-v` + `podman generate systemd --new` +
+    `systemctl enable`.
+    > Di **EX200 RHEL 10**, container **tidak lagi diujikan** — fokus ke
+    > Flatpak (Modul 12). Modul ini bermanfaat untuk jalur RHCE.
 
 ## Kuis Cepat
 

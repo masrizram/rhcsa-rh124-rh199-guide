@@ -3,6 +3,13 @@
 Selamat datang! Halaman ini adalah **peta jalan** agar kamu belajar efektif, tidak
 asal loncat. Ikuti urutan, kerjakan LAB di tiap modul, dan uji diri dengan kuis.
 
+> 📌 **EX200 saat ini resmi berbasis RHEL 10 (2026).** Yang diujikan = 11 area
+> objektif resmi (essential tools, software + **Flatpak**, shell script, running
+> systems, storage GPT/LVM, filesystems, deploy/timer/bootloader/chrony, networking
+> IPv4+**IPv6**, users/groups, security/SELinux). **Containers/Podman & Stratis/VDO
+> bukan objektif resmi RHEL 10** — ada di repo sebagai materi bonus. Detail di
+> [Modul 18 — EX200 Prep](modul/18-ex200-prep.md).
+
 ## 🧭 Roadmap Belajar 16 Minggu
 
 ```mermaid
