@@ -1,0 +1,1764 @@
+
+<!doctype html>
+<html lang="id" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Persiapan Sertifikasi Red Hat Certified System Administrator (EX200)">
+      
+      
+        <meta name="author" content="masrizram">
+      
+      
+        <link rel="canonical" href="https://masrizram.github.io/rhcsa-rh124-rh199-guide/modul/21-enterprise-system-engineer/">
+      
+      
+        <link rel="prev" href="../20-shell-scripting/">
+      
+      
+        <link rel="next" href="../../lab/LAB/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>🏢 Modul 21 — System Engineer Enterprise - Panduan Lengkap RHCSA (RH124 / RH199) - RHEL 9 & 10</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+    
+      <link rel="stylesheet" href="../../assets/css/style.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="red">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#modul-21-system-engineer-di-enterprise-perbankan-bridge-rhcsa-lapangan" class="md-skip">
+          Lewati ke isi
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+  <div class="rh-topbar">
+    🐧 Panduan gratis persiapan <strong>RHCSA (EX200)</strong> · RHEL 9 &amp; 10 ·
+    <a href="https://www.redhat.com/en/services/training/ex200-red-hat-certified-system-administrator-rhcsa-exam" target="_blank" rel="noopener">Cek detail ujian resmi →</a>
+  </div>
+
+          </div>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://masrizram.github.io/rhcsa-rh124-rh199-guide/" title="Panduan Lengkap RHCSA (RH124 / RH199) - RHEL 9 &amp; 10" class="md-header__button md-logo" aria-label="Panduan Lengkap RHCSA (RH124 / RH199) - RHEL 9 & 10" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Panduan Lengkap RHCSA (RH124 / RH199) - RHEL 9 & 10
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              🏢 Modul 21 — System Engineer Enterprise
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="red"  aria-label="Mode Gelap"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Mode Gelap" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="red"  aria-label="Mode Terang"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Mode Terang" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Cari" placeholder="Cari" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Cari">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Bagikan" aria-label="Bagikan" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Kosongkan" aria-label="Kosongkan" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Mempersiapkan pencarian
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/masrizram/rhcsa-rh124-rh199-guide" title="Ke repositori" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    masrizram/rhcsa-rh124-rh199-guide
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigasi" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://masrizram.github.io/rhcsa-rh124-rh199-guide/" title="Panduan Lengkap RHCSA (RH124 / RH199) - RHEL 9 &amp; 10" class="md-nav__button md-logo" aria-label="Panduan Lengkap RHCSA (RH124 / RH199) - RHEL 9 & 10" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Panduan Lengkap RHCSA (RH124 / RH199) - RHEL 9 & 10
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/masrizram/rhcsa-rh124-rh199-guide" title="Ke repositori" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    masrizram/rhcsa-rh124-rh199-guide
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Beranda
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pusat-belajar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🗺️ Pusat Belajar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-pengantar-dan-roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📦 Modul 0 — Pengantar & Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-get-started-rhel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📦 Modul 1 — Get Started with RHEL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-access-command-line/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📦 Modul 2 — Access the Command Line
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-manage-files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📦 Modul 3 — Manage Files
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-get-help/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📦 Modul 4 — Get Help in RHEL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-text-files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📦 Modul 5 — Text Files (vim)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-users-groups/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📦 Modul 6 — Users & Groups
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-file-permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📦 Modul 7 — Permissions & ACL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-processes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📦 Modul 8 — Processes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-services-daemons/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📦 Modul 9 — systemd Services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-ssh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📦 Modul 10 — SSH & Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-networking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📦 Modul 11 — Networking
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-software-dnf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📦 Modul 12 — Software (DNF)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-filesystems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📦 Modul 13 — File Systems & LVM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-support/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📦 Modul 14 — Support & Logs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-podman-containers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🐳 Modul 15 — Podman & Containers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-selinux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🛡️ Modul 16 — SELinux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17-scheduling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ⏰ Modul 17 — Penjadwalan & Time Zone
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18-ex200-prep/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🎓 Modul 18 — EX200 (RHCSA) Prep
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../19-skenario-ex200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📝 Modul 19 — Skenario EX200 Terukur
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../20-shell-scripting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🖥️ Modul 20 — Shell Scripting Dasar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏢 Modul 21 — System Engineer Enterprise
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏢 Modul 21 — System Engineer Enterprise
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Daftar isi">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Daftar isi
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0-mindset-perbedaan-rhcsa-vs-enterprise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0. Mindset Perbedaan: RHCSA vs Enterprise
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-identity-access-management-terpusat-idm-ad-via-sssd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Identity &amp; Access Management Terpusat (IDM / AD via SSSD)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-centralized-logging-siem-rsyslog-auditd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Centralized Logging → SIEM (rsyslog / auditd)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-patching-lifecycle-terkelola-satellite-ansible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Patching &amp; Lifecycle Terkelola (Satellite / Ansible)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-hardening-compliance-cis-pci-dss-openscap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Hardening &amp; Compliance (CIS / PCI-DSS / OpenSCAP)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-high-availability-clustering-pacemaker-pcs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. High Availability &amp; Clustering (Pacemaker / PCS)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-automation-skala-besar-ansible-aap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Automation Skala Besar (Ansible / AAP)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-monitoring-terintegrasi-zabbix-prometheus-nagios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Monitoring Terintegrasi (Zabbix / Prometheus / Nagios)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-disaster-recovery-rollback-plan-wajib-sebelum-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Disaster Recovery &amp; Rollback Plan (wajib sebelum Change)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-change-management-sop-itil" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Change Management &amp; SOP (ITIL)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-koneksi-ke-karier-rhcsa-rhce-enterprise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Koneksi ke Karier (RHCSA → RHCE → Enterprise)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-jebakan-umum-di-enterprise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Jebakan Umum di Enterprise
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-self-check-siap-hari-pertama" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Self-Check: Siap Hari Pertama?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#latihan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab/LAB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🛠️ Latihan (LAB)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../referensi/CHEATSHEET/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ⌨️ Cheat Sheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../referensi/EX200-prep/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🎯 Persiapan EX200
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../referensi/BREAK-FIX/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🚑 Break & Fix (Troubleshooting)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../referensi/SIMULASI-UJIAN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ⏱️ Simulasi Ujian 3 Jam
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../referensi/CHECKLIST-H1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Checklist H-1 Ujian
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../referensi/GLOSARIUM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📖 Glosarium
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../referensi/SUMBER-EX200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔗 Sumber & Pendaftaran EX200
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/masrizram/rhcsa-rh124-rh199-guide/edit/main/docs/modul/21-enterprise-system-engineer.md" title="Ubah halaman ini" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="modul-21-system-engineer-di-enterprise-perbankan-bridge-rhcsa-lapangan">Modul 21 — System Engineer di Enterprise / Perbankan (Bridge RHCSA → Lapangan)<a class="headerlink" href="#modul-21-system-engineer-di-enterprise-perbankan-bridge-rhcsa-lapangan" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>Modul ini <strong>bukan</strong> bagian objektif EX200 RHCSA — ia menjembatani apa yang
+sudah Anda kuasai di Modul 0–20 ke <strong>realitas kerja System Engineer di
+lingkungan enterprise skala besar</strong> (mis. perbankan/keuangan seperti Panin).
+Di sini server tidak dikelola satu-satu lewat CLI langsung, melainkan lewat
+<em>tooling</em>, <em>proses</em>, dan <em>kepatuhan (compliance)</em>.</p>
+<p>📺 Referensi tetap Modul 0–20 (RH124/RH199). Modul ini menambahkan konteks
+enterprise yang tidak diujikan di EX200 tapi <strong>wajib di dunia nyata</strong>.</p>
+</blockquote>
+<h2 id="0-mindset-perbedaan-rhcsa-vs-enterprise">0. Mindset Perbedaan: RHCSA vs Enterprise<a class="headerlink" href="#0-mindset-perbedaan-rhcsa-vs-enterprise" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Aspek</th>
+<th>RHCSA (ujian)</th>
+<th>Enterprise nyata</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sasaran</td>
+<td>1 VM, tugas selesai</td>
+<td>Ratusan server, <em>availability</em> 99.99%</td>
+</tr>
+<tr>
+<td>Perubahan</td>
+<td>bebas <code>vim</code>/<code>systemctl</code></td>
+<td>via <strong>Change Request (CR)</strong> + maintenance window</td>
+</tr>
+<tr>
+<td>User</td>
+<td>lokal (<code>useradd</code>)</td>
+<td><strong>terpusat</strong> (IDM/AD via SSSD)</td>
+</tr>
+<tr>
+<td>Patching</td>
+<td><code>dnf update</code> langsung</td>
+<td><strong>Satellite/Ansible</strong>, terencana, bisa rollback</td>
+</tr>
+<tr>
+<td>Log</td>
+<td><code>journalctl</code> lokal</td>
+<td><strong>forward ke SIEM</strong> (Splunk/ELK) untuk audit</td>
+</tr>
+<tr>
+<td>Keamanan</td>
+<td>SELinux enforcing</td>
+<td>+ <strong>CIS/PCI-DSS hardening</strong> + scanning berkala</td>
+</tr>
+<tr>
+<td>Verifikasi</td>
+<td>"perintah jalan"</td>
+<td>"terbukti lewat monitoring &amp; ticket tertutup"</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Prinsip emas enterprise: <strong>setiap change punya rollback plan SEBELUM
+dijalankan</strong>, bukan afterthought.</p>
+</blockquote>
+<h2 id="1-identity-access-management-terpusat-idm-ad-via-sssd">1. Identity &amp; Access Management Terpusat (IDM / AD via SSSD)<a class="headerlink" href="#1-identity-access-management-terpusat-idm-ad-via-sssd" title="Permanent link">&para;</a></h2>
+<p>Di bank, user <strong>tidak dibuat lokal</strong> (<code>useradd</code>) — ia otentikasi ke
+<strong>Red Hat Identity Management (IdM)</strong> atau <strong>Active Directory (AD)</strong> lewat
+<strong>SSSD</strong>. Ini menjaga <em>least privilege</em> &amp; audit trail terpusat.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Cek apakah host sudah join ke realm (IdM/AD)</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>sudo<span class="w"> </span>realm<span class="w"> </span>list
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># Join ke AD (contoh):</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>sudo<span class="w"> </span>realm<span class="w"> </span>join<span class="w"> </span>--user<span class="o">=</span>admin<span class="w"> </span>ad.panin.local
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># Konfig otentikasi dikelola SSSD:</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>sssd
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># Verifikasi user terpusat bisa login (tanpa user lokal):</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>id<span class="w"> </span>budi@panin.local
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>getent<span class="w"> </span>passwd<span class="w"> </span>budi@panin.local
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1"># Pembatasan akses sudo lewat group AD:</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>sudo<span class="w"> </span>visudo<span class="w">   </span><span class="c1"># %domain\ admins@panin.local  ALL=(ALL) ALL</span>
+</code></pre></div>
+<p><strong>Cara Buktikan:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>realm<span class="w"> </span>list<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span>configured
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>id<span class="w"> </span>someaduser@domain<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;SSSD OK&quot;</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>sudo<span class="w"> </span>sssctl<span class="w"> </span>domain-status<span class="w"> </span>domain.name
+</code></pre></div></p>
+<blockquote>
+<p>⚠️ Jangan <code>useradd</code> untuk user bisnis di production. Pakai direktori
+terpusat. User lokal hanya untuk <em>break-glass</em> (akun darurat terkunci).</p>
+</blockquote>
+<h2 id="2-centralized-logging-siem-rsyslog-auditd">2. Centralized Logging → SIEM (rsyslog / auditd)<a class="headerlink" href="#2-centralized-logging-siem-rsyslog-auditd" title="Permanent link">&para;</a></h2>
+<p>EX200 cuma <code>journalctl</code>. Di enterprise, log di-forward ke <strong>SIEM</strong> (Splunk,
+ELK/Elastic, atau QRadar) untuk <strong>audit kepatuhan (PCI-DSS)</strong> &amp; deteksi anomali.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Forward seluruh syslog ke server log terpusat</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>rsyslog
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/rsyslog.d/10-forward.conf<span class="w"> </span><span class="s">&lt;&lt;&#39;EOF&#39;</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="s">*.*  @@log.panin.local:514          # TCP ke SIEM (@@=TCP, @=UDP)</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="s">EOF</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>rsyslog
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="c1"># auditd: rekam event security (login gagal, perubahan file kritis)</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>auditd
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>sudo<span class="w"> </span>ausearch<span class="w"> </span>-m<span class="w"> </span>USER_LOGIN<span class="w"> </span>-ts<span class="w"> </span>recent<span class="w">   </span><span class="c1"># cari login terakhir</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>sudo<span class="w"> </span>aureport<span class="w"> </span>--failed<span class="w">                    </span><span class="c1"># ringkasan kegagalan</span>
+</code></pre></div>
+<p><strong>Cara Buktikan:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>logger<span class="w"> </span><span class="s2">&quot;TEST-SIEM from </span><span class="k">$(</span>hostname<span class="k">)</span><span class="s2">&quot;</span><span class="w">      </span><span class="c1"># kirim log test</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>sudo<span class="w"> </span>tcpdump<span class="w"> </span>-n<span class="w"> </span>host<span class="w"> </span>log.panin.local<span class="w">     </span><span class="c1"># (di server) pastikan trafik masuk</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>ausearch<span class="w"> </span>-m<span class="w"> </span>USER_LOGIN<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail
+</code></pre></div></p>
+<h2 id="3-patching-lifecycle-terkelola-satellite-ansible">3. Patching &amp; Lifecycle Terkelola (Satellite / Ansible)<a class="headerlink" href="#3-patching-lifecycle-terkelola-satellite-ansible" title="Permanent link">&para;</a></h2>
+<p><code>dnf update</code> langsung di production = <strong>risiko tinggi</strong>. Enterprise pakai
+<strong>Red Hat Satellite</strong> (atau Foreman/Katello) + <strong>Ansible</strong> untuk:
+- menyebar patch ke ratusan host dalam <em>maintenance window</em>,
+- menyimpan <em>snapshot/content view</em> agar bisa rollback.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Daftar host ke Satellite (dikelola admin Satellite)</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>subscription-manager<span class="w"> </span>status<span class="w">          </span><span class="c1"># cek entitlement</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1"># Atau lewat Ansible (lihat §6) — jangan update manual massal.</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="c1"># Rollback plan wajib SEBELUM patch:</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>sudo<span class="w"> </span>dnf<span class="w"> </span><span class="nb">history</span><span class="w"> </span>list<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w">         </span><span class="c1"># catat ID terakhir</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># setelah patch bermasalah:</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>sudo<span class="w"> </span>dnf<span class="w"> </span><span class="nb">history</span><span class="w"> </span>undo<span class="w"> </span>&lt;ID&gt;<span class="w">           </span><span class="c1"># kembalikan</span>
+</code></pre></div>
+<p><strong>Cara Buktikan:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>subscription-manager<span class="w"> </span>status<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;Overall Status: Current&quot;</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>dnf<span class="w"> </span><span class="nb">history</span><span class="w"> </span>list<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-3<span class="w">           </span><span class="c1"># ada rencana undo</span>
+</code></pre></div></p>
+<blockquote>
+<p>Di bank: <strong>tidak ada <code>dnf update</code> tanpa CR + approval + rollback plan.</strong></p>
+</blockquote>
+<h2 id="4-hardening-compliance-cis-pci-dss-openscap">4. Hardening &amp; Compliance (CIS / PCI-DSS / OpenSCAP)<a class="headerlink" href="#4-hardening-compliance-cis-pci-dss-openscap" title="Permanent link">&para;</a></h2>
+<p>SELinux + firewalld itu <em>baseline</em>. Institusi finansial wajib <strong>CIS Benchmark</strong>
+&amp; <strong>PCI-DSS</strong> (untuk sistem yang sentuh data kartu). Alat resmi RHEL:
+<strong>OpenSCAP</strong>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>scap-security-guide<span class="w"> </span>openscap-scanner
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="c1"># Scan host terhadap profil CIS / PCI-DSS:</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>sudo<span class="w"> </span>oscap<span class="w"> </span>xccdf<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>--profile<span class="w"> </span>cis<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span>--results<span class="w"> </span>/tmp/scan.xml<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span>--report<span class="w"> </span>/tmp/scan.html<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">  </span>/usr/share/xml/scap/ssg/content/ssg-rhel10-ds.xml
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="c1"># Terapkan remediasi otomatis (hati-hati — selalu di lab dulu):</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>sudo<span class="w"> </span>oscap<span class="w"> </span>xccdf<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>--profile<span class="w"> </span>cis<span class="w"> </span>--remediate<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">  </span>/usr/share/xml/scap/ssg/content/ssg-rhel10-ds.xml
+</code></pre></div>
+<p><strong>Cara Buktikan:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>ls<span class="w"> </span>-lh<span class="w"> </span>/tmp/scan.html<span class="w">                </span><span class="c1"># ada laporan</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>grep<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;score&quot;</span><span class="w"> </span>/tmp/scan.xml<span class="w">        </span><span class="c1"># lihat nilai kepatuhan</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>sudo<span class="w"> </span>firewall-cmd<span class="w"> </span>--list-all<span class="w">         </span><span class="c1"># tetap sesuai segmentasi</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>getenforce<span class="w">                           </span><span class="c1"># Enforcing</span>
+</code></pre></div></p>
+<h2 id="5-high-availability-clustering-pacemaker-pcs">5. High Availability &amp; Clustering (Pacemaker / PCS)<a class="headerlink" href="#5-high-availability-clustering-pacemaker-pcs" title="Permanent link">&para;</a></h2>
+<p>Sistem perbankan butuh <strong>99.99% uptime</strong>. Satu node mati → layanan pindah
+(failover) ke node lain lewat <strong>Pacemaker</strong> + <strong>Corosync</strong> (diurus <code>pcs</code>).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># (Di cluster yang sudah disiapkan admin) cek status:</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>sudo<span class="w"> </span>pcs<span class="w"> </span>status
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>sudo<span class="w"> </span>pcs<span class="w"> </span>cluster<span class="w"> </span>status
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1"># Resource contoh (webapp berbasis systemd):</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>sudo<span class="w"> </span>pcs<span class="w"> </span>resource<span class="w"> </span>create<span class="w"> </span>webapp<span class="w"> </span>systemd:webapp<span class="w"> </span>op<span class="w"> </span>monitor<span class="w"> </span><span class="nv">interval</span><span class="o">=</span>30s
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>sudo<span class="w"> </span>pcs<span class="w"> </span>constraint<span class="w"> </span>colocation<span class="w"> </span>add<span class="w"> </span>webapp<span class="w"> </span>with<span class="w"> </span>virtual-ip
+</code></pre></div>
+<p><strong>Cara Buktikan:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>pcs<span class="w"> </span>status<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;Online:&quot;</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>pcs<span class="w"> </span>resource<span class="w"> </span>show<span class="w"> </span>webapp<span class="w">            </span><span class="c1"># running di node mana</span>
+</code></pre></div></p>
+<blockquote>
+<p>Catatan: setup cluster penuh butuh shared storage &amp; fencing — di luar
+cakupan EX200, tapi penting dipahami saat bertugas.</p>
+</blockquote>
+<h2 id="6-automation-skala-besar-ansible-aap">6. Automation Skala Besar (Ansible / AAP)<a class="headerlink" href="#6-automation-skala-besar-ansible-aap" title="Permanent link">&para;</a></h2>
+<p>RHCSA = single node. Enterprise = ratusan node → <strong>Ansible</strong> (Red Hat
+Ansible Automation Platform / AAP). Ini langkah natural setelah RHCSA
+(jalur <strong>RHCE = EX294</strong>).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Inventory sederhana</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>inventory.ini<span class="w"> </span><span class="s">&lt;&lt;&#39;EOF&#39;</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="s">[web]</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="s">web1.panin.local</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="s">web2.panin.local</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="s">EOF</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="c1"># Playbook: pastikan httpd enable &amp; firewalld buka 80</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>harden.yml<span class="w"> </span><span class="s">&lt;&lt;&#39;EOF&#39;</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="s">- hosts: web</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="s">  become: true</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="s">  tasks:</span>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="s">    - name: ensure httpd running</span>
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="s">      ansible.builtin.service: name=httpd state=started enabled=yes</span>
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="s">    - name: open port 80</span>
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="s">      ansible.posix.firewalld: service=http permanent=true state=enabled immediate=true</span>
+<a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a><span class="s">EOF</span>
+<a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a>ansible-playbook<span class="w"> </span>-i<span class="w"> </span>inventory.ini<span class="w"> </span>harden.yml
+</code></pre></div>
+<p><strong>Cara Buktikan:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>ansible<span class="w"> </span>web<span class="w"> </span>-i<span class="w"> </span>inventory.ini<span class="w"> </span>-m<span class="w"> </span>ping
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>ansible<span class="w"> </span>web<span class="w"> </span>-i<span class="w"> </span>inventory.ini<span class="w"> </span>-m<span class="w"> </span><span class="nb">command</span><span class="w"> </span>-a<span class="w"> </span><span class="s1">&#39;systemctl is-active httpd&#39;</span>
+</code></pre></div></p>
+<h2 id="7-monitoring-terintegrasi-zabbix-prometheus-nagios">7. Monitoring Terintegrasi (Zabbix / Prometheus / Nagios)<a class="headerlink" href="#7-monitoring-terintegrasi-zabbix-prometheus-nagios" title="Permanent link">&para;</a></h2>
+<p>Server tidak "sehat" kalau tidak dipantau. Linux enterprise diintegrasikan
+dengan sistem monitoring (agent melaporkan CPU/RAM/disk/service ke dashboard).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># Contoh agent Zabbix</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>zabbix-agent2
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>sudo<span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/^Server=.*/Server=monitor.panin.local/&#39;</span><span class="w"> </span>/etc/zabbix/zabbix_agent2.conf
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>zabbix-agent2
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="c1"># Prometheus node_exporter:</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>./node_exporter<span class="w"> </span><span class="p">&amp;</span><span class="w">            </span><span class="c1"># metrics di :9100/metrics</span>
+</code></pre></div>
+<p><strong>Cara Buktikan:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>systemctl<span class="w"> </span>is-active<span class="w"> </span>zabbix-agent2
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>curl<span class="w"> </span>-s<span class="w"> </span>localhost:9100/metrics<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>node_cpu<span class="w">   </span><span class="c1"># Prometheus</span>
+</code></pre></div></p>
+<h2 id="8-disaster-recovery-rollback-plan-wajib-sebelum-change">8. Disaster Recovery &amp; Rollback Plan (wajib sebelum Change)<a class="headerlink" href="#8-disaster-recovery-rollback-plan-wajib-sebelum-change" title="Permanent link">&para;</a></h2>
+<p>Setiap perubahan production butuh <strong>rencana pemulihan</strong>. Bukan "semoga lancar".</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># 1. Snapshot VM / LVM sebelum change</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>sudo<span class="w"> </span>lvcreate<span class="w"> </span>-s<span class="w"> </span>-n<span class="w"> </span>root-snap<span class="w"> </span>-L<span class="w"> </span>2G<span class="w"> </span>/dev/vg0/root
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="c1"># 2. Backup config kritis</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>sudo<span class="w"> </span>tar<span class="w"> </span>czf<span class="w"> </span>/backup/etc-<span class="k">$(</span>date<span class="w"> </span>+%F<span class="k">)</span>.tgz<span class="w"> </span>/etc
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="c1"># 3. Catat DNF history ID (untuk undo)</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>sudo<span class="w"> </span>dnf<span class="w"> </span><span class="nb">history</span><span class="w"> </span>list<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-1
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="c1"># 4. Jika gagal -&gt; restore:</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>sudo<span class="w"> </span>dnf<span class="w"> </span><span class="nb">history</span><span class="w"> </span>undo<span class="w"> </span>&lt;ID&gt;
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>sudo<span class="w"> </span>lvconvert<span class="w"> </span>--merge<span class="w"> </span>/dev/vg0/root-snap<span class="w">     </span><span class="c1"># kembalikan LVM</span>
+</code></pre></div>
+<p><strong>Cara Buktikan:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>lvs<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>snap<span class="w">                  </span><span class="c1"># snapshot ada</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>ls<span class="w"> </span>-lh<span class="w"> </span>/backup/etc-*.tgz<span class="w">         </span><span class="c1"># backup ada</span>
+</code></pre></div></p>
+<h2 id="9-change-management-sop-itil">9. Change Management &amp; SOP (ITIL)<a class="headerlink" href="#9-change-management-sop-itil" title="Permanent link">&para;</a></h2>
+<p>Di perbankan, <strong>tidak ada perintah production tanpa CR (Change Request)</strong>:
+1. Buat CR + dokumentasi (what / why / rollback).
+2. Dapat <strong>approval</strong> dari change board.
+3. Eksekusi di <strong>maintenance window</strong> (jam sepi traffic).
+4. Verifikasi via monitoring + tutup ticket.</p>
+<blockquote>
+<p>Mentalitas: <em>"Saya bisa menjalankan perintah, tapi apakah saya berhak
+menjalankannya sekarang, dan apa rencana pulihnya?"</em> — ini pemisah
+junior vs engineer di enterprise.</p>
+</blockquote>
+<h2 id="10-koneksi-ke-karier-rhcsa-rhce-enterprise">10. Koneksi ke Karier (RHCSA → RHCE → Enterprise)<a class="headerlink" href="#10-koneksi-ke-karier-rhcsa-rhce-enterprise" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>flowchart LR
+    A[RHCSA - EX200&lt;br/&gt;single node] --&gt; B[RHCE - EX294&lt;br/&gt;Ansible automation]
+    B --&gt; C[Enterprise: IDM/AD, SIEM,&lt;br/&gt;Satellite, CIS/PCI-DSS, HA]
+    C --&gt; D[System Engineer&lt;br/&gt;Perbankan/Finansial]</code></pre>
+<table>
+<thead>
+<tr>
+<th>Sertifikasi / Skill</th>
+<th>Fokus</th>
+<th>Kapan relevan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>RHCSA (EX200)</strong></td>
+<td>administrasi single node RHEL</td>
+<td><em>fondasi wajib</em> ✅ sudah di repo</td>
+</tr>
+<tr>
+<td><strong>RHCE (EX294)</strong></td>
+<td>otomasi Ansible</td>
+<td>naik level ke ratusan node</td>
+</tr>
+<tr>
+<td><strong>OpenShift (EX280)</strong></td>
+<td>container platform (beda dari Podman dasar)</td>
+<td>bila bank pakai PaaS</td>
+</tr>
+<tr>
+<td><strong>Satellite / IDM</strong></td>
+<td>lifecycle &amp; identitas terpusat</td>
+<td>operasional harian</td>
+</tr>
+<tr>
+<td><strong>ITIL / SOP</strong></td>
+<td>change &amp; incident mgmt</td>
+<td>budaya kerja</td>
+</tr>
+</tbody>
+</table>
+<h2 id="11-jebakan-umum-di-enterprise">11. Jebakan Umum di Enterprise<a class="headerlink" href="#11-jebakan-umum-di-enterprise" title="Permanent link">&para;</a></h2>
+<div class="admonition danger">
+<p class="admonition-title">Jebakan</p>
+<ul>
+<li><code>dnf update</code> langsung di production → bisa merusak dependensi lintas layanan.</li>
+<li><code>useradd</code> untuk user bisnis → melanggar audit &amp; <em>least privilege</em>.</li>
+<li>Lupa forward log ke SIEM → insiden tak terdeteksi, gagal compliance.</li>
+<li>Ganti config tanpa backup &amp; rollback → recovery lambat saat gagal.</li>
+<li>SSH langsung ke production tanpa <em>bastion/jump-host</em> → dilanggar kebijakan.</li>
+<li>Nonaktifkan SELinux "biar jalan" → temuan audit fatal.</li>
+</ul>
+</div>
+<h2 id="12-self-check-siap-hari-pertama">12. Self-Check: Siap Hari Pertama?<a class="headerlink" href="#12-self-check-siap-hari-pertama" title="Permanent link">&para;</a></h2>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Paham bedanya <code>useradd</code> lokal vs SSSD/IDM/AD.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Tahu cara forward log ke SIEM &amp; cek <code>auditd</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Tidak menjalankan <code>dnf update</code> tanpa CR + rollback.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Kenal OpenSCAP &amp; profil CIS/PCI-DSS.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Pernah menjalankan Ansible playbook sederhana.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Punya kebiasaan: <strong>backup + snapshot SEBELUM change</strong>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Paham alur Change Request &amp; maintenance window.</li>
+</ul>
+<blockquote>
+<p>Fondasi RHCSA di repo ini (Modul 0–20) sudah memberi Anda <em>skill CLI &amp; CLI
+troubleshooting</em> yang solid. Modul 21 ini melengkapinya dengan <strong>konteks
+organisasi</strong> — kombinasi keduanya yang membuat Anda siap di enterprise.</p>
+</blockquote>
+<h2 id="latihan">Latihan<a class="headerlink" href="#latihan" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Di lab: pasang <code>sssd</code> + <code>realm</code> (bisa simulasi dengan IdM/FreeIPA lokal).</li>
+<li>Forward <code>rsyslog</code> ke VM log lain, verifikasi dengan <code>tcpdump</code>/<code>logger</code>.</li>
+<li>Jalankan <code>oscap</code> scan profil CIS, lihat laporan HTML.</li>
+<li>Tulis 1 Ansible playbook yang meng-harden 2 node sekaligus (firewalld + service).</li>
+<li>Buat "Change Plan" fictif: apa yang diubah, kapan, dan <strong>bagaimana rollback-nya</strong>.</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Kembali ke atas
+</button>
+        
+      </main>
+      
+  <nav class="rh-prevnext" aria-label="Navigasi modul">
+    
+      
+        <a class="rh-prev" href="../20-shell-scripting/">
+          <span class="rh-dir">← Sebelumnya</span>
+          <span class="rh-t">🖥️ Modul 20 — Shell Scripting Dasar</span>
+        </a>
+      
+      
+        <a class="rh-next" href="../../lab/LAB/">
+          <span class="rh-dir">Berikutnya →</span>
+          <span class="rh-t">🛠️ Latihan (LAB)</span>
+        </a>
+      
+    
+  </nav>
+
+  <div class="rh-footcta">
+    <a class="rh-btn rh-btn-primary" href="../../referensi/SIMULASI-UJIAN/">⏱️ Uji diri: Simulasi Ujian 3 Jam</a>
+    <a class="rh-btn rh-btn-ghost" href="../../pusat-belajar/">🗺️ Pusat Belajar</a>
+  </div>
+
+  <div class="rh-copyright">
+    © 2026 masrizram · Panduan RHCSA (RH124/RH199) → EX200 · Lisensi MIT
+  </div>
+
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.path", "navigation.top", "navigation.indexes", "toc.follow", "toc.integrate", "content.code.copy", "content.code.annotate", "content.code.select", "content.tooltips", "content.action.edit", "content.action.raw", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Tersalin ke clipboard", "clipboard.copy": "Salin ke clipboard", "search.result.more.one": "1 lagi di halaman ini", "search.result.more.other": "# lagi di halaman ini", "search.result.none": "Tidak ada dokumen yang sesuai", "search.result.one": "1 dokumen ditemukan", "search.result.other": "# dokumen ditemukan", "search.result.placeholder": "Ketik untuk mulai pencarian", "search.result.term.missing": "Tidak ada", "select.version": "Pilih versi"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../js/mermaid-init.js"></script>
+      
+    
+  </body>
+</html>
