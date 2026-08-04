@@ -55,6 +55,7 @@ Setelah menyelesaikan panduan ini, kamu diharapkan mampu:
 | 19 | Skenario EX200 Terukur | Latihan soal berbobot + kunci | `eGbNXqPdUa4` |
 | 20 | Shell Scripting Dasar | `if`/`for`/`while`, variabel, argumen | `eGbNXqPdUa4` |
 | 21 | System Engineer Enterprise | SSSD/IDM, SIEM, Satellite, CIS/PCI-DSS, Ansible, HA, DR | — |
+| 22 | Runbook Troubleshooting Produksi | fstab no-boot, SELinux, disk penuh, network, LVM, crash | — |
 
 Materi lengkap tiap modul ada di folder [`modul/`](modul/).
 

@@ -108,6 +108,7 @@ nav:
   - "📝 Modul 19 — Skenario EX200 Terukur": modul/19-skenario-ex200.md
   - "🖥️ Modul 20 — Shell Scripting Dasar": modul/20-shell-scripting.md
   - "🏢 Modul 21 — System Engineer Enterprise": modul/21-enterprise-system-engineer.md
+  - "🚑 Modul 22 — Runbook Troubleshooting Produksi": modul/22-runbook-troubleshooting-production.md
   - "🛠️ Latihan (LAB)": lab/LAB.md
   - "⌨️ Cheat Sheet": referensi/CHEATSHEET.md
   - "🎯 Persiapan EX200": referensi/EX200-prep.md
